@@ -69,6 +69,10 @@ h6 { font-size: 16px;}
 	border-bottom:1px solid var(--borderColor);
 	overflow:auto;
 }
+.s1{
+	background-image: var(--mainImage);
+	border-bottom:1px solid var(--borderColor);
+}
 
 
 
@@ -220,7 +224,7 @@ h6 { font-size: 16px;}
 }
 
 #spider-mode{
-	background-color: #2023b9;
+	background-image: url("images/bluespider.jpeg");
 }
 
 #purple-mode{
@@ -298,6 +302,13 @@ h6 { font-size: 16px;}
 	gap:100px;
 }
 
+.skill-wrapper{
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+	padding-bottom: 50px;
+	padding-top: 50px;
+	gap:100px;
+}
 
 #skills{
 	display: flex;
