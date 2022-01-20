@@ -15,11 +15,35 @@ ul{
 	list-style: none;
 }
 
+.intro-wrapper{
+	background-color:#4d4d4d;
+	border:1px solid #F7931A;
+	border-radius:5px 5px 0 0;
 
 
+	-webkit-box-shadow: -1px 1px 3px -1px rgba(0,0,0,0.75);
+	-moz-box-shadow: -1px 1px 3px -1px rgba(0,0,0,0.75);
+	box-shadow: -1px 1px 3px -1px rgba(0,0,0,0.75);
+
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-areas: 
+		'nav-wrapper nav-wrapper'
+		'left-column right-column'
+	;
+}
+.nav-wrapper{
+	border-radius:5px 5px 0 0;
+	grid-area:nav-wrapper;
+	border-bottom: 1px solid #F7931A;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #4d4d4d;
+}
 .s3{
-	background-color: var(--mainColor);
-	border-bottom:1px solid var(--borderColor);
+	background-color: #4d4d4d;
+	border-bottom:1px solid #F7931A;	
 }
 
 .tro-wrapper{
@@ -28,6 +52,91 @@ ul{
 	align-content: center;
     
 }
+
+h1, h2, h3, h4, h5, h6, strong{
+	color: var(--mainText);
+	font-family: 'Russo One', sans-serif, 'Playfair Display';
+	font-weight: 500;
+}
+
+p, li, span, label, input, textarea{
+	color: var(--secondaryText);
+	font-family: 'Roboto Mono', monospace;
+}
+
+a{
+	text-decoration: none;
+	color:#17a2b8;
+}
+
+ul{
+	list-style: none;
+}
+
+h1 { font-size: 56px;}
+h2 { font-size: 36px;}
+h3 { font-size: 28px;}
+h4 { font-size: 24px;}
+h5 { font-size: 20px;}
+h6 { font-size: 16px;}
+
+
+
+#navigation{
+	margin:0;
+	padding: 10px;
+}
+
+#navigation li{
+	display: inline-block;
+	margin-right: 5px;
+	margin-left:5px;
+}
+
+.dots-wrapper{
+	display: flex;
+	padding: 10px;
+}
+
+#dot-1{
+	background-color:  #FC6058;
+}
+
+#dot-2{
+	background-color:  #FEC02F;
+}
+
+#dot-3{
+	background-color:  #2ACA3E;
+}
+
+.browser-dot{
+	background-color: black;
+	height: 15px;
+	width: 15px;
+	border-radius: 50%;
+	margin: 5px;
+
+	-webkit-box-shadow: -1px 1px 3px -1px rgba(0,0,0,0.75);
+	-moz-box-shadow: -1px 1px 3px -1px rgba(0,0,0,0.75);
+	box-shadow: -1px 1px 3px -1px rgba(0,0,0,0.75);
+
+}
+
+
+.left-column{
+	grid-area: 2 / 1 / 4 / 4;
+	padding-top:50px;
+	padding-bottom: 50px;
+}
+#settings-note{
+	font-size: 12px;
+	font-style: italic;
+	text-align: center;
+}
+
+
+
 div {
 	will-change: transform;
   }
@@ -37,12 +146,12 @@ div {
   }
   #ui .text {
     position: absolute;
-    top: 1em;
+    top: 1.1em;
     left: 10em;
 	font-size: 70px;
 	color: #fff;
-	line-height: 3.2rem;
-	font-family: 'Russo One';
+	line-height: 4rem;
+	font-family: 'Anton';
 	padding: 20px 0;
 	mix-blend-mode: screen;
 	transform-style: preserve-3d;
@@ -227,6 +336,15 @@ div {
     animation: planeMoveTop 2s infinite linear;
   }
   
+  .right-column{
+	grid-area: right-column;
+	display: grid;
+	align-content: center;
+
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
 .bottom-plane {
     transform: rotateX(-85deg);
     top: -30%;
