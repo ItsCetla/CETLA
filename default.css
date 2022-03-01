@@ -46,6 +46,7 @@ textarea {
 a {
     text-decoration: none;
     color: #17a2b8;
+    padding: 1em;
 }
 
 ul {
@@ -78,24 +79,22 @@ h6 {
 
 .s1 {
     background-color: var(--mainColor);
-    border-bottom: 1px solid var(--borderColor);
     overflow: auto;
 }
 
 .s2 {
     background-color: var(--secondaryColor);
-    border-bottom: 1px solid var(--borderColor);
     overflow: auto;
 }
 
 .s1 {
     background-image: var(--mainImage);
-    border-bottom: 1px solid var(--borderColor);
 }
 
 .s3 {
     background-color: var(--mainColor);
     border-bottom: 1px solid var(--borderColor);
+    overflow: auto;
 }
 
 .main-container {
@@ -108,6 +107,13 @@ h6 {
     text-align: center;
     align-content: center;
     min-height: 10em;
+}
+
+.greeting2-wrapper {
+    display: grid;
+    text-align: center;
+    align-content: center;
+    min-height: 1em;
 }
 
 .intro-wrapper {
@@ -125,11 +131,31 @@ h6 {
 .nav-wrapper {
     border-radius: 5px 5px 0 0;
     grid-area: nav-wrapper;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--mainColor);
+}
+
+.nav2-wrapper {
+    border-radius: 5px 5px 0 0;
+    grid-area: nav2-wrapper;
     border-bottom: 1px solid var(--borderColor);
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: var(--mainColor);
+}
+
+.center {
+    margin: auto;
+    width: fit-content;
+    padding: 2em;
+}
+
+.centerImage {
+    text-align: center;
+    display: block;
 }
 
 .wrap {
@@ -219,6 +245,15 @@ h6 {
     border: 2px solid var(--borderColor);
 }
 
+#album_pic {
+    display: grid;
+    margin: auto;
+    height: 30em;
+    width: 30em;
+    object-fit: cover;
+    border: 2px solid var(--borderColor);
+}
+
 #theme-options-wrapper {
     display: flex;
     justify-content: center;
@@ -269,6 +304,14 @@ h6 {
 
 .right-column {
     grid-area: right-column;
+    display: grid;
+    align-content: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.center-column {
+    grid-area: center-column;
     display: grid;
     align-content: center;
     padding-top: 50px;
@@ -365,6 +408,12 @@ h6 {
     -webkit-box-shadow: -2px 7px 21px -9px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: -2px 7px 21px -9px rgba(0, 0, 0, 0.75);
     box-shadow: -2px 7px 21px -9px rgba(0, 0, 0, 0.75);
+}
+
+.post2 {
+    display: block;
+    width: 50%;
+    height: 50%;
 }
 
 .thumbnail {
