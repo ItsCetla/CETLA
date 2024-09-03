@@ -3,48 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Race Results - Racing League</title>
+    <title>Racing League</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Race Results</h1>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="schedule.html">Schedule</a></li>
-                <li><a href="results.html">Results</a></li>
+                <li><a href="results.html">Current Season</a></li>
             </ul>
         </nav>
     </header>
-    <section id="race-results">
-        <h2>2024 Season Race Results</h2>
-        
-        <!-- Example Race Result -->
-        <div class="race">
-            <h3>Race 1: [Race Name]</h3>
-            <p>Date: [Race Date]</p>
+
+    <main>
+        <section id="hero">
+            <div class="hero-content">
+                <h1>Welcome to the Slayter's Racing League</h1>
+                <p>Experience the thrill of the race with our friendly and competitve league. Join us on the journey through speed and precision.</p>
+                <button id="view-schedule" class="btn-primary">View Schedule</button>
+            </div>
+        </section>
+
+        <section id="features">
+            <div class="feature">
+                <h2>Top Drivers</h2>
+                <p>Meet the best drivers in the league, each with their own unique style and skill.</p>
+            </div>
+            <div class="feature">
+                <h2>Challenging Tracks</h2>
+                <p>Our races take place on some of the most challenging tracks, designed to test even the best.</p>
+            </div>
+            <div class="feature">
+                <h2>Exciting Races</h2>
+                <p>Join us for adrenaline-pumping races that will keep you on the edge of your seat.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal Structure -->
+    <div id="schedule-modal" class="modal">
+        <div class="modal-content">
+            <span id="close-modal" class="close">&times;</span>
+            <h2>2024 Racing Schedule</h2>
             <ul>
-                <li>1st Place: [Driver Name]</li>
-                <li>2nd Place: [Driver Name]</li>
-                <li>3rd Place: [Driver Name]</li>
+                <li>Race 1: January 15 - Track A</li>
+                <li>Race 2: February 12 - Track B</li>
+                <li>Race 3: March 19 - Track C</li>
+                <!-- Add more races as needed -->
             </ul>
         </div>
+    </div>
 
-        <!-- Duplicate and fill in for each race -->
-        <div class="race">
-            <h3>Race 2: [Race Name]</h3>
-            <p>Date: [Race Date]</p>
-            <ul>
-                <li>1st Place: [Driver Name]</li>
-                <li>2nd Place: [Driver Name]</li>
-                <li>3rd Place: [Driver Name]</li>
-            </ul>
-        </div>
+    <footer>
+        <p>&copy; 2024 Racing League. All rights reserved.</p>
+    </footer>
 
-        <!-- Continue up to Race 12 -->
-
-    </section>
+    <script src="script.js"></script>
 </body>
 </html>
