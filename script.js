@@ -24,3 +24,28 @@ window.onclick = function(event) {
     }
 }
 
+function loadCSVData() {
+    Papa.parse('race-data.csv', {
+      download: true,
+      header: true, // This assumes the CSV file has headers
+      complete: function(results) {
+        const data = results.data;
+        const tableBody = document.getElementById('resultsTable');
+
+        // Loop through the CSV data and create rows
+        data.forEach((row, index) => {
+          const newRow = document.createElement('tr');
+          newRow.classList.add('table-content');
+
+          newRow.innerHTML = `
+            <td><span class="position">${index + 1}</span></td>
+            <td><span class="driver-name">${row['Driver Name']}</span></td>
+            <td><span class="team">${row.Team}</span></td>
+            <td><span class="points">${row.Points} PTS</span></td>
+          `;
+          
+          tableBody.appendChild(newRow);
+        });
+      }
+    });
+  }
