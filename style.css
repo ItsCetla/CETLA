@@ -54,9 +54,9 @@ main {
 
 #hero2 {
     text-align: center;
-    margin-bottom: -100px;
-    margin-top: -100px;
-    font-size: 80px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    font-size: 40px;
   
 }
 
@@ -252,10 +252,15 @@ html {
   color: black;
 }
 
-/* DRIVER 2 */
+
+.table-container .table-content.driver1 .position {
+  border-right: 5px solid orange;
+}
+
+
 
 .table-container .table-content.driver2 .position {
-  border-right: 5px solid var(--redbull-color);
+  border-right: 5px solid orange;
 }
 
 /* DRIVER 4 */
@@ -306,3 +311,30 @@ html {
 }
 
 
+/* Media query for small screens */
+@media (max-width: 600px) {
+  #hero2 {
+      font-size: 24px; /* Further reduce font size for small screens */
+      margin-bottom: 10px; /* Adjust margins for mobile */
+      margin-top: 10px;
+  }
+
+  .table-container {
+      width: 100%; /* Make table container full-width */
+      min-width: unset; /* Remove minimum width */
+      margin: 20px auto; /* Adjust margin for mobile */
+  }
+
+  .table-container tr.table-content td {
+      font-size: 1rem; /* Adjust table text size */
+      padding: 5px; /* Reduce padding for mobile */
+  }
+
+  .table-container tr.table-content td .position {
+      font-size: 1rem; /* Adjust font size for the position */
+  }
+
+  .table-container tr.table-content td .points {
+      font-size: 0.9rem; /* Reduce points text size */
+  }
+}
