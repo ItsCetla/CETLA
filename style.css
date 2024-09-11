@@ -367,3 +367,87 @@ html {
       font-size: 0.9rem;
   }
 }
+
+/* FONT */
+@import url("https://fonts.googleapis.com/css?family=Lato");
+
+/* Please note, it's not quite meant to look pretty.
+Hopefully the use of colours would make it easier to see what's going on and edit to your liking! */
+
+/* ONGOING: For better UX, finding solution to have styling on selected tabs*/
+
+/* General */
+
+*, *:hover {
+  transition: all 0.3s;
+}
+
+/* Main Tabs */
+label {
+  background-color: #1b2e3c;
+  color: #ffffff;
+  display: inline-block;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 14px;
+}
+
+label:hover {
+  background-color: #2e536e;
+}
+
+/* Just to give indication that it's being clicked */
+label:active {
+  color: #dce775;
+}
+
+.tab-radio {
+  display: none;
+}
+
+/* Tabs behaviour, hidden if not checked/clicked */
+.sub-tab-content,
+.tab-content {
+  display: none;
+}
+
+.tab-radio:checked + .tab-content,
+.tab-radio:checked + .sub-tab-content {
+  display: block;
+}
+
+/* Sub-tabs */
+.sub-tabs-container label {
+  color: #030700;
+  min-width: 150px;
+  text-align: center;
+  background-color: #ff8a65;
+  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.sub-tabs-container label:active {
+  color: #37474f;
+  box-shadow: 2px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.sub-tabs-container label:first-child {
+  background-color: #cddc39;
+}
+
+.sub-tabs-container label:hover {
+  background-color: #ffccbc;
+}
+
+.sub-tabs-container label:first-child:hover {
+  background-color: #e6ee9c;
+}
+
+/* Tabs Content */
+.tab-content {
+  padding: 10px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  box-shadow: 2px 10px 6px -3px rgba(0, 0, 0, 0.5);
+}
+
+
