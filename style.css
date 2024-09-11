@@ -338,3 +338,32 @@ html {
       font-size: 0.9rem; /* Reduce points text size */
   }
 }
+
+
+
+@media screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 600px) {
+  #hero2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      margin-top: 10px;
+  }
+
+  .table-container {
+      width: 100%;
+      min-width: unset;
+      margin: 10px auto;
+  }
+
+  .table-container tr.table-content td {
+      font-size: 1rem;
+      padding: 5px;
+  }
+
+  .table-container tr.table-content td .position {
+      font-size: 1rem;
+  }
+
+  .table-container tr.table-content td .points {
+      font-size: 0.9rem;
+  }
+}
