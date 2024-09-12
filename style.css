@@ -263,7 +263,7 @@ html {
   border-right: 5px solid orange;
 }
 .table-container .table-content.driver4 .position {
-  border-right: 5px solid purple;
+  border-right: 5px solid green;
 }
 .table-container .table-content.driver5 .position {
   border-right: 5px solid red;
@@ -296,7 +296,7 @@ html {
   border-right: 5px solid skyblue;
 }
 .table-container .table-content.driver14 .position {
-  border-right: 5px solid purple;
+  border-right: 5px solid green;
   padding-right: 7px;
 }
 
@@ -318,7 +318,7 @@ html {
   border-right: 5px solid black;
   padding-right: 7px;
 }.table-container .table-content.team5 .position {
-  border-right: 5px solid orange;
+  border-right: 5px solid green;
   padding-right: 7px;
 }
 .table-container .table-content.team6 .position {
