@@ -3,10 +3,7 @@ const apiUrl = `https://api.the-odds-api.com/v4/sports/baseball_mlb/odds/?region
 
 let currentMarket = 'h2h'; // Default to moneylines
 let previousOdds = {}; // Store previous odds to compare
-let refreshInterval = 10000; // Default refresh interval (10 seconds)
-let refreshTimer = null; // To store the interval ID
 
-// Fetch odds function
 async function fetchOdds() {
     try {
         const response = await fetch(apiUrl);
@@ -30,7 +27,6 @@ async function fetchOdds() {
                 addOddsRow(game, awayTeam, rowClass, 'away');
                 addOddsRow(game, homeTeam, rowClass, 'home');
             }
-
             rowIndex += 2; // Increment by 2 for the next game
         });
     } catch (error) {
@@ -38,7 +34,6 @@ async function fetchOdds() {
     }
 }
 
-// Add odds row function
 function addOddsRow(game, team, rowClass, teamType) {
     const teamRow = document.createElement('tr');
     teamRow.classList.add(rowClass);
@@ -72,11 +67,6 @@ function addOddsRow(game, team, rowClass, teamType) {
                 } else if (outcome.price < previousPrice) {
                     oddsCell.classList.add('highlight-red');
                 }
-
-                // Remove the highlight class after 1 second to simulate a flash effect
-                setTimeout(() => {
-                    oddsCell.classList.remove('highlight-green', 'highlight-red');
-                }, 1000);
             }
 
             // Save the current odds for comparison later
@@ -93,30 +83,8 @@ function addOddsRow(game, team, rowClass, teamType) {
     document.querySelector('#oddsTable tbody').appendChild(teamRow);
 }
 
-// Manual refresh function
-document.querySelector('#manual-refresh-btn').addEventListener('click', () => {
-    fetchOdds();
-});
-
-// Handle auto-refresh logic
-function handleAutoRefresh() {
-    const isDisabled = document.querySelector('#disable-auto-refresh').checked;
-    const intervalInput = document.querySelector('#refresh-interval').value;
-
-    if (refreshTimer) {
-        clearInterval(refreshTimer); // Clear existing timer
-    }
-
-    if (!isDisabled) {
-        const interval = parseInt(intervalInput) * 1000; // Convert to milliseconds
-        refreshInterval = interval >= 5000 ? interval : 10000; // Minimum 5 seconds
-        refreshTimer = setInterval(fetchOdds, refreshInterval);
-    }
-}
-
-// Detect when auto-refresh toggle or interval input changes
-document.querySelector('#refresh-interval').addEventListener('input', handleAutoRefresh);
-document.querySelector('#disable-auto-refresh').addEventListener('change', handleAutoRefresh);
+// Refresh odds every 10 seconds
+setInterval(fetchOdds, 10000);
 
 // Tab switching logic remains the same
 document.querySelectorAll('.tab-button').forEach(button => {
@@ -130,6 +98,5 @@ document.querySelectorAll('.tab-button').forEach(button => {
     });
 });
 
-// Initial fetch and auto-refresh setup
+// Fetch the initial odds
 fetchOdds();
-refreshTimer = setInterval(fetchOdds, refreshInterval);

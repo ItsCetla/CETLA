@@ -1,4 +1,5 @@
 /* Global Styles */
+/* Global Styles */
 * {
     margin: 0;
     padding: 0;
@@ -102,9 +103,17 @@ tbody tr:hover {
     cursor: pointer;
 }
 
-/* Remove the color highlighting for odds */
-.highlight-green, .highlight-red {
-    color: white;
+/* Highlight colors for odds changes */
+.highlight-green {
+    color: #28a745 !important; /* Green color */
+    font-weight: bold;
+    transition: color 0.5s ease;
+}
+
+.highlight-red {
+    color: #dc3545 !important; /* Red color */
+    font-weight: bold;
+    transition: color 0.5s ease;
 }
 
 .bookmaker-icon {
@@ -113,13 +122,10 @@ tbody tr:hover {
     vertical-align: middle;
 }
 
+/* Media Queries */
 @media (max-width: 768px) {
     th, td {
         padding: 10px 8px;
         font-size: 0.85em;
+    }
 }
-
-footer {
-    text-align: center;
-    padding: 20px;
-    margin
