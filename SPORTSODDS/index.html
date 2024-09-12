@@ -20,6 +20,13 @@
 </header>
 
 <main>
+    <div>
+        <button id="manual-refresh-btn">Manual Refresh</button>
+        <label for="refresh-interval">Set Auto-Refresh Interval (in seconds):</label>
+        <input type="number" id="refresh-interval" min="5" value="10">
+        <label for="disable-auto-refresh">Disable Auto-Refresh:</label>
+        <input type="checkbox" id="disable-auto-refresh">
+    </div>
     <div class="odds-table">
         <table id="oddsTable">
             <thead>
@@ -41,6 +48,7 @@
     <p>&copy; 2024 Odds Screener. All rights reserved.</p>
 </footer>
 
+<!-- JavaScript -->
 <script src="script.js"></script>
 
 </body>
