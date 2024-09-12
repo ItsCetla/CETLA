@@ -342,6 +342,12 @@ html {
       margin-bottom: 10px; /* Adjust margins for mobile */
       margin-top: 10px;
   }
+  
+  .tab-content {
+    padding: 10px;
+
+  }
+
 
   .table-container {
       width: 100%; /* Make table container full-width */
@@ -370,6 +376,11 @@ html {
       font-size: 24px;
       margin-bottom: 10px;
       margin-top: 10px;
+  }
+
+  .tab-content {
+    padding: 10px;
+
   }
 
   .table-container {
