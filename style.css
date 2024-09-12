@@ -256,58 +256,82 @@ html {
 .table-container .table-content.driver1 .position {
   border-right: 5px solid orange;
 }
-
-
-
 .table-container .table-content.driver2 .position {
   border-right: 5px solid orange;
 }
-
-/* DRIVER 4 */
-
+.table-container .table-content.driver3 .position {
+  border-right: 5px solid yellow;
+}
 .table-container .table-content.driver4 .position {
-  border-right: 5px solid var(--redbull-color);
+  border-right: 5px solid red;
 }
-
-/* DRIVER 5 */
-
 .table-container .table-content.driver5 .position {
-  border-right: 5px solid var(--ferrari-color);
+  border-right: 5px solid black;
 }
-
-/* DRIVER 6 */
-
 .table-container .table-content.driver6 .position {
-  border-right: 5px solid var(--mclaren-color);
+  border-right: 5px solid yellow;
 }
-
-/* DRIVER 7 */
-
 .table-container .table-content.driver7 .position {
   border-right: 5px solid var(--racing-point-color);
 }
-
-/* DRIVER 8 */
-
 .table-container .table-content.driver8 .position {
-  border-right: 5px solid var(--renault-color);
+  border-right: 5px solid red;
 }
-
-/* DRIVER 9 */
-
 .table-container .table-content.driver9 .position {
+  border-right: 5px solid black;
+}
+.table-container .table-content.driver10 .position {
+  border-right: 5px solid lightskyblue;
+  padding-right: 7px;
+}
+.table-container .table-content.driver11 .position {
+  border-right: 5px solid lightgreen;
+  padding-right: 7px;
+}
+.table-container .table-content.driver12 .position {
+  border-right: 5px solid lightgreen;
+  padding-right: 7px;
+}
+.table-container .table-content.driver13 .position {
   border-right: 5px solid var(--racing-point-color);
 }
-
-/* DRIVER 10 WITH EXTRA MARGIN/PADDING TO COMPENSATE EXTRA DIGIT */
-
 .table-container .table-content.driver10 .position {
-  border-right: 5px solid var(--renault-color);
+  border-right: 5px solid lightskyblue;
   padding-right: 7px;
 }
 
-.table-container .table-content.driver10 td {
-  margin-left: 0;
+
+
+.table-container .table-content.team1 .position {
+  border-right: 5px solid orange;
+  padding-right: 7px;
+}
+.table-container .table-content.team2 .position {
+  border-right: 5px solid yellow;
+  padding-right: 7px;
+}
+.table-container .table-content.team3 .position {
+  border-right: 5px solid red;
+  padding-right: 7px;
+}
+.table-container .table-content.team4 .position {
+  border-right: 5px solid black;
+  padding-right: 7px;
+}.table-container .table-content.team5 .position {
+  border-right: 5px solid orange;
+  padding-right: 7px;
+}
+.table-container .table-content.team6 .position {
+  border-right: 5px solid lightgreen;
+  padding-right: 7px;
+}
+.table-container .table-content.team7 .position {
+  border-right: 5px solid lightskyblue;
+  padding-right: 7px;
+}
+.table-container .table-content.team8 .position {
+  border-right: 5px solid lightskyblue;
+  padding-right: 7px;
 }
 
 
@@ -421,7 +445,7 @@ label:active {
   color: #030700;
   min-width: 150px;
   text-align: center;
-  background-color: #ff8a65;
+  background-color: #659bff;
   box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);
 }
 
@@ -431,7 +455,7 @@ label:active {
 }
 
 .sub-tabs-container label:first-child {
-  background-color: #cddc39;
+  background-color: #3962dc;
 }
 
 .sub-tabs-container label:hover {
@@ -439,12 +463,12 @@ label:active {
 }
 
 .sub-tabs-container label:first-child:hover {
-  background-color: #e6ee9c;
+  background-color: #9ca5ee;
 }
 
 /* Tabs Content */
 .tab-content {
-  padding: 10px;
+  padding: 100px;
   background-color: #ffffff;
   border: 1px solid #ddd;
   box-shadow: 2px 10px 6px -3px rgba(0, 0, 0, 0.5);
