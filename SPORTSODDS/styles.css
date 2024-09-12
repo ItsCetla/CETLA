@@ -1,0 +1,125 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #1e1f23;
+    color: #fff;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-weight: 700;
+    font-size: 2em;
+    color: #fff;
+}
+
+p {
+    font-size: 1em;
+    color: #bbb;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.tab-button {
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 0 10px;
+}
+
+.tab-button.active, .tab-button:hover {
+    background-color: #007bff;
+}
+
+.odds-table {
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    width: 100%;
+    max-width: 1200px;
+    border-collapse: collapse;
+    margin: 0 auto;
+    background-color: #2c2f36;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+thead {
+    background-color: #333;
+    color: white;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    font-size: 1em;
+    border-bottom: 1px solid #444;
+}
+
+/* Alternating background colors for game rows */
+tbody tr.lighter-blue {
+    background-color: #cce5ff68;
+}
+
+tbody tr.darker-blue {
+    background-color: #99c2ff88;
+}
+
+/* Add some visual separation between team name and odds */
+tbody tr td.team-cell {
+    font-weight: bold;
+    text-align: left;
+    padding-left: 15px;
+}
+
+tbody tr td.odds-cell {
+    text-align: center;
+    color: white; /* Set odds color to white */
+}
+
+tbody tr:hover {
+    background-color: #1b1e24;
+    cursor: pointer;
+}
+
+/* Remove the color highlighting for odds */
+.highlight-green, .highlight-red {
+    color: white;
+}
+
+.bookmaker-icon {
+    width: 24px;
+    height: auto;
+    vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+    th, td {
+        padding: 10px 8px;
+        font-size: 0.85em;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    margin

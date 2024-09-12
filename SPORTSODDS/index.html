@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MLB Odds Screener</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <h1>MLB Odds Screener</h1>
+    <p>Select a market to view the latest odds for MLB games.</p>
+    <div class="tabs">
+        <button class="tab-button active" data-tab="moneylines">Moneylines</button>
+        <button class="tab-button" data-tab="spreads">Spreads</button>
+        <button class="tab-button" data-tab="totals">Totals</button>
+    </div>
+</header>
+
+<main>
+    <div class="odds-table">
+        <table id="oddsTable">
+            <thead>
+                <tr>
+                    <th>Team</th>
+                    <th><img src="icons/draftkings.jpg" alt="DraftKings" class="bookmaker-icon"></th>
+                    <th><img src="icons/Fliff.webp" alt="Fliff" class="bookmaker-icon"></th>
+                    <th><img src="icons/betonline.png" alt="BetOnline" class="bookmaker-icon"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dynamic odds will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2024 Odds Screener. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
