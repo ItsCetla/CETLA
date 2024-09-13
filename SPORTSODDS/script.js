@@ -20,25 +20,122 @@ async function fetchOdds() {
         data.forEach(game => {
             const rowClass = (rowIndex % 4 < 2) ? 'lighter-blue' : 'darker-blue';
 
-            const awayTeam = game.away_team;
-            const homeTeam = game.home_team;
-
             if (currentMarket === 'totals') {
-                // Handle totals, similar logic applies for other markets
+                // Handle totals for both Over and Under in two separate rows
+                addTotalsRow(game, rowClass);
             } else {
                 // Process odds for away and home teams
+                const awayTeam = game.away_team;
+                const homeTeam = game.home_team;
                 addOddsRow(game, awayTeam, rowClass, 'away');
                 addOddsRow(game, homeTeam, rowClass, 'home');
             }
 
-            rowIndex += 2; // Increment by 2 for the next game
+            rowIndex += (currentMarket === 'totals') ? 2 : 2; // Increment accordingly for totals or regular odds
         });
     } catch (error) {
         console.error('Error fetching odds:', error);
     }
 }
 
-// Add odds row function
+// Add totals row function to handle the totals market (Over on top, Under below)
+function addTotalsRow(game, rowClass) {
+    // Create two rows, one for Over and one for Under
+
+    // Over Row
+    const overRow = document.createElement('tr');
+    overRow.classList.add(rowClass);
+
+    const overLabelCell = document.createElement('td');
+    overLabelCell.textContent = `${game.away_team} vs. ${game.home_team} (Over)`;
+    overLabelCell.classList.add('team-cell');
+    overRow.appendChild(overLabelCell);
+
+    let bestOverOdds = -Infinity;
+    let bestOverIndex = null;
+
+    // Under Row
+    const underRow = document.createElement('tr');
+    underRow.classList.add(rowClass);
+
+    const underLabelCell = document.createElement('td');
+    underLabelCell.textContent = `${game.away_team} vs. ${game.home_team} (Under)`;
+    underLabelCell.classList.add('team-cell');
+    underRow.appendChild(underLabelCell);
+
+    let bestUnderOdds = -Infinity;
+    let bestUnderIndex = null;
+
+    // Process both Over and Under for each bookmaker
+    ['DraftKings', 'Fliff', 'BetOnline.ag'].forEach((bookmakerName, index) => {
+        const bookmaker = game.bookmakers.find(b => b.title === bookmakerName);
+        
+        // Over odds cell
+        const overOddsCell = document.createElement('td');
+        overOddsCell.classList.add('odds-cell');
+        
+        // Under odds cell
+        const underOddsCell = document.createElement('td');
+        underOddsCell.classList.add('odds-cell');
+
+        if (bookmaker) {
+            const market = bookmaker.markets.find(market => market.key === 'totals');
+            const overOutcome = market.outcomes.find(outcome => outcome.name === 'Over');
+            const underOutcome = market.outcomes.find(outcome => outcome.name === 'Under');
+
+            // Display the Over odds
+            if (overOutcome) {
+                let overDisplayValue = `O${overOutcome.point} (${overOutcome.price})`;
+                overOddsCell.textContent = overDisplayValue;
+
+                // Track best Over odds
+                if (overOutcome.price > bestOverOdds) {
+                    bestOverOdds = overOutcome.price;
+                    bestOverIndex = index;
+                }
+            } else {
+                overOddsCell.textContent = '-';
+            }
+
+            // Display the Under odds
+            if (underOutcome) {
+                let underDisplayValue = `U${underOutcome.point} (${underOutcome.price})`;
+                underOddsCell.textContent = underDisplayValue;
+
+                // Track best Under odds
+                if (underOutcome.price > bestUnderOdds) {
+                    bestUnderOdds = underOutcome.price;
+                    bestUnderIndex = index;
+                }
+            } else {
+                underOddsCell.textContent = '-';
+            }
+        } else {
+            overOddsCell.textContent = '-';
+            underOddsCell.textContent = '-';
+        }
+
+        // Append the Over and Under odds cells to their respective rows
+        overRow.appendChild(overOddsCell);
+        underRow.appendChild(underOddsCell);
+    });
+
+    // Highlight the best Over and Under odds
+    if (bestOverIndex !== null) {
+        const overCells = overRow.querySelectorAll('.odds-cell');
+        overCells[bestOverIndex].classList.add('highlight-green-box');
+    }
+    if (bestUnderIndex !== null) {
+        const underCells = underRow.querySelectorAll('.odds-cell');
+        underCells[bestUnderIndex].classList.add('highlight-green-box');
+    }
+
+    // Append the Over and Under rows to the table
+    document.querySelector('#oddsTable tbody').appendChild(overRow);
+    document.querySelector('#oddsTable tbody').appendChild(underRow);
+}
+
+// Add odds row function for other markets (unchanged)
 function addOddsRow(game, team, rowClass, teamType) {
     const teamRow = document.createElement('tr');
     teamRow.classList.add(rowClass);
@@ -48,7 +145,11 @@ function addOddsRow(game, team, rowClass, teamType) {
     teamCell.classList.add('team-cell');
     teamRow.appendChild(teamCell);
 
-    ['DraftKings', 'Fliff', 'BetOnline.ag'].forEach(bookmakerName => {
+    let bestOdds = -Infinity;
+    let bestBookmakerIndex = null;
+
+    const oddsData = {};
+    ['DraftKings', 'Fliff', 'BetOnline.ag'].forEach((bookmakerName, index) => {
         const bookmaker = game.bookmakers.find(b => b.title === bookmakerName);
         const oddsCell = document.createElement('td');
         oddsCell.classList.add('odds-cell');
@@ -58,14 +159,19 @@ function addOddsRow(game, team, rowClass, teamType) {
             const outcome = market.outcomes.find(outcome => outcome.name === team);
             let displayValue = currentMarket === 'h2h' ? outcome.price : `${outcome.point} (${outcome.price})`;
 
-            // Format odds and compare with previous odds
             if (currentMarket === 'h2h' && outcome.price > 0) {
                 displayValue = `+${outcome.price}`;
             }
 
-            const previousPrice = previousOdds[team]?.[bookmakerName];
             oddsCell.textContent = displayValue;
+            oddsData[bookmakerName] = outcome.price;
 
+            if (outcome.price > bestOdds) {
+                bestOdds = outcome.price;
+                bestBookmakerIndex = index;
+            }
+
+            const previousPrice = previousOdds[team]?.[bookmakerName];
             if (previousPrice !== undefined) {
                 if (outcome.price > previousPrice) {
                     oddsCell.classList.add('highlight-green');
@@ -73,13 +179,11 @@ function addOddsRow(game, team, rowClass, teamType) {
                     oddsCell.classList.add('highlight-red');
                 }
 
-                // Remove the highlight class after 1 second to simulate a flash effect
                 setTimeout(() => {
                     oddsCell.classList.remove('highlight-green', 'highlight-red');
-                }, 1000);
+                }, 5000);
             }
 
-            // Save the current odds for comparison later
             if (!previousOdds[team]) previousOdds[team] = {};
             previousOdds[team][bookmakerName] = outcome.price;
 
@@ -89,6 +193,11 @@ function addOddsRow(game, team, rowClass, teamType) {
 
         teamRow.appendChild(oddsCell);
     });
+
+    if (bestBookmakerIndex !== null) {
+        const oddsCells = teamRow.querySelectorAll('.odds-cell');
+        oddsCells[bestBookmakerIndex].classList.add('highlight-green-box');
+    }
 
     document.querySelector('#oddsTable tbody').appendChild(teamRow);
 }

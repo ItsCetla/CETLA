@@ -479,3 +479,23 @@ label:active {
 }
 
 
+/* Center the sub-tabs labels */
+.sub-tabs-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px; /* Add space between tabs and content */
+}
+
+.sub-tabs-container label {
+  margin: 0 10px; /* Adjust space between the tabs */
+}
+
+/* Center the text inside the tab content */
+.sub-tab-content h1 {
+  text-align: center;
+}
+
+.table-container {
+  margin: 0 auto;
+  text-align: center;
+}

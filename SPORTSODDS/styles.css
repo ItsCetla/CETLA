@@ -129,3 +129,8 @@ tbody tr:hover {
         font-size: 0.85em;
     }
 }
+
+.highlight-green-box {
+    border: 2px solid #28a745;
+    font-weight: bold;
+}
