@@ -1,0 +1,278 @@
+/* Import Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap");
+
+/* Variables */
+:root {
+    --primary-color: #007aff;
+    --secondary-color: #005bb5;
+    --background-color: #f9f9f9;
+    --text-color: #333;
+    --header-bg-color: #ffffff;
+    --header-border-color: #e5e5e5;
+    --hero-bg-color: #e5e5e5;
+    --font-family: 'Titillium Web', sans-serif;
+    --hover-color: #38383f;
+
+    /* Team Colors */
+    --team1-color: orange;
+    --team2-color: yellow;
+    --team3-color: red;
+    --team4-color: black;
+    --team5-color: green;
+    --team6-color: lightgreen;
+    --team7-color: lightskyblue;
+
+    /* Driver Colors (if needed) */
+    --driver1-color: orange;
+    --driver2-color: yellow;
+    --driver3-color: orange;
+    --driver4-color: green;
+    --driver5-color: red;
+    --driver6-color: black;
+    --driver7-color: yellow;
+    --driver8-color: red;
+    --driver9-color: lightgreen;
+    --driver10-color: black;
+    --driver11-color: lightgreen;
+    --driver12-color: skyblue;
+    --driver13-color: skyblue;
+    --driver14-color: green;
+}
+
+/* Global Styles */
+body {
+    font-family: var(--font-family);
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* Header Styles */
+header {
+    background-color: var(--header-bg-color);
+    border-bottom: 1px solid var(--header-border-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 10px 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: var(--primary-color);
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: var(--secondary-color);
+}
+
+/* Main Content */
+main {
+    padding-top: 80px; /* To accommodate fixed header */
+}
+
+/* Hero Section */
+#hero {
+    background-color: var(--hero-bg-color);
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.hero-content h1 {
+    font-weight: 400;
+    color: #111;
+}
+
+.hero-content p {
+    color: #555;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid var(--header-border-color);
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0 20px 0;
+}
+
+.tab-button {
+    background-color: #1b2e3c;
+    color: #ffffff;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.tab-button.active,
+.tab-button:hover {
+    background-color: #2e536e;
+}
+
+.tab-content {
+    display: none;
+    padding: 20px;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Table Styles */
+.table-container {
+    width: 80%;
+    margin: 0 auto 50px auto;
+    border-collapse: collapse;
+}
+
+.table-container th,
+.table-container td {
+    padding: 15px;
+    text-align: left;
+}
+
+.table-container tr {
+    border-bottom: 1px solid #ddd;
+}
+
+.table-container tr:hover {
+    background-color: #f1f1f1;
+    color: #000;
+}
+
+.position {
+    font-weight: bold;
+    margin-right: 10px;
+    padding-right: 10px;
+    border-right: 5px solid transparent;
+}
+
+.points {
+    float: right;
+    font-weight: bold;
+}
+
+.table-container i {
+    color: #e10600;
+    margin-left: 10px;
+}
+
+/* Team Colors */
+.team1 .position { border-right-color: var(--team1-color); }
+.team2 .position { border-right-color: var(--team2-color); }
+.team3 .position { border-right-color: var(--team3-color); }
+.team4 .position { border-right-color: var(--team4-color); }
+.team5 .position { border-right-color: var(--team5-color); }
+.team6 .position { border-right-color: var(--team6-color); }
+.team7 .position { border-right-color: var(--team7-color); }
+
+/* Driver Colors */
+.driver1 .position { border-right-color: var(--driver1-color); }
+.driver2 .position { border-right-color: var(--driver2-color); }
+.driver3 .position { border-right-color: var(--driver3-color); }
+.driver4 .position { border-right-color: var(--driver4-color); }
+.driver5 .position { border-right-color: var(--driver5-color); }
+.driver6 .position { border-right-color: var(--driver6-color); }
+.driver7 .position { border-right-color: var(--driver7-color); }
+.driver8 .position { border-right-color: var(--driver8-color); }
+.driver9 .position { border-right-color: var(--driver9-color); }
+.driver10 .position { border-right-color: var(--driver10-color); }
+.driver11 .position { border-right-color: var(--driver11-color); }
+.driver12 .position { border-right-color: var(--driver12-color); }
+.driver13 .position { border-right-color: var(--driver13-color); }
+.driver14 .position { border-right-color: var(--driver14-color); }
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .hero-content h1 {
+        font-size: 24px;
+    }
+    .table-container {
+        width: 100%;
+    }
+    .tabs {
+        flex-direction: column;
+    }
+    .tab-button {
+        margin: 5px 0;
+    }
+    .hero-content p {
+        padding: 0 10px;
+    }
+}
