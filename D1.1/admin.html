@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel - Racing League</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Include Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap" rel="stylesheet">
+    <!-- Include custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 style="text-align: center; margin-top: 80px;">Admin Panel - Update Standings</h1>
+    <form id="update-form" style="width: 80%; margin: 20px auto;">
+        <!-- Teams Section -->
+        <h2>Teams</h2>
+        <div id="teams-container">
+            <!-- Teams inputs will be generated here -->
+        </div>
+        <button type="button" id="add-team">Add Team</button>
+
+        <!-- Drivers Section -->
+        <h2>Drivers</h2>
+        <div id="drivers-container">
+            <!-- Drivers inputs will be generated here -->
+        </div>
+        <button type="button" id="add-driver">Add Driver</button>
+
+        <!-- Submit Button -->
+        <div style="text-align: center; margin-top: 20px;">
+            <button type="submit" class="btn-primary">Save Changes</button>
+        </div>
+    </form>
+
+    <script src="admin.js"></script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 // script.js
 
-// Modal functionality
 document.addEventListener('DOMContentLoaded', function () {
+    // Modal functionality
     var modal = document.getElementById('schedule-modal');
     var btn = document.getElementById('view-schedule');
     var span = document.getElementById('close-modal');
@@ -43,4 +43,43 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById(tabId).classList.add('active');
         });
     });
+
+    // Fetch and render standings
+    fetch('standings.json')
+        .then(response => response.json())
+        .then(data => {
+            renderStandings(data);
+        })
+        .catch(error => console.error('Error fetching data:', error));
 });
+
+function renderStandings(data) {
+    renderTable('team-standings-table', data.teams, 'team');
+    renderTable('driver-standings-table', data.drivers, 'driver');
+}
+
+function renderTable(tableId, standings, type) {
+    const table = document.getElementById(tableId);
+    const tbody = document.createElement('tbody');
+
+    standings.sort((a, b) => a.position - b.position);
+
+    standings.forEach(entry => {
+        const tr = document.createElement('tr');
+        tr.classList.add('table-row');
+
+        tr.innerHTML = `
+            <td>
+                <span class="position" style="border-right-color: ${entry.color};">${entry.position}</span>
+                <span class="${type}-name">${entry.name}</span>
+            </td>
+            <td>
+                <span class="points">${entry.points} PTS</span><i class="fas fa-chevron-right"></i>
+            </td>
+        `;
+
+        tbody.appendChild(tr);
+    });
+
+    table.appendChild(tbody);
+}
