@@ -17,20 +17,30 @@
         <div id="teams-container">
             <!-- Teams inputs will be generated here -->
         </div>
-        <button type="button" id="add-team">Add Team</button>
+        <button type="button" id="add-team" class="btn-primary">Add Team</button>
 
         <!-- Drivers Section -->
         <h2>Drivers</h2>
         <div id="drivers-container">
             <!-- Drivers inputs will be generated here -->
         </div>
-        <button type="button" id="add-driver">Add Driver</button>
+        <button type="button" id="add-driver" class="btn-primary">Add Driver</button>
 
-        <!-- Submit Button -->
+        <!-- Generate JSON Button -->
         <div style="text-align: center; margin-top: 20px;">
-            <button type="submit" class="btn-primary">Save Changes</button>
+            <button type="button" id="generate-json" class="btn-primary">Generate JSON</button>
         </div>
     </form>
+
+    <!-- Modal to display JSON -->
+    <div id="json-modal" class="modal">
+        <div class="modal-content">
+            <span id="close-json-modal" class="close">&times;</span>
+            <h2>Updated Standings JSON</h2>
+            <textarea id="json-output" rows="20" style="width: 100%;"></textarea>
+            <p>Copy the above JSON and replace the contents of <code>standings.json</code> in your repository.</p>
+        </div>
+    </div>
 
     <script src="admin.js"></script>
 </body>

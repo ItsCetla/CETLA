@@ -8,24 +8,17 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .catch(error => console.error('Error fetching data:', error));
 
-    document.getElementById('update-form').addEventListener('submit', function (e) {
-        e.preventDefault();
-
+    document.getElementById('generate-json').addEventListener('click', function () {
         const updatedData = {
             teams: getFormData('team'),
             drivers: getFormData('driver')
         };
 
-        fetch('/update-standings', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(updatedData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            alert('Standings updated successfully!');
-        })
-        .catch(error => console.error('Error updating standings:', error));
+        // Display the JSON in a modal for copying
+        const jsonModal = document.getElementById('json-modal');
+        const jsonOutput = document.getElementById('json-output');
+        jsonOutput.value = JSON.stringify(updatedData, null, 2);
+        jsonModal.style.display = 'block';
     });
 
     document.getElementById('add-team').addEventListener('click', function () {
@@ -35,6 +28,20 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('add-driver').addEventListener('click', function () {
         addEntry('driver', {});
     });
+
+    // Modal close functionality
+    var jsonModal = document.getElementById('json-modal');
+    var closeJsonModal = document.getElementById('close-json-modal');
+
+    closeJsonModal.onclick = function () {
+        jsonModal.style.display = 'none';
+    };
+
+    window.onclick = function (event) {
+        if (event.target == jsonModal) {
+            jsonModal.style.display = 'none';
+        }
+    };
 });
 
 function populateForm(data) {

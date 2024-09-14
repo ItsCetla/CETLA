@@ -81,5 +81,6 @@ function renderTable(tableId, standings, type) {
         tbody.appendChild(tr);
     });
 
+    table.innerHTML = ''; // Clear existing content
     table.appendChild(tbody);
 }
