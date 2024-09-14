@@ -89,6 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 row.classList.add('table-row', 'team-row');
 
                 // Set CSS variables for border and dash colors
+  
                 row.style.setProperty('--dash-color', team.color);
 
                 row.innerHTML = `
