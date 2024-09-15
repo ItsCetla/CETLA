@@ -248,9 +248,7 @@ main {
 }
 
 /* Team Row Styles */
-.table-row.team-row {
-    border: 2px solid var(--border-color);
-}
+
 
 /* Race Results Styles */
 #race-results {
