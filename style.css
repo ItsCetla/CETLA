@@ -1,17 +1,36 @@
+/* Import Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+
+/* Variables */
+:root {
+    /* Color Palette */
+    --primary-color: #2196F3; /* Sky blue */
+    --secondary-color: #64B5F6; /* Light blue */
+    --background-color: #FFFFFF; /* White background */
+    --text-color: #333333; /* Dark text color */
+    --header-bg-color: #FFFFFF; /* White header background */
+    --header-border-color: #DDDDDD; /* Light border color */
+    --hero-bg-color: #FFFFFF; /* White hero background */
+    --hover-color: #E3F2FD; /* Very light blue hover color */
+    --font-family: 'Montserrat', sans-serif;
+    --dash-color: var(--secondary-color); /* For the colored dash in table rows */
+    --border-color: var(--secondary-color); /* For team row borders */
+}
+
 /* Global Styles */
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: var(--font-family);
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
-    color: #333;
+    background-color: var(--background-color);
+    color: var(--text-color);
     line-height: 1.6;
 }
 
+/* Header Styles */
 header {
-    background-color: #ffffff;
-    border-bottom: 1px solid #e5e5e5;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: var(--header-bg-color);
+    border-bottom: 1px solid var(--header-border-color);
     position: fixed;
     width: 100%;
     top: 0;
@@ -20,7 +39,7 @@ header {
 
 nav ul {
     list-style-type: none;
-    padding: 0;
+    padding: 10px 0;
     margin: 0;
     display: flex;
     justify-content: center;
@@ -31,84 +50,57 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #007aff;
+    color: var(--primary-color);
     text-decoration: none;
     padding: 10px;
     display: block;
+    font-weight: bold;
     transition: color 0.3s;
 }
 
 nav ul li a:hover {
-    color: #005bb5;
+    color: var(--secondary-color);
 }
 
+/* Main Content */
 main {
-    padding-top: 60px; /* To accommodate fixed header */
+    padding-top: 80px; /* To accommodate fixed header */
 }
 
+/* Hero Section */
 #hero {
-    background-color: #e5e5e5;
+    background-color: var(--hero-bg-color);
     text-align: center;
     padding: 100px 20px;
 }
 
-#hero2 {
-    text-align: center;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    font-size: 40px;
-  
-}
-
 .hero-content h1 {
-    font-weight: 400;
-    color: #111;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 20px;
 }
 
 .hero-content p {
-    color: #555;
+    color: var(--text-color);
     max-width: 600px;
-    margin: 20px auto;
+    margin: 0 auto 30px auto;
+    font-size: 18px;
 }
 
 .btn-primary {
-    background-color: #007aff;
+    background-color: var(--primary-color);
     color: #fff;
-    padding: 10px 20px;
+    padding: 12px 25px;
     text-decoration: none;
     border-radius: 5px;
     transition: background-color 0.3s;
     cursor: pointer;
+    border: none;
+    font-size: 16px;
 }
 
 .btn-primary:hover {
-    background-color: #005bb5;
-}
-
-#features {
-    display: flex;
-    justify-content: space-around;
-    padding: 40px 20px;
-}
-
-.feature {
-    background-color: #fff;
-    padding: 20px;
-    margin: 10px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border: 1px solid #e5e5e5;
-    flex: 1;
-    max-width: 300px;
-    text-align: center;
-}
-
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #f9f9f9;
-    color: #888;
-    border-top: 1px solid #e5e5e5;
+    background-color: var(--secondary-color);
 }
 
 /* Modal Styles */
@@ -121,16 +113,14 @@ footer {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(10px);
 }
 
 .modal-content {
     background-color: #fff;
-    margin: 15% auto;
+    margin: 5% auto;
     padding: 20px;
-    border: 1px solid #e5e5e5;
     border-radius: 8px;
-    width: 80%;
+    width: 90%;
     max-width: 600px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
@@ -150,352 +140,213 @@ footer {
     cursor: pointer;
 }
 
-
-@import url("https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap");
-
-body,
-html {
-  font-family: "Titillium Web", sans-serif;
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  background-color: #f8f9fa;
+/* Tabs */
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0 20px 0;
 }
 
-/* VARIABLES */
-
-:root {
-  --mercedes-color: #00d2be;
-  --redbull-color: #0600ef;
-  --ferrari-color: #dc0000;
-  --hover-color: #38383f;
-  --mclaren-color: #ff8700;
-  --racing-point-color: #f596c8;
-  --renault-color: #fff500;
+.tab-button {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    border-radius: 5px;
 }
 
+.tab-button.active,
+.tab-button:hover {
+    background-color: var(--secondary-color);
+}
+
+.tab-content {
+    display: none;
+    padding: 20px;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Standings Headings */
+.tab-content h1 {
+    text-align: center;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+}
+
+/* Table Styles */
 .table-container {
-  width: 60%;
-  min-width: 600px;
-  /* border: 1px solid black; */
-  margin: 100px auto;
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto 50px auto;
+    border-collapse: collapse;
 }
 
-.table-container th {
-  display: none;
+.table-container th,
+.table-container td {
+    padding: 15px;
+    text-align: left;
 }
 
 .table-container tr {
-  display: flex;
-  padding: 0;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  transition: 0.3s;
-  cursor: pointer;
+    border-bottom: 1px solid #ddd;
 }
 
-.table-container tr.table-content {
-  justify-content: space-between;
-  padding: 0;
+.table-container i {
+    color: var(--primary-color);
+    margin-left: 10px;
 }
 
-.table-container tr.table-content td {
-  margin: 0 20px 0 10px;
-  font-size: 1.4rem;
-  text-align: center;
-  padding: 10px;
+/* Table Row Styles */
+.table-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 5px;
+    border-radius: 8px;
+    position: relative;
+    background-color: #fff;
 }
 
-.table-container tr.table-content td .position {
-  border-right: 5px solid var(--mercedes-color);
-  padding-right: 10px;
-  font-size: 1.4rem;
-  font-weight: bold;
+.table-row:hover {
+    background-color: var(--hover-color);
+    color: #000000;
 }
 
-.table-container tr.table-content td .driver-name {
-  margin-left: 10px;
+.table-row:hover .points {
+    color: #000000;
 }
 
-.table-container tr.table-content td .driver-surname {
-  font-weight: bolder;
-  text-transform: uppercase;
+/* Colored Dash at the Front */
+.table-row .position {
+    font-weight: bold;
+    margin-right: 10px;
+    padding-right: 10px;
+    border-right: 5px solid var(--dash-color);
+    color: var(--primary-color);
 }
 
-.table-container tr.table-content td .team {
-  font-size: 1rem;
-  color: #666;
-  margin-left: 10px;
+.table-row .driver-name,
+.table-row .team-name {
+    font-weight: 600;
+    font-size: 18px;
+    color: #333333;
 }
 
-.table-container tr.table-content td .points {
-  background-color: #ccc;
-  border-radius: 50px;
-  font-size: 1.1rem;
-  padding: 0 10px;
+.points {
+    font-weight: bold;
+    color: var(--secondary-color);
+    font-size: 16px;
 }
 
-.table-container tr.table-content td i {
-  margin-left: 20px;
-  color: #e10600;
-  font-size: 18px;
-}
-
-/* HOVER */
-
-.table-container tr:hover {
-  background-color: var(--hover-color);
-  color: #ffffff;
-}
-
-.table-container tr:hover .points {
-  color: black;
-}
+/* Team Row Styles */
 
 
-.table-container .table-content.driver1 .position {
-  border-right: 5px solid orange;
-}
-.table-container .table-content.driver2 .position {
-  border-right: 5px solid yellow;
-}
-.table-container .table-content.driver3 .position {
-  border-right: 5px solid orange;
-}
-.table-container .table-content.driver4 .position {
-  border-right: 5px solid green;
-}
-.table-container .table-content.driver5 .position {
-  border-right: 5px solid red;
-}
-.table-container .table-content.driver6 .position {
-  border-right: 5px solid black;
-}
-.table-container .table-content.driver7 .position {
-  border-right: 5px solid yellow;
-}
-.table-container .table-content.driver8 .position {
-  border-right: 5px solid red;
-}
-.table-container .table-content.driver9 .position {
-  border-right: 5px solid lightgreen;
-}
-.table-container .table-content.driver10 .position {
-  border-right: 5px solid black;
-  padding-right: 7px;
-}
-.table-container .table-content.driver11 .position {
-  border-right: 5px solid lightgreen;
-  padding-right: 7px;
-}
-.table-container .table-content.driver12 .position {
-  border-right: 5px solid skyblue;
-  padding-right: 7px;
-}
-.table-container .table-content.driver13 .position {
-  border-right: 5px solid skyblue;
-}
-.table-container .table-content.driver14 .position {
-  border-right: 5px solid green;
-  padding-right: 7px;
+/* Race Results Styles */
+#race-results {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
 }
 
-
-
-.table-container .table-content.team1 .position {
-  border-right: 5px solid orange;
-  padding-right: 7px;
-}
-.table-container .table-content.team2 .position {
-  border-right: 5px solid yellow;
-  padding-right: 7px;
-}
-.table-container .table-content.team3 .position {
-  border-right: 5px solid red;
-  padding-right: 7px;
-}
-.table-container .table-content.team4 .position {
-  border-right: 5px solid black;
-  padding-right: 7px;
-}.table-container .table-content.team5 .position {
-  border-right: 5px solid green;
-  padding-right: 7px;
-}
-.table-container .table-content.team6 .position {
-  border-right: 5px solid lightgreen;
-  padding-right: 7px;
-}
-.table-container .table-content.team7 .position {
-  border-right: 5px solid lightskyblue;
-  padding-right: 7px;
-}
-.table-container .table-content.team8 .position {
-  border-right: 5px solid lightskyblue;
-  padding-right: 7px;
+.race-selector {
+    margin-bottom: 30px;
+    text-align: center;
 }
 
+.race-selector label {
+    font-weight: bold;
+    margin-right: 10px;
+    font-size: 18px;
+}
 
-/* Media query for small screens */
+.race-selector select {
+    padding: 8px 12px;
+    font-size: 16px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+}
+
+#race-details {
+    text-align: center;
+}
+
+#track-image {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 8px;
+    margin: 0 auto 20px auto;
+    display: block;
+    border: 1px solid #dddddd;
+}
+
+#race-settings {
+    text-align: left;
+    margin: 0 auto 30px auto;
+    max-width: 600px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+#race-settings h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+#race-settings ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#race-settings li {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+#race-settings strong {
+    display: inline-block;
+    width: 150px;
+}
+
+/* Responsive Design */
 @media (max-width: 600px) {
-  #hero2 {
-      font-size: 24px; /* Further reduce font size for small screens */
-      margin-bottom: 10px; /* Adjust margins for mobile */
-      margin-top: 10px;
-  }
-
-
-
-  .table-container {
-      width: 100%; /* Make table container full-width */
-      min-width: unset; /* Remove minimum width */
-      margin: 20px auto; /* Adjust margin for mobile */
-  }
-
-  .table-container tr.table-content td {
-      font-size: 1rem; /* Adjust table text size */
-      padding: 5px; /* Reduce padding for mobile */
-  }
-
-  .table-container tr.table-content td .position {
-      font-size: 1rem; /* Adjust font size for the position */
-  }
-
-  .table-container tr.table-content td .points {
-      font-size: 0.9rem; /* Reduce points text size */
-  }
-}
-
-
-
-@media screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 600px) {
-  #hero2 {
-      font-size: 24px;
-      margin-bottom: 10px;
-      margin-top: 10px;
-  }
-
-
-
-  .table-container {
-      width: 100%;
-      min-width: unset;
-      margin: 10px auto;
-  }
-
-  .table-container tr.table-content td {
-      font-size: 1rem;
-      padding: 5px;
-  }
-
-  .table-container tr.table-content td .position {
-      font-size: 1rem;
-  }
-
-  .table-container tr.table-content td .points {
-      font-size: 0.9rem;
-  }
-}
-
-/* FONT */
-@import url("https://fonts.googleapis.com/css?family=Lato");
-
-/* Please note, it's not quite meant to look pretty.
-Hopefully the use of colours would make it easier to see what's going on and edit to your liking! */
-
-/* ONGOING: For better UX, finding solution to have styling on selected tabs*/
-
-/* General */
-
-*, *:hover {
-  transition: all 0.3s;
-}
-
-/* Main Tabs */
-label {
-  background-color: #1b2e3c;
-  color: #ffffff;
-  display: inline-block;
-  cursor: pointer;
-  padding: 10px;
-  font-size: 14px;
-}
-
-label:hover {
-  background-color: #2e536e;
-}
-
-/* Just to give indication that it's being clicked */
-label:active {
-  color: #dce775;
-}
-
-.tab-radio {
-  display: none;
-}
-
-/* Tabs behaviour, hidden if not checked/clicked */
-.sub-tab-content,
-.tab-content {
-  display: none;
-}
-
-.tab-radio:checked + .tab-content,
-.tab-radio:checked + .sub-tab-content {
-  display: block;
-}
-
-/* Sub-tabs */
-.sub-tabs-container label {
-  color: #030700;
-  min-width: 150px;
-  text-align: center;
-  background-color: #659bff;
-  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);
-}
-
-.sub-tabs-container label:active {
-  color: #37474f;
-  box-shadow: 2px 1px 1px rgba(0, 0, 0, 0.3);
-}
-
-.sub-tabs-container label:first-child {
-  background-color: #3962dc;
-}
-
-.sub-tabs-container label:hover {
-  background-color: #9ca5ee;
-}
-
-.sub-tabs-container label:first-child:hover {
-  background-color: #9ca5ee;
-}
-
-/* Tabs Content */
-.tab-content {
-  padding: 10px;
-  background-color: #ffffff;
-  border: 1px solid #ddd;
-  box-shadow: 2px 10px 6px -3px rgba(0, 0, 0, 0.5);
-}
-
-
-/* Center the sub-tabs labels */
-.sub-tabs-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px; /* Add space between tabs and content */
-}
-
-.sub-tabs-container label {
-  margin: 0 10px; /* Adjust space between the tabs */
-}
-
-/* Center the text inside the tab content */
-.sub-tab-content h1 {
-  text-align: center;
-}
-
-.table-container {
-  margin: 0 auto;
-  text-align: center;
+    .hero-content h1 {
+        font-size: 24px;
+    }
+    .table-container {
+        width: 100%;
+    }
+    .tabs {
+        flex-direction: column;
+    }
+    .tab-button {
+        margin: 5px 0;
+    }
+    .hero-content p {
+        padding: 0 10px;
+    }
+    .race-selector label,
+    .race-selector select {
+        display: block;
+        margin: 0 auto;
+    }
+    #race-settings {
+        padding: 15px;
+    }
+    #race-settings strong {
+        width: 120px;
+    }
 }
