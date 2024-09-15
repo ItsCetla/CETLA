@@ -1,84 +1,70 @@
 [
     {
-        "position": 1,
         "name": "Hondo",
         "points": 70,
         "color": "orange"
     },
     {
-        "position": 2,
         "name": "Bedsti_Mario",
         "points": 63,
         "color": "yellow"
     },
     {
-        "position": 3,
         "name": "HPepe",
         "points": 59,
         "color": "orange"
     },
     {
-        "position": 4,
         "name": "Emilio",
         "points": 53,
         "color": "green"
     },
     {
-        "position": 5,
         "name": "TheSlayter",
         "points": 44,
         "color": "red"
     },
     {
-        "position": 6,
         "name": "Pablo",
         "points": 42,
         "color": "black"
     },
     {
-        "position": 7,
         "name": "Santi",
         "points": 33,
         "color": "yellow"
     },
     {
-        "position": 8,
         "name": "Slatenator",
         "points": 18,
         "color": "red"
     },
     {
-        "position": 9,
         "name": "Cetla",
         "points": 18,
         "color": "lightgreen"
     },
     {
-        "position": 10,
         "name": "Tanjiro",
         "points": 16,
         "color": "black"
     },
     {
-        "position": 11,
         "name": "OogaBooga",
         "points": 14,
         "color": "lightgreen"
     },
     {
-        "position": 12,
         "name": "KickStart",
         "points": 11,
         "color": "skyblue"
     },
     {
-        "position": 13,
         "name": "Ginga",
         "points": 9,
         "color": "skyblue"
     },
     {
-        "position": 14,
         "name": "R2Gui2",
         "points": 4,
         "color": "green"

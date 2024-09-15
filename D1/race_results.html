@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Race Results - Racing League</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Include Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Include Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Include custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header with navigation -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="race_results.html">Race Results</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main content -->
+    <main>
+        <section id="race-results">
+            <h1>Race Results</h1>
+            <!-- Race Selector -->
+            <div class="race-selector">
+                <label for="race-select">Select Race:</label>
+                <select id="race-select">
+                    <!-- Options will be populated dynamically -->
+                </select>
+            </div>
+
+            <!-- Race Details -->
+            <div id="race-details">
+                <!-- Track Picture -->
+                <img id="track-image" src="" alt="Track Image" />
+
+                <!-- Race Settings -->
+                <div id="race-settings">
+                    <!-- Settings will be populated dynamically -->
+                </div>
+
+                <!-- Race Points -->
+                <h2>Race Points</h2>
+                <table class="table-container">
+                    <tbody>
+                        <!-- Race points will be populated dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Include custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
