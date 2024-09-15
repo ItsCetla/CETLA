@@ -29,7 +29,7 @@
     {
         "race_id": "race2",
         "race_name": "Race 2: Sept 8th - Emilio",
-        "track_image": "tracks/emilio.webp",
+        "track_image": "https://gt-engine.com/gt7/tracks/images/md/eiger-nordwand-2.png",
         "settings": {
             "car": "GoKarts",
             "weather": "Sunny",
