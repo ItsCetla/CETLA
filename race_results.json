@@ -63,18 +63,19 @@
             "other_settings": "Default Settings Locked, Downforce Changable."
         },
         "results": [
-            {"position": 1, "driver": "", "points": 40},
-            {"position": 2, "driver": "", "points": 33},
-            {"position": 3, "driver": "", "points": 30},
-            {"position": 4, "driver": "", "points": 26},
-            {"position": 5, "driver": "", "points": 21},
-            {"position": 6, "driver": "", "points": 18},
-            {"position": 7, "driver": "", "points": 15},
-            {"position": 8, "driver": "", "points": 12},
-            {"position": 9, "driver": "", "points": 11},
-            {"position": 10, "driver": "", "points": 9},
-            {"position": 11, "driver": "", "points": 6},
-            {"position": 12, "driver": "", "points": 5}
+            {"position": 1, "driver": "HPepe", "points": 37},
+            {"position": 2, "driver": "Bedsti_Mario", "points": 36},
+            {"position": 3, "driver": "Emilio", "points": 30},
+            {"position": 4, "driver": "Hondo", "points": 26},
+            {"position": 5, "driver": "TheSlayter", "points": 21},
+            {"position": 6, "driver": "Cetla", "points": 18},
+            {"position": 7, "driver": "Pablo", "points": 15},
+            {"position": 8, "driver": "Santi", "points": 12},
+            {"position": 9, "driver": "OogaBooga", "points": 11},
+            {"position": 10, "driver": "Slatenator", "points": 9},
+            {"position": 11, "driver": "KickStart", "points": 6},
+            {"position": 12, "driver": "Ginga", "points": 5},
+            {"position": 13, "driver": "Tanjiro", "points": 4}
             
         ]
     }
