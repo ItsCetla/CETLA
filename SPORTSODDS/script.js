@@ -3,7 +3,7 @@ const apiUrl = `https://api.the-odds-api.com/v4/sports/baseball_mlb/odds/?region
 
 let currentMarket = 'h2h'; // Default to moneylines
 let previousOdds = {}; // Store previous odds to compare
-let refreshInterval = 10000; // Default refresh interval (10 seconds)
+let refreshInterval = 120000; // Default refresh interval (10 seconds)
 let refreshTimer = null; // To store the interval ID
 
 // Fetch odds function
