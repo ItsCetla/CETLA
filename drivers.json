@@ -1,72 +1,72 @@
 [
     {
         "name": "Hondo",
-        "points": 202,
+        "points": 237,
         "color": "orange"
     },
     {
         "name": "Bedsti_Mario",
-        "points": 155,
+        "points": 206,
         "color": "yellow"
     },
     {
         "name": "HPepe",
-        "points": 162,
+        "points": 207,
         "color": "orange"
     },
     {
         "name": "Emilio",
-        "points": 152,
+        "points": 207,
         "color": "green"
     },
     {
         "name": "TheSlayter",
-        "points": 131,
+        "points": 157,
         "color": "red"
     },
     {
         "name": "Pablo",
-        "points": 131,
+        "points": 190,
         "color": "black"
     },
     {
         "name": "Santi",
-        "points": 95,
+        "points": 101,
         "color": "yellow"
     },
     {
         "name": "Slatenator",
-        "points": 72,
+        "points": 93,
         "color": "red"
     },
     {
         "name": "Cetla",
-        "points": 62,
+        "points": 89,
         "color": "lightgreen"
     },
     {
         "name": "Tanjiro",
-        "points": 37,
+        "points": 41,
         "color": "black"
     },
     {
         "name": "OogaBooga",
-        "points": 62,
+        "points": 73,
         "color": "lightgreen"
     },
     {
         "name": "KickStart",
-        "points": 41,
+        "points": 80,
         "color": "skyblue"
     },
     {
         "name": "Ginga",
-        "points": 30,
+        "points": 67,
         "color": "skyblue"
     },
     {
         "name": "FleshTorpedo",
-        "points": 31,
+        "points": 57,
         "color": "green"
     }
 ]

@@ -1,37 +1,37 @@
 [
     {
         "name": "TeamFOX",
-        "points": 364,
+        "points": 444,
         "color": "orange"
     },
     {
         "name": "Team Vortex",
-        "points": 250,
+        "points": 307,
         "color": "yellow"
     },
     {
         "name": "Team Slate",
-        "points": 203,
+        "points": 250,
         "color": "red"
     },
     {
         "name": "Henry Ruggs",
-        "points": 168,
+        "points": 231,
         "color": "black"
     },
     {
         "name": "Team Tegridy",
-        "points": 183,
+        "points": 264,
         "color": "green"
     },
     {
         "name": "Team Stake",
-        "points": 124,
+        "points": 162,
         "color": "lightgreen"
     },
     {
         "name": "Team Fuck Yeah",
-        "points": 71,
+        "points": 147,
         "color": "lightskyblue"
     }
 ]
