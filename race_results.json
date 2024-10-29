@@ -199,7 +199,7 @@
             "other_settings": "Must Pit, No Gas, 1x tire wear, default settings"
         },
         "results": [
-            {"position": 1, "driver": "Ginga", "points": 37},
+            {"position": 1, "driver": "Trapvis", "points": 37},
             {"position": 2, "driver": "Pablo", "points": 33},
             {"position": 3, "driver": "Bedsti_Mario", "points": 33},
             {"position": 4, "driver": "FleshTorpedo", "points": 26},
@@ -231,7 +231,7 @@
             {"position": 2, "driver": "TheSlayter", "points": 33},
             {"position": 3, "driver": "Hondo", "points": 30},
             {"position": 4, "driver": "Bedsti_Mario", "points": 26},
-            {"position": 5, "driver": "Tanjiro", "points": 21},
+            {"position": 5, "driver": "Trapvis", "points": 21},
             {"position": 6, "driver": "Slatenator", "points": 18},
             {"position": 7, "driver": "KickStart", "points": 15},
             {"position": 8, "driver": "FleshTorpedo", "points": 12},
