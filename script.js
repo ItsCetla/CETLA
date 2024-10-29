@@ -1,46 +1,58 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Tab switching functionality
-    const tabButtons = document.querySelectorAll('.tab-button');
-    const tabContents = document.querySelectorAll('.tab-content');
+    Promise.all([
+        fetch('drivers.json').then(response => response.json()),
+        fetch('teams.json').then(response => response.json()),
+        fetch('race_results.json').then(response => response.json())
+    ]).then(([driversData, teamsData, raceData]) => {
+        // Display team standings
+        displayTeamStandings(teamsData);
+        // Display driver standings
+        displayDriverStandings(driversData);
+        
+        // Continue with existing race results and statistics handling
+        // Tab switching functionality
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
 
-    tabButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            tabContents.forEach(content => content.classList.remove('active'));
-            button.classList.add('active');
-            const tabId = button.getAttribute('data-tab');
-            document.getElementById(tabId).classList.add('active');
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                button.classList.add('active');
+                const tabId = button.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
         });
+
+        // Load race results data
+        fetch('race_results.json')
+            .then(response => response.json())
+            .then(data => {
+                // Populate race selector
+                const raceSelect = document.getElementById('race-select');
+                data.forEach(race => {
+                    const option = document.createElement('option');
+                    option.value = race.race_id;
+                    option.textContent = race.race_name;
+                    raceSelect.appendChild(option);
+                });
+
+                // Event listener for race selection
+                raceSelect.addEventListener('change', function() {
+                    const selectedRace = data.find(race => race.race_id === this.value);
+                    displayRaceDetails(selectedRace);
+                });
+
+                // Display first race by default
+                if (data.length > 0) {
+                    displayRaceDetails(data[0]);
+                }
+
+                // Calculate and display statistics
+                loadStatistics(data);
+            })
+            .catch(error => console.error('Error loading race data:', error));
     });
-
-    // Load race results data
-    fetch('race_results.json')
-        .then(response => response.json())
-        .then(data => {
-            // Populate race selector
-            const raceSelect = document.getElementById('race-select');
-            data.forEach(race => {
-                const option = document.createElement('option');
-                option.value = race.race_id;
-                option.textContent = race.race_name;
-                raceSelect.appendChild(option);
-            });
-
-            // Event listener for race selection
-            raceSelect.addEventListener('change', function() {
-                const selectedRace = data.find(race => race.race_id === this.value);
-                displayRaceDetails(selectedRace);
-            });
-
-            // Display first race by default
-            if (data.length > 0) {
-                displayRaceDetails(data[0]);
-            }
-
-            // Calculate and display statistics
-            loadStatistics(data);
-        })
-        .catch(error => console.error('Error loading race data:', error));
 });
 
 function displayRaceDetails(race) {
@@ -202,5 +214,41 @@ function generateStatsListMultiColumn(data, colors) {
                 </div>
             `).join('')}
         </div>
+    `).join('');
+}
+
+function displayTeamStandings(teamsData) {
+    const tableBody = document.querySelector('#team-standings .table-container tbody');
+    if (!tableBody) return;
+
+    const sortedTeams = teamsData.sort((a, b) => b.points - a.points);
+    
+    tableBody.innerHTML = sortedTeams.map(team => `
+        <tr class="table-row">
+            <td>
+                <span class="driver-name" style="border-left: 4px solid ${team.color}">${team.name}</span>
+            </td>
+            <td>
+                <span class="points">${team.points} PTS</span>
+            </td>
+        </tr>
+    `).join('');
+}
+
+function displayDriverStandings(driversData) {
+    const tableBody = document.querySelector('#driver-standings .table-container tbody');
+    if (!tableBody) return;
+
+    const sortedDrivers = driversData.sort((a, b) => b.points - a.points);
+    
+    tableBody.innerHTML = sortedDrivers.map(driver => `
+        <tr class="table-row">
+            <td>
+                <span class="driver-name" style="border-left: 4px solid ${driver.color}">${driver.name}</span>
+            </td>
+            <td>
+                <span class="points">${driver.points} PTS</span>
+            </td>
+        </tr>
     `).join('');
 }
