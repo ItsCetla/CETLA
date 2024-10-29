@@ -4,59 +4,72 @@
     <meta charset="UTF-8">
     <title>Race Results - Racing League</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Include Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Include Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Include custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <!-- Header with navigation -->
     <header>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="race_results.html">Race Results</a></li>
+                <li><a href="race_results.html">Results & Statistics</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Main content -->
     <main>
-        <section id="race-results">
+        <div class="tabs">
+            <button class="tab-button active" data-tab="race-results">Race Results</button>
+            <button class="tab-button" data-tab="statistics">Statistics</button>
+        </div>
+
+        <!-- Race Results Tab -->
+        <div id="race-results" class="tab-content active">
             <h1>Race Results</h1>
-            <!-- Race Selector -->
             <div class="race-selector">
                 <label for="race-select">Select Race:</label>
-                <select id="race-select">
-                    <!-- Options will be populated dynamically -->
-                </select>
+                <select id="race-select"></select>
             </div>
 
-            <!-- Race Details -->
             <div id="race-details">
-                <!-- Track Picture -->
-                <img id="track-image" src="" alt="Track Image" />
-
-                <!-- Race Settings -->
-                <div id="race-settings">
-                    <!-- Settings will be populated dynamically -->
+                <img id="track-image" src="" alt="Track Layout">
+                <div id="race-settings"></div>
+                <div class="table-container">
+                    <table>
+                        <tbody></tbody>
+                    </table>
                 </div>
-
-                <!-- Race Points -->
-                <h2>Race Points</h2>
-                <table class="table-container">
-                    <tbody>
-                        <!-- Race points will be populated dynamically -->
-                    </tbody>
-                </table>
             </div>
-        </section>
+        </div>
+
+        <!-- Statistics Tab -->
+        <div id="statistics" class="tab-content">
+            <h1>Season Statistics</h1>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h2>Most Wins</h2>
+                    <div id="most-wins"></div>
+                </div>
+                <div class="stat-card">
+                    <h2>Most Podiums</h2>
+                    <div id="most-podiums"></div>
+                </div>
+                <div class="stat-card">
+                    <h2>Average Points per Race</h2>
+                    <div id="avg-points"></div>
+                </div>
+            </div>
+            <div class="stat-card avg-placement-card">
+                <h2>Average Placement</h2>
+                <div class="placement-grid">
+                    <div id="avg-placement"></div>
+                </div>
+            </div>
+        </div>
     </main>
 
-    <!-- Include custom JavaScript -->
     <script src="script.js"></script>
 </body>
+</html>
 </html>

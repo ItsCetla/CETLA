@@ -214,6 +214,7 @@ main {
     border-radius: 8px;
     position: relative;
     background-color: #fff;
+    width: 100%;
 }
 
 .table-row:hover {
@@ -223,15 +224,6 @@ main {
 
 .table-row:hover .points {
     color: #000000;
-}
-
-/* Colored Dash at the Front */
-.table-row .position {
-    font-weight: bold;
-    margin-right: 10px;
-    padding-right: 10px;
-    border-right: 5px solid var(--dash-color);
-    color: var(--primary-color);
 }
 
 .table-row .driver-name,
@@ -349,4 +341,210 @@ main {
     #race-settings strong {
         width: 120px;
     }
+}
+
+/* Statistics Styles */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.avg-placement-card {
+    margin: 20px auto;
+    width: 100%;
+    padding: 20px;
+}
+
+.placement-grid {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+#avg-placement {
+    display: grid;
+    grid-template-columns: repeat(3, 250px); /* Back to 250px width */
+    gap: 20px; /* Reduced gap */
+    justify-content: center;
+    margin: 0 auto;
+}
+
+#avg-placement .stat-card {
+    width: 250px;
+}
+
+/* Make sure all stat cards have consistent padding */
+.stat-card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.stat-card h2 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    background: #f8f9fa;
+}
+
+.stat-row .driver-name {
+    padding-left: 10px;
+    font-weight: 500;
+    font-size: 1.1em;
+}
+
+.stat-row .stat-value {
+    font-weight: bold;
+    color: var(--primary-color);
+    font-size: 1.1em;
+}
+
+/* Add responsive design for statistics */
+@media (max-width: 600px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
+    
+    .stat-card {
+        margin-bottom: 15px;
+    }
+}
+
+/* Update the Table Row Styles section */
+.table-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 5px;
+    border-radius: 8px;
+    position: relative;
+    background-color: #fff;
+    width: 100%;
+}
+
+/* Remove or update the Colored Dash section */
+.table-row .position {
+    font-weight: bold;
+    margin-right: 10px;
+    padding-right: 10px;
+    color: var(--primary-color);
+}
+
+/* Update the driver name styles */
+.table-row .driver-name {
+    font-weight: 600;
+    font-size: 18px;
+    color: #333333;
+    padding-left: 10px;
+    flex-grow: 1;
+}
+
+/* Update the Table Container styles */
+.table-container {
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto 50px auto;
+}
+
+.table-container table {
+    width: 100%;
+}
+
+/* Add this new style for the results container */
+#race-details .table-container {
+    margin-top: 20px;
+    padding: 0 15px;
+}
+
+/* Add to your Statistics Styles section */
+.stats-grid .stat-card[style*="grid-column: 1 / -1"] {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px 40px;
+}
+
+.multi-column-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+    padding: 10px;
+    width: 100%;
+}
+
+/* Add these styles */
+.placement-grid {
+    margin-top: 20px;
+}
+
+.placement-grid .stat-card {
+    margin-bottom: 0;
+    flex: 1;
+    min-width: 250px;
+}
+
+#avg-placement {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+.stat-card.full-width {
+    grid-column: 1 / -1;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.placement-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+#avg-placement {
+    display: contents; /* This allows the children to participate in the placement-grid */
+}
+
+.stat-card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.stat-card h2 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+/* Keep the text styling */
+#avg-placement .stat-row {
+    padding: 10px;
+}
+
+#avg-placement .driver-name {
+    font-size: 1em;
+}
+
+#avg-placement .stat-value {
+    font-size: 1em;
 }

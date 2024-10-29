@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GT7 Racing League Statistics</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#standings">Standings</a></li>
+                <li><a href="#race-results">Race Results</a></li>
+                <li><a href="#statistics">Statistics</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="hero-content">
+                <h1>GT7 Racing League Statistics</h1>
+                <p>Track your favorite drivers' performance throughout the season</p>
+                <button id="view-schedule" class="btn-primary">View Race Schedule</button>
+            </div>
+        </section>
+
+        <div class="tabs">
+            <button class="tab-button active" data-tab="driver-standings">Driver Standings</button>
+            <button class="tab-button" data-tab="race-results">Race Results</button>
+            <button class="tab-button" data-tab="statistics">Statistics</button>
+        </div>
+
+        <div id="driver-standings" class="tab-content active">
+            <h1>Championship Standings</h1>
+            <div class="table-container">
+                <table>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="race-results" class="tab-content">
+            <div class="race-selector">
+                <label for="race-select">Select Race:</label>
+                <select id="race-select"></select>
+            </div>
+            <div id="race-details">
+                <img id="track-image" src="" alt="Track Layout">
+                <div id="race-settings"></div>
+                <div class="table-container">
+                    <table>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="statistics" class="tab-content">
+            <h1>Season Statistics</h1>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h2>Most Wins</h2>
+                    <div id="most-wins"></div>
+                </div>
+                <div class="stat-card">
+                    <h2>Most Podiums</h2>
+                    <div id="most-podiums"></div>
+                </div>
+                <div class="stat-card">
+                    <h2>Average Points per Race</h2>
+                    <div id="avg-points"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Schedule Modal -->
+    <div id="schedule-modal" class="modal">
+        <div class="modal-content">
+            <span id="close-modal" class="close">&times;</span>
+            <h2>Race Schedule</h2>
+            <div id="schedule-content"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Additional statistics calculations
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('race_results.json')
+                .then(response => response.json())
+                .then(data => {
+                    // Calculate statistics
+                    const stats = calculateSeasonStats(data);
+                    
+                    // Display statistics
+                    document.getElementById('most-wins').innerHTML = generateStatsList(stats.wins);
+                    document.getElementById('most-podiums').innerHTML = generateStatsList(stats.podiums);
+                    document.getElementById('avg-points').innerHTML = generateStatsList(stats.avgPoints);
+                });
+        });
+
+        function calculateSeasonStats(data) {
+            const stats = {
+                wins: {},
+                podiums: {},
+                avgPoints: {}
+            };
+
+            // Calculate wins and podiums
+            data.forEach(race => {
+                // Count wins
+                const winner = race.results.find(r => r.position === 1).driver;
+                stats.wins[winner] = (stats.wins[winner] || 0) + 1;
+
+                // Count podiums (positions 1-3)
+                race.results.slice(0, 3).forEach(result => {
+                    stats.podiums[result.driver] = (stats.podiums[result.driver] || 0) + 1;
+                });
+
+                // Calculate average points
+                race.results.forEach(result => {
+                    if (!stats.avgPoints[result.driver]) {
+                        stats.avgPoints[result.driver] = {
+                            total: 0,
+                            races: 0
+                        };
+                    }
+                    stats.avgPoints[result.driver].total += result.points;
+                    stats.avgPoints[result.driver].races += 1;
+                });
+            });
+
+            // Convert average points to actual averages
+            Object.keys(stats.avgPoints).forEach(driver => {
+                const avg = stats.avgPoints[driver].total / stats.avgPoints[driver].races;
+                stats.avgPoints[driver] = Math.round(avg * 10) / 10;
+            });
+
+            return stats;
+        }
+
+        function generateStatsList(statsObj) {
+            return Object.entries(statsObj)
+                .sort(([,a], [,b]) => b - a)
+                .slice(0, 5)
+                .map(([driver, value]) => `
+                    <div class="table-row">
+                        <span class="driver-name">${driver}</span>
+                        <span class="points">${value}</span>
+                    </div>
+                `).join('');
+        }
+    </script>
+</body>
+</html> 
