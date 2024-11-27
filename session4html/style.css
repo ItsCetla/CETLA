@@ -42,9 +42,7 @@ nav ul {
     padding: 10px 0;
     margin: 0;
     display: flex;
-    justify-content: flex-start;
-    max-width: 1200px;
-    margin: 0 auto;
+    justify-content: center;
 }
 
 nav ul li {
@@ -549,41 +547,4 @@ main {
 
 #avg-placement .stat-value {
     font-size: 1em;
-}
-
-/* Update the last session styles */
-.last-session {
-    margin-left: auto;
-}
-
-.last-session a {
-    color: var(--primary-color) !important;
-    text-decoration: none;
-    padding: 10px !important;
-    display: block;
-    font-weight: bold;
-    transition: color 0.3s !important;
-}
-
-.last-session a:hover {
-    color: var(--secondary-color) !important;
-}
-
-.last-session i {
-    margin-left: 5px;
-    font-size: 0.9em;
-}
-
-/* Update responsive design for the nav */
-@media (max-width: 600px) {
-    nav ul {
-        flex-direction: column;
-        align-items: center;
-        padding: 5px 0;
-    }
-    
-    .last-session {
-        margin-left: 0;
-        margin-top: 10px;
-    }
 }

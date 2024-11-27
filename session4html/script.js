@@ -35,7 +35,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Display driver standings
         displayDriverStandings(driversData);
         
-        // Handle race results and statistics
+        // Continue with existing race results and statistics handling
+        // Tab switching functionality
         const tabButtons = document.querySelectorAll('.tab-button');
         const tabContents = document.querySelectorAll('.tab-content');
 
@@ -49,31 +50,35 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
-        // Populate race selector and calculate statistics
-        const raceSelect = document.getElementById('race-select');
-        if (raceSelect) {
-            raceData.forEach(race => {
-                const option = document.createElement('option');
-                option.value = race.race_id;
-                option.textContent = race.race_name;
-                raceSelect.appendChild(option);
-            });
+        // Load race results data
+        fetch('session4/race_results.json')
+            .then(response => response.json())
+            .then(data => {
+                // Populate race selector
+                const raceSelect = document.getElementById('race-select');
+                data.forEach(race => {
+                    const option = document.createElement('option');
+                    option.value = race.race_id;
+                    option.textContent = race.race_name;
+                    raceSelect.appendChild(option);
+                });
 
-            // Event listener for race selection
-            raceSelect.addEventListener('change', function() {
-                const selectedRace = raceData.find(race => race.race_id === this.value);
-                displayRaceDetails(selectedRace);
-            });
+                // Event listener for race selection
+                raceSelect.addEventListener('change', function() {
+                    const selectedRace = data.find(race => race.race_id === this.value);
+                    displayRaceDetails(selectedRace);
+                });
 
-            // Display first race by default
-            if (raceData.length > 0) {
-                displayRaceDetails(raceData[0]);
-            }
-        }
+                // Display first race by default
+                if (data.length > 0) {
+                    displayRaceDetails(data[0]);
+                }
 
-        // Calculate and display statistics using the raceData
-        loadStatistics(raceData);
-    }).catch(error => console.error('Error loading data:', error));
+                // Calculate and display statistics
+                loadStatistics(data);
+            })
+            .catch(error => console.error('Error loading race data:', error));
+    });
 });
 
 function displayRaceDetails(race) {
