@@ -5,7 +5,7 @@
         "track_image": "https://gt-engine.com/gt7/tracks/images/md/brands-hatch-indy.png",
         "settings": {
             "car": "MaxPP 580",
-            "weather": "Sunny",
+            "weather": "Night",
             "laps": "18",
             "other_settings": "Sport Tires only! No Gas Use, tire 1x wear!"
         },
@@ -31,7 +31,7 @@
         "track_image": "https://gt-engine.com/gt7/tracks/images/md/tokyo-express-central-cw.png",
         "settings": {
             "car": "MaxPP 595",
-            "weather": "Sunny",
+            "weather": "Night",
             "laps": 12,
             "other_settings": "Sport Tires only! No Gas Use, tire 1x wear!"
         },
@@ -44,7 +44,7 @@
             {"position": 6, "driver": "TheSlayter", "points": 18},
             {"position": 7, "driver": "Bedsti_Mario", "points": 15},
             {"position": 8, "driver": "FleshTorpedo", "points": 12},
-            {"position": 9, "driver": "Kickstart", "points": 11},
+            {"position": 9, "driver": "KickStart", "points": 11},
             {"position": 10, "driver": "Slatenator", "points": 9},
             {"position": 11, "driver": "Cetla", "points": 6},
             {"position": 12, "driver": "Santi", "points": 5},
