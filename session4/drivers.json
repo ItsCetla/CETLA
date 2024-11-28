@@ -47,7 +47,7 @@
     {
         "name": "No Teammate",
         "points": 0,
-        "color": "purple"
+        "color": "skyblue"
     },
     {
         "name": "OogaBooga",
@@ -62,7 +62,7 @@
     {
         "name": "Ginga",
         "points": 4,
-        "color": "purple"
+        "color": "skyblue"
     },
     {
         "name": "FleshTorpedo",

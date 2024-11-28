@@ -242,7 +242,48 @@ main {
 }
 
 /* Team Row Styles */
+.team-row {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
 
+.team-row:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+.team-row.expanded {
+    background-color: rgba(0, 0, 0, 0.05);
+    margin-bottom: 8px;
+}
+
+.driver-details {
+    background-color: rgba(0, 0, 0, 0.02);
+    transition: all 0.3s ease;
+}
+
+.driver-details.hidden {
+    display: none;
+}
+
+.driver-details:not(.hidden) {
+    margin-bottom: 8px;
+}
+
+.team-drivers {
+    padding: 8px 32px;
+}
+
+.team-driver {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    opacity: 0.8;
+}
+
+.team-driver:not(:last-child) {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
 
 /* Race Results Styles */
 #race-results {
@@ -453,7 +494,10 @@ main {
     font-weight: 600;
     font-size: 18px;
     color: #333333;
-    padding-left: 10px;
+    padding-left: 12px;
+    margin-left: 4px;
+    border-left-width: 4px;
+    border-left-style: solid;
     flex-grow: 1;
 }
 
@@ -586,4 +630,9 @@ main {
         margin-left: 0;
         margin-top: 10px;
     }
+}
+
+/* Optional: If you want even more spacing specifically for the nested drivers */
+.team-driver .driver-name {
+    padding-left: 16px;  /* Slightly more padding for nested drivers */
 }

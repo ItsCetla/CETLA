@@ -239,21 +239,57 @@ function generateStatsListMultiColumn(data, colors) {
 }
 
 function displayTeamStandings(teamsData) {
-    const tableBody = document.querySelector('#team-standings .table-container tbody');
-    if (!tableBody) return;
+    fetch('session4/drivers.json')
+        .then(response => response.json())
+        .then(driversData => {
+            const tableBody = document.querySelector('#team-standings .table-container tbody');
+            if (!tableBody) return;
 
-    const sortedTeams = teamsData.sort((a, b) => b.points - a.points);
-    
-    tableBody.innerHTML = sortedTeams.map(team => `
-        <tr class="table-row">
-            <td>
-                <span class="driver-name" style="border-left: 4px solid ${team.color}">${team.name}</span>
-            </td>
-            <td>
-                <span class="points">${team.points} PTS</span>
-            </td>
-        </tr>
-    `).join('');
+            // Match drivers to teams based on colors and sort drivers by points
+            const teamsWithDrivers = teamsData.map(team => ({
+                ...team,
+                drivers: driversData
+                    .filter(driver => driver.color === team.color)
+                    .sort((a, b) => b.points - a.points)  // Sort drivers by points descending
+            }));
+
+            const sortedTeams = teamsWithDrivers.sort((a, b) => b.points - a.points);
+            
+            tableBody.innerHTML = sortedTeams.map(team => `
+                <tr class="table-row team-row" data-team="${team.name}">
+                    <td>
+                        <span class="driver-name" style="border-left: 4px solid ${team.color}">${team.name}</span>
+                    </td>
+                    <td>
+                        <span class="points">${team.points} PTS</span>
+                    </td>
+                </tr>
+                <tr class="driver-details hidden" data-team="${team.name}">
+                    <td colspan="2">
+                        <div class="team-drivers">
+                            ${team.drivers.map(driver => `
+                                <div class="team-driver">
+                                    <span class="driver-name" style="border-left: 4px solid ${driver.color}">${driver.name}</span>
+                                    <span class="points">${driver.points} PTS</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+
+            // Add click event listeners to team rows
+            const teamRows = tableBody.querySelectorAll('.team-row');
+            teamRows.forEach(row => {
+                row.addEventListener('click', () => {
+                    const teamName = row.dataset.team;
+                    const driverDetails = tableBody.querySelector(`.driver-details[data-team="${teamName}"]`);
+                    row.classList.toggle('expanded');
+                    driverDetails.classList.toggle('hidden');
+                });
+            });
+        })
+        .catch(error => console.error('Error loading drivers:', error));
 }
 
 function displayDriverStandings(driversData) {
