@@ -1,42 +1,42 @@
 [
     {
         "name": "Gap that exists",
-        "points": 60,
+        "points": 96,
         "color": "yellow"
     },
     {
         "name": "Team SantiGold",
-        "points": 66,
+        "points": 117,
         "color": "orange"
     },
     {
         "name": "Team Slate",
-        "points": 57,
+        "points": 114,
         "color": "red"
     },
     {
         "name": "K-Hole Racing",
-        "points": 122,
+        "points": 148,
         "color": "pink"
     },
     {
         "name": "Team Tegridy",
-        "points": 93,
+        "points": 128,
         "color": "green"
     },
     {
         "name": "Team Stake",
-        "points": 17,
+        "points": 68,
         "color": "lightgreen"
     },
     {
         "name": "Team Tits Out",
-        "points": 34,
+        "points": 72,
         "color": "black"
     },
     {
         "name": "Team Ginga",
-        "points": 4,
+        "points": 21,
         "color": "skyblue"
     }
 ]

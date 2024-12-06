@@ -1,47 +1,47 @@
 [
     {
         "name": "Hondo",
-        "points": 46,
+        "points": 68,
         "color": "orange"
     },
     {
         "name": "Bedsti_Mario",
-        "points": 36,
+        "points": 43,
         "color": "green"
     },
     {
         "name": "HPepe",
-        "points": 60,
+        "points": 71,
         "color": "yellow"
     },
     {
         "name": "Emilio",
-        "points": 56,
+        "points": 85,
         "color": "green"
     },
     {
         "name": "TheSlayter",
-        "points": 36,
+        "points": 69,
         "color": "red"
     },
     {
         "name": "Pablo",
-        "points": 59,
+        "points": 81,
         "color": "pink"
     },
     {
         "name": "Santi",
-        "points": 20,
+        "points": 49,
         "color": "orange"
     },
     {
         "name": "Slatenator",
-        "points": 21,
+        "points": 45,
         "color": "red"
     },
     {
         "name": "Cetla",
-        "points": 12,
+        "points": 48,
         "color": "lightgreen"
     },
     {
@@ -51,33 +51,33 @@
     },
     {
         "name": "OogaBooga",
-        "points": 5,
+        "points": 20,
         "color": "lightgreen"
     },
     {
         "name": "KickStart",
-        "points": 11,
+        "points": 30,
         "color": "black"
     },
     {
         "name": "Ginga",
-        "points": 4,
+        "points": 21,
         "color": "skyblue"
     },
     {
         "name": "FleshTorpedo",
-        "points": 23,
+        "points": 42,
         "color": "black"
     },
     
     {
-        "name": "Stang",
-        "points": 0,
+        "name": "Mustang",
+        "points": 25,
         "color": "yellow"
     },
     {
         "name": "TrapVis",
-        "points": 63,
+        "points": 67,
         "color": "pink"
     }
 ]

@@ -10,18 +10,18 @@
             "other_settings": "Sport Tires only! No Gas Use, tire 1x wear!"
         },
         "results": [
-            {"position": 1, "driver": "TrapVis", "points": 37},
-            {"position": 2, "driver": "Emilio", "points": 36},
-            {"position": 3, "driver": "HPepe", "points": 30},
-            {"position": 4, "driver": "Pablo", "points": 26},
+            {"position": 1, "driver": "TrapVis", "points": 30},
+            {"position": 2, "driver": "Emilio", "points": 31},
+            {"position": 3, "driver": "HPepe", "points": 27},
+            {"position": 4, "driver": "Pablo", "points": 25},
             {"position": 5, "driver": "Bedsti_Mario", "points": 21},
-            {"position": 6, "driver": "TheSlayter", "points": 18},
-            {"position": 7, "driver": "Santi", "points": 15},
-            {"position": 8, "driver": "Slatenator", "points": 12},
-            {"position": 9, "driver": "FleshTorpedo", "points": 11},
-            {"position": 10, "driver": "Hondo", "points": 9},
-            {"position": 11, "driver": "Cetla", "points": 6},
-            {"position": 12, "driver": "OogaBooga", "points": 5}
+            {"position": 6, "driver": "TheSlayter", "points": 19},
+            {"position": 7, "driver": "Santi", "points": 17},
+            {"position": 8, "driver": "Slatenator", "points": 15},
+            {"position": 9, "driver": "FleshTorpedo", "points": 12},
+            {"position": 10, "driver": "Hondo", "points": 10},
+            {"position": 11, "driver": "Cetla", "points": 9},
+            {"position": 12, "driver": "OogaBooga", "points": 8}
 
         ]
     },
@@ -36,19 +36,47 @@
             "other_settings": "Sport Tires only! No Gas Use, tire 1x wear!"
         },
         "results": [
-            {"position": 1, "driver": "Hondo", "points": 37},
-            {"position": 2, "driver": "Pablo", "points": 33},
-            {"position": 3, "driver": "HPepe", "points": 33},
-            {"position": 4, "driver": "TrapVis", "points": 26},
-            {"position": 5, "driver": "Emilio", "points": 21},
-            {"position": 6, "driver": "TheSlayter", "points": 18},
-            {"position": 7, "driver": "Bedsti_Mario", "points": 15},
-            {"position": 8, "driver": "FleshTorpedo", "points": 12},
-            {"position": 9, "driver": "KickStart", "points": 11},
-            {"position": 10, "driver": "Slatenator", "points": 9},
-            {"position": 11, "driver": "Cetla", "points": 6},
-            {"position": 12, "driver": "Santi", "points": 5},
-            {"position": 13, "driver": "Ginga", "points": 4}
+            {"position": 1, "driver": "Hondo", "points": 30},
+            {"position": 2, "driver": "Pablo", "points": 28},
+            {"position": 3, "driver": "HPepe", "points": 30},
+            {"position": 4, "driver": "TrapVis", "points": 25},
+            {"position": 5, "driver": "Emilio", "points": 24},
+            {"position": 6, "driver": "TheSlayter", "points": 21},
+            {"position": 7, "driver": "Bedsti_Mario", "points": 19},
+            {"position": 8, "driver": "FleshTorpedo", "points": 17},
+            {"position": 9, "driver": "KickStart", "points": 15},
+            {"position": 10, "driver": "Slatenator", "points": 14},
+            {"position": 11, "driver": "Cetla", "points": 12},
+            {"position": 12, "driver": "Santi", "points": 11},
+            {"position": 13, "driver": "Ginga", "points": 10}
+            
+        ]
+    },
+    {
+        "race_id": "race3",
+        "race_name": "Race 3: Road Atlanta",
+        "track_image": "https://gt-engine.com/gt7/tracks/images/md/road-atlanta.png",
+        "settings": {
+            "car": "MaxPP 660",
+            "weather": "Night",
+            "laps": 14,
+            "other_settings": "Sport Tires only! No Gas Use, tire 1x wear!"
+        },
+        "results": [
+            {"position": 1, "driver": "Emilio", "points": 30},
+            {"position": 2, "driver": "Pablo", "points": 28},
+            {"position": 3, "driver": "TheSlayter", "points": 27},
+            {"position": 4, "driver": "Mustang", "points": 25},
+            {"position": 5, "driver": "Cetla", "points": 24},
+            {"position": 6, "driver": "Hondo", "points": 24},
+            {"position": 7, "driver": "Santi", "points": 19},
+            {"position": 8, "driver": "HPepe", "points": 17},
+            {"position": 9, "driver": "KickStart", "points": 15},
+            {"position": 10, "driver": "Slatenator", "points": 14},
+            {"position": 11, "driver": "TrapVis", "points": 12},
+            {"position": 12, "driver": "Ginga", "points": 11},
+            {"position": 13, "driver": "FleshTorpedo", "points": 10},
+            {"position": 14, "driver": "OogaBooga", "points": 9}
             
         ]
     }
