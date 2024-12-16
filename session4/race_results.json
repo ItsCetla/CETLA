@@ -92,7 +92,7 @@
         },
         "results": [
             {"position": 1, "driver": "Mustang", "points": 30},
-            {"position": 2, "driver": "Pablo", "points": 28},
+            {"position": 2, "driver": "Pablo", "points": 31},
             {"position": 3, "driver": "Emilio", "points": 27},
             {"position": 4, "driver": "HPepe", "points": 25},
             {"position": 5, "driver": "Lilreeree", "points": 24},
