@@ -112,4 +112,82 @@
     }
 
 
+,
+    {
+        "race_id": "race5",
+        "race_name": "Race 5: Highway A",
+        "track_image": "",
+        "settings": {
+            "car": "MaxPP 680",
+            "weather": "Evening",
+            "laps": 10,
+            "other_settings": "No Gas Use, tire 1x wear!"
+        },
+        "results": [
+            {"position": 1, "driver": "Pablo", "points": 30},
+            {"position": 2, "driver": "HPepe", "points": 31},
+            {"position": 3, "driver": "TrapVis", "points": 27},
+            {"position": 4, "driver": "Mustang", "points": 25},
+            {"position": 5, "driver": "Hondo", "points": 24},
+            {"position": 6, "driver": "Emilio", "points": 21},
+            {"position": 7, "driver": "TheSlayter", "points": 19},
+            {"position": 8, "driver": "Lilreeree", "points": 17},
+            {"position": 9, "driver": "Cetla", "points": 15},
+            {"position": 10, "driver": "Bedsti_Mario", "points": 14},
+            {"position": 11, "driver": "FleshTorpedo", "points": 12},
+            {"position": 12, "driver": "Slatenator", "points": 11},
+            {"position": 13, "driver": "OogaBooga", "points": 10}
+        ]
+    }
+,
+    {
+        "race_id": "race6",
+        "race_name": "Race 6",
+        "track_image": "",
+        "settings": {
+            "car": "",
+            "weather": "",
+            "laps": 0,
+            "other_settings": ""
+        },
+        "results": [
+            {"position": 1, "driver": "Emilio", "points": 33},
+            {"position": 2, "driver": "Mustang", "points": 28},
+            {"position": 3, "driver": "TrapVis", "points": 27},
+            {"position": 4, "driver": "Pablo", "points": 25},
+            {"position": 5, "driver": "HPepe", "points": 24},
+            {"position": 6, "driver": "KickStart", "points": 21},
+            {"position": 7, "driver": "FleshTorpedo", "points": 19},
+            {"position": 8, "driver": "Slatenator", "points": 17},
+            {"position": 9, "driver": "Lilreeree", "points": 15},
+            {"position": 10, "driver": "Hondo", "points": 14}
+        ]
+    }
+,
+    {
+        "race_id": "race7",
+        "race_name": "Race 7",
+        "track_image": "",
+        "settings": {
+            "car": "",
+            "weather": "",
+            "laps": 0,
+            "other_settings": ""
+        },
+        "results": [
+            {"position": 1, "driver": "Emilio", "points": 33},
+            {"position": 2, "driver": "Pablo", "points": 28},
+            {"position": 3, "driver": "TrapVis", "points": 27},
+            {"position": 4, "driver": "Lilreeree", "points": 25},
+            {"position": 5, "driver": "KickStart", "points": 24},
+            {"position": 6, "driver": "Santi", "points": 21},
+            {"position": 7, "driver": "FleshTorpedo", "points": 19},
+            {"position": 8, "driver": "Hondo", "points": 17},
+            {"position": 9, "driver": "Bedsti_Mario", "points": 15},
+            {"position": 10, "driver": "OogaBooga", "points": 14},
+            {"position": 11, "driver": "Cetla", "points": 12},
+            {"position": 12, "driver": "Slatenator", "points": 11},
+            {"position": 13, "driver": "TheSlayter", "points": 10}
+        ]
+    }
 ]
