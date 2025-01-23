@@ -141,7 +141,7 @@
         "race_name": "Race 6: Deep Forest",
         "track_image": "https://gt-engine.com/gt7/tracks/images/md/deep-forest-raceway.png",
         "settings": {
-            "car": "MaxPP 680",
+            "car": "MaxPP 710",
             "weather": "Night",
             "laps": "12",
             "other_settings": "No Gas Use, tire 1x wear!"
@@ -164,9 +164,9 @@
         "race_name": "Race 7: Dragon Trail",
         "track_image": "https://gt-engine.com/gt7/tracks/images/md/dragon-trail.png",
         "settings": {
-            "car": "MaxPP 680",
+            "car": "MaxPP 710",
             "weather": "Night",
-            "laps": "12",
+            "laps": "11",
             "other_settings": "No Gas Use, tire 1x wear!"
         },
         "results": [
