@@ -24,45 +24,6 @@ DESCRIPTION:Marathon learning session! 🧠 Weekly Thursday class from 1:00 PM t
 END:VEVENT
 
 BEGIN:VEVENT
-UID:datenight1-20250123T190000@example.com
-SUMMARY:Date Night 🍷
-DTSTAMP:20250123T000000Z
-DTSTART:20250123T190000
-DTEND:20250123T210000
-DESCRIPTION:Enjoy a lovely evening together! 🍽️
-LOCATION:Romantic Restaurant
-BEGIN:VALARM
-ACTION:DISPLAY
-TRIGGER:-PT45M
-DESCRIPTION:Reminder: Date Night at 7:00 PM 🍷
-END:VALARM
-END:VEVENT
-
-BEGIN:VEVENT
-UID:datenight2-20250124T173000@example.com
-SUMMARY:Date Night 🍹 Los Primos + Margaritas
-DTSTAMP:20250123T000000Z
-DTSTART:20250124T173000
-DTEND:20250124T190000
-DESCRIPTION:Time for dinner at Los Primos! Enjoy tacos 🌮 and margaritas 🍹
-LOCATION:Los Primos
-BEGIN:VALARM
-ACTION:DISPLAY
-TRIGGER:-PT45M
-DESCRIPTION:Reminder: Date Night at 5:30 PM 🍹
-END:VALARM
-END:VEVENT
-
-BEGIN:VEVENT
-UID:football-20250126T150000@example.com
-SUMMARY:Football Sunday 🏈 🎮
-DTSTAMP:20250123T000000Z
-DTSTART:20250126T150000
-DTEND:20250126T170000
-DESCRIPTION:Game time! 🏈 Snacks\, drinks and Sunday football fun! 🍿 🥤
-END:VEVENT
-
-BEGIN:VEVENT
 UID:work-tuesday-20250128T093000@example.com
 SUMMARY:Kyle's Work Time 💼 💻
 DTSTAMP:20250123T000000Z
@@ -83,13 +44,30 @@ DESCRIPTION:TGIF! 🌟 Recurring Friday work schedule (9:30 AM to 5:00 PM) 🚀
 END:VEVENT
 
 BEGIN:VEVENT
-UID:chickfila-20250125T090000@example.com
-SUMMARY:Chick-fil-A 🍗
+UID:kaila-hangout-mon-20250127T180000@example.com
+SUMMARY:Hangout with Kaila 🤗 ✨
 DTSTAMP:20250123T000000Z
-DTSTART:20250125T090000
-DTEND:20250125T093000
-DESCRIPTION:Grab breakfast at Chick-fil-A
-LOCATION:Chick-fil-A
+DTSTART:20250127T180000
+DTEND:20250127T200000
+DESCRIPTION:Monday funday with Kaila! 🌟 Time for laughs\, chats\, and good vibes! 🎉 💫 Maybe snacks too? 🍿 🍪
+END:VEVENT
+
+BEGIN:VEVENT
+UID:kaila-hangout-wed-20250129T180000@example.com
+SUMMARY:Hangout with Kaila 🤗 💫
+DTSTAMP:20250123T000000Z
+DTSTART:20250129T180000
+DTEND:20250129T200000
+DESCRIPTION:Midweek magic with Kaila! 🌈 Time to make Wednesday the best day! 🎨 Friendship\, fun\, and fantastic times ahead! 💖 ⭐
+END:VEVENT
+
+BEGIN:VEVENT
+UID:kaila-test-20250205T000000@example.com
+SUMMARY:Kaila's Test Day 📝 💪
+DTSTAMP:20250123T000000Z
+DTSTART:20250205T000000
+DTEND:20250205T235900
+DESCRIPTION:Kaila's big test day! 📚 You've got this! 💫 Sending all the good vibes and lucky stars! 🍀 ⭐ 🌟 Time to shine and show what you know! 🎯 💡 You're going to crush it! 🏆 💪
 END:VEVENT
 
 END:VCALENDAR
