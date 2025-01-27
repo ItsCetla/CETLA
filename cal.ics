@@ -45,11 +45,29 @@ END:VEVENT
 
 BEGIN:VEVENT
 UID:kaila-hangout-mon-20250127T180000@example.com
-SUMMARY:Hangout with Kaila 🤗 ✨
+SUMMARY:Drive to Canes 🚗 🎵 ✨
 DTSTAMP:20250123T000000Z
 DTSTART:20250127T180000
+DTEND:20250127T184500
+DESCRIPTION:Road trip time! 🚗 ✨ Jamming to tunes 🎵 🎶 and having the best car chats! 🗣️ 💖 Adventure time with my favorite person! 🌟 Let's make this drive amazing! 🎉 🌈
+END:VEVENT
+
+BEGIN:VEVENT
+UID:canes-dinner-20250127T185000@example.com
+SUMMARY:Raising Canes Dinner 🍗 💝 ✨
+DTSTAMP:20250123T000000Z
+DTSTART:20250127T185000
 DTEND:20250127T200000
-DESCRIPTION:Monday funday with Kaila! 🌟 Time for laughs\, chats\, and good vibes! 🎉 💫 Maybe snacks too? 🍿 🍪
+DESCRIPTION:Yummy dinner date! 🍗 Time for that legendary Cane's sauce! 🔥 Box combo time! 🍟 With extra toast because we're fancy! 🍞 ✨ Making dinner memories! 🌟 💫 The best chicken fingers in town! 🎉 💖
+END:VEVENT
+
+BEGIN:VEVENT
+UID:movie-and-work-20250127T201000@example.com
+SUMMARY:Cozy Movie & Study Time 🎬 📚 ✨
+DTSTAMP:20250123T000000Z
+DTSTART:20250127T201000
+DTEND:20250127T220000
+DESCRIPTION:Perfect evening wind-down! 🌙 Movie time for Kaila 🎬 🍿 While Kyle tackles English like a boss! 📚 ⭐ Comfy couch time! 🛋️ 💝 Maybe some snacks? 🍪 ✨ The best kind of Monday night! 🌟 💫 Productive and cozy vibes! 🎯 💖
 END:VEVENT
 
 BEGIN:VEVENT
@@ -68,6 +86,20 @@ DTSTAMP:20250123T000000Z
 DTSTART:20250205T000000
 DTEND:20250205T235900
 DESCRIPTION:Kaila's big test day! 📚 You've got this! 💫 Sending all the good vibes and lucky stars! 🍀 ⭐ 🌟 Time to shine and show what you know! 🎯 💡 You're going to crush it! 🏆 💪
+END:VEVENT
+
+BEGIN:VEVENT
+UID:saturday-bar-20250201T200000@example.com
+SUMMARY:Bar Night with Friends! 🍻 🎉 ✨
+DTSTAMP:20250123T000000Z
+DTSTART:20250201T200000
+DTEND:20250201T235900
+DESCRIPTION:Saturday night vibes! 🌟 Time for drinks and good times with friends! 🍻 Dancing\, laughs\, and memories in the making! 💃 🕺 Let the weekend fun begin! 🎊 Don't forget to hydrate! 💦 ✨
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Ask Tony? 🤔 Time to confirm plans! 📱
+END:VALARM
 END:VEVENT
 
 END:VCALENDAR
