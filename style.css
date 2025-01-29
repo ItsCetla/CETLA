@@ -595,29 +595,6 @@ main {
     font-size: 1em;
 }
 
-/* Update the last session styles */
-.last-session {
-    margin-left: auto;
-}
-
-.last-session a {
-    color: var(--primary-color) !important;
-    text-decoration: none;
-    padding: 10px !important;
-    display: block;
-    font-weight: bold;
-    transition: color 0.3s !important;
-}
-
-.last-session a:hover {
-    color: var(--secondary-color) !important;
-}
-
-.last-session i {
-    margin-left: 5px;
-    font-size: 0.9em;
-}
-
 /* Update responsive design for the nav */
 @media (max-width: 600px) {
     nav ul {
@@ -625,14 +602,258 @@ main {
         align-items: center;
         padding: 5px 0;
     }
-    
-    .last-session {
-        margin-left: 0;
-        margin-top: 10px;
-    }
 }
 
 /* Optional: If you want even more spacing specifically for the nested drivers */
 .team-driver .driver-name {
     padding-left: 16px;  /* Slightly more padding for nested drivers */
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    /* Header and Navigation */
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+    }
+
+    nav ul li {
+        margin: 5px 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    nav ul li a {
+        padding: 10px 0;
+    }
+
+    /* Main Content */
+    main {
+        padding-top: 140px; /* Increased to accommodate stacked nav */
+    }
+
+    /* Hero Section */
+    #hero {
+        padding: 40px 15px;
+    }
+
+    .hero-content h1 {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    .hero-content p {
+        font-size: 16px;
+        padding: 0 15px;
+    }
+
+    /* Modal */
+    .modal-content {
+        margin: 10% auto;
+        width: 95%;
+        padding: 15px;
+    }
+
+    /* Tabs */
+    .tabs {
+        flex-direction: column;
+        align-items: center;
+        margin: 20px 0;
+    }
+
+    .tab-button {
+        width: 90%;
+        margin: 5px 0;
+        padding: 12px 0;
+    }
+
+    /* Table Styles */
+    .table-container {
+        width: 95%;
+        margin: 0 auto 30px auto;
+    }
+
+    .table-row {
+        padding: 10px;
+        margin-bottom: 3px;
+    }
+
+    .table-row .driver-name,
+    .table-row .team-name {
+        font-size: 16px;
+        max-width: 60%;
+    }
+
+    .points {
+        font-size: 14px;
+    }
+
+    /* Team Drivers Display */
+    .team-drivers {
+        padding: 10px 5px;
+    }
+
+    .team-driver {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px;
+    }
+
+    .team-driver .points {
+        margin-left: 20px;
+    }
+
+    /* Statistics Section */
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 10px;
+    }
+
+    .stat-card {
+        padding: 15px;
+        margin-bottom: 10px;
+    }
+
+    .stat-card h2 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .stat-row {
+        padding: 8px;
+    }
+
+    .stat-row .driver-name {
+        font-size: 14px;
+    }
+
+    .stat-row .stat-value {
+        font-size: 14px;
+    }
+
+    /* Race Results */
+    #race-details {
+        padding: 10px;
+    }
+
+    #track-image {
+        max-width: 100%;
+        height: auto;
+    }
+
+    #race-settings {
+        padding: 10px;
+        margin: 10px 0;
+    }
+
+    #race-settings h2 {
+        font-size: 18px;
+    }
+
+    #race-settings ul {
+        padding-left: 20px;
+    }
+
+    /* Season Selection */
+    #season-selection {
+        padding: 20px 15px;
+    }
+
+    #season-selection label {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+
+    #season-selection select {
+        width: 90%;
+        max-width: 300px;
+    }
+
+    /* Race Selector */
+    .race-selector {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .race-selector select {
+        width: 90%;
+        margin-top: 10px;
+    }
+}
+
+/* Small phones */
+@media (max-width: 375px) {
+    .hero-content h1 {
+        font-size: 20px;
+    }
+
+    .table-row .driver-name,
+    .table-row .team-name {
+        font-size: 14px;
+    }
+
+    .points {
+        font-size: 12px;
+    }
+
+    .stat-card h2 {
+        font-size: 16px;
+    }
+}
+
+#season-selection {
+    text-align: center;
+    padding: 30px 0;
+    background-color: var(--background-color);
+    border-bottom: 1px solid var(--header-border-color);
+}
+
+#season-selection label {
+    font-weight: bold;
+    margin-right: 15px;
+    font-size: 18px;
+    color: var(--primary-color);
+}
+
+#season-selection select {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    background-color: white;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#season-selection select:hover {
+    border-color: var(--secondary-color);
+}
+
+#season-selection select:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 5px rgba(33, 150, 243, 0.3);
+}
+
+/* Update the mobile styles for season selection */
+@media (max-width: 768px) {
+    #season-selection {
+        padding: 20px 15px;
+    }
+
+    #season-selection label {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+
+    #season-selection select {
+        width: 90%;
+        max-width: 300px;
+    }
 }

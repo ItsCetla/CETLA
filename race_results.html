@@ -14,7 +14,6 @@
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="race_results.html">Results & Statistics</a></li>
-                <li class="last-session"><a href="session4html/index.html">Last Session <i class="fas fa-arrow-right"></i></a></li>
             </ul>
         </nav>
     </header>
@@ -24,6 +23,16 @@
             <button class="tab-button active" data-tab="race-results">Race Results</button>
             <button class="tab-button" data-tab="statistics">Statistics</button>
         </div>
+
+        <!-- Season Selection -->
+        <section id="season-selection">
+            <label for="season-select">Select Season:</label>
+            <select id="season-select">
+                <option value="session4">Road Cars</option>
+                <option value="session4html">People Pick</option>
+                <!-- Add more options as needed -->
+            </select>
+        </section>
 
         <!-- Race Results Tab -->
         <div id="race-results" class="tab-content active">
@@ -72,4 +81,4 @@
 
     <script src="script.js"></script>
 </body>
-</html></html>
+</html>

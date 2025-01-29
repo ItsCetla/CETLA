@@ -25,33 +25,98 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    Promise.all([
-        fetch('session4/drivers.json').then(response => response.json()),
-        fetch('session4/teams.json').then(response => response.json()),
-        fetch('session4/race_results.json').then(response => response.json())
-    ]).then(([driversData, teamsData, raceData]) => {
-        // Display team standings
-        displayTeamStandings(teamsData);
-        // Display driver standings
-        displayDriverStandings(driversData);
-        
-        // Handle race results and statistics
-        const tabButtons = document.querySelectorAll('.tab-button');
-        const tabContents = document.querySelectorAll('.tab-content');
+    // Set up tab switching functionality once
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
 
-        tabButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                tabButtons.forEach(btn => btn.classList.remove('active'));
-                tabContents.forEach(content => content.classList.remove('active'));
-                button.classList.add('active');
-                const tabId = button.getAttribute('data-tab');
-                document.getElementById(tabId).classList.add('active');
-            });
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove active class from all buttons and contents
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // Add active class to clicked button and corresponding content
+            button.classList.add('active');
+            const tabId = button.getAttribute('data-tab');
+            document.getElementById(tabId).classList.add('active');
         });
+    });
 
-        // Populate race selector and calculate statistics
+    // Season selection handling
+    const seasonSelect = document.getElementById('season-select');
+    let currentSeason = 'session4'; // Default season
+
+    // Function to get the correct path for season data
+    function getSeasonPath(season) {
+        if (season === 'session4html') {
+            return 'session4html/session4';  // Path for previous season
+        }
+        return season;  // Path for current season
+    }
+
+    if (seasonSelect) {
+        seasonSelect.addEventListener('change', function() {
+            currentSeason = this.value;
+            clearCurrentData();
+            loadSeasonData(currentSeason);
+        });
+    }
+
+    // Initial load for the default season
+    loadSeasonData(currentSeason);
+
+    // Function to clear current data
+    function clearCurrentData() {
+        // Clear team standings
+        const teamStandingsBody = document.querySelector('#team-standings .table-container tbody');
+        if (teamStandingsBody) teamStandingsBody.innerHTML = '';
+
+        // Clear driver standings
+        const driverStandingsBody = document.querySelector('#driver-standings .table-container tbody');
+        if (driverStandingsBody) driverStandingsBody.innerHTML = '';
+
+        // Clear race selector if it exists
+        const raceSelect = document.getElementById('race-select');
+        if (raceSelect) raceSelect.innerHTML = '';
+
+        // Clear statistics if they exist
+        const statsElements = ['most-wins', 'most-podiums', 'avg-points', 'avg-placement'];
+        statsElements.forEach(elementId => {
+            const element = document.getElementById(elementId);
+            if (element) element.innerHTML = '';
+        });
+    }
+
+    // Function to load data for the selected season
+    function loadSeasonData(season) {
+        const seasonPath = getSeasonPath(season);
+        Promise.all([
+            fetch(`${seasonPath}/drivers.json`).then(response => response.json()),
+            fetch(`${seasonPath}/teams.json`).then(response => response.json()),
+            fetch(`${seasonPath}/race_results.json`).then(response => response.json())
+        ]).then(([driversData, teamsData, raceData]) => {
+            // Display team standings
+            displayTeamStandings(teamsData, seasonPath);
+            // Display driver standings
+            displayDriverStandings(driversData);
+            
+            // Load race results data
+            displayRaceResults(raceData, seasonPath);
+            
+            // Calculate and display statistics
+            loadStatistics(raceData, seasonPath);
+        }).catch(error => {
+            console.error('Error loading season data:', error);
+            const errorMessage = `Error loading data for ${season}. Please try again.`;
+            alert(errorMessage);
+        });
+    }
+
+    // Function to display race results
+    function displayRaceResults(raceData, season) {
         const raceSelect = document.getElementById('race-select');
         if (raceSelect) {
+            raceSelect.innerHTML = ''; // Clear existing options
             raceData.forEach(race => {
                 const option = document.createElement('option');
                 option.value = race.race_id;
@@ -59,43 +124,51 @@ document.addEventListener('DOMContentLoaded', function() {
                 raceSelect.appendChild(option);
             });
 
-            // Event listener for race selection
-            raceSelect.addEventListener('change', function() {
+            // Remove existing event listeners by cloning and replacing
+            const newRaceSelect = raceSelect.cloneNode(true);
+            raceSelect.parentNode.replaceChild(newRaceSelect, raceSelect);
+
+            // Add new event listener
+            newRaceSelect.addEventListener('change', function() {
                 const selectedRace = raceData.find(race => race.race_id === this.value);
-                displayRaceDetails(selectedRace);
+                if (selectedRace) {
+                    displayRaceDetails(selectedRace, season);
+                }
             });
 
             // Display first race by default
             if (raceData.length > 0) {
-                displayRaceDetails(raceData[0]);
+                displayRaceDetails(raceData[0], season);
             }
         }
-
-        // Calculate and display statistics using the raceData
-        loadStatistics(raceData);
-    }).catch(error => console.error('Error loading data:', error));
+    }
 });
 
-function displayRaceDetails(race) {
+function displayRaceDetails(race, season) {
+    const seasonPath = getSeasonPath(season);
     // Update track image
     const trackImage = document.getElementById('track-image');
-    trackImage.src = race.track_image;
-    trackImage.alt = `${race.race_name} Track Layout`;
+    if (trackImage) {
+        trackImage.src = race.track_image;
+        trackImage.alt = `${race.race_name} Track Layout`;
+    }
 
     // Update race settings
     const raceSettings = document.getElementById('race-settings');
-    raceSettings.innerHTML = `
-        <h2>Race Settings</h2>
-        <ul>
-            <li><strong>Car:</strong> ${race.settings.car}</li>
-            <li><strong>Weather:</strong> ${race.settings.weather}</li>
-            <li><strong>Laps:</strong> ${race.settings.laps}</li>
-            <li><strong>Other Settings:</strong> ${race.settings.other_settings}</li>
-        </ul>
-    `;
+    if (raceSettings) {
+        raceSettings.innerHTML = `
+            <h2>Race Settings</h2>
+            <ul>
+                <li><strong>Car:</strong> ${race.settings.car}</li>
+                <li><strong>Weather:</strong> ${race.settings.weather}</li>
+                <li><strong>Laps:</strong> ${race.settings.laps}</li>
+                <li><strong>Other Settings:</strong> ${race.settings.other_settings}</li>
+            </ul>
+        `;
+    }
 
     // Update results table with driver colors
-    fetch('session4/drivers.json')
+    fetch(`${seasonPath}/drivers.json`)
         .then(response => response.json())
         .then(driversData => {
             const driverColors = {};
@@ -104,22 +177,25 @@ function displayRaceDetails(race) {
             });
 
             const tableBody = document.querySelector('#race-details .table-container tbody');
-            tableBody.innerHTML = race.results.map(result => `
-                <tr class="table-row">
-                    <td>
-                        <span class="position">${result.position}</span>
-                        <span class="driver-name" style="border-left: 4px solid ${driverColors[result.driver] || '#ccc'}">${result.driver}</span>
-                    </td>
-                    <td>
-                        <span class="points">${result.points} PTS</span>
-                    </td>
-                </tr>
-            `).join('');
+            if (tableBody) {
+                tableBody.innerHTML = race.results.map(result => `
+                    <tr class="table-row">
+                        <td>
+                            <span class="position">${result.position}</span>
+                            <span class="driver-name" style="border-left: 4px solid ${driverColors[result.driver] || '#ccc'}">${result.driver}</span>
+                        </td>
+                        <td>
+                            <span class="points">${result.points} PTS</span>
+                        </td>
+                    </tr>
+                `).join('');
+            }
         });
 }
 
-function loadStatistics(raceData) {
-    fetch('session4/drivers.json')
+function loadStatistics(raceData, season) {
+    const seasonPath = getSeasonPath(season);
+    fetch(`${seasonPath}/drivers.json`)
         .then(response => response.json())
         .then(driversData => {
             const driverColors = {};
@@ -238,20 +314,25 @@ function generateStatsListMultiColumn(data, colors) {
     `).join('');
 }
 
-function displayTeamStandings(teamsData) {
-    fetch('session4/drivers.json')
+function displayTeamStandings(teamsData, season) {
+    const seasonPath = getSeasonPath(season);
+    fetch(`${seasonPath}/drivers.json`)
         .then(response => response.json())
         .then(driversData => {
             const tableBody = document.querySelector('#team-standings .table-container tbody');
             if (!tableBody) return;
 
             // Match drivers to teams based on colors and sort drivers by points
-            const teamsWithDrivers = teamsData.map(team => ({
-                ...team,
-                drivers: driversData
-                    .filter(driver => driver.color === team.color)
-                    .sort((a, b) => b.points - a.points)  // Sort drivers by points descending
-            }));
+            const teamsWithDrivers = teamsData.map(team => {
+                // Normalize color names for comparison
+                const normalizedTeamColor = normalizeColor(team.color);
+                return {
+                    ...team,
+                    drivers: driversData
+                        .filter(driver => normalizeColor(driver.color) === normalizedTeamColor)
+                        .sort((a, b) => b.points - a.points)  // Sort drivers by points descending
+                };
+            });
 
             const sortedTeams = teamsWithDrivers.sort((a, b) => b.points - a.points);
             
@@ -292,6 +373,20 @@ function displayTeamStandings(teamsData) {
         .catch(error => console.error('Error loading drivers:', error));
 }
 
+// Helper function to normalize color names
+function normalizeColor(color) {
+    // Convert color to lowercase and remove spaces
+    color = color.toLowerCase().replace(/\s+/g, '');
+    
+    // Handle specific variations
+    const colorMap = {
+        'lightskyblue': 'skyblue',
+        // Add more color mappings here if needed
+    };
+    
+    return colorMap[color] || color;
+}
+
 function displayDriverStandings(driversData) {
     const tableBody = document.querySelector('#driver-standings .table-container tbody');
     if (!tableBody) return;
@@ -308,4 +403,12 @@ function displayDriverStandings(driversData) {
             </td>
         </tr>
     `).join('');
+}
+
+// Helper function to get season path (add this at the top level)
+function getSeasonPath(season) {
+    if (season === 'session4html') {
+        return 'session4html/session4';  // Path for previous season
+    }
+    return season;  // Path for current season
 }

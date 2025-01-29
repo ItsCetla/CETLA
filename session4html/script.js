@@ -25,60 +25,75 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    Promise.all([
-        fetch('session4/drivers.json').then(response => response.json()),
-        fetch('session4/teams.json').then(response => response.json()),
-        fetch('session4/race_results.json').then(response => response.json())
-    ]).then(([driversData, teamsData, raceData]) => {
-        // Display team standings
-        displayTeamStandings(teamsData);
-        // Display driver standings
-        displayDriverStandings(driversData);
-        
-        // Continue with existing race results and statistics handling
-        // Tab switching functionality
-        const tabButtons = document.querySelectorAll('.tab-button');
-        const tabContents = document.querySelectorAll('.tab-content');
-
-        tabButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                tabButtons.forEach(btn => btn.classList.remove('active'));
-                tabContents.forEach(content => content.classList.remove('active'));
-                button.classList.add('active');
-                const tabId = button.getAttribute('data-tab');
-                document.getElementById(tabId).classList.add('active');
-            });
+    // Season selection handling
+    const seasonSelect = document.getElementById('season-select');
+    if (seasonSelect) {
+        seasonSelect.addEventListener('change', function() {
+            const selectedSeason = seasonSelect.value;
+            loadSeasonData(selectedSeason);
         });
+    }
 
-        // Load race results data
-        fetch('session4/race_results.json')
-            .then(response => response.json())
-            .then(data => {
-                // Populate race selector
-                const raceSelect = document.getElementById('race-select');
-                data.forEach(race => {
-                    const option = document.createElement('option');
-                    option.value = race.race_id;
-                    option.textContent = race.race_name;
-                    raceSelect.appendChild(option);
+    // Initial load for the default season
+    loadSeasonData('session4');
+
+    // Function to load data for the selected season
+    function loadSeasonData(season) {
+        Promise.all([
+            fetch(`${season}/drivers.json`).then(response => response.json()),
+            fetch(`${season}/teams.json`).then(response => response.json()),
+            fetch(`${season}/race_results.json`).then(response => response.json())
+        ]).then(([driversData, teamsData, raceData]) => {
+            // Display team standings
+            displayTeamStandings(teamsData);
+            // Display driver standings
+            displayDriverStandings(driversData);
+            
+            // Continue with existing race results and statistics handling
+            // Tab switching functionality
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    button.classList.add('active');
+                    const tabId = button.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
                 });
+            });
 
-                // Event listener for race selection
-                raceSelect.addEventListener('change', function() {
-                    const selectedRace = data.find(race => race.race_id === this.value);
-                    displayRaceDetails(selectedRace);
-                });
+            // Load race results data
+            fetch(`${season}/race_results.json`)
+                .then(response => response.json())
+                .then(data => {
+                    // Populate race selector
+                    const raceSelect = document.getElementById('race-select');
+                    data.forEach(race => {
+                        const option = document.createElement('option');
+                        option.value = race.race_id;
+                        option.textContent = race.race_name;
+                        raceSelect.appendChild(option);
+                    });
 
-                // Display first race by default
-                if (data.length > 0) {
-                    displayRaceDetails(data[0]);
-                }
+                    // Event listener for race selection
+                    raceSelect.addEventListener('change', function() {
+                        const selectedRace = data.find(race => race.race_id === this.value);
+                        displayRaceDetails(selectedRace);
+                    });
 
-                // Calculate and display statistics
-                loadStatistics(data);
-            })
-            .catch(error => console.error('Error loading race data:', error));
-    });
+                    // Display first race by default
+                    if (data.length > 0) {
+                        displayRaceDetails(data[0]);
+                    }
+
+                    // Calculate and display statistics
+                    loadStatistics(data);
+                })
+                .catch(error => console.error('Error loading race data:', error));
+        });
+    }
 });
 
 function displayRaceDetails(race) {
@@ -100,7 +115,7 @@ function displayRaceDetails(race) {
     `;
 
     // Update results table with driver colors
-    fetch('session4/drivers.json')
+    fetch(`${season}/drivers.json`)
         .then(response => response.json())
         .then(driversData => {
             const driverColors = {};
@@ -124,7 +139,7 @@ function displayRaceDetails(race) {
 }
 
 function loadStatistics(raceData) {
-    fetch('session4/drivers.json')
+    fetch(`${season}/drivers.json`)
         .then(response => response.json())
         .then(driversData => {
             const driverColors = {};
