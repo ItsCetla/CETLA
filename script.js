@@ -15,6 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (closeBtn) {
         closeBtn.addEventListener('click', function() {
             modal.style.display = "none";
+            // Remove expanded class from all team rows
+            const teamRows = document.querySelectorAll('.team-row');
+            teamRows.forEach(row => row.classList.remove('expanded'));
         });
     }
 
@@ -153,49 +156,13 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add click event listeners to team rows
         const teamRows = tableBody.querySelectorAll('.team-row');
         teamRows.forEach(row => {
-            row.addEventListener('click', (e) => {
-                e.preventDefault(); // Prevent any default behavior
+            row.addEventListener('click', () => {
                 const teamName = row.dataset.team;
                 const driverDetails = tableBody.querySelector(`.driver-details[data-team="${teamName}"]`);
-                
-                // Toggle the expanded state first
-                const isExpanding = !row.classList.contains('expanded');
                 row.classList.toggle('expanded');
-
-                if (isExpanding) {
-                    // Expanding
-                    driverDetails.style.maxHeight = '0px';
-                    driverDetails.classList.remove('hidden');
-                    // Force a reflow
-                    driverDetails.offsetHeight;
-                    // Set the actual height
-                    const height = driverDetails.scrollHeight;
-                    driverDetails.style.maxHeight = height + 'px';
-                } else {
-                    // Collapsing
-                    const currentHeight = driverDetails.scrollHeight;
-                    driverDetails.style.maxHeight = currentHeight + 'px';
-                    // Force a reflow
-                    driverDetails.offsetHeight;
-                    // Start collapse animation
-                    driverDetails.style.maxHeight = '0px';
-                    
-                    // Wait for animation to complete before hiding
-                    setTimeout(() => {
-                        driverDetails.classList.add('hidden');
-                        driverDetails.style.maxHeight = '';
-                        // Ensure row is in the correct position
-                        row.style.transform = 'none';
-                        row.style.left = '0';
-                    }, 300); // Match this with your CSS transition time
-                }
+                driverDetails.classList.toggle('hidden');
             });
         });
-
-        // Add a class to prevent transitions during page load
-        document.body.classList.add('preload');
-        // Remove the class after a small delay
-        setTimeout(() => document.body.classList.remove('preload'), 100);
     }
 
     // Function to load data for the selected season
