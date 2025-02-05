@@ -695,11 +695,20 @@ main {
     }
 
     .team-driver {
+        display: flex;
         flex-direction: column;
         align-items: flex-start;
+        width: 100%;
+    }
+
+    .team-driver .driver-name {
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .team-driver .points {
+        width: 100%;
+        box-sizing: border-box;
         margin-left: 0;
     }
 
@@ -767,8 +776,16 @@ main {
     }
 
     #season-selection select {
-        width: 90%;
-        max-width: 300px;
+        width: 100%;
+        max-width: 100%;
+        padding: 12px 15px;
+        font-size: 16px;
+        border: 1px solid var(--primary-color);
+        border-radius: 5px;
+        background-color: white;
+        color: var(--text-color);
+        cursor: pointer;
+        transition: all 0.3s ease;
     }
 
     /* Race Selector */
