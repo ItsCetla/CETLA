@@ -44,14 +44,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Season selection handling
     const seasonSelect = document.getElementById('season-select');
-    let currentSeason = 'session4'; // Default season
+    let currentSeason = 'session3'; // Set default season to Multi-Car
 
     // Function to get the correct path for season data
     function getSeasonPath(season) {
-        if (season === 'session4html') {
-            return 'session4html/session4';  // Path for previous season
+        switch(season) {
+            case 'session4html':
+                return 'session4html/session4';  // Path for People Pick season
+            case 'session3':
+                return 'session3';  // Path for Multi-Car season
+            case 'session4':
+            default:
+                return season;  // Path for current season (Road Cars)
         }
-        return season;  // Path for current season
     }
 
     if (seasonSelect) {
@@ -87,6 +92,76 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Function to calculate team points based on driver colors
+    function calculateTeamPoints(driversData, teamsData) {
+        const teamPoints = {};
+
+        // Initialize team points
+        teamsData.forEach(team => {
+            teamPoints[team.name] = 0;
+        });
+
+        // Aggregate points for each team based on driver colors
+        driversData.forEach(driver => {
+            const team = teamsData.find(team => team.color === driver.color);
+            if (team) {
+                teamPoints[team.name] += driver.points;
+            }
+        });
+
+        return teamPoints;
+    }
+
+    // Function to display team standings with calculated points
+    function displayTeamStandingsWithPoints(teamsData, driversData) {
+        const teamPoints = calculateTeamPoints(driversData, teamsData);
+        const tableBody = document.querySelector('#team-standings .table-container tbody');
+        if (!tableBody) return;
+
+        const teamsWithDrivers = teamsData.map(team => {
+            return {
+                ...team,
+                drivers: driversData.filter(driver => driver.color === team.color)
+            };
+        });
+
+        const sortedTeams = teamsWithDrivers.sort((a, b) => teamPoints[b.name] - teamPoints[a.name]);
+
+        tableBody.innerHTML = sortedTeams.map(team => `
+            <tr class="table-row team-row" data-team="${team.name}">
+                <td>
+                    <span class="driver-name" style="border-left: 4px solid ${team.color}">${team.name}</span>
+                </td>
+                <td>
+                    <span class="points">${teamPoints[team.name]} PTS</span>
+                </td>
+            </tr>
+            <tr class="driver-details hidden" data-team="${team.name}">
+                <td colspan="2">
+                    <div class="team-drivers">
+                        ${team.drivers.map(driver => `
+                            <div class="team-driver">
+                                <span class="driver-name" style="border-left: 4px solid ${driver.color}">${driver.name}</span>
+                                <span class="points">${driver.points} PTS</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </td>
+            </tr>
+        `).join('');
+
+        // Add click event listeners to team rows
+        const teamRows = tableBody.querySelectorAll('.team-row');
+        teamRows.forEach(row => {
+            row.addEventListener('click', () => {
+                const teamName = row.dataset.team;
+                const driverDetails = tableBody.querySelector(`.driver-details[data-team="${teamName}"]`);
+                row.classList.toggle('expanded');
+                driverDetails.classList.toggle('hidden');
+            });
+        });
+    }
+
     // Function to load data for the selected season
     function loadSeasonData(season) {
         const seasonPath = getSeasonPath(season);
@@ -95,8 +170,8 @@ document.addEventListener('DOMContentLoaded', function() {
             fetch(`${seasonPath}/teams.json`).then(response => response.json()),
             fetch(`${seasonPath}/race_results.json`).then(response => response.json())
         ]).then(([driversData, teamsData, raceData]) => {
-            // Display team standings
-            displayTeamStandings(teamsData, seasonPath);
+            // Display team standings with calculated points
+            displayTeamStandingsWithPoints(teamsData, driversData);
             // Display driver standings
             displayDriverStandings(driversData);
             
@@ -182,7 +257,10 @@ function displayRaceDetails(race, season) {
                     <tr class="table-row">
                         <td>
                             <span class="position">${result.position}</span>
-                            <span class="driver-name" style="border-left: 4px solid ${driverColors[result.driver] || '#ccc'}">${result.driver}</span>
+                            <span class="driver-name" style="border-left: 4px solid ${driverColors[result.driver] || '#ccc'}">
+                                ${result.driver}
+                                ${result.car ? `<br><small style="font-size: 0.8em; color: #666;">${result.car}${result.fastest_lap ? `&emsp;Fastest Lap: ${result.fastest_lap}` : ''}</small>` : ''}
+                            </span>
                         </td>
                         <td>
                             <span class="points">${result.points} PTS</span>
@@ -314,79 +392,6 @@ function generateStatsListMultiColumn(data, colors) {
     `).join('');
 }
 
-function displayTeamStandings(teamsData, season) {
-    const seasonPath = getSeasonPath(season);
-    fetch(`${seasonPath}/drivers.json`)
-        .then(response => response.json())
-        .then(driversData => {
-            const tableBody = document.querySelector('#team-standings .table-container tbody');
-            if (!tableBody) return;
-
-            // Match drivers to teams based on colors and sort drivers by points
-            const teamsWithDrivers = teamsData.map(team => {
-                // Normalize color names for comparison
-                const normalizedTeamColor = normalizeColor(team.color);
-                return {
-                    ...team,
-                    drivers: driversData
-                        .filter(driver => normalizeColor(driver.color) === normalizedTeamColor)
-                        .sort((a, b) => b.points - a.points)  // Sort drivers by points descending
-                };
-            });
-
-            const sortedTeams = teamsWithDrivers.sort((a, b) => b.points - a.points);
-            
-            tableBody.innerHTML = sortedTeams.map(team => `
-                <tr class="table-row team-row" data-team="${team.name}">
-                    <td>
-                        <span class="driver-name" style="border-left: 4px solid ${team.color}">${team.name}</span>
-                    </td>
-                    <td>
-                        <span class="points">${team.points} PTS</span>
-                    </td>
-                </tr>
-                <tr class="driver-details hidden" data-team="${team.name}">
-                    <td colspan="2">
-                        <div class="team-drivers">
-                            ${team.drivers.map(driver => `
-                                <div class="team-driver">
-                                    <span class="driver-name" style="border-left: 4px solid ${driver.color}">${driver.name}</span>
-                                    <span class="points">${driver.points} PTS</span>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </td>
-                </tr>
-            `).join('');
-
-            // Add click event listeners to team rows
-            const teamRows = tableBody.querySelectorAll('.team-row');
-            teamRows.forEach(row => {
-                row.addEventListener('click', () => {
-                    const teamName = row.dataset.team;
-                    const driverDetails = tableBody.querySelector(`.driver-details[data-team="${teamName}"]`);
-                    row.classList.toggle('expanded');
-                    driverDetails.classList.toggle('hidden');
-                });
-            });
-        })
-        .catch(error => console.error('Error loading drivers:', error));
-}
-
-// Helper function to normalize color names
-function normalizeColor(color) {
-    // Convert color to lowercase and remove spaces
-    color = color.toLowerCase().replace(/\s+/g, '');
-    
-    // Handle specific variations
-    const colorMap = {
-        'lightskyblue': 'skyblue',
-        // Add more color mappings here if needed
-    };
-    
-    return colorMap[color] || color;
-}
-
 function displayDriverStandings(driversData) {
     const tableBody = document.querySelector('#driver-standings .table-container tbody');
     if (!tableBody) return;
@@ -405,10 +410,15 @@ function displayDriverStandings(driversData) {
     `).join('');
 }
 
-// Helper function to get season path (add this at the top level)
+// Helper function to get season path
 function getSeasonPath(season) {
-    if (season === 'session4html') {
-        return 'session4html/session4';  // Path for previous season
+    switch(season) {
+        case 'session4html':
+            return 'session4html/session4';  // Path for People Pick season
+        case 'session3':
+            return 'session3';  // Path for Multi-Car season
+        case 'session4':
+        default:
+            return season;  // Path for current season (Road Cars)
     }
-    return season;  // Path for current season
 }

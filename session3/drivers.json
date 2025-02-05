@@ -1,0 +1,77 @@
+[
+    {
+        "name": "Hondo",
+        "points": 21,
+        "color": "cyan"
+    },
+    {
+        "name": "Romero",
+        "points": 28,
+        "color": "purple"
+    },
+    {
+        "name": "HPepe",
+        "points": 30,
+        "color": "orange"
+    },
+    {
+        "name": "Emilio",
+        "points": 30,
+        "color": "skyblue"
+    },
+    {
+        "name": "TheSlayter",
+        "points": 25,
+        "color": "red"
+    },
+    {
+        "name": "Pablo",
+        "points": 10,
+        "color": "pink"
+    },
+    {
+        "name": "Santi",
+        "points": 8,
+        "color": "cyan"
+    },
+    {
+        "name": "Slatenator",
+        "points": 11,
+        "color": "red"
+    },
+    {
+        "name": "Cetla",
+        "points": 14,
+        "color": "lightgreen"
+    },
+    {
+        "name": "Lilreeree",
+        "points": 19,
+        "color": "skyblue"
+    },
+    {
+        "name": "OogaBooga",
+        "points": 15,
+        "color": "lightgreen"
+    },
+    {
+        "name": "KickStart",
+        "points": 12,
+        "color": "black"
+    },
+    {
+        "name": "FleshTorpedo",
+        "points": 17,
+        "color": "black"
+    },
+    {
+        "name": "Rambo",
+        "points": 9,
+        "color": "purple"
+    },
+    {
+        "name": "TrapVis",
+        "points": 24,
+        "color": "pink"
+    }
+]
