@@ -161,6 +161,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 const driverDetails = tableBody.querySelector(`.driver-details[data-team="${teamName}"]`);
                 row.classList.toggle('expanded');
                 driverDetails.classList.toggle('hidden');
+                // Log the current state of the row
+                console.log(`Team ${teamName} is now ${row.classList.contains('expanded') ? 'expanded' : 'collapsed'}`);
             });
         });
     }
