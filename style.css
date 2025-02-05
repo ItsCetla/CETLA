@@ -218,8 +218,9 @@ main {
     background-color: #fff;
     width: 100%;
     box-sizing: border-box;
-    left: 0; /* Ensure left position is always 0 */
-    transform: none; /* Remove any transforms */
+    left: 0;
+    transform: none;
+    transition: none; /* Ensure no transition affects layout */
 }
 
 .table-row:hover {
@@ -251,6 +252,7 @@ main {
     position: relative;
     left: 0;
     transform: none;
+    width: 100%; /* Ensure full width */
 }
 
 .team-row:hover {
