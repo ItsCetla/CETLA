@@ -153,13 +153,42 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add click event listeners to team rows
         const teamRows = tableBody.querySelectorAll('.team-row');
         teamRows.forEach(row => {
-            row.addEventListener('click', () => {
+            row.addEventListener('click', (e) => {
+                e.preventDefault(); // Prevent any default behavior
                 const teamName = row.dataset.team;
                 const driverDetails = tableBody.querySelector(`.driver-details[data-team="${teamName}"]`);
+                
+                // Get the current computed height of the details section
+                const isExpanding = driverDetails.classList.contains('hidden');
+                
+                // First, set a specific height if expanding
+                if (isExpanding) {
+                    driverDetails.style.maxHeight = '0px';
+                    driverDetails.classList.remove('hidden');
+                    // Force a reflow
+                    driverDetails.offsetHeight;
+                    // Set the actual height
+                    const height = driverDetails.scrollHeight;
+                    driverDetails.style.maxHeight = height + 'px';
+                } else {
+                    // Collapsing
+                    driverDetails.style.maxHeight = '0px';
+                    // Wait for animation to complete before hiding
+                    setTimeout(() => {
+                        driverDetails.classList.add('hidden');
+                        driverDetails.style.maxHeight = '';
+                    }, 300); // Match this with your CSS transition time
+                }
+
+                // Toggle the expanded state
                 row.classList.toggle('expanded');
-                driverDetails.classList.toggle('hidden');
             });
         });
+
+        // Add a class to prevent transitions during page load
+        document.body.classList.add('preload');
+        // Remove the class after a small delay
+        setTimeout(() => document.body.classList.remove('preload'), 100);
     }
 
     // Function to load data for the selected season

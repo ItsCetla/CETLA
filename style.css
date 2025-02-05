@@ -217,6 +217,9 @@ main {
     position: relative;
     background-color: #fff;
     width: 100%;
+    box-sizing: border-box;
+    transform: translateX(0);  /* Add this to prevent shifting */
+    transition: transform 0.3s ease;  /* Smooth transition for any transforms */
 }
 
 .table-row:hover {
@@ -257,20 +260,30 @@ main {
 }
 
 .driver-details {
-    background-color: rgba(0, 0, 0, 0.02);
-    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;  /* Prevent content from spilling */
+    transition: max-height 0.3s ease;  /* Smooth transition for expanding/collapsing */
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .driver-details.hidden {
-    display: none;
-}
-
-.driver-details:not(.hidden) {
-    margin-bottom: 8px;
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin: 0;
 }
 
 .team-drivers {
-    padding: 8px 32px;
+    padding: 8px 16px;
+    background-color: #f5f5f5;
+    border-radius: 0 0 8px 8px;
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .team-driver {
@@ -815,20 +828,53 @@ main {
 /* Fix for iPhone-specific issues */
 @media (max-width: 428px) {
     .table-container {
-        width: 100vw;
+        width: 100%;
         margin: 0;
         padding: 0 10px;
         position: relative;
-        left: 50%;
-        transform: translateX(-50%);
+        transform: none;  /* Remove the transform */
+        left: 0;  /* Reset left position */
+        box-sizing: border-box;
+        overflow-x: hidden;  /* Prevent horizontal scrolling */
+    }
+
+    .table-row {
+        width: 100%;
+        margin: 0 0 5px 0;
+        transform: none;  /* Ensure no transform is applied */
+        left: 0;  /* Ensure no positioning is applied */
+    }
+
+    .driver-details {
+        position: static;  /* Change from relative to static */
+        width: 100%;
+        left: 0;
+        margin: 0;
+    }
+
+    .team-drivers {
+        width: 100%;
+        margin: 0;
+        padding: 8px;
+    }
+
+    .team-driver {
+        padding: 8px;
+        margin: 0;
+        width: 100%;
         box-sizing: border-box;
     }
 
+    /* Force hardware acceleration to prevent visual glitches */
     .table-row,
-    .driver-details {
-        width: 100%;
-        max-width: 100%;
-        box-sizing: border-box;
+    .driver-details,
+    .team-drivers {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -webkit-perspective: 1000;
+        perspective: 1000;
     }
 }
 
@@ -993,4 +1039,13 @@ main {
     .race-event li strong {
         min-width: 70px;
     }
+}
+
+/* Prevent any unwanted animations during page load */
+.preload * {
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -ms-transition: none !important;
+    -o-transition: none !important;
+    transition: none !important;
 }
