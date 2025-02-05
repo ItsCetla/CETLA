@@ -670,46 +670,57 @@ main {
 
     /* Table Styles */
     .table-container {
-        width: 95%;
-        margin: 0 auto 30px auto;
+        width: 100%;
+        max-width: 100%;
+        padding: 0 10px;
+        box-sizing: border-box;
+        overflow-x: hidden;
     }
 
     .table-row {
-        padding: 10px;
-        margin-bottom: 3px;
+        width: 100%;
+        box-sizing: border-box;
+        margin: 0 0 5px 0;
+        padding: 12px;
     }
 
-    .table-row .driver-name,
-    .table-row .team-name {
-        font-size: 16px;
-        max-width: 60%;
+    .driver-details {
+        width: 100%;
+        box-sizing: border-box;
+        position: relative;
+        left: 0;
+        margin: 0;
+        padding: 0;
     }
 
-    .points {
-        font-size: 14px;
+    .driver-details.hidden {
+        display: none;
     }
 
-    /* Team Drivers Display */
     .team-drivers {
-        padding: 10px 5px;
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+        background-color: #f5f5f5;
+        border-radius: 0 0 8px 8px;
     }
 
     .team-driver {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
         width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px;
+        box-sizing: border-box;
     }
 
     .team-driver .driver-name {
-        width: 100%;
-        box-sizing: border-box;
+        font-size: 14px;
+        padding-left: 8px;
     }
 
     .team-driver .points {
-        width: 100%;
-        box-sizing: border-box;
-        margin-left: 0;
+        font-size: 14px;
     }
 
     /* Statistics Section */
@@ -798,6 +809,26 @@ main {
     .race-selector select {
         width: 90%;
         margin-top: 10px;
+    }
+}
+
+/* Fix for iPhone-specific issues */
+@media (max-width: 428px) {
+    .table-container {
+        width: 100vw;
+        margin: 0;
+        padding: 0 10px;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        box-sizing: border-box;
+    }
+
+    .table-row,
+    .driver-details {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
 }
 
