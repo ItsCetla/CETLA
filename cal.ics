@@ -43,7 +43,6 @@ RRULE:FREQ=WEEKLY;BYDAY=FR
 DESCRIPTION:TGIF! 🌟 Recurring Friday work schedule (9:30 AM to 5:00 PM) 🚀
 END:VEVENT
 
-
 BEGIN:VEVENT
 UID:kaila-test-20250205T000000@example.com
 SUMMARY:Kaila's Test Day 📝 💪
@@ -52,7 +51,6 @@ DTSTART:20250205T000000
 DTEND:20250205T235900
 DESCRIPTION:Kaila's big test day! 📚 You've got this! 💫 Sending all the good vibes and lucky stars! 🍀 ⭐ 🌟 Time to shine and show what you know! 🎯 💡 You're going to crush it! 🏆 💪
 END:VEVENT
-
 
 BEGIN:VEVENT
 UID:race-night-mon-20250127T200000@example.com
@@ -73,5 +71,16 @@ DTEND:20250204T220000
 RRULE:FREQ=WEEKLY;BYDAY=TU
 DESCRIPTION:Race Night Tuesday is here! Cruise into a thrilling evening full of adrenaline.
 END:VEVENT
+
+BEGIN:VEVENT
+UID:friday-bar-night-20250207T210000@example.com
+SUMMARY:Friday Bar Night 🍻
+DTSTAMP:20250123T000000Z
+DTSTART:20250207T210000
+DTEND:20250208T010000
+DESCRIPTION:Kick off the weekend with a night out at the bar! Join us for great drinks, fun vibes, and lively company.
+END:VEVENT
+
+
 
 END:VCALENDAR
