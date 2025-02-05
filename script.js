@@ -158,11 +158,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 const teamName = row.dataset.team;
                 const driverDetails = tableBody.querySelector(`.driver-details[data-team="${teamName}"]`);
                 
-                // Get the current computed height of the details section
-                const isExpanding = driverDetails.classList.contains('hidden');
-                
-                // First, set a specific height if expanding
+                // Toggle the expanded state first
+                const isExpanding = !row.classList.contains('expanded');
+                row.classList.toggle('expanded');
+
                 if (isExpanding) {
+                    // Expanding
                     driverDetails.style.maxHeight = '0px';
                     driverDetails.classList.remove('hidden');
                     // Force a reflow
@@ -172,16 +173,22 @@ document.addEventListener('DOMContentLoaded', function() {
                     driverDetails.style.maxHeight = height + 'px';
                 } else {
                     // Collapsing
+                    const currentHeight = driverDetails.scrollHeight;
+                    driverDetails.style.maxHeight = currentHeight + 'px';
+                    // Force a reflow
+                    driverDetails.offsetHeight;
+                    // Start collapse animation
                     driverDetails.style.maxHeight = '0px';
+                    
                     // Wait for animation to complete before hiding
                     setTimeout(() => {
                         driverDetails.classList.add('hidden');
                         driverDetails.style.maxHeight = '';
+                        // Ensure row is in the correct position
+                        row.style.transform = 'none';
+                        row.style.left = '0';
                     }, 300); // Match this with your CSS transition time
                 }
-
-                // Toggle the expanded state
-                row.classList.toggle('expanded');
             });
         });
 

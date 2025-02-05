@@ -218,8 +218,8 @@ main {
     background-color: #fff;
     width: 100%;
     box-sizing: border-box;
-    transform: translateX(0);  /* Add this to prevent shifting */
-    transition: transform 0.3s ease;  /* Smooth transition for any transforms */
+    left: 0; /* Ensure left position is always 0 */
+    transform: none; /* Remove any transforms */
 }
 
 .table-row:hover {
@@ -247,7 +247,10 @@ main {
 /* Team Row Styles */
 .team-row {
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: background-color 0.2s ease;
+    position: relative;
+    left: 0;
+    transform: none;
 }
 
 .team-row:hover {
@@ -256,25 +259,32 @@ main {
 
 .team-row.expanded {
     background-color: rgba(0, 0, 0, 0.05);
-    margin-bottom: 8px;
+    margin-bottom: 0;
+}
+
+.team-row.expanded + .driver-details {
+    margin-bottom: 5px;
 }
 
 .driver-details {
     width: 100%;
     max-width: 100%;
-    overflow: hidden;  /* Prevent content from spilling */
-    transition: max-height 0.3s ease;  /* Smooth transition for expanding/collapsing */
+    overflow: hidden;
+    transition: max-height 0.3s ease;
     background-color: #f5f5f5;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    position: static;
+    left: 0;
+    transform: none;
 }
 
 .driver-details.hidden {
     max-height: 0;
-    padding-top: 0;
-    padding-bottom: 0;
+    padding: 0;
     margin: 0;
+    visibility: hidden;
 }
 
 .team-drivers {
@@ -284,6 +294,9 @@ main {
     margin: 0;
     width: 100%;
     box-sizing: border-box;
+    position: relative;
+    left: 0;
+    transform: none;
 }
 
 .team-driver {
@@ -832,49 +845,45 @@ main {
         margin: 0;
         padding: 0 10px;
         position: relative;
-        transform: none;  /* Remove the transform */
-        left: 0;  /* Reset left position */
-        box-sizing: border-box;
-        overflow-x: hidden;  /* Prevent horizontal scrolling */
-    }
-
-    .table-row {
-        width: 100%;
-        margin: 0 0 5px 0;
-        transform: none;  /* Ensure no transform is applied */
-        left: 0;  /* Ensure no positioning is applied */
-    }
-
-    .driver-details {
-        position: static;  /* Change from relative to static */
-        width: 100%;
         left: 0;
-        margin: 0;
-    }
-
-    .team-drivers {
-        width: 100%;
-        margin: 0;
-        padding: 8px;
-    }
-
-    .team-driver {
-        padding: 8px;
-        margin: 0;
-        width: 100%;
+        transform: none;
         box-sizing: border-box;
+        overflow-x: hidden;
     }
 
-    /* Force hardware acceleration to prevent visual glitches */
     .table-row,
+    .team-row,
     .driver-details,
     .team-drivers {
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0);
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-        -webkit-perspective: 1000;
-        perspective: 1000;
+        width: 100%;
+        margin: 0 0 5px 0;
+        position: static;
+        left: 0;
+        transform: none;
+        box-sizing: border-box;
+    }
+
+    .team-row.expanded {
+        margin-bottom: 0;
+    }
+
+    .team-row.expanded + .driver-details {
+        margin-bottom: 5px;
+    }
+
+    .driver-details.hidden {
+        display: none;
+        max-height: 0;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Disable all transitions on mobile to prevent animation glitches */
+    .table-row,
+    .team-row,
+    .driver-details,
+    .team-drivers {
+        transition: none !important;
     }
 }
 
