@@ -697,11 +697,10 @@ main {
     .team-driver {
         flex-direction: column;
         align-items: flex-start;
-        padding: 8px;
     }
 
     .team-driver .points {
-        margin-left: 20px;
+        margin-left: 0;
     }
 
     /* Statistics Section */
