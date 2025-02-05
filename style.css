@@ -844,4 +844,158 @@ main {
     }
 
     .table-row .driver-name,
-    .table-row .team
+    .table-row .team-name {
+        font-size: 14px;
+    }
+
+    .points {
+        font-size: 12px;
+    }
+
+    .stat-card h2 {
+        font-size: 16px;
+    }
+}
+
+#season-selection {
+    text-align: center;
+    padding: 30px 0;
+    background-color: var(--background-color);
+    border-bottom: 1px solid var(--header-border-color);
+}
+
+#season-selection label {
+    font-weight: bold;
+    margin-right: 15px;
+    font-size: 18px;
+    color: var(--primary-color);
+}
+
+#season-selection select {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    background-color: white;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#season-selection select:hover {
+    border-color: var(--secondary-color);
+}
+
+#season-selection select:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 5px rgba(33, 150, 243, 0.3);
+}
+
+/* Update the mobile styles for season selection */
+@media (max-width: 768px) {
+    #season-selection {
+        padding: 20px 15px;
+    }
+
+    #season-selection label {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+
+    #season-selection select {
+        width: 90%;
+        max-width: 300px;
+    }
+}
+
+/* Schedule Modal Styles */
+.schedule-list {
+    max-height: 70vh;
+    overflow-y: auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.race-event {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
+
+.race-event:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.race-event h3 {
+    color: var(--primary-color);
+    margin: 0 0 15px 0;
+    font-size: 1.2em;
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 8px;
+}
+
+.race-event ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.race-event li {
+    margin-bottom: 8px;
+    font-size: 0.95em;
+    display: flex;
+    align-items: baseline;
+}
+
+.race-event li strong {
+    min-width: 80px;
+    display: inline-block;
+    color: var(--text-color);
+}
+
+/* Modal Responsive Styles */
+@media (max-width: 768px) {
+    .schedule-list {
+        padding: 15px;
+        max-height: 75vh;
+    }
+
+    .race-event {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+
+    .race-event h3 {
+        font-size: 1.1em;
+    }
+
+    .race-event li {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    .schedule-list {
+        padding: 10px;
+    }
+
+    .race-event {
+        padding: 12px;
+        margin-bottom: 12px;
+    }
+
+    .race-event h3 {
+        font-size: 1em;
+    }
+
+    .race-event li strong {
+        min-width: 70px;
+    }
+}
