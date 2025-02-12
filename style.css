@@ -244,50 +244,50 @@ main {
 /* Team Row Styles */
 .team-row {
     cursor: pointer;
-    transition: all 0.2s ease;
-    /* Ensure default styles are reset */
-    display: block;
+    transition: all 0.3s ease;
     position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
     margin: 0;
-}
-
-.team-row:hover {
-    background-color: rgba(0, 0, 0, 0.03);
+    padding: 15px;
+    box-sizing: border-box;
 }
 
 .team-row.expanded {
-    /* Ensure expanded styles are applied correctly */
-    display: flex;
-    flex-direction: column;
     background-color: rgba(0, 0, 0, 0.05);
-    margin-bottom: 8px;
+    margin-bottom: 0;
 }
 
 .driver-details {
-    background-color: rgba(0, 0, 0, 0.02);
-    transition: all 0.3s ease;
-}
-
-.driver-details.hidden {
     display: none;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.02);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .driver-details:not(.hidden) {
+    display: block;
     margin-bottom: 8px;
 }
 
 .team-drivers {
-    padding: 8px 32px;
+    padding: 8px 16px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .team-driver {
-    display: block;
-    margin-bottom: 10px;
-    opacity: 0.8;
-}
-
-.team-driver:not(:last-child) {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 8px;
+    box-sizing: border-box;
 }
 
 /* Race Results Styles */
@@ -820,20 +820,27 @@ main {
 /* Fix for iPhone-specific issues */
 @media (max-width: 428px) {
     .table-container {
-        width: 100vw;
+        width: 100%;
         margin: 0;
-        padding: 0 10px;
-        position: relative;
-        left: 50%;
-        transform: translateX(-50%);
+        padding: 10px;
         box-sizing: border-box;
     }
 
-    .table-row,
+    .team-row,
     .driver-details {
         width: 100%;
-        max-width: 100%;
+        left: 0;
+        transform: none;
+        margin: 0;
         box-sizing: border-box;
+    }
+
+    .team-drivers {
+        padding: 8px;
+    }
+
+    .team-driver {
+        margin-bottom: 4px;
     }
 }
 
