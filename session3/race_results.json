@@ -303,5 +303,145 @@
                 "points": 13
             }
         ]
+    },
+    {
+        "race_id": "race3",
+        "race_name": "Race 3: Circuit de Sainte-Croix - B",
+        "track_image": "https://gt-engine.com/gt7/tracks/images/md/circuit-de-sainte-croix-b.png",
+        "settings": {
+            "car": "Grade 1 (Gr.1)",
+            "weather": "Day & Clear",
+            "laps": "20",
+            "other_settings": "February 18th, 8:00 PM EST"
+        },
+        "results": [
+            {
+                "position": 1,
+                "driver": "ROm3",
+                "car": "919 Hybrid '16",
+                "total_time": "42:07.666",
+                "gap": "",
+                "fastest_lap": "1:47.354",
+                "points": 30
+            },
+            {
+                "position": 2,
+                "driver": "Lilreeree",
+                "car": "R18 '16",
+                "total_time": "",
+                "gap": "+00.709",
+                "fastest_lap": "1:52.258",
+                "points": 28
+            },
+            {
+                "position": 3,
+                "driver": "HPePe",
+                "car": "TS050 - Hybrid '16",
+                "total_time": "",
+                "gap": "+08.457",
+                "fastest_lap": "1:51.703",
+                "points": 26
+            },
+            {
+                "position": 4,
+                "driver": "TheSlayterr-TV",
+                "car": "919 Hybrid '16",
+                "total_time": "",
+                "gap": "+34.081",
+                "fastest_lap": "1:48.999",
+                "points": 25
+            },
+            {
+                "position": 5,
+                "driver": "Rambo",
+                "car": "TS050 - Hybrid '16",
+                "total_time": "",
+                "gap": "+39.133",
+                "fastest_lap": "1:54.188",
+                "points": 24
+            },
+            {
+                "position": 6,
+                "driver": "Trapvis",
+                "car": "919 Hybrid '16",
+                "total_time": "",
+                "gap": "+39.342",
+                "fastest_lap": "1:47.137",
+                "points": 23
+            },
+            {
+                "position": 7,
+                "driver": "Emilio",
+                "car": "TS050 - Hybrid '16",
+                "total_time": "",
+                "gap": "+39.751",
+                "fastest_lap": "1:53.064",
+                "points": 22
+            },
+            {
+                "position": 8,
+                "driver": "HdzSanti",
+                "car": "919 Hybrid '16",
+                "total_time": "",
+                "gap": "+40.199",
+                "fastest_lap": "1:48.065",
+                "points": 21
+            },
+            {
+                "position": 9,
+                "driver": "FleshTorpedo",
+                "car": "919 Hybrid '16",
+                "total_time": "",
+                "gap": "+40.211",
+                "fastest_lap": "1:47.634",
+                "points": 20
+            },
+            {
+                "position": 10,
+                "driver": "KickstartMyKart",
+                "car": "919 Hybrid '16",
+                "total_time": "",
+                "gap": "+40.294",
+                "fastest_lap": "1:47.067",
+                "points": 19
+            },
+            {
+                "position": 11,
+                "driver": "cetla",
+                "car": "919 Hybrid '16",
+                "total_time": "",
+                "gap": "+41.094",
+                "fastest_lap": "1:47.564",
+                "penalty": "0:01.000",
+                "points": 18
+            },
+            {
+                "position": 12,
+                "driver": "OogaBooga",
+                "car": "R18 '16",
+                "total_time": "",
+                "gap": "+48.302",
+                "fastest_lap": "1:47.521",
+                "points": 17
+            },
+            {
+                "position": 13,
+                "driver": "Jack",
+                "car": "TS050 - Hybrid '16",
+                "total_time": "DNF",
+                "gap": "",
+                "fastest_lap": "1:50.530",
+                "points": 16
+            },
+            {
+                "position": 14,
+                "driver": "Pablo",
+                "car": "919 Hybrid '16",
+                "total_time": "DNF",
+                "gap": "",
+                "fastest_lap": "--:--.--",
+                "points": 15
+            }
+        ]
     }
 ]
