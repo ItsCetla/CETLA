@@ -44,15 +44,6 @@ DESCRIPTION:TGIF! 🌟 Recurring Friday work schedule (9:30 AM to 5:00 PM) 🚀
 END:VEVENT
 
 BEGIN:VEVENT
-UID:kaila-test-20250205T000000@example.com
-SUMMARY:Kaila's Test Day 📝 💪
-DTSTAMP:20250123T000000Z
-DTSTART:20250205T000000
-DTEND:20250205T235900
-DESCRIPTION:Kaila's big test day! 📚 You've got this! 💫 Sending all the good vibes and lucky stars! 🍀 ⭐ 🌟 Time to shine and show what you know! 🎯 💡 You're going to crush it! 🏆 💪
-END:VEVENT
-
-BEGIN:VEVENT
 UID:race-night-mon-20250127T200000@example.com
 SUMMARY:Race Night Monday 🏁
 DTSTAMP:20250123T000000Z
@@ -74,7 +65,7 @@ END:VEVENT
 
 BEGIN:VEVENT
 UID:kaila-date-20250219T190000@example.com
-SUMMARY:At Kailas's 💖✨
+SUMMARY:At Kyles's 💖✨
 DTSTAMP:20250216T000000Z
 DTSTART:20250219T190000
 DTEND:20250219T210000
@@ -83,7 +74,7 @@ END:VEVENT
 
 BEGIN:VEVENT
 UID:kyle-date-thu-20250220T200000@example.com
-SUMMARY:At Kyles's 💖✨
+SUMMARY:At Kaila's 💖✨
 DTSTAMP:20250216T000000Z
 DTSTART:20250220T200000
 DTEND:20250220T220000
