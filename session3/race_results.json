@@ -317,7 +317,7 @@
     "results": [
       {
         "position": 1,
-        "driver": "FRT_R0m3",
+        "driver": "Rom3",
         "car": "919 Hybrid '16",
         "total_time": "42:07.666",
         "gap": "",
@@ -335,7 +335,7 @@
       },
       {
         "position": 3,
-        "driver": "HPePe",
+        "driver": "HPepe",
         "car": "TS050 - Hybrid '16",
         "total_time": "",
         "gap": "+08.457",
@@ -362,7 +362,7 @@
       },
       {
         "position": 6,
-        "driver": "Trapvis",
+        "driver": "TrapVis",
         "car": "919 Hybrid '16",
         "total_time": "",
         "gap": "+39.342",
@@ -380,7 +380,7 @@
       },
       {
         "position": 8,
-        "driver": "HdzSanti",
+        "driver": "Santi",
         "car": "919 Hybrid '16",
         "total_time": "",
         "gap": "+40.199",
@@ -398,7 +398,7 @@
       },
       {
         "position": 10,
-        "driver": "KickstartMyKart",
+        "driver": "KickStart",
         "car": "919 Hybrid '16",
         "total_time": "",
         "gap": "+40.294",
@@ -407,7 +407,7 @@
       },
       {
         "position": 11,
-        "driver": "cetla",
+        "driver": "Cetla",
         "car": "919 Hybrid '16",
         "total_time": "",
         "gap": "+41.094",
@@ -466,7 +466,7 @@
       },
       {
         "position": 2,
-        "driver": "FRT_R0m3",
+        "driver": "Rom3",
         "car": "GR 63 Endurance Model '16",
         "total_time": "",
         "gap": "+10.036",
@@ -475,7 +475,7 @@
       },
       {
         "position": 3,
-        "driver": "HPePe",
+        "driver": "HPepe",
         "car": "GR Supra Racing Concept '18",
         "total_time": "",
         "gap": "+13.027",
@@ -538,7 +538,7 @@
       },
       {
         "position": 10,
-        "driver": "KickstartMyKart",
+        "driver": "KickStart",
         "car": "WRX Gr.3",
         "total_time": "",
         "gap": "+42.433",
@@ -547,7 +547,7 @@
       },
       {
         "position": 11,
-        "driver": "cetla",
+        "driver": "Cetla",
         "car": "GR Supra Racing Concept '18",
         "total_time": "",
         "gap": "+42.517",
@@ -579,7 +579,7 @@
     "results": [
       {
         "position": 1,
-        "driver": "FRT_R0m3r0Q",
+        "driver": "Rom3",
         "car": "NSX CONCEPT-GT '16",
         "total_time": "26:40.048",
         "gap": "",
@@ -606,7 +606,7 @@
       },
       {
         "position": 4,
-        "driver": "TheSlayterr-TV",
+        "driver": "TheSlayter",
         "car": "NSX CONCEPT-GT '16",
         "total_time": "",
         "gap": "+16.056",
@@ -633,7 +633,7 @@
       },
       {
         "position": 7,
-        "driver": "Trapvis",
+        "driver": "TrapVis",
         "car": "NSX CONCEPT-GT '16",
         "total_time": "",
         "gap": "+26.082",
@@ -651,7 +651,7 @@
       },
       {
         "position": 9,
-        "driver": "HdzSanti",
+        "driver": "Santi",
         "car": "RC F GT500 '16",
         "total_time": "",
         "gap": "+26.570",
@@ -669,7 +669,7 @@
       },
       {
         "position": 11,
-        "driver": "KickstartMyKart",
+        "driver": "KickStart",
         "car": "GT-R NISMO GT500 '16",
         "total_time": "",
         "gap": "+26.732",
@@ -696,7 +696,7 @@
       },
       {
         "position": 14,
-        "driver": "cetla",
+        "driver": "Cetla",
         "car": "RC F GT500 '16",
         "total_time": "",
         "gap": "+33.297",
