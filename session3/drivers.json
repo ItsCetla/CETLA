@@ -1,27 +1,27 @@
 [
   {
     "name": "Jack",
-    "points": 96,
+    "points": 78,
     "color": "cyan"
   },
   {
     "name": "Rom3",
-    "points": 132,
+    "points": 126,
     "color": "purple"
   },
   {
     "name": "HPepe",
-    "points": 106,
+    "points": 108,
     "color": "orange"
   },
   {
     "name": "Joan.D",
-    "points": 64,
+    "points": 54,
     "color": "orange"
   },
   {
     "name": "Emilio",
-    "points": 124,
+    "points": 113,
     "color": "skyblue"
   },
   {
@@ -31,42 +31,42 @@
   },
   {
     "name": "Pablo",
-    "points": 85,
+    "points": 67,
     "color": "pink"
   },
   {
     "name": "Santi",
-    "points": 69,
+    "points": 55,
     "color": "cyan"
   },
   {
     "name": "Slatenator",
-    "points": 65,
+    "points": 48,
     "color": "red"
   },
   {
     "name": "Cetla",
-    "points": 91,
+    "points": 74,
     "color": "lightgreen"
   },
   {
     "name": "Lilreeree",
-    "points": 87,
+    "points": 82,
     "color": "skyblue"
   },
   {
     "name": "OogaBooga",
-    "points": 94,
+    "points": 76,
     "color": "lightgreen"
   },
   {
     "name": "KickStart",
-    "points": 91,
+    "points": 73,
     "color": "black"
   },
   {
     "name": "FleshTorpedo",
-    "points": 100,
+    "points": 84,
     "color": "black"
   },
   {
@@ -76,7 +76,7 @@
   },
   {
     "name": "TrapVis",
-    "points": 84,
+    "points": 73,
     "color": "pink"
   }
 ]
