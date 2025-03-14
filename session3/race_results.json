@@ -568,12 +568,160 @@
   },
   {
     "race_id": "race5",
-    "race_name": "Kyoto Driving Park - Yamagiwa",
+    "race_name": "Race 5: Dragon Trail - Seaside",
+    "track_image": "https://gt-engine.com/gt7/tracks/images/md/dragon-trail-seaside.png",
+    "settings": {
+      "car": "Grade 2 (Gr.2)",
+      "weather": "Day & Clear",
+      "laps": "18",
+      "other_settings": "March 4th, 8:00 PM EST"
+    },
+    "results": [
+      {
+        "position": 1,
+        "driver": "Rom3",
+        "car": "NSX CONCEPT-GT '16",
+        "total_time": "26:40.048",
+        "gap": "",
+        "fastest_lap": "1:25.577",
+        "points": 30
+      },
+      {
+        "position": 2,
+        "driver": "Emilio",
+        "car": "NSX CONCEPT-GT '16",
+        "total_time": "",
+        "gap": "+04.337",
+        "fastest_lap": "1:22.936",
+        "points": 28
+      },
+      {
+        "position": 3,
+        "driver": "Lilreeree",
+        "car": "RC F GT500 '16",
+        "total_time": "",
+        "gap": "+05.496",
+        "fastest_lap": "1:26.841",
+        "points": 27
+      },
+      {
+        "position": 4,
+        "driver": "TheSlayter",
+        "car": "NSX CONCEPT-GT '16",
+        "total_time": "",
+        "gap": "+16.056",
+        "fastest_lap": "1:22.731",
+        "points": 25
+      },
+      {
+        "position": 5,
+        "driver": "Rambo",
+        "car": "NSX CONCEPT-GT '16",
+        "total_time": "",
+        "gap": "+18.337",
+        "fastest_lap": "1:23.622",
+        "points": 24
+      },
+      {
+        "position": 6,
+        "driver": "FleshTorpedo",
+        "car": "GT-R NISMO GT500 '16",
+        "total_time": "",
+        "gap": "+25.903",
+        "fastest_lap": "1:23.100",
+        "points": 21
+      },
+      {
+        "position": 7,
+        "driver": "TrapVis",
+        "car": "NSX CONCEPT-GT '16",
+        "total_time": "",
+        "gap": "+26.082",
+        "fastest_lap": "1:23.713",
+        "points": 19
+      },
+      {
+        "position": 8,
+        "driver": "Joan.D",
+        "car": "NSX CONCEPT-GT '16",
+        "total_time": "",
+        "gap": "+26.457",
+        "fastest_lap": "1:26.778",
+        "points": 17
+      },
+      {
+        "position": 9,
+        "driver": "Santi",
+        "car": "RC F GT500 '16",
+        "total_time": "",
+        "gap": "+26.570",
+        "fastest_lap": "1:22.864",
+        "points": 15
+      },
+      {
+        "position": 10,
+        "driver": "OogaBooga",
+        "car": "RC F GT500 '16",
+        "total_time": "",
+        "gap": "+26.570",
+        "fastest_lap": "1:23.120",
+        "points": 14
+      },
+      {
+        "position": 11,
+        "driver": "KickStart",
+        "car": "GT-R NISMO GT500 '16",
+        "total_time": "",
+        "gap": "+26.732",
+        "fastest_lap": "1:23.806",
+        "points": 12
+      },
+      {
+        "position": 12,
+        "driver": "Slatenator",
+        "car": "NSX GT500 '08",
+        "total_time": "",
+        "gap": "+32.712",
+        "fastest_lap": "1:26.185",
+        "points": 11
+      },
+      {
+        "position": 13,
+        "driver": "Pablo",
+        "car": "NSX CONCEPT-GT '16",
+        "total_time": "",
+        "gap": "+33.264",
+        "fastest_lap": "1:22.040",
+        "points": 10
+      },
+      {
+        "position": 14,
+        "driver": "Cetla",
+        "car": "RC F GT500 '16",
+        "total_time": "",
+        "gap": "+33.297",
+        "fastest_lap": "1:22.049",
+        "points": 9
+      },
+      {
+        "position": 15,
+        "driver": "Jack",
+        "car": "NSX CONCEPT-GT '16",
+        "total_time": "",
+        "gap": "+33.568",
+        "fastest_lap": "1:24.778",
+        "points": 8
+      }
+    ]
+  },
+  {
+    "race_id": "race6",
+    "race_name": "Race 6: Kyoto Driving Park - Yamagiwa",
     "track_image": "",
     "settings": {
-      "car": "Gr 1",
+      "car": "Grade 1 (Gr.1)",
       "weather": "Random Weather",
-      "laps": "",
+      "laps": "20",
       "other_settings": ""
     },
     "results": [
@@ -638,7 +786,7 @@
         "total_time": "",
         "penalty": "+42.817",
         "fastest_lap": "1:16.764",
-        "points": 24
+        "points": 19
       },
       {
         "position": 8,
@@ -647,7 +795,7 @@
         "total_time": "",
         "penalty": "+46.665",
         "fastest_lap": "1:18.697",
-        "points": 22
+        "points": 17
       },
       {
         "position": 9,
@@ -656,7 +804,7 @@
         "total_time": "",
         "penalty": "+49.102",
         "fastest_lap": "1:18.114",
-        "points": 20
+        "points": 15
       },
       {
         "position": 10,
@@ -665,7 +813,7 @@
         "total_time": "",
         "penalty": "+51.003",
         "fastest_lap": "1:17.465",
-        "points": 19
+        "points": 14
       },
       {
         "position": 11,
@@ -674,7 +822,7 @@
         "total_time": "",
         "penalty": "+51.125",
         "fastest_lap": "1:18.396",
-        "points": 17
+        "points": 12
       },
       {
         "position": 12,
@@ -683,7 +831,7 @@
         "total_time": "",
         "penalty": "+51.467",
         "fastest_lap": "1:16.033",
-        "points": 16
+        "points": 11
       },
       {
         "position": 13,
@@ -692,7 +840,7 @@
         "total_time": "",
         "penalty": "+ 1:00.967",
         "fastest_lap": "1:18.433",
-        "points": 15
+        "points": 10
       },
       {
         "position": 14,
