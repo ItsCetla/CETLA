@@ -1,78 +1,78 @@
 [
   {
-    "name": "Jack",
-    "points": 109,
-    "color": "cyan"
+    "name": "Rambo",
+    "points": 190,
+    "color": "purple"
+  },
+  {
+    "name": "Emilio",
+    "points": 185,
+    "color": "skyblue"
   },
   {
     "name": "Rom3",
-    "points": 154,
+    "points": 182,
     "color": "purple"
   },
   {
     "name": "HPepe",
-    "points": 162,
+    "points": 181,
     "color": "orange"
-  },
-  {
-    "name": "Joan.D",
-    "points": 92,
-    "color": "orange"
-  },
-  {
-    "name": "Emilio",
-    "points": 160,
-    "color": "skyblue"
   },
   {
     "name": "TheSlayter",
-    "points": 134,
+    "points": 176,
     "color": "red"
-  },
-  {
-    "name": "Pablo",
-    "points": 95,
-    "color": "pink"
-  },
-  {
-    "name": "Santi",
-    "points": 89,
-    "color": "cyan"
-  },
-  {
-    "name": "Slatenator",
-    "points": 82,
-    "color": "red"
-  },
-  {
-    "name": "Cetla",
-    "points": 97,
-    "color": "lightgreen"
-  },
-  {
-    "name": "Lilreeree",
-    "points": 116,
-    "color": "skyblue"
-  },
-  {
-    "name": "OogaBooga",
-    "points": 110,
-    "color": "lightgreen"
   },
   {
     "name": "KickStart",
-    "points": 121,
+    "points": 155,
     "color": "black"
+  },
+  {
+    "name": "Lilreeree",
+    "points": 130,
+    "color": "skyblue"
   },
   {
     "name": "FleshTorpedo",
-    "points": 119,
+    "points": 127,
     "color": "black"
   },
   {
-    "name": "Rambo",
-    "points": 163,
-    "color": "purple"
+    "name": "Joan.D",
+    "points": 122,
+    "color": "orange"
+  },
+  {
+    "name": "Cetla",
+    "points": 121,
+    "color": "lightgreen"
+  },
+  {
+    "name": "Jack",
+    "points": 120,
+    "color": "cyan"
+  },
+  {
+    "name": "OogaBooga",
+    "points": 120,
+    "color": "lightgreen"
+  },
+  {
+    "name": "Santi",
+    "points": 119,
+    "color": "cyan"
+  },
+  {
+    "name": "Pablo",
+    "points": 107,
+    "color": "pink"
+  },
+  {
+    "name": "Slatenator",
+    "points": 91,
+    "color": "red"
   },
   {
     "name": "TrapVis",
