@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎯 NRFI Parlay Odds Detector</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .input-section {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .input-group {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        label {
+            font-weight: bold;
+            font-size: 1.1em;
+            min-width: 120px;
+        }
+        
+        input[type="number"] {
+            padding: 12px;
+            font-size: 1.1em;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            width: 120px;
+        }
+        
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+        }
+        
+        input[type="number"]::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .results {
+            margin-top: 25px;
+        }
+        
+        .result-card {
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 5px solid;
+            font-weight: bold;
+        }
+        
+        .profitable {
+            background: rgba(76, 175, 80, 0.2);
+            border-left-color: #4CAF50;
+        }
+        
+        .marginal {
+            background: rgba(255, 193, 7, 0.2);
+            border-left-color: #FFC107;
+        }
+        
+        .unprofitable {
+            background: rgba(244, 67, 54, 0.2);
+            border-left-color: #F44336;
+        }
+        
+        .warning {
+            background: rgba(255, 87, 34, 0.2);
+            border-left-color: #FF5722;
+            font-size: 1.1em;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .stat-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+        
+        .stat-value {
+            font-size: 1.4em;
+            font-weight: bold;
+        }
+        
+        .guidelines {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 25px;
+        }
+        
+        .guideline-item {
+            margin: 10px 0;
+            padding: 8px;
+            border-radius: 5px;
+        }
+        
+        .safe { background: rgba(76, 175, 80, 0.2); }
+        .danger { background: rgba(255, 193, 7, 0.2); }
+        .avoid { background: rgba(244, 67, 54, 0.2); }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            opacity: 0.8;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 600px) {
+            .input-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            label {
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 NRFI Parlay Odds Detector</h1>
+        
+        <div class="input-section">
+            <h3>📊 Enter Your Parlay Legs:</h3>
+            <div class="input-group">
+                <label for="odds1">Leg 1 Odds:</label>
+                <input type="number" id="odds1" placeholder="-110" value="-110">
+                <span style="font-size: 0.9em; opacity: 0.8;">(e.g., -110, +150)</span>
+            </div>
+            <div class="input-group">
+                <label for="odds2">Leg 2 Odds:</label>
+                <input type="number" id="odds2" placeholder="-110" value="-110">
+                <span style="font-size: 0.9em; opacity: 0.8;">(e.g., -120, +200)</span>
+            </div>
+            <div class="input-group">
+                <label for="hitRate">Your Hit Rate:</label>
+                <input type="number" id="hitRate" step="0.1" min="40" max="80" value="70.3">
+                <span style="font-size: 0.9em; opacity: 0.8;">% (individual pick rate)</span>
+            </div>
+        </div>
+        
+        <div class="results" id="results">
+            <!-- Results will be populated here -->
+        </div>
+        
+        <div class="guidelines">
+            <h3>📋 Quick Reference Guide:</h3>
+            <div class="guideline-item safe">
+                ✅ <strong>SAFE PARLAYS:</strong> Both legs better than -150 (Great profit margins)
+            </div>
+            <div class="guideline-item danger">
+                ⚠️ <strong>DANGER ZONE:</strong> Both legs -155 to -235 (Barely profitable)
+            </div>
+            <div class="guideline-item avoid">
+                ❌ <strong>AVOID:</strong> Both legs worse than -235 (Guaranteed losses)
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>💡 Based on your historical 70.3% individual hit rate (49.4% parlay rate)</p>
+            <p>🎯 Always shop for the best odds to maximize your edge!</p>
+        </div>
+    </div>
+
+    <script>
+        function americanToDecimal(americanOdds) {
+            if (americanOdds > 0) {
+                return (americanOdds / 100) + 1;
+            } else {
+                return (100 / Math.abs(americanOdds)) + 1;
+            }
+        }
+        
+        function decimalToAmerican(decimalOdds) {
+            if (decimalOdds >= 2.0) {
+                return Math.round((decimalOdds - 1) * 100);
+            } else {
+                return Math.round(-100 / (decimalOdds - 1));
+            }
+        }
+        
+        function calculateParlay(odds1, odds2) {
+            const decimal1 = americanToDecimal(odds1);
+            const decimal2 = americanToDecimal(odds2);
+            const parlayDecimal = decimal1 * decimal2;
+            return decimalToAmerican(parlayDecimal);
+        }
+        
+        function calculateExpectedValue(winRate, americanOdds, betAmount = 100) {
+            let winPayout;
+            
+            if (americanOdds > 0) {
+                winPayout = betAmount * (americanOdds / 100);
+            } else {
+                winPayout = betAmount * (100 / Math.abs(americanOdds));
+            }
+            
+            const expectedValue = (winRate * winPayout) - ((1 - winRate) * betAmount);
+            const roi = (expectedValue / betAmount) * 100;
+            
+            return {
+                expectedValue: expectedValue,
+                roi: roi,
+                winPayout: winPayout
+            };
+        }
+        
+        function getStatusClass(ev) {
+            if (ev > 15) return 'profitable';
+            if (ev > 0) return 'marginal';
+            return 'unprofitable';
+        }
+        
+        function getStatusText(ev) {
+            if (ev > 15) return '✅ PROFITABLE - Good bet!';
+            if (ev > 5) return '⚠️ MARGINAL - Barely profitable';
+            if (ev > 0) return '⚠️ BARELY PROFITABLE - Very small edge';
+            return '❌ UNPROFITABLE - Avoid this bet!';
+        }
+        
+        function getWarningMessage(odds1, odds2, ev) {
+            let warnings = [];
+            
+            if (odds1 < -300 || odds2 < -300) {
+                warnings.push('🚨 Heavy favorite detected (-300 or worse)');
+            }
+            
+            if (odds1 < -200 && odds2 < -200) {
+                warnings.push('⚠️ Both legs are heavy favorites - low value');
+            }
+            
+            if (ev < -10) {
+                warnings.push('💀 This is a terrible bet - you\'ll lose significant money');
+            }
+            
+            return warnings;
+        }
+        
+        function updateResults() {
+            const odds1 = parseInt(document.getElementById('odds1').value) || -110;
+            const odds2 = parseInt(document.getElementById('odds2').value) || -110;
+            const hitRatePercent = parseFloat(document.getElementById('hitRate').value) || 70.3;
+            
+            const individualHitRate = hitRatePercent / 100;
+            const parlayHitRate = individualHitRate * individualHitRate;
+            
+            const parlayOdds = calculateParlay(odds1, odds2);
+            const analysis = calculateExpectedValue(parlayHitRate, parlayOdds);
+            
+            const statusClass = getStatusClass(analysis.expectedValue);
+            const statusText = getStatusText(analysis.expectedValue);
+            const warnings = getWarningMessage(odds1, odds2, analysis.expectedValue);
+            
+            const breakEvenRate = parlayOdds > 0 ? 
+                100 / (parlayOdds + 100) : 
+                Math.abs(parlayOdds) / (Math.abs(parlayOdds) + 100);
+            
+            let resultsHTML = `
+                <div class="result-card ${statusClass}">
+                    <h3>${statusText}</h3>
+                    <p><strong>Expected Value:</strong> $${analysis.expectedValue.toFixed(2)} per $100 bet</p>
+                    <p><strong>ROI:</strong> ${analysis.roi.toFixed(1)}%</p>
+                </div>
+            `;
+            
+            if (warnings.length > 0) {
+                resultsHTML += `
+                    <div class="result-card warning">
+                        <h4>⚠️ WARNINGS:</h4>
+                        ${warnings.map(w => `<p>${w}</p>`).join('')}
+                    </div>
+                `;
+            }
+            
+            resultsHTML += `
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-label">Parlay Odds</div>
+                        <div class="stat-value">${parlayOdds > 0 ? '+' : ''}${parlayOdds}</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Your Parlay Hit Rate</div>
+                        <div class="stat-value">${(parlayHitRate * 100).toFixed(1)}%</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Breakeven Rate Needed</div>
+                        <div class="stat-value">${(breakEvenRate * 100).toFixed(1)}%</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Win Payout</div>
+                        <div class="stat-value">$${analysis.winPayout.toFixed(2)}</div>
+                    </div>
+                </div>
+            `;
+            
+            // Add recommendations
+            resultsHTML += `
+                <div class="result-card" style="background: rgba(255, 255, 255, 0.1); margin-top: 20px;">
+                    <h4>💡 RECOMMENDATION:</h4>
+            `;
+            
+            if (analysis.expectedValue > 15) {
+                resultsHTML += `<p>✅ <strong>EXCELLENT BET!</strong> High profit margin with great value.</p>`;
+            } else if (analysis.expectedValue > 5) {
+                resultsHTML += `<p>⚠️ <strong>DECENT BET</strong> but shop around for better odds if possible.</p>`;
+            } else if (analysis.expectedValue > 0) {
+                resultsHTML += `<p>⚠️ <strong>BARELY WORTH IT</strong> - Consider waiting for better opportunities.</p>`;
+            } else {
+                resultsHTML += `<p>❌ <strong>SKIP THIS BET!</strong> You'll lose money long-term. Stick to your regular NRFI picks.</p>`;
+            }
+            
+            resultsHTML += `</div>`;
+            
+            document.getElementById('results').innerHTML = resultsHTML;
+        }
+        
+        // Add event listeners
+        document.getElementById('odds1').addEventListener('input', updateResults);
+        document.getElementById('odds2').addEventListener('input', updateResults);
+        document.getElementById('hitRate').addEventListener('input', updateResults);
+        
+        // Initial calculation
+        updateResults();
+    </script>
+</body>
+</html> 
