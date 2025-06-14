@@ -1,0 +1,789 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎯 NRFI Daily Predictions - 2025-06-14</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .date {
+            font-size: 1.5em;
+            opacity: 0.9;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 1.1em;
+            opacity: 0.8;
+        }
+        
+        .predictions-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 2em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .game-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 5px solid;
+            animation: slideIn 0.5s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .grade-A { border-left-color: #4CAF50; }
+        .grade-B { border-left-color: #FFC107; }
+        .grade-C { border-left-color: #FF9800; }
+        
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .game-title {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        
+        .game-time {
+            opacity: 0.8;
+            font-size: 0.9em;
+        }
+        
+        .game-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .detail-label {
+            opacity: 0.7;
+            font-size: 0.9em;
+        }
+        
+        .detail-value {
+            font-weight: bold;
+        }
+        
+        .nrfi-prob {
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+        
+        .grade-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .grade-A { background: #4CAF50; }
+        .grade-B { background: #FFC107; color: #333; }
+        .grade-C { background: #FF9800; }
+        
+        .legend {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+        
+        .legend-item {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .no-games {
+            text-align: center;
+            padding: 50px;
+            font-size: 1.5em;
+            opacity: 0.8;
+        }
+        
+        .pitchers {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            font-size: 0.95em;
+        }
+        
+        .pitcher-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            .game-header { flex-direction: column; align-items: flex-start; }
+            .stat-card { padding: 20px; }
+            .predictions-section { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 NRFI Daily Predictions</h1>
+            <div class="date">📅 2025-06-14</div>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value">15</div>
+                <div class="stat-label">Total Games Today</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">14</div>
+                <div class="stat-label">NRFI Opportunities</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">1</div>
+                <div class="stat-label">Premium Picks (A+/A)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">70.6%</div>
+                <div class="stat-label">Best NRFI Probability</div>
+            </div>
+        </div>
+
+        <div class="predictions-section">
+            <h2 class="section-title">🏆 Premium Picks (A+/A Grades)</h2>
+
+            <div class="game-card grade-A">
+                <div class="game-header">
+                    <div>
+                        <div class="game-title">Los Angeles Angels @ Baltimore Orioles</div>
+                        <div class="game-time">🕐 08:05 PM</div>
+                    </div>
+                    <span class="grade-badge grade-A">A</span>
+                </div>
+                
+                <div class="game-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Recommendation:</span>
+                        <span class="detail-value">STRONG NRFI</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Confidence:</span>
+                        <span class="detail-value">High</span>
+                    </div>
+                </div>
+                
+                <div class="nrfi-prob">
+                    🎯 NRFI Probability: 70.6%
+                </div>
+                
+                <div class="pitchers">
+                    <div class="pitcher-row">
+                        <span>Away Pitcher:</span>
+                        <strong>Tyler Anderson</strong>
+                    </div>
+                    <div class="pitcher-row">
+                        <span>Home Pitcher:</span>
+                        <strong>Tomoyuki Sugano</strong>
+                    </div>
+                </div>
+            </div>
+</div>
+        <div class="predictions-section">
+            <h2 class="section-title">✅ Good Picks (B+/B Grades)</h2>
+
+            <div class="game-card grade-B">
+                <div class="game-header">
+                    <div>
+                        <div class="game-title">Cincinnati Reds @ Detroit Tigers</div>
+                        <div class="game-time">🕐 05:10 PM</div>
+                    </div>
+                    <span class="grade-badge grade-B">B+</span>
+                </div>
+                
+                <div class="game-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Recommendation:</span>
+                        <span class="detail-value">NRFI</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Confidence:</span>
+                        <span class="detail-value">Medium-High</span>
+                    </div>
+                </div>
+                
+                <div class="nrfi-prob">
+                    🎯 NRFI Probability: 65.5%
+                </div>
+                
+                <div class="pitchers">
+                    <div class="pitcher-row">
+                        <span>Away Pitcher:</span>
+                        <strong>Brady Singer</strong>
+                    </div>
+                    <div class="pitcher-row">
+                        <span>Home Pitcher:</span>
+                        <strong>Jack Flaherty</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-card grade-B">
+                <div class="game-header">
+                    <div>
+                        <div class="game-title">Chicago White Sox @ Texas Rangers</div>
+                        <div class="game-time">🕐 08:05 PM</div>
+                    </div>
+                    <span class="grade-badge grade-B">B+</span>
+                </div>
+                
+                <div class="game-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Recommendation:</span>
+                        <span class="detail-value">NRFI</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Confidence:</span>
+                        <span class="detail-value">Medium-High</span>
+                    </div>
+                </div>
+                
+                <div class="nrfi-prob">
+                    🎯 NRFI Probability: 65.5%
+                </div>
+                
+                <div class="pitchers">
+                    <div class="pitcher-row">
+                        <span>Away Pitcher:</span>
+                        <strong>Mike Vasil</strong>
+                    </div>
+                    <div class="pitcher-row">
+                        <span>Home Pitcher:</span>
+                        <strong>Jacob deGrom</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-card grade-B">
+                <div class="game-header">
+                    <div>
+                        <div class="game-title">Cleveland Guardians @ Seattle Mariners</div>
+                        <div class="game-time">🕐 01:40 AM</div>
+                    </div>
+                    <span class="grade-badge grade-B">B+</span>
+                </div>
+                
+                <div class="game-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Recommendation:</span>
+                        <span class="detail-value">NRFI</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Confidence:</span>
+                        <span class="detail-value">Medium-High</span>
+                    </div>
+                </div>
+                
+                <div class="nrfi-prob">
+                    🎯 NRFI Probability: 65.5%
+                </div>
+                
+                <div class="pitchers">
+                    <div class="pitcher-row">
+                        <span>Away Pitcher:</span>
+                        <strong>Tanner Bibee</strong>
+                    </div>
+                    <div class="pitcher-row">
+                        <span>Home Pitcher:</span>
+                        <strong>George Kirby</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-card grade-B">
+                <div class="game-header">
+                    <div>
+                        <div class="game-title">Miami Marlins @ Washington Nationals</div>
+                        <div class="game-time">🕐 05:05 PM</div>
+                    </div>
+                    <span class="grade-badge grade-B">B</span>
+                </div>
+                
+                <div class="game-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Recommendation:</span>
+                        <span class="detail-value">NRFI</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Confidence:</span>
+                        <span class="detail-value">Medium</span>
+                    </div>
+                </div>
+                
+                <div class="nrfi-prob">
+                    🎯 NRFI Probability: 60.8%
+                </div>
+                
+                <div class="pitchers">
+                    <div class="pitcher-row">
+                        <span>Away Pitcher:</span>
+                        <strong>Cade Gibson</strong>
+                    </div>
+                    <div class="pitcher-row">
+                        <span>Home Pitcher:</span>
+                        <strong>Trevor Williams</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-card grade-B">
+                <div class="game-header">
+                    <div>
+                        <div class="game-title">Pittsburgh Pirates @ Chicago Cubs</div>
+                        <div class="game-time">🕐 06:20 PM</div>
+                    </div>
+                    <span class="grade-badge grade-B">B</span>
+                </div>
+                
+                <div class="game-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Recommendation:</span>
+                        <span class="detail-value">NRFI</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Confidence:</span>
+                        <span class="detail-value">Medium</span>
+                    </div>
+                </div>
+                
+                <div class="nrfi-prob">
+                    🎯 NRFI Probability: 60.8%
+                </div>
+                
+                <div class="pitchers">
+                    <div class="pitcher-row">
+                        <span>Away Pitcher:</span>
+                        <strong>Mike Burrows</strong>
+                    </div>
+                    <div class="pitcher-row">
+                        <span>Home Pitcher:</span>
+                        <strong>Matthew Boyd</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-card grade-B">
+                <div class="game-header">
+                    <div>
+                        <div class="game-title">Athletics @ Kansas City Royals</div>
+                        <div class="game-time">🕐 08:10 PM</div>
+                    </div>
+                    <span class="grade-badge grade-B">B</span>
+                </div>
+                
+                <div class="game-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Recommendation:</span>
+                        <span class="detail-value">NRFI</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Confidence:</span>
+                        <span class="detail-value">Medium</span>
+                    </div>
+                </div>
+                
+                <div class="nrfi-prob">
+                    🎯 NRFI Probability: 60.8%
+                </div>
+                
+                <div class="pitchers">
+                    <div class="pitcher-row">
+                        <span>Away Pitcher:</span>
+                        <strong>Jacob Lopez</strong>
+                    </div>
+                    <div class="pitcher-row">
+                        <span>Home Pitcher:</span>
+                        <strong>Michael Lorenzen</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-card grade-B">
+                <div class="game-header">
+                    <div>
+                        <div class="game-title">San Diego Padres @ Arizona Diamondbacks</div>
+                        <div class="game-time">🕐 11:15 PM</div>
+                    </div>
+                    <span class="grade-badge grade-B">B</span>
+                </div>
+                
+                <div class="game-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Recommendation:</span>
+                        <span class="detail-value">NRFI</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Confidence:</span>
+                        <span class="detail-value">Medium</span>
+                    </div>
+                </div>
+                
+                <div class="nrfi-prob">
+                    🎯 NRFI Probability: 60.8%
+                </div>
+                
+                <div class="pitchers">
+                    <div class="pitcher-row">
+                        <span>Away Pitcher:</span>
+                        <strong>Ryan Bergert</strong>
+                    </div>
+                    <div class="pitcher-row">
+                        <span>Home Pitcher:</span>
+                        <strong>Zac Gallen</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-card grade-B">
+                <div class="game-header">
+                    <div>
+                        <div class="game-title">New York Yankees @ Boston Red Sox</div>
+                        <div class="game-time">🕐 11:15 PM</div>
+                    </div>
+                    <span class="grade-badge grade-B">B</span>
+                </div>
+                
+                <div class="game-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Recommendation:</span>
+                        <span class="detail-value">NRFI</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Confidence:</span>
+                        <span class="detail-value">Medium</span>
+                    </div>
+                </div>
+                
+                <div class="nrfi-prob">
+                    🎯 NRFI Probability: 60.5%
+                </div>
+                
+                <div class="pitchers">
+                    <div class="pitcher-row">
+                        <span>Away Pitcher:</span>
+                        <strong>Carlos Rodón</strong>
+                    </div>
+                    <div class="pitcher-row">
+                        <span>Home Pitcher:</span>
+                        <strong>Hunter Dobbins</strong>
+                    </div>
+                </div>
+            </div>
+</div>
+        <div class="predictions-section">
+            <h2 class="section-title">⚠️ Marginal Picks (C+/C Grades)</h2>
+
+            <div class="game-card grade-C">
+                <div class="game-header">
+                    <div>
+                        <div class="game-title">Tampa Bay Rays @ New York Mets</div>
+                        <div class="game-time">🕐 08:10 PM</div>
+                    </div>
+                    <span class="grade-badge grade-C">C+</span>
+                </div>
+                
+                <div class="game-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Recommendation:</span>
+                        <span class="detail-value">LEAN NRFI</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Confidence:</span>
+                        <span class="detail-value">Medium-Low</span>
+                    </div>
+                </div>
+                
+                <div class="nrfi-prob">
+                    🎯 NRFI Probability: 56.2%
+                </div>
+                
+                <div class="pitchers">
+                    <div class="pitcher-row">
+                        <span>Away Pitcher:</span>
+                        <strong>Drew Rasmussen</strong>
+                    </div>
+                    <div class="pitcher-row">
+                        <span>Home Pitcher:</span>
+                        <strong>Tylor Megill</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-card grade-C">
+                <div class="game-header">
+                    <div>
+                        <div class="game-title">Minnesota Twins @ Houston Astros</div>
+                        <div class="game-time">🕐 08:10 PM</div>
+                    </div>
+                    <span class="grade-badge grade-C">C+</span>
+                </div>
+                
+                <div class="game-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Recommendation:</span>
+                        <span class="detail-value">LEAN NRFI</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Confidence:</span>
+                        <span class="detail-value">Medium-Low</span>
+                    </div>
+                </div>
+                
+                <div class="nrfi-prob">
+                    🎯 NRFI Probability: 56.2%
+                </div>
+                
+                <div class="pitchers">
+                    <div class="pitcher-row">
+                        <span>Away Pitcher:</span>
+                        <strong>Joe Ryan</strong>
+                    </div>
+                    <div class="pitcher-row">
+                        <span>Home Pitcher:</span>
+                        <strong>Hunter Brown</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-card grade-C">
+                <div class="game-header">
+                    <div>
+                        <div class="game-title">St. Louis Cardinals @ Milwaukee Brewers</div>
+                        <div class="game-time">🕐 08:10 PM</div>
+                    </div>
+                    <span class="grade-badge grade-C">C+</span>
+                </div>
+                
+                <div class="game-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Recommendation:</span>
+                        <span class="detail-value">LEAN NRFI</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Confidence:</span>
+                        <span class="detail-value">Medium-Low</span>
+                    </div>
+                </div>
+                
+                <div class="nrfi-prob">
+                    🎯 NRFI Probability: 56.2%
+                </div>
+                
+                <div class="pitchers">
+                    <div class="pitcher-row">
+                        <span>Away Pitcher:</span>
+                        <strong>Andre Pallante</strong>
+                    </div>
+                    <div class="pitcher-row">
+                        <span>Home Pitcher:</span>
+                        <strong>Jose Quintana</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-card grade-C">
+                <div class="game-header">
+                    <div>
+                        <div class="game-title">Toronto Blue Jays @ Philadelphia Phillies</div>
+                        <div class="game-time">🕐 08:05 PM</div>
+                    </div>
+                    <span class="grade-badge grade-C">C+</span>
+                </div>
+                
+                <div class="game-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Recommendation:</span>
+                        <span class="detail-value">LEAN NRFI</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Confidence:</span>
+                        <span class="detail-value">Medium-Low</span>
+                    </div>
+                </div>
+                
+                <div class="nrfi-prob">
+                    🎯 NRFI Probability: 55.4%
+                </div>
+                
+                <div class="pitchers">
+                    <div class="pitcher-row">
+                        <span>Away Pitcher:</span>
+                        <strong>Bowden Francis</strong>
+                    </div>
+                    <div class="pitcher-row">
+                        <span>Home Pitcher:</span>
+                        <strong>Cristopher Sánchez</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-card grade-C">
+                <div class="game-header">
+                    <div>
+                        <div class="game-title">San Francisco Giants @ Los Angeles Dodgers</div>
+                        <div class="game-time">🕐 02:10 AM</div>
+                    </div>
+                    <span class="grade-badge grade-C">C+</span>
+                </div>
+                
+                <div class="game-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Recommendation:</span>
+                        <span class="detail-value">LEAN NRFI</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Confidence:</span>
+                        <span class="detail-value">Medium-Low</span>
+                    </div>
+                </div>
+                
+                <div class="nrfi-prob">
+                    🎯 NRFI Probability: 55.4%
+                </div>
+                
+                <div class="pitchers">
+                    <div class="pitcher-row">
+                        <span>Away Pitcher:</span>
+                        <strong>Landen Roupp</strong>
+                    </div>
+                    <div class="pitcher-row">
+                        <span>Home Pitcher:</span>
+                        <strong>Clayton Kershaw</strong>
+                    </div>
+                </div>
+            </div>
+</div>
+        <div class="legend">
+            <h3 style="margin-bottom: 15px;">📖 Understanding the Grades</h3>
+            <div class="legend-item">
+                <span class="grade-badge grade-A">A+/A</span>
+                <span>70.5-73.5% historical hit rate - Best picks!</span>
+            </div>
+            <div class="legend-item">
+                <span class="grade-badge grade-B">B+/B</span>
+                <span>67.7-71.5% historical hit rate - Good value</span>
+            </div>
+            <div class="legend-item">
+                <span class="grade-badge grade-C">C+/C</span>
+                <span>57.1-67.4% historical hit rate - Marginal</span>
+            </div>
+            <div style="margin-top: 20px; opacity: 0.8;">
+                💡 Based on 1,681 backtested games with your 70.3% hit rate
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Auto-refresh every 5 minutes
+        setTimeout(() => location.reload(), 300000);
+        
+        // Add time since last update
+        const updateTime = new Date();
+        console.log('Dashboard updated at:', updateTime.toLocaleTimeString());
+    </script>
+</body>
+</html>
