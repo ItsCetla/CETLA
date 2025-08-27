@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>ICS → Add to Calendar (Apple-friendly)</title>
+<title>ICS -> Add to Calendar (Apple-friendly)</title>
 <style>
   :root { --bg:#0f1115; --card:#171a21; --text:#e8eef9; --muted:#a9b3c7; --accent:#6ea8fe; --line:#262b36; }
   html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
@@ -29,35 +29,18 @@
   .hint{margin-top:10px;color:var(--muted);font-size:.9rem}
   .hidden{display:none !important}
   .thin{font-weight:500;}
-  .bar{position:fixed;left:0;right:0;bottom:0;background:#0b1220;border-top:1px solid var(--line);padding:6px 10px;color:#9fb2d4;font-size:12px;display:flex;gap:8px;align-items:center}
-  .bar .pill{border:1px solid var(--line);border-radius:999px;padding:4px 8px;background:#11182a}
-  .controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}
-  select{background:transparent;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:8px}
-  .note{font-size:12px;color:var(--muted);margin-left:auto}
 </style>
 </head>
 <body>
 <header>
-  <h1>ICS → Add to Apple Calendar (no subscription)</h1>
+  <h1>ICS -> Add to Apple Calendar (no subscription)</h1>
 </header>
 
 <div class="container">
   <div class="uploader" id="drop">
     <p class="muted">Drop an <b>.ics</b> file here or <label for="file" class="btn ghost">Choose File</label></p>
     <input id="file" type="file" accept=".ics,text/calendar" />
-    <div class="hint">After parsing, you’ll get per-event <i>Add to Apple Calendar</i> buttons and a combined <i>Add Selected</i>. This page aggressively tries multiple open strategies so iOS hands off to Calendar.</div>
-    <div class="controls">
-      <label class="muted">Strategy:</label>
-      <select id="strategy">
-        <option value="auto" selected>Auto (best effort)</option>
-        <option value="share">Share API (files)</option>
-        <option value="blob-self">Open Blob (same tab)</option>
-        <option value="data-self">Open Data URL (same tab)</option>
-        <option value="blob-newtab">Open Blob (new tab)</option>
-        <option value="download">Download (fallback)</option>
-      </select>
-      <span class="note">Tip: On iPhone, use Safari and ensure the site is HTTPS; then pick <b>Calendar</b> from the share sheet.</span>
-    </div>
+    <div class="hint">After parsing, you get per-event Add to Apple Calendar buttons and a combined Add Selected that attempts to open Calendar directly. If your device does not support direct open, it will download.</div>
   </div>
 
   <div id="results" class="list hidden"></div>
@@ -69,297 +52,227 @@
       <button class="btn ghost" id="selectNone">Clear</button>
       <button class="btn" id="addSelected">Add Selected (open Calendar)</button>
     </div>
-    <div class="hint">On iPhone: you should get the share sheet → choose <b>Calendar</b>. If a file view appears, tap <b>Add All</b>.</div>
+    <div class="hint">On iPhone: Safari should present the share sheet; choose Calendar. If it opens as a file, tap Add All.</div>
   </div>
 </div>
 
-<div class="bar" id="debugBar">
-  <span class="pill" id="ua"></span>
-  <span class="pill" id="path"></span>
-  <span class="pill" id="status"></span>
-</div>
-
 <script>
-/* -------------------- ICS helpers -------------------- */
+/* ---------- ICS helpers ---------- */
 function unfoldICS(text){
   return text.replace(/\r\n[ \t]/g, '').replace(/\n[ \t]/g, '');
 }
 function extractBlocks(text, name){
-  const re = new RegExp(`BEGIN:${name}[\\s\\S]*?END:${name}`, 'g');
+  var re = new RegExp('BEGIN:' + name + '[\\s\\S]*?END:' + name, 'g');
   return text.match(re) || [];
 }
 function prop(block, key){
-  const m = block.match(new RegExp(`(?:^|\\n)${key}[^\\n]*:(.*)`));
+  var m = block.match(new RegExp('(?:^|\\n)' + key + '[^\\n]*:(.*)'));
   return m ? m[1].trim() : '';
 }
 function humanDate(dtStr, params){
-  const tz = (params && params.TZID) ? ` (${params.TZID})` : '';
-  if (/^\d{8}$/.test(dtStr)) {
-    return dtStr.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3') + ' (all day)' + tz;
+  var tz = (params && params.TZID) ? ' (' + params.TZID + ')' : '';
+  if (/^\\d{8}$/.test(dtStr)) {
+    return dtStr.replace(/(\\d{4})(\\d{2})(\\d{2})/, '$1-$2-$3') + ' (all day)' + tz;
   }
-  const base = dtStr.replace('Z','');
-  const y = base.slice(0,4), mo=base.slice(4,6), d=base.slice(6,8),
-        h = base.slice(9,11)||'00', mi=base.slice(11,13)||'00';
-  return `${y}-${mo}-${d} ${h}:${mi}${dtStr.endsWith('Z') ? ' UTC' : ''}${tz}`;
+  var base = dtStr.replace('Z','');
+  var y = base.slice(0,4), mo=base.slice(4,6), d=base.slice(6,8),
+      h = base.slice(9,11)||'00', mi=base.slice(11,13)||'00';
+  return y + '-' + mo + '-' + d + ' ' + h + ':' + mi + (dtStr.endsWith('Z') ? ' UTC' : '') + tz;
 }
 function propParams(block, key){
-  const m = block.match(new RegExp(`(?:^|\\n)${key}([^:\\n]*):`));
+  var m = block.match(new RegExp('(?:^|\\n)' + key + '([^:\\n]*):'));
   if (!m) return {};
-  const seg = m[1];
-  const out = {};
-  seg.split(';').forEach(s=>{
+  var seg = m[1];
+  var out = {};
+  seg.split(';').forEach(function(s){
     if(!s) return;
-    const [k,v] = s.split('=');
+    var kv = s.split('=');
+    var k = kv[0], v = kv[1];
     if (k && v) out[k.trim()] = v.trim();
   });
   return out;
 }
 function buildCalendar(veventBlocks, vtimezones){
-  const head = [
+  var head = [
     'BEGIN:VCALENDAR',
     'PRODID:-//AddToCal Tool//EN',
     'VERSION:2.0',
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH'
   ];
-  const tail = ['END:VCALENDAR'];
-  return [head.join('\n'), ...vtimezones, ...veventBlocks, tail.join('\n')].join('\n');
+  var tail = ['END:VCALENDAR'];
+  return [head.join('\\n')].concat(vtimezones, veventBlocks, [tail.join('\\n')]).join('\\n');
 }
-/* -------------------- Platform detection -------------------- */
-function isApple(){ return /iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent); }
-function canFileShareHeuristic(){
-  // Try to be permissive: some Safari builds misreport canShare.
-  try {
-    const f = new File(['x'], 'x.txt', {type:'text/plain'});
-    if (navigator.canShare && navigator.canShare({files:[f]})) return true;
-  } catch {}
-  // If on Apple device + secure context + has navigator.share, let’s try anyway.
-  return !!(navigator.share && isApple() && window.isSecureContext);
+function safeFile(s){
+  return s.replace(/[\\\\/:*?"<>|]+/g,'_').slice(0,100);
 }
-function updateDebug(path, status){
-  document.getElementById('ua').textContent = navigator.userAgent.slice(0,120);
-  document.getElementById('path').textContent = `Path: ${path}`;
-  document.getElementById('status').textContent = `Status: ${status}`;
+function escapeHtml(s){
+  return s.replace(/[&<>"']/g, function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+  });
 }
-/* -------------------- Openers -------------------- */
-async function openViaShare(filename, icsText){
-  const file = new File([icsText], filename, { type: 'text/calendar' });
-  updateDebug('share', 'trying');
-  // Even if canShare says false, try anyway on iOS
-  try {
-    await navigator.share({ files:[file], title:'Add to Calendar', text:'Import into Calendar' });
-    updateDebug('share', 'ok');
-    return true;
-  } catch (e) {
-    updateDebug('share', 'failed: ' + (e && e.name ? e.name : 'error'));
-    return false;
+
+/* ---------- Calendar openers ---------- */
+function canTryShare(){
+  // permissive heuristic: if navigator.share exists and secure context, try it
+  return !!(navigator.share && window.isSecureContext);
+}
+async function openInCalendar(filename, icsText){
+  // 1) Try Web Share with files
+  if (canTryShare()) {
+    try {
+      var icsFile = new File([icsText], filename, { type: 'text/calendar' });
+      await navigator.share({ files: [icsFile], title: 'Add to Calendar', text: 'Import into Calendar' });
+      return;
+    } catch (e) {
+      // continue to fallback
+    }
   }
-}
-function openViaBlobSelf(icsText){
-  updateDebug('blob-self', 'trying');
+  // 2) Try opening a Blob URL in the same tab (often triggers "Add All" on iOS)
   try {
-    const blob = new Blob([icsText], {type:'text/calendar;charset=utf-8'});
-    const url = URL.createObjectURL(blob);
-    // Anchor click in same tab (_self) tends to behave better on iOS than assign sometimes
-    const a = document.createElement('a');
+    var blob = new Blob([icsText], {type:'text/calendar;charset=utf-8'});
+    var url  = URL.createObjectURL(blob);
+    var a = document.createElement('a');
     a.href = url;
-    a.rel = 'opener';
     a.target = '_self';
+    a.rel = 'opener';
     document.body.appendChild(a);
     a.click();
     a.remove();
-    setTimeout(()=>URL.revokeObjectURL(url), 10_000);
-    updateDebug('blob-self', 'ok (navigated)');
-    return true;
-  } catch (e) {
-    updateDebug('blob-self', 'failed');
-    return false;
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 10000);
+    return;
+  } catch (e2) {
+    // continue
   }
-}
-function openViaDataSelf(icsText){
-  updateDebug('data-self', 'trying');
+  // 3) Final fallback: download
   try {
-    const uri = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(icsText);
-    // Use assign (stays in history)
-    window.location.assign(uri);
-    updateDebug('data-self', 'ok (navigated)');
-    return true;
-  } catch (e) {
-    updateDebug('data-self', 'failed');
-    return false;
+    var blob2 = new Blob([icsText], {type:'text/calendar;charset=utf-8'});
+    var url2 = URL.createObjectURL(blob2);
+    var d = document.createElement('a');
+    d.href = url2;
+    d.download = filename;
+    document.body.appendChild(d);
+    d.click();
+    d.remove();
+    setTimeout(function(){ URL.revokeObjectURL(url2); }, 12000);
+  } catch (e3) {
+    alert('Could not pass the file to Calendar. Please download and open it manually.');
   }
 }
-function openViaBlobNewTab(icsText){
-  updateDebug('blob-newtab', 'trying');
-  try {
-    const blob = new Blob([icsText], {type:'text/calendar;charset=utf-8'});
-    const url = URL.createObjectURL(blob);
-    const w = window.open(url, '_blank', 'noopener,noreferrer');
-    if (w) {
-      setTimeout(()=>URL.revokeObjectURL(url), 10_000);
-      updateDebug('blob-newtab', 'ok (opened tab)');
-      return true;
-    }
-    URL.revokeObjectURL(url);
-    updateDebug('blob-newtab', 'blocked');
-    return false;
-  } catch (e) {
-    updateDebug('blob-newtab', 'failed');
-    return false;
-  }
-}
-function openViaDownload(filename, icsText){
-  updateDebug('download', 'trying');
-  try {
-    const blob = new Blob([icsText], {type:'text/calendar;charset=utf-8'});
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url; a.download = filename;
-    document.body.appendChild(a); a.click(); a.remove();
-    setTimeout(()=>URL.revokeObjectURL(url), 12_000);
-    updateDebug('download', 'ok (downloaded)');
-    return true;
-  } catch (e) {
-    updateDebug('download', 'failed');
-    alert('Could not pass the file to Calendar. You can download and open it manually.');
-    return false;
-  }
-}
-/**
- * Master opener with strategy selection.
- */
-async function openInCalendar(filename, icsText, strategy='auto'){
-  const S = strategy || 'auto';
-  const stepsByStrategy = {
-    'auto':      ['share','blob-self','data-self','blob-newtab','download'],
-    'share':     ['share','blob-self','data-self','blob-newtab','download'],
-    'blob-self': ['blob-self','data-self','blob-newtab','download'],
-    'data-self': ['data-self','blob-self','blob-newtab','download'],
-    'blob-newtab':['blob-newtab','blob-self','data-self','download'],
-    'download':  ['download']
-  };
-  const steps = stepsByStrategy[S] || stepsByStrategy['auto'];
 
-  for (const step of steps){
-    if (step === 'share' && !navigator.share) continue;
-    let ok = false;
-    switch(step){
-      case 'share':
-        if (canFileShareHeuristic()) ok = await openViaShare(filename, icsText);
-        else {
-          // Try anyway—some iOS builds succeed even if canShare says false
-          ok = await openViaShare(filename, icsText);
-        }
-        break;
-      case 'blob-self': ok = openViaBlobSelf(icsText); break;
-      case 'data-self': ok = openViaDataSelf(icsText); break;
-      case 'blob-newtab': ok = openViaBlobNewTab(icsText); break;
-      case 'download': ok = openViaDownload(filename, icsText); break;
-    }
-    if (ok) return;
-  }
-}
-/* -------------------- UI & parsing -------------------- */
-const fileInput = document.getElementById('file');
-const drop = document.getElementById('drop');
-const results = document.getElementById('results');
-const footer = document.getElementById('footer');
-const countEl = document.getElementById('count');
-const addSelectedBtn = document.getElementById('addSelected');
-const selectAllBtn = document.getElementById('selectAll');
-const selectNoneBtn = document.getElementById('selectNone');
-const strategySel = document.getElementById('strategy');
+/* ---------- UI / parsing ---------- */
+var fileInput = document.getElementById('file');
+var drop = document.getElementById('drop');
+var results = document.getElementById('results');
+var footer = document.getElementById('footer');
+var countEl = document.getElementById('count');
+var addSelectedBtn = document.getElementById('addSelected');
+var selectAllBtn = document.getElementById('selectAll');
+var selectNoneBtn = document.getElementById('selectNone');
 
-let allEvents = [];
-let vtimezones = [];
+var allEvents = [];
+var vtimezones = [];
 
 function render(){
   results.innerHTML = '';
-  results.classList.toggle('hidden', allEvents.length===0);
-  footer.classList.toggle('hidden', allEvents.length===0);
-  countEl.textContent = `${allEvents.length} event${allEvents.length!==1?'s':''}`;
-  allEvents.forEach((ev, idx)=>{
-    const card = document.createElement('div');
+  var empty = allEvents.length===0;
+  results.classList.toggle('hidden', empty);
+  footer.classList.toggle('hidden', empty);
+  countEl.textContent = allEvents.length + ' event' + (allEvents.length!==1?'s':'');
+  allEvents.forEach(function(ev, idx){
+    var card = document.createElement('div');
     card.className = 'card';
-    const row = document.createElement('div'); row.className='row';
-    const label = document.createElement('label'); label.className='select grow';
-    const cb = document.createElement('input'); cb.type='checkbox'; cb.checked=true; cb.dataset.idx = idx;
-    const title = document.createElement('span'); title.className='title'; title.textContent = ev.summary || '(No title)';
-    label.appendChild(cb); label.appendChild(title);
 
-    const singleBtn = document.createElement('button');
+    var row = document.createElement('div');
+    row.className='row';
+
+    var label = document.createElement('label');
+    label.className='select grow';
+
+    var cb = document.createElement('input');
+    cb.type='checkbox'; cb.checked=true; cb.dataset.idx = idx;
+
+    var title = document.createElement('span');
+    title.className='title';
+    title.textContent = ev.summary || '(No title)';
+
+    label.appendChild(cb);
+    label.appendChild(title);
+
+    var singleBtn = document.createElement('button');
     singleBtn.className='btn';
     singleBtn.textContent='Add to Apple Calendar';
-    singleBtn.onclick = ()=>{
-      const cal = buildCalendar([ev.raw], vtimezones);
-      openInCalendar(safeFile(`${ev.summary||'event'}.ics`), cal, strategySel.value);
+    singleBtn.onclick = function(){
+      var cal = buildCalendar([ev.raw], vtimezones);
+      openInCalendar(safeFile((ev.summary||'event') + '.ics'), cal);
     };
 
-    row.appendChild(label); row.appendChild(singleBtn);
-    const kvs = document.createElement('div'); kvs.className='kvs';
-    kvs.innerHTML = `
-      <span><span class="thin">Starts:</span> ${ev.startHuman||'(unknown)'}</span>
-      ${ev.end ? `<span><span class="thin">Ends:</span> ${ev.endHuman||''}</span>` : ''}
-      ${ev.loc ? `<span><span class="thin">Location:</span> ${escapeHtml(ev.loc)}</span>` : ''}
-    `;
+    row.appendChild(label);
+    row.appendChild(singleBtn);
+
+    var kvs = document.createElement('div');
+    kvs.className='kvs';
+    kvs.innerHTML =
+      '<span><span class="thin">Starts:</span> ' + (ev.startHuman||'(unknown)') + '</span>' +
+      (ev.end ? ' <span><span class="thin">Ends:</span> ' + (ev.endHuman||'') + '</span>' : '') +
+      (ev.loc ? ' <span><span class="thin">Location:</span> ' + escapeHtml(ev.loc) + '</span>' : '');
+
     card.appendChild(row);
     card.appendChild(kvs);
     results.appendChild(card);
   });
 }
-function safeFile(s){ return s.replace(/[\\/:*?"<>|]+/g,'_').slice(0,100); }
-function escapeHtml(s){ return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
 async function handleFile(file){
-  const text = await file.text();
-  const unfolded = unfoldICS(text);
+  var text = await file.text();
+  var unfolded = unfoldICS(text);
   vtimezones = extractBlocks(unfolded, 'VTIMEZONE');
-  const vevents = extractBlocks(unfolded, 'VEVENT');
-  allEvents = vevents.map(raw=>{
-    const summary = prop(raw,'SUMMARY');
-    const start = prop(raw,'DTSTART');
-    const end = prop(raw,'DTEND');
-    const paramsStart = propParams(raw,'DTSTART');
-    const paramsEnd = propParams(raw,'DTEND');
-    const loc = prop(raw,'LOCATION');
-    const startHuman = start ? humanDate(start, paramsStart) : '';
-    const endHuman   = end ? humanDate(end, paramsEnd) : '';
-    return { raw, summary, start, end, startHuman, endHuman, loc, paramsStart };
+  var vevents = extractBlocks(unfolded, 'VEVENT');
+  allEvents = vevents.map(function(raw){
+    var summary = prop(raw,'SUMMARY');
+    var start = prop(raw,'DTSTART');
+    var end = prop(raw,'DTEND');
+    var paramsStart = propParams(raw,'DTSTART');
+    var paramsEnd = propParams(raw,'DTEND');
+    var loc = prop(raw,'LOCATION');
+    var startHuman = start ? humanDate(start, paramsStart) : '';
+    var endHuman   = end ? humanDate(end, paramsEnd) : '';
+    return { raw: raw, summary: summary, start: start, end: end, startHuman: startHuman, endHuman: endHuman, loc: loc, paramsStart: paramsStart };
   });
   render();
 }
-/* -------------------- Wire up -------------------- */
-fileInput.addEventListener('change', e=>{
+
+/* ---------- wire up ---------- */
+fileInput.addEventListener('change', function(e){
   if (e.target.files && e.target.files[0]) handleFile(e.target.files[0]);
 });
-['dragenter','dragover'].forEach(evt=>{
-  drop.addEventListener(evt, e=>{ e.preventDefault(); e.stopPropagation(); drop.style.borderColor='#6ea8fe'; });
+['dragenter','dragover'].forEach(function(evt){
+  drop.addEventListener(evt, function(e){ e.preventDefault(); e.stopPropagation(); drop.style.borderColor='#6ea8fe'; });
 });
-['dragleave','drop'].forEach(evt=>{
-  drop.addEventListener(evt, e=>{ e.preventDefault(); e.stopPropagation(); drop.style.borderColor=''; });
+['dragleave','drop'].forEach(function(evt){
+  drop.addEventListener(evt, function(e){ e.preventDefault(); e.stopPropagation(); drop.style.borderColor=''; });
 });
-drop.addEventListener('drop', e=>{
-  const f = e.dataTransfer.files[0];
+drop.addEventListener('drop', function(e){
+  var f = e.dataTransfer.files[0];
   if (f) handleFile(f);
 });
-selectAllBtn.onclick = ()=>{
-  document.querySelectorAll('input[type="checkbox"]').forEach(cb=>cb.checked=true);
+selectAllBtn.onclick = function(){
+  Array.prototype.forEach.call(document.querySelectorAll('input[type="checkbox"]'), function(cb){ cb.checked=true; });
 };
-selectNoneBtn.onclick = ()=>{
-  document.querySelectorAll('input[type="checkbox"]').forEach(cb=>cb.checked=false);
+selectNoneBtn.onclick = function(){
+  Array.prototype.forEach.call(document.querySelectorAll('input[type="checkbox"]'), function(cb){ cb.checked=false; });
 };
-addSelectedBtn.onclick = async ()=>{
-  const cbs = Array.from(document.querySelectorAll('input[type="checkbox"]'));
-  const picks = cbs.filter(cb=>cb.checked).map(cb=>allEvents[Number(cb.dataset.idx)].raw);
+addSelectedBtn.onclick = function(){
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('input[type="checkbox"]'));
+  var picks = boxes.filter(function(cb){return cb.checked;}).map(function(cb){return allEvents[Number(cb.dataset.idx)].raw;});
   if (!picks.length){ alert('Select at least one event.'); return; }
-  const cal = buildCalendar(picks, vtimezones);
-  const firstChecked = cbs.find(cb=>cb.checked);
-  const firstIdx = firstChecked ? Number(firstChecked.dataset.idx) : -1;
-  const firstName = firstIdx>=0 ? (allEvents[firstIdx].summary || 'event') : 'events';
-  const filename = picks.length === 1 ? safeFile(`${firstName}.ics`) : 'selected-events.ics';
-  openInCalendar(filename, cal, strategySel.value);
+  var cal = buildCalendar(picks, vtimezones);
+  var firstChecked = boxes.find(function(cb){return cb.checked;});
+  var firstIdx = firstChecked ? Number(firstChecked.dataset.idx) : -1;
+  var firstName = firstIdx>=0 ? (allEvents[firstIdx].summary || 'event') : 'events';
+  var filename = picks.length === 1 ? safeFile(firstName + '.ics') : 'selected-events.ics';
+  openInCalendar(filename, cal);
 };
-// initial debug
-updateDebug('—', 'ready');
 </script>
 </body>
 </html>
