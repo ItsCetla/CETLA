@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>ICS -> Add to Calendar (Apple-friendly)</title>
+<title>ICS → Add to Calendar (Apple-friendly)</title>
 <style>
   :root { --bg:#0f1115; --card:#171a21; --text:#e8eef9; --muted:#a9b3c7; --accent:#6ea8fe; --line:#262b36; }
   html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
@@ -33,14 +33,14 @@
 </head>
 <body>
 <header>
-  <h1>ICS -> Add to Apple Calendar (no subscription)</h1>
+  <h1>ICS → Add to Apple Calendar (no subscription)</h1>
 </header>
 
 <div class="container">
   <div class="uploader" id="drop">
     <p class="muted">Drop an <b>.ics</b> file here or <label for="file" class="btn ghost">Choose File</label></p>
     <input id="file" type="file" accept=".ics,text/calendar" />
-    <div class="hint">After parsing, you get per-event Add to Apple Calendar buttons and a combined Add Selected that attempts to open Calendar directly. If your device does not support direct open, it will download.</div>
+    <div class="hint">After parsing, you’ll get per-event <i>Add to Apple Calendar</i> buttons and a combined <i>Add Selected</i> that tries to open Calendar directly (iPhone/iPad/macOS). No subscription.</div>
   </div>
 
   <div id="results" class="list hidden"></div>
@@ -50,227 +50,237 @@
       <div class="grow muted" id="count">0 events</div>
       <button class="btn ghost" id="selectAll">Select all</button>
       <button class="btn ghost" id="selectNone">Clear</button>
-      <button class="btn" id="addSelected">Add Selected (open Calendar)</button>
+      <button class="btn" id="addSelected">Add Selected (open in Calendar)</button>
     </div>
-    <div class="hint">On iPhone: Safari should present the share sheet; choose Calendar. If it opens as a file, tap Add All.</div>
+    <div class="hint">On iPhone: the share sheet should appear; choose <b>Calendar</b>. If it opens as a file, tap <b>Add All</b> and pick your calendar.</div>
   </div>
 </div>
 
 <script>
-/* ---------- ICS helpers ---------- */
+/* -------------------- ICS helpers -------------------- */
 function unfoldICS(text){
   return text.replace(/\r\n[ \t]/g, '').replace(/\n[ \t]/g, '');
 }
 function extractBlocks(text, name){
-  var re = new RegExp('BEGIN:' + name + '[\\s\\S]*?END:' + name, 'g');
+  const re = new RegExp(`BEGIN:${name}[\\s\\S]*?END:${name}`, 'g');
   return text.match(re) || [];
 }
 function prop(block, key){
-  var m = block.match(new RegExp('(?:^|\\n)' + key + '[^\\n]*:(.*)'));
+  const m = block.match(new RegExp(`(?:^|\\n)${key}[^\\n]*:(.*)`));
   return m ? m[1].trim() : '';
 }
 function humanDate(dtStr, params){
-  var tz = (params && params.TZID) ? ' (' + params.TZID + ')' : '';
-  if (/^\\d{8}$/.test(dtStr)) {
-    return dtStr.replace(/(\\d{4})(\\d{2})(\\d{2})/, '$1-$2-$3') + ' (all day)' + tz;
+  const tz = (params && params.TZID) ? ` (${params.TZID})` : '';
+  if (/^\d{8}$/.test(dtStr)) {
+    return dtStr.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3') + ' (all day)' + tz;
   }
-  var base = dtStr.replace('Z','');
-  var y = base.slice(0,4), mo=base.slice(4,6), d=base.slice(6,8),
-      h = base.slice(9,11)||'00', mi=base.slice(11,13)||'00';
-  return y + '-' + mo + '-' + d + ' ' + h + ':' + mi + (dtStr.endsWith('Z') ? ' UTC' : '') + tz;
+  const base = dtStr.replace('Z','');
+  const y = base.slice(0,4), mo=base.slice(4,6), d=base.slice(6,8),
+        h = base.slice(9,11)||'00', mi=base.slice(11,13)||'00';
+  return `${y}-${mo}-${d} ${h}:${mi}${dtStr.endsWith('Z') ? ' UTC' : ''}${tz}`;
 }
 function propParams(block, key){
-  var m = block.match(new RegExp('(?:^|\\n)' + key + '([^:\\n]*):'));
+  const m = block.match(new RegExp(`(?:^|\\n)${key}([^:\\n]*):`));
   if (!m) return {};
-  var seg = m[1];
-  var out = {};
-  seg.split(';').forEach(function(s){
+  const seg = m[1];
+  const out = {};
+  seg.split(';').forEach(s=>{
     if(!s) return;
-    var kv = s.split('=');
-    var k = kv[0], v = kv[1];
+    const [k,v] = s.split('=');
     if (k && v) out[k.trim()] = v.trim();
   });
   return out;
 }
 function buildCalendar(veventBlocks, vtimezones){
-  var head = [
+  const head = [
     'BEGIN:VCALENDAR',
     'PRODID:-//AddToCal Tool//EN',
     'VERSION:2.0',
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH'
   ];
-  var tail = ['END:VCALENDAR'];
-  return [head.join('\\n')].concat(vtimezones, veventBlocks, [tail.join('\\n')]).join('\\n');
+  const tail = ['END:VCALENDAR'];
+  return [head.join('\n'), ...vtimezones, ...veventBlocks, tail.join('\n')].join('\n');
 }
-function safeFile(s){
-  return s.replace(/[\\\\/:*?"<>|]+/g,'_').slice(0,100);
+/* -------------------- Platform detection & openers -------------------- */
+function isApple(){
+  return /iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent);
 }
-function escapeHtml(s){
-  return s.replace(/[&<>"']/g, function(c){
-    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
-  });
+function canFileShare(){
+  try {
+    const f = new File(['x'], 'x.txt', {type:'text/plain'});
+    return !!(navigator.canShare && navigator.canShare({files:[f]}));
+  } catch { return false; }
 }
 
-/* ---------- Calendar openers ---------- */
-function canTryShare(){
-  // permissive heuristic: if navigator.share exists and secure context, try it
-  return !!(navigator.share && window.isSecureContext);
-}
+/**
+ * Try to hand the ICS to Apple Calendar:
+ * 1) Web Share API with files (best on iOS/macOS Safari 16+)
+ * 2) Open Blob/Data URI (on iOS this often shows “Add All”)
+ * 3) Fallback to download
+ */
 async function openInCalendar(filename, icsText){
-  // 1) Try Web Share with files
-  if (canTryShare()) {
+  // Make a File (preferred for Web Share)
+  const icsFile = new File([icsText], filename, { type: 'text/calendar' });
+
+  // Path A: Share Sheet (Calendar is a target on iOS)
+  if (canFileShare()) {
     try {
-      var icsFile = new File([icsText], filename, { type: 'text/calendar' });
-      await navigator.share({ files: [icsFile], title: 'Add to Calendar', text: 'Import into Calendar' });
+      await navigator.share({
+        files: [icsFile],
+        title: 'Add to Calendar',
+        text: 'Import these event(s) into Calendar.'
+      });
       return;
-    } catch (e) {
-      // continue to fallback
+    } catch (err) {
+      // User canceled or share failed; continue to fallback
+      console.debug('Share failed, falling back:', err);
     }
   }
-  // 2) Try opening a Blob URL in the same tab (often triggers "Add All" on iOS)
+
+  // Path B: Open Blob/Data URL without download attribute (especially for iOS)
   try {
-    var blob = new Blob([icsText], {type:'text/calendar;charset=utf-8'});
-    var url  = URL.createObjectURL(blob);
-    var a = document.createElement('a');
+    const blob = new Blob([icsText], {type:'text/calendar;charset=utf-8'});
+    const url  = URL.createObjectURL(blob);
+
+    // On iOS/macOS Safari, opening the URL (no download attribute) usually triggers Calendar handling.
+    if (isApple()) {
+      // Prefer same-tab navigation for iOS handling
+      window.location.href = url;
+      // Revoke a bit later to give the handoff time
+      setTimeout(()=>URL.revokeObjectURL(url), 10_000);
+      return;
+    } else {
+      // Non-Apple: try opening in a new tab first
+      const w = window.open(url, '_blank', 'noopener,noreferrer');
+      if (w) {
+        setTimeout(()=>URL.revokeObjectURL(url), 10_000);
+        return;
+      }
+      URL.revokeObjectURL(url);
+    }
+  } catch (e) {
+    console.debug('Open Blob fallback failed:', e);
+  }
+
+  // Path C: Final fallback → download (some desktops then auto-open Calendar)
+  try {
+    const blob = new Blob([icsText], {type:'text/calendar;charset=utf-8'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
     a.href = url;
-    a.target = '_self';
-    a.rel = 'opener';
+    a.download = filename; // last resort
     document.body.appendChild(a);
     a.click();
     a.remove();
-    setTimeout(function(){ URL.revokeObjectURL(url); }, 10000);
-    return;
-  } catch (e2) {
-    // continue
-  }
-  // 3) Final fallback: download
-  try {
-    var blob2 = new Blob([icsText], {type:'text/calendar;charset=utf-8'});
-    var url2 = URL.createObjectURL(blob2);
-    var d = document.createElement('a');
-    d.href = url2;
-    d.download = filename;
-    document.body.appendChild(d);
-    d.click();
-    d.remove();
-    setTimeout(function(){ URL.revokeObjectURL(url2); }, 12000);
-  } catch (e3) {
-    alert('Could not pass the file to Calendar. Please download and open it manually.');
+    setTimeout(()=>URL.revokeObjectURL(url), 12_000);
+  } catch (e) {
+    alert('Could not hand the file to Calendar. Your browser may not support this. You can download and open it manually.');
   }
 }
 
-/* ---------- UI / parsing ---------- */
-var fileInput = document.getElementById('file');
-var drop = document.getElementById('drop');
-var results = document.getElementById('results');
-var footer = document.getElementById('footer');
-var countEl = document.getElementById('count');
-var addSelectedBtn = document.getElementById('addSelected');
-var selectAllBtn = document.getElementById('selectAll');
-var selectNoneBtn = document.getElementById('selectNone');
+/* -------------------- UI & parsing -------------------- */
+const fileInput = document.getElementById('file');
+const drop = document.getElementById('drop');
+const results = document.getElementById('results');
+const footer = document.getElementById('footer');
+const countEl = document.getElementById('count');
+const addSelectedBtn = document.getElementById('addSelected');
+const selectAllBtn = document.getElementById('selectAll');
+const selectNoneBtn = document.getElementById('selectNone');
 
-var allEvents = [];
-var vtimezones = [];
+let allEvents = [];
+let vtimezones = [];
 
 function render(){
   results.innerHTML = '';
-  var empty = allEvents.length===0;
-  results.classList.toggle('hidden', empty);
-  footer.classList.toggle('hidden', empty);
-  countEl.textContent = allEvents.length + ' event' + (allEvents.length!==1?'s':'');
-  allEvents.forEach(function(ev, idx){
-    var card = document.createElement('div');
+  results.classList.toggle('hidden', allEvents.length===0);
+  footer.classList.toggle('hidden', allEvents.length===0);
+  countEl.textContent = `${allEvents.length} event${allEvents.length!==1?'s':''}`;
+  allEvents.forEach((ev, idx)=>{
+    const card = document.createElement('div');
     card.className = 'card';
+    const row = document.createElement('div'); row.className='row';
+    const label = document.createElement('label'); label.className='select grow';
+    const cb = document.createElement('input'); cb.type='checkbox'; cb.checked=true; cb.dataset.idx = idx;
+    const title = document.createElement('span'); title.className='title'; title.textContent = ev.summary || '(No title)';
+    label.appendChild(cb); label.appendChild(title);
 
-    var row = document.createElement('div');
-    row.className='row';
-
-    var label = document.createElement('label');
-    label.className='select grow';
-
-    var cb = document.createElement('input');
-    cb.type='checkbox'; cb.checked=true; cb.dataset.idx = idx;
-
-    var title = document.createElement('span');
-    title.className='title';
-    title.textContent = ev.summary || '(No title)';
-
-    label.appendChild(cb);
-    label.appendChild(title);
-
-    var singleBtn = document.createElement('button');
+    const singleBtn = document.createElement('button');
     singleBtn.className='btn';
     singleBtn.textContent='Add to Apple Calendar';
-    singleBtn.onclick = function(){
-      var cal = buildCalendar([ev.raw], vtimezones);
-      openInCalendar(safeFile((ev.summary||'event') + '.ics'), cal);
+    singleBtn.onclick = ()=>{
+      const cal = buildCalendar([ev.raw], vtimezones);
+      openInCalendar(safeFile(`${ev.summary||'event'}.ics`), cal);
     };
 
-    row.appendChild(label);
-    row.appendChild(singleBtn);
-
-    var kvs = document.createElement('div');
-    kvs.className='kvs';
-    kvs.innerHTML =
-      '<span><span class="thin">Starts:</span> ' + (ev.startHuman||'(unknown)') + '</span>' +
-      (ev.end ? ' <span><span class="thin">Ends:</span> ' + (ev.endHuman||'') + '</span>' : '') +
-      (ev.loc ? ' <span><span class="thin">Location:</span> ' + escapeHtml(ev.loc) + '</span>' : '');
-
+    row.appendChild(label); row.appendChild(singleBtn);
+    const kvs = document.createElement('div'); kvs.className='kvs';
+    kvs.innerHTML = `
+      <span><span class="thin">Starts:</span> ${ev.startHuman||'(unknown)'}</span>
+      ${ev.end ? `<span><span class="thin">Ends:</span> ${ev.endHuman||''}</span>` : ''}
+      ${ev.loc ? `<span><span class="thin">Location:</span> ${escapeHtml(ev.loc)}</span>` : ''}
+    `;
     card.appendChild(row);
     card.appendChild(kvs);
     results.appendChild(card);
   });
 }
-
+function safeFile(s){
+  return s.replace(/[\\/:*?"<>|]+/g,'_').slice(0,100);
+}
+function escapeHtml(s){
+  return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
 async function handleFile(file){
-  var text = await file.text();
-  var unfolded = unfoldICS(text);
+  const text = await file.text();
+  const unfolded = unfoldICS(text);
   vtimezones = extractBlocks(unfolded, 'VTIMEZONE');
-  var vevents = extractBlocks(unfolded, 'VEVENT');
-  allEvents = vevents.map(function(raw){
-    var summary = prop(raw,'SUMMARY');
-    var start = prop(raw,'DTSTART');
-    var end = prop(raw,'DTEND');
-    var paramsStart = propParams(raw,'DTSTART');
-    var paramsEnd = propParams(raw,'DTEND');
-    var loc = prop(raw,'LOCATION');
-    var startHuman = start ? humanDate(start, paramsStart) : '';
-    var endHuman   = end ? humanDate(end, paramsEnd) : '';
-    return { raw: raw, summary: summary, start: start, end: end, startHuman: startHuman, endHuman: endHuman, loc: loc, paramsStart: paramsStart };
+  const vevents = extractBlocks(unfolded, 'VEVENT');
+  allEvents = vevents.map(raw=>{
+    const summary = prop(raw,'SUMMARY');
+    const start = prop(raw,'DTSTART');
+    const end = prop(raw,'DTEND');
+    const paramsStart = propParams(raw,'DTSTART');
+    const paramsEnd = propParams(raw,'DTEND');
+    const loc = prop(raw,'LOCATION');
+    const startHuman = start ? humanDate(start, paramsStart) : '';
+    const endHuman   = end ? humanDate(end, paramsEnd) : '';
+    return { raw, summary, start, end, startHuman, endHuman, loc, paramsStart };
   });
   render();
 }
 
-/* ---------- wire up ---------- */
-fileInput.addEventListener('change', function(e){
+/* -------------------- Wire up -------------------- */
+fileInput.addEventListener('change', e=>{
   if (e.target.files && e.target.files[0]) handleFile(e.target.files[0]);
 });
-['dragenter','dragover'].forEach(function(evt){
-  drop.addEventListener(evt, function(e){ e.preventDefault(); e.stopPropagation(); drop.style.borderColor='#6ea8fe'; });
+['dragenter','dragover'].forEach(evt=>{
+  drop.addEventListener(evt, e=>{ e.preventDefault(); e.stopPropagation(); drop.style.borderColor='#6ea8fe'; });
 });
-['dragleave','drop'].forEach(function(evt){
-  drop.addEventListener(evt, function(e){ e.preventDefault(); e.stopPropagation(); drop.style.borderColor=''; });
+['dragleave','drop'].forEach(evt=>{
+  drop.addEventListener(evt, e=>{ e.preventDefault(); e.stopPropagation(); drop.style.borderColor=''; });
 });
-drop.addEventListener('drop', function(e){
-  var f = e.dataTransfer.files[0];
+drop.addEventListener('drop', e=>{
+  const f = e.dataTransfer.files[0];
   if (f) handleFile(f);
 });
-selectAllBtn.onclick = function(){
-  Array.prototype.forEach.call(document.querySelectorAll('input[type="checkbox"]'), function(cb){ cb.checked=true; });
+selectAllBtn.onclick = ()=>{
+  document.querySelectorAll('input[type="checkbox"]').forEach(cb=>cb.checked=true);
 };
-selectNoneBtn.onclick = function(){
-  Array.prototype.forEach.call(document.querySelectorAll('input[type="checkbox"]'), function(cb){ cb.checked=false; });
+selectNoneBtn.onclick = ()=>{
+  document.querySelectorAll('input[type="checkbox"]').forEach(cb=>cb.checked=false);
 };
-addSelectedBtn.onclick = function(){
-  var boxes = Array.prototype.slice.call(document.querySelectorAll('input[type="checkbox"]'));
-  var picks = boxes.filter(function(cb){return cb.checked;}).map(function(cb){return allEvents[Number(cb.dataset.idx)].raw;});
+addSelectedBtn.onclick = async ()=>{
+  const picks = Array.from(document.querySelectorAll('input[type="checkbox"]'))
+    .filter(cb=>cb.checked)
+    .map(cb=>allEvents[Number(cb.dataset.idx)].raw);
   if (!picks.length){ alert('Select at least one event.'); return; }
-  var cal = buildCalendar(picks, vtimezones);
-  var firstChecked = boxes.find(function(cb){return cb.checked;});
-  var firstIdx = firstChecked ? Number(firstChecked.dataset.idx) : -1;
-  var firstName = firstIdx>=0 ? (allEvents[firstIdx].summary || 'event') : 'events';
-  var filename = picks.length === 1 ? safeFile(firstName + '.ics') : 'selected-events.ics';
+  const cal = buildCalendar(picks, vtimezones);
+  // Prefer a descriptive file name if there’s a single event title
+  const filename = picks.length === 1
+    ? safeFile(`${allEvents.find((_, i) => document.querySelectorAll('input[type="checkbox"]')[i].checked)?.summary || 'event'}.ics`)
+    : 'selected-events.ics';
   openInCalendar(filename, cal);
 };
 </script>
