@@ -29,6 +29,11 @@
   .hint{margin-top:10px;color:var(--muted);font-size:.9rem}
   .hidden{display:none !important}
   .thin{font-weight:500;}
+  .bar{position:fixed;left:0;right:0;bottom:0;background:#0b1220;border-top:1px solid var(--line);padding:6px 10px;color:#9fb2d4;font-size:12px;display:flex;gap:8px;align-items:center}
+  .bar .pill{border:1px solid var(--line);border-radius:999px;padding:4px 8px;background:#11182a}
+  .controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}
+  select{background:transparent;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:8px}
+  .note{font-size:12px;color:var(--muted);margin-left:auto}
 </style>
 </head>
 <body>
@@ -40,7 +45,19 @@
   <div class="uploader" id="drop">
     <p class="muted">Drop an <b>.ics</b> file here or <label for="file" class="btn ghost">Choose File</label></p>
     <input id="file" type="file" accept=".ics,text/calendar" />
-    <div class="hint">After parsing, you’ll get per-event <i>Add to Apple Calendar</i> buttons and a combined <i>Add Selected</i> that tries to open Calendar directly (iPhone/iPad/macOS). No subscription.</div>
+    <div class="hint">After parsing, you’ll get per-event <i>Add to Apple Calendar</i> buttons and a combined <i>Add Selected</i>. This page aggressively tries multiple open strategies so iOS hands off to Calendar.</div>
+    <div class="controls">
+      <label class="muted">Strategy:</label>
+      <select id="strategy">
+        <option value="auto" selected>Auto (best effort)</option>
+        <option value="share">Share API (files)</option>
+        <option value="blob-self">Open Blob (same tab)</option>
+        <option value="data-self">Open Data URL (same tab)</option>
+        <option value="blob-newtab">Open Blob (new tab)</option>
+        <option value="download">Download (fallback)</option>
+      </select>
+      <span class="note">Tip: On iPhone, use Safari and ensure the site is HTTPS; then pick <b>Calendar</b> from the share sheet.</span>
+    </div>
   </div>
 
   <div id="results" class="list hidden"></div>
@@ -50,10 +67,16 @@
       <div class="grow muted" id="count">0 events</div>
       <button class="btn ghost" id="selectAll">Select all</button>
       <button class="btn ghost" id="selectNone">Clear</button>
-      <button class="btn" id="addSelected">Add Selected (open in Calendar)</button>
+      <button class="btn" id="addSelected">Add Selected (open Calendar)</button>
     </div>
-    <div class="hint">On iPhone: the share sheet should appear; choose <b>Calendar</b>. If it opens as a file, tap <b>Add All</b> and pick your calendar.</div>
+    <div class="hint">On iPhone: you should get the share sheet → choose <b>Calendar</b>. If a file view appears, tap <b>Add All</b>.</div>
   </div>
+</div>
+
+<div class="bar" id="debugBar">
+  <span class="pill" id="ua"></span>
+  <span class="pill" id="path"></span>
+  <span class="pill" id="status"></span>
 </div>
 
 <script>
@@ -102,83 +125,140 @@ function buildCalendar(veventBlocks, vtimezones){
   const tail = ['END:VCALENDAR'];
   return [head.join('\n'), ...vtimezones, ...veventBlocks, tail.join('\n')].join('\n');
 }
-/* -------------------- Platform detection & openers -------------------- */
-function isApple(){
-  return /iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent);
-}
-function canFileShare(){
+/* -------------------- Platform detection -------------------- */
+function isApple(){ return /iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent); }
+function canFileShareHeuristic(){
+  // Try to be permissive: some Safari builds misreport canShare.
   try {
     const f = new File(['x'], 'x.txt', {type:'text/plain'});
-    return !!(navigator.canShare && navigator.canShare({files:[f]}));
-  } catch { return false; }
+    if (navigator.canShare && navigator.canShare({files:[f]})) return true;
+  } catch {}
+  // If on Apple device + secure context + has navigator.share, let’s try anyway.
+  return !!(navigator.share && isApple() && window.isSecureContext);
 }
-
-/**
- * Try to hand the ICS to Apple Calendar:
- * 1) Web Share API with files (best on iOS/macOS Safari 16+)
- * 2) Open Blob/Data URI (on iOS this often shows “Add All”)
- * 3) Fallback to download
- */
-async function openInCalendar(filename, icsText){
-  // Make a File (preferred for Web Share)
-  const icsFile = new File([icsText], filename, { type: 'text/calendar' });
-
-  // Path A: Share Sheet (Calendar is a target on iOS)
-  if (canFileShare()) {
-    try {
-      await navigator.share({
-        files: [icsFile],
-        title: 'Add to Calendar',
-        text: 'Import these event(s) into Calendar.'
-      });
-      return;
-    } catch (err) {
-      // User canceled or share failed; continue to fallback
-      console.debug('Share failed, falling back:', err);
-    }
+function updateDebug(path, status){
+  document.getElementById('ua').textContent = navigator.userAgent.slice(0,120);
+  document.getElementById('path').textContent = `Path: ${path}`;
+  document.getElementById('status').textContent = `Status: ${status}`;
+}
+/* -------------------- Openers -------------------- */
+async function openViaShare(filename, icsText){
+  const file = new File([icsText], filename, { type: 'text/calendar' });
+  updateDebug('share', 'trying');
+  // Even if canShare says false, try anyway on iOS
+  try {
+    await navigator.share({ files:[file], title:'Add to Calendar', text:'Import into Calendar' });
+    updateDebug('share', 'ok');
+    return true;
+  } catch (e) {
+    updateDebug('share', 'failed: ' + (e && e.name ? e.name : 'error'));
+    return false;
   }
-
-  // Path B: Open Blob/Data URL without download attribute (especially for iOS)
+}
+function openViaBlobSelf(icsText){
+  updateDebug('blob-self', 'trying');
   try {
     const blob = new Blob([icsText], {type:'text/calendar;charset=utf-8'});
-    const url  = URL.createObjectURL(blob);
-
-    // On iOS/macOS Safari, opening the URL (no download attribute) usually triggers Calendar handling.
-    if (isApple()) {
-      // Prefer same-tab navigation for iOS handling
-      window.location.href = url;
-      // Revoke a bit later to give the handoff time
-      setTimeout(()=>URL.revokeObjectURL(url), 10_000);
-      return;
-    } else {
-      // Non-Apple: try opening in a new tab first
-      const w = window.open(url, '_blank', 'noopener,noreferrer');
-      if (w) {
-        setTimeout(()=>URL.revokeObjectURL(url), 10_000);
-        return;
-      }
-      URL.revokeObjectURL(url);
-    }
+    const url = URL.createObjectURL(blob);
+    // Anchor click in same tab (_self) tends to behave better on iOS than assign sometimes
+    const a = document.createElement('a');
+    a.href = url;
+    a.rel = 'opener';
+    a.target = '_self';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url), 10_000);
+    updateDebug('blob-self', 'ok (navigated)');
+    return true;
   } catch (e) {
-    console.debug('Open Blob fallback failed:', e);
+    updateDebug('blob-self', 'failed');
+    return false;
   }
-
-  // Path C: Final fallback → download (some desktops then auto-open Calendar)
+}
+function openViaDataSelf(icsText){
+  updateDebug('data-self', 'trying');
+  try {
+    const uri = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(icsText);
+    // Use assign (stays in history)
+    window.location.assign(uri);
+    updateDebug('data-self', 'ok (navigated)');
+    return true;
+  } catch (e) {
+    updateDebug('data-self', 'failed');
+    return false;
+  }
+}
+function openViaBlobNewTab(icsText){
+  updateDebug('blob-newtab', 'trying');
+  try {
+    const blob = new Blob([icsText], {type:'text/calendar;charset=utf-8'});
+    const url = URL.createObjectURL(blob);
+    const w = window.open(url, '_blank', 'noopener,noreferrer');
+    if (w) {
+      setTimeout(()=>URL.revokeObjectURL(url), 10_000);
+      updateDebug('blob-newtab', 'ok (opened tab)');
+      return true;
+    }
+    URL.revokeObjectURL(url);
+    updateDebug('blob-newtab', 'blocked');
+    return false;
+  } catch (e) {
+    updateDebug('blob-newtab', 'failed');
+    return false;
+  }
+}
+function openViaDownload(filename, icsText){
+  updateDebug('download', 'trying');
   try {
     const blob = new Blob([icsText], {type:'text/calendar;charset=utf-8'});
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = url;
-    a.download = filename; // last resort
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
+    a.href = url; a.download = filename;
+    document.body.appendChild(a); a.click(); a.remove();
     setTimeout(()=>URL.revokeObjectURL(url), 12_000);
+    updateDebug('download', 'ok (downloaded)');
+    return true;
   } catch (e) {
-    alert('Could not hand the file to Calendar. Your browser may not support this. You can download and open it manually.');
+    updateDebug('download', 'failed');
+    alert('Could not pass the file to Calendar. You can download and open it manually.');
+    return false;
   }
 }
+/**
+ * Master opener with strategy selection.
+ */
+async function openInCalendar(filename, icsText, strategy='auto'){
+  const S = strategy || 'auto';
+  const stepsByStrategy = {
+    'auto':      ['share','blob-self','data-self','blob-newtab','download'],
+    'share':     ['share','blob-self','data-self','blob-newtab','download'],
+    'blob-self': ['blob-self','data-self','blob-newtab','download'],
+    'data-self': ['data-self','blob-self','blob-newtab','download'],
+    'blob-newtab':['blob-newtab','blob-self','data-self','download'],
+    'download':  ['download']
+  };
+  const steps = stepsByStrategy[S] || stepsByStrategy['auto'];
 
+  for (const step of steps){
+    if (step === 'share' && !navigator.share) continue;
+    let ok = false;
+    switch(step){
+      case 'share':
+        if (canFileShareHeuristic()) ok = await openViaShare(filename, icsText);
+        else {
+          // Try anyway—some iOS builds succeed even if canShare says false
+          ok = await openViaShare(filename, icsText);
+        }
+        break;
+      case 'blob-self': ok = openViaBlobSelf(icsText); break;
+      case 'data-self': ok = openViaDataSelf(icsText); break;
+      case 'blob-newtab': ok = openViaBlobNewTab(icsText); break;
+      case 'download': ok = openViaDownload(filename, icsText); break;
+    }
+    if (ok) return;
+  }
+}
 /* -------------------- UI & parsing -------------------- */
 const fileInput = document.getElementById('file');
 const drop = document.getElementById('drop');
@@ -188,6 +268,7 @@ const countEl = document.getElementById('count');
 const addSelectedBtn = document.getElementById('addSelected');
 const selectAllBtn = document.getElementById('selectAll');
 const selectNoneBtn = document.getElementById('selectNone');
+const strategySel = document.getElementById('strategy');
 
 let allEvents = [];
 let vtimezones = [];
@@ -211,7 +292,7 @@ function render(){
     singleBtn.textContent='Add to Apple Calendar';
     singleBtn.onclick = ()=>{
       const cal = buildCalendar([ev.raw], vtimezones);
-      openInCalendar(safeFile(`${ev.summary||'event'}.ics`), cal);
+      openInCalendar(safeFile(`${ev.summary||'event'}.ics`), cal, strategySel.value);
     };
 
     row.appendChild(label); row.appendChild(singleBtn);
@@ -226,12 +307,8 @@ function render(){
     results.appendChild(card);
   });
 }
-function safeFile(s){
-  return s.replace(/[\\/:*?"<>|]+/g,'_').slice(0,100);
-}
-function escapeHtml(s){
-  return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}
+function safeFile(s){ return s.replace(/[\\/:*?"<>|]+/g,'_').slice(0,100); }
+function escapeHtml(s){ return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 async function handleFile(file){
   const text = await file.text();
   const unfolded = unfoldICS(text);
@@ -250,7 +327,6 @@ async function handleFile(file){
   });
   render();
 }
-
 /* -------------------- Wire up -------------------- */
 fileInput.addEventListener('change', e=>{
   if (e.target.files && e.target.files[0]) handleFile(e.target.files[0]);
@@ -272,17 +348,18 @@ selectNoneBtn.onclick = ()=>{
   document.querySelectorAll('input[type="checkbox"]').forEach(cb=>cb.checked=false);
 };
 addSelectedBtn.onclick = async ()=>{
-  const picks = Array.from(document.querySelectorAll('input[type="checkbox"]'))
-    .filter(cb=>cb.checked)
-    .map(cb=>allEvents[Number(cb.dataset.idx)].raw);
+  const cbs = Array.from(document.querySelectorAll('input[type="checkbox"]'));
+  const picks = cbs.filter(cb=>cb.checked).map(cb=>allEvents[Number(cb.dataset.idx)].raw);
   if (!picks.length){ alert('Select at least one event.'); return; }
   const cal = buildCalendar(picks, vtimezones);
-  // Prefer a descriptive file name if there’s a single event title
-  const filename = picks.length === 1
-    ? safeFile(`${allEvents.find((_, i) => document.querySelectorAll('input[type="checkbox"]')[i].checked)?.summary || 'event'}.ics`)
-    : 'selected-events.ics';
-  openInCalendar(filename, cal);
+  const firstChecked = cbs.find(cb=>cb.checked);
+  const firstIdx = firstChecked ? Number(firstChecked.dataset.idx) : -1;
+  const firstName = firstIdx>=0 ? (allEvents[firstIdx].summary || 'event') : 'events';
+  const filename = picks.length === 1 ? safeFile(`${firstName}.ics`) : 'selected-events.ics';
+  openInCalendar(filename, cal, strategySel.value);
 };
+// initial debug
+updateDebug('—', 'ready');
 </script>
 </body>
 </html>
