@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ICS → Add to Calendar (Apple-friendly)</title>
+<style>
+  :root { --bg:#0f1115; --card:#171a21; --text:#e8eef9; --muted:#a9b3c7; --accent:#6ea8fe; --line:#262b36; }
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  header{padding:20px 16px;border-bottom:1px solid var(--line)}
+  h1{margin:0;font-size:1.1rem}
+  .container{max-width:900px;margin:0 auto;padding:20px 16px}
+  .uploader{border:2px dashed var(--line);padding:18px;border-radius:10px;text-align:center;color:var(--muted)}
+  .uploader input{display:none}
+  .btn{display:inline-block;background:var(--accent);color:#081226;font-weight:600;padding:10px 14px;border-radius:8px;border:none;cursor:pointer}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+  .ghost{background:transparent;border:1px solid var(--line);color:var(--text)}
+  .list{margin-top:20px;display:grid;gap:12px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .grow{flex:1}
+  .muted{color:var(--muted);font-size:.9rem}
+  .title{font-weight:700}
+  .kvs{margin-top:6px}
+  .kvs span{display:inline-block;margin-right:10px;font-size:.9rem;color:var(--muted)}
+  .footer-actions{position:sticky;bottom:0;background:linear-gradient(to top, var(--bg), rgba(15,17,21,.7));padding:12px;border-top:1px solid var(--line)}
+  label.select{display:flex;align-items:center;gap:10px;cursor:pointer}
+  input[type="checkbox"]{width:18px;height:18px}
+  .hint{margin-top:10px;color:var(--muted);font-size:.9rem}
+  .hidden{display:none !important}
+  .thin{font-weight:500;}
+</style>
+</head>
+<body>
+<header>
+  <h1>ICS → Add to Apple Calendar (no subscription)</h1>
+</header>
+
+<div class="container">
+  <div class="uploader" id="drop">
+    <p class="muted">Drop an <b>.ics</b> file here or <label for="file" class="btn ghost">Choose File</label></p>
+    <input id="file" type="file" accept=".ics,text/calendar" />
+    <div class="hint">After parsing, you’ll get per-event <i>Add to Apple Calendar</i> buttons and a combined <i>Add Selected</i> file that iPhone opens with <b>Add All</b>.</div>
+  </div>
+
+  <div id="results" class="list hidden"></div>
+
+  <div id="footer" class="footer-actions hidden">
+    <div class="row">
+      <div class="grow muted" id="count">0 events</div>
+      <button class="btn ghost" id="selectAll">Select all</button>
+      <button class="btn ghost" id="selectNone">Clear</button>
+      <button class="btn" id="addSelected">Add Selected (one .ics)</button>
+    </div>
+    <div class="hint">On iPhone: when the file opens, tap <b>Add All</b> and choose your existing calendar.</div>
+  </div>
+</div>
+
+<script>
+function unfoldICS(text){
+  return text.replace(/\r\n[ \t]/g, '').replace(/\n[ \t]/g, '');
+}
+function extractBlocks(text, name){
+  const re = new RegExp(`BEGIN:${name}[\\s\\S]*?END:${name}`, 'g');
+  return text.match(re) || [];
+}
+function prop(block, key){
+  const m = block.match(new RegExp(`(?:^|\\n)${key}[^\\n]*:(.*)`));
+  return m ? m[1].trim() : '';
+}
+function humanDate(dtStr, params){
+  const tz = (params && params.TZID) ? ` (${params.TZID})` : '';
+  if (/^\d{8}$/.test(dtStr)) {
+    return dtStr.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3') + ' (all day)' + tz;
+  }
+  const base = dtStr.replace('Z','');
+  const y = base.slice(0,4), mo=base.slice(4,6), d=base.slice(6,8),
+        h = base.slice(9,11)||'00', mi=base.slice(11,13)||'00';
+  return `${y}-${mo}-${d} ${h}:${mi}${dtStr.endsWith('Z') ? ' UTC' : ''}${tz}`;
+}
+function propParams(block, key){
+  const m = block.match(new RegExp(`(?:^|\\n)${key}([^:\\n]*):`));
+  if (!m) return {};
+  const seg = m[1];
+  const out = {};
+  seg.split(';').forEach(s=>{
+    if(!s) return;
+    const [k,v] = s.split('=');
+    if (k && v) out[k.trim()] = v.trim();
+  });
+  return out;
+}
+function buildCalendar(veventBlocks, vtimezones){
+  const head = [
+    'BEGIN:VCALENDAR',
+    'PRODID:-//AddToCal Tool//EN',
+    'VERSION:2.0',
+    'CALSCALE:GREGORIAN',
+    'METHOD:PUBLISH'
+  ];
+  const tail = ['END:VCALENDAR'];
+  return [head.join('\n'), ...vtimezones, ...veventBlocks, tail.join('\n')].join('\n');
+}
+function downloadICS(filename, content){
+  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const dataUri = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(content);
+  if (isIOS) {
+    const a = document.createElement('a');
+    a.href = dataUri;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    return;
+  }
+  const blob = new Blob([content], {type:'text/calendar;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url), 1200);
+}
+const fileInput = document.getElementById('file');
+const drop = document.getElementById('drop');
+const results = document.getElementById('results');
+const footer = document.getElementById('footer');
+const countEl = document.getElementById('count');
+const addSelectedBtn = document.getElementById('addSelected');
+const selectAllBtn = document.getElementById('selectAll');
+const selectNoneBtn = document.getElementById('selectNone');
+
+let allEvents = [];
+let vtimezones = [];
+
+function render(){
+  results.innerHTML = '';
+  results.classList.toggle('hidden', allEvents.length===0);
+  footer.classList.toggle('hidden', allEvents.length===0);
+  countEl.textContent = `${allEvents.length} event${allEvents.length!==1?'s':''}`;
+  allEvents.forEach((ev, idx)=>{
+    const card = document.createElement('div');
+    card.className = 'card';
+    const row = document.createElement('div'); row.className='row';
+    const label = document.createElement('label'); label.className='select grow';
+    const cb = document.createElement('input'); cb.type='checkbox'; cb.checked=true; cb.dataset.idx = idx;
+    const title = document.createElement('span'); title.className='title'; title.textContent = ev.summary || '(No title)';
+    label.appendChild(cb); label.appendChild(title);
+    const singleBtn = document.createElement('button');
+    singleBtn.className='btn';
+    singleBtn.textContent='Add to Apple Calendar';
+    singleBtn.onclick = ()=>{
+      const cal = buildCalendar([ev.raw], vtimezones);
+      downloadICS(safeFile(`${ev.summary||'event'}.ics`), cal);
+    };
+    row.appendChild(label); row.appendChild(singleBtn);
+    const kvs = document.createElement('div'); kvs.className='kvs';
+    kvs.innerHTML = `
+      <span><span class="thin">Starts:</span> ${ev.startHuman||'(unknown)'}</span>
+      ${ev.end ? `<span><span class="thin">Ends:</span> ${ev.endHuman||''}</span>` : ''}
+      ${ev.loc ? `<span><span class="thin">Location:</span> ${escapeHtml(ev.loc)}</span>` : ''}
+    `;
+    card.appendChild(row);
+    card.appendChild(kvs);
+    results.appendChild(card);
+  });
+}
+function safeFile(s){
+  return s.replace(/[\\/:*?"<>|]+/g,'_').slice(0,100);
+}
+function escapeHtml(s){
+  return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+async function handleFile(file){
+  const text = await file.text();
+  const unfolded = unfoldICS(text);
+  vtimezones = extractBlocks(unfolded, 'VTIMEZONE');
+  const vevents = extractBlocks(unfolded, 'VEVENT');
+  allEvents = vevents.map(raw=>{
+    const summary = prop(raw,'SUMMARY');
+    const start = prop(raw,'DTSTART');
+    const end = prop(raw,'DTEND');
+    const paramsStart = propParams(raw,'DTSTART');
+    const paramsEnd = propParams(raw,'DTEND');
+    const loc = prop(raw,'LOCATION');
+    const startHuman = start ? humanDate(start, paramsStart) : '';
+    const endHuman   = end ? humanDate(end, paramsEnd) : '';
+    return { raw, summary, start, end, startHuman, endHuman, loc, paramsStart };
+  });
+  render();
+}
+fileInput.addEventListener('change', e=>{
+  if (e.target.files && e.target.files[0]) handleFile(e.target.files[0]);
+});
+['dragenter','dragover'].forEach(evt=>{
+  drop.addEventListener(evt, e=>{ e.preventDefault(); e.stopPropagation(); drop.style.borderColor='#6ea8fe'; });
+});
+['dragleave','drop'].forEach(evt=>{
+  drop.addEventListener(evt, e=>{ e.preventDefault(); e.stopPropagation(); drop.style.borderColor=''; });
+});
+drop.addEventListener('drop', e=>{
+  const f = e.dataTransfer.files[0];
+  if (f) handleFile(f);
+});
+selectAllBtn.onclick = ()=>{
+  document.querySelectorAll('input[type="checkbox"]').forEach(cb=>cb.checked=true);
+};
+selectNoneBtn.onclick = ()=>{
+  document.querySelectorAll('input[type="checkbox"]').forEach(cb=>cb.checked=false);
+};
+addSelectedBtn.onclick = ()=>{
+  const picks = Array.from(document.querySelectorAll('input[type="checkbox"]'))
+    .filter(cb=>cb.checked)
+    .map(cb=>allEvents[Number(cb.dataset.idx)].raw);
+  if (!picks.length){ alert('Select at least one event.'); return; }
+  const cal = buildCalendar(picks, vtimezones);
+  downloadICS('selected-events.ics', cal);
+};
+</script>
+</body>
+</html>
