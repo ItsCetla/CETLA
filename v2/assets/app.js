@@ -129,6 +129,23 @@ function attachUIHandlers() {
   tabButtons.forEach(button => {
     button.addEventListener('click', () => changeTab(button));
   });
+
+  document.querySelectorAll('.stat-card--clickable').forEach(card => {
+    card.addEventListener('click', () => {
+      const scrollTarget = card.dataset.scrollTo;
+      if (scrollTarget) {
+        const element = document.getElementById(scrollTarget);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+
+          const driversTabButton = document.querySelector('.tabs__button[data-tab="drivers"]');
+          if (driversTabButton) {
+            changeTab(driversTabButton);
+          }
+        }
+      }
+    });
+  });
 }
 
 function closeNav() {

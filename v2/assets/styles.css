@@ -734,6 +734,18 @@ button:focus-visible {
   gap: 1.1rem;
 }
 
+.stat-card--clickable {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.stat-card--clickable:hover {
+  border-color: var(--color-highlight);
+  background: rgba(11, 18, 32, 0.95);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
 .stat-card h3 {
   margin: 0;
   font-size: 1.15rem;
