@@ -5,7 +5,8 @@ const state = {
   seasonPills: [],
   driverById: new Map(),
   driverByName: new Map(),
-  teamById: new Map()
+  teamById: new Map(),
+  latestSeasonIndex: 0
 };
 
 const els = {
@@ -23,6 +24,9 @@ const els = {
   heroSeasonRounds: document.getElementById('hero-season-rounds'),
   heroSeasonLeader: document.getElementById('hero-season-leader'),
   heroTeamLeader: document.getElementById('hero-team-leader'),
+  heroRaceTitle: document.getElementById('hero-race-title'),
+  heroRaceMeta: document.getElementById('hero-race-meta'),
+  heroPodium: document.getElementById('hero-podium'),
   heroCycle: document.getElementById('hero-cycle'),
   heroCta: document.getElementById('cta-season'),
   driverTableBody: document.getElementById('driver-table-body'),
@@ -78,7 +82,8 @@ async function init() {
   }
 
   populateSeasonControls();
-  setSeason(0);
+  const initialIndex = Number.isInteger(state.latestSeasonIndex) ? state.latestSeasonIndex : 0;
+  setSeason(initialIndex);
 }
 
 function attachUIHandlers() {
@@ -138,6 +143,7 @@ async function loadData() {
     if (!response.ok) throw new Error(`Failed to load seasons.json (${response.status})`);
     const payload = await response.json();
     state.seasons = Array.isArray(payload.seasons) ? payload.seasons : [];
+    state.latestSeasonIndex = getLatestSeasonIndex();
   } catch (error) {
     console.error('Unable to load season data:', error);
   }
@@ -172,11 +178,21 @@ function populateSeasonControls() {
   els.seasonPills.appendChild(fragmentPills);
 }
 
+function getLatestSeasonIndex() {
+  if (!state.seasons.length) return 0;
+  return state.seasons.reduce((latestIndex, season, index) => {
+    const latestSeason = state.seasons[latestIndex];
+    if (!latestSeason) return index;
+    if ((season.year ?? 0) > (latestSeason.year ?? 0)) return index;
+    if ((season.year ?? 0) === (latestSeason.year ?? 0) && index > latestIndex) return index;
+    return latestIndex;
+  }, 0);
+}
+
 function setSeason(index) {
   const season = state.seasons[index];
   if (!season) return;
   state.seasonIndex = index;
-  state.raceIndex = 0;
   state.driverById = new Map();
   state.driverByName = new Map();
   state.teamById = new Map();
@@ -193,6 +209,7 @@ function setSeason(index) {
     state.teamById.set(team.id, team);
   });
 
+  state.raceIndex = getLatestRaceIndex(season);
   highlightSeasonControls(season.id);
   renderSeason(season);
 }
@@ -217,18 +234,49 @@ function renderSeason(season) {
 }
 
 function renderHero(season) {
-  const { heroSeasonTitle, heroSeasonLabel, heroSeasonRounds, heroSeasonLeader, heroTeamLeader } = els;
-  heroSeasonTitle.textContent = `${season.label} • ${season.year}`;
-  heroSeasonLabel.textContent = season.label;
-  heroSeasonRounds.textContent = `${season.races?.length ?? 0} races`;
+  const {
+    heroSeasonTitle,
+    heroSeasonLabel,
+    heroSeasonRounds,
+    heroSeasonLeader,
+    heroTeamLeader,
+    heroRaceTitle,
+    heroRaceMeta,
+    heroPodium
+  } = els;
+
+  const rounds = season.races?.length ?? 0;
+  const titleParts = [];
+  if (season.label) titleParts.push(season.label);
+  if (season.year) titleParts.push(season.year);
+  heroSeasonTitle.textContent = titleParts.length ? titleParts.join(' • ') : 'Season Snapshot';
+
+  const seasonLabelParts = [];
+  if (season.year) seasonLabelParts.push(season.year);
+  if (season.label) seasonLabelParts.push(season.label);
+  heroSeasonLabel.textContent = seasonLabelParts.length ? seasonLabelParts.join(' · ') : '—';
+  heroSeasonRounds.textContent = rounds === 1 ? '1 race' : `${rounds} races`;
 
   const sortedDrivers = [...(season.drivers ?? [])].sort((a, b) => (b.points ?? 0) - (a.points ?? 0));
   const topDriver = sortedDrivers[0];
-  heroSeasonLeader.textContent = topDriver ? `${topDriver.name} · ${topDriver.points} pts` : '—';
+  heroSeasonLeader.textContent = topDriver ? `${topDriver.name} · ${topDriver.points ?? 0} pts` : '—';
 
   const teams = computeTeamStandings(season);
   const topTeam = teams[0];
-  heroTeamLeader.textContent = topTeam ? `${topTeam.name} · ${topTeam.points} pts` : '—';
+  heroTeamLeader.textContent = topTeam ? `${topTeam.name} · ${topTeam.points ?? 0} pts` : '—';
+
+  const latestRace = getLatestRace(season);
+  if (!latestRace) {
+    heroRaceTitle.textContent = 'Race Overview';
+    heroRaceMeta.textContent = 'No races recorded yet.';
+    heroPodium.innerHTML = '<p class="hero-podium__empty">Add a race to see the latest podium.</p>';
+    return;
+  }
+
+  const raceLabel = deriveRaceLabel(latestRace) || latestRace.name || 'Race';
+  heroRaceTitle.textContent = raceLabel;
+  heroRaceMeta.textContent = formatRaceMeta(latestRace);
+  heroPodium.innerHTML = renderPodium(latestRace);
 }
 
 function renderSeasonCard(season) {
@@ -260,14 +308,14 @@ function renderDriverStandings(season) {
       const color = sanitizeColor(driver.color);
       return `
         <tr>
-          <td>
+          <td data-label="Driver">
             <div class="driver-cell">
               <span class="driver-color" style="background:${color};"></span>
               <span>${driver.name}</span>
             </div>
           </td>
-          <td>${teamName}</td>
-          <td class="column--points">${driver.points ?? 0}</td>
+          <td data-label="Team">${teamName}</td>
+          <td class="column--points" data-label="Points">${driver.points ?? 0}</td>
         </tr>
       `;
     })
@@ -286,12 +334,12 @@ function renderTeamStandings(season) {
       const driverList = team.drivers.map(driver => `<span class="team-chip">${driver.name}</span>`).join('');
       return `
         <tr>
-          <td>
+          <td data-label="Team">
             <span class="team-color" style="background:${sanitizeColor(team.color)};"></span>
             ${team.name}
           </td>
-          <td><div class="team-driver-list">${driverList}</div></td>
-          <td class="column--points">${team.points}</td>
+          <td data-label="Drivers"><div class="team-driver-list">${driverList}</div></td>
+          <td class="column--points" data-label="Points">${team.points}</td>
         </tr>
       `;
     })
@@ -327,6 +375,81 @@ function computeTeamStandings(season) {
     .sort((a, b) => b.points - a.points);
 }
 
+function getLatestRace(season) {
+  const races = season.races ?? [];
+  if (!races.length) return null;
+
+  const racesWithDates = races.filter(race => race?.schedule?.date);
+  if (racesWithDates.length) {
+    return racesWithDates
+      .slice()
+      .sort((a, b) => new Date(a.schedule.date) - new Date(b.schedule.date))
+      .at(-1);
+  }
+
+  return races.at(-1) ?? null;
+}
+
+function getLatestRaceIndex(season) {
+  const races = season.races ?? [];
+  if (!races.length) return 0;
+  const latestRace = getLatestRace(season);
+  if (!latestRace) return 0;
+
+  const matchIndex = races.findIndex(race => race === latestRace || (race.id && latestRace.id && race.id === latestRace.id));
+  return matchIndex >= 0 ? matchIndex : Math.max(races.length - 1, 0);
+}
+
+function formatRaceMeta(race) {
+  const dateText = race.schedule?.date
+    ? intlDate.format(new Date(race.schedule.date))
+    : (race.settings?.notes ?? 'Date TBD');
+  const venue = race.schedule?.venue ?? 'Venue TBD';
+  return `${dateText} • ${venue}`;
+}
+
+function renderPodium(race) {
+  const podiumResults = (race.results ?? [])
+    .filter(result => typeof result.position === 'number')
+    .sort((a, b) => (a.position ?? 0) - (b.position ?? 0))
+    .slice(0, 3);
+
+  if (!podiumResults.length) {
+    return '<p class="hero-podium__empty">Add finishing positions to display the podium.</p>';
+  }
+
+  const podiumClasses = ['first', 'second', 'third'];
+  return podiumResults.map((result, index) => {
+    const rawName = result.driver ?? `Driver ${result.position ?? index + 1}`;
+    const driverRecord = result.driverId
+      ? state.driverById.get(result.driverId)
+      : state.driverByName.get(rawName.toLowerCase());
+    const color = sanitizeColor(driverRecord?.color);
+    const points = typeof result.points === 'number' ? `${result.points} pts` : '— pts';
+    const entrant = result.entrant && result.entrant !== rawName
+      ? `<span class="podium__entrant">Entrant: ${result.entrant}</span>`
+      : '';
+    const guest = result.isGuest
+      ? `<span class="podium__entrant">Guest driver</span>`
+      : '';
+
+    return `
+      <div class="podium podium--${podiumClasses[index] ?? 'other'}">
+        <span class="podium__rank">#${result.position ?? index + 1}</span>
+        <div class="podium__meta">
+          <span class="podium__name">
+            <span class="podium__dot" style="background:${color};"></span>
+            ${rawName}
+          </span>
+          <span class="podium__points">${points}</span>
+          ${entrant}
+          ${guest}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
 function populateRaceSelect(season) {
   if (!els.raceSelect) return;
   els.raceSelect.innerHTML = '';
@@ -339,7 +462,9 @@ function populateRaceSelect(season) {
   });
   els.raceSelect.disabled = races.length === 0;
   if (races.length > 0) {
-    els.raceSelect.value = '0';
+    const selectedIndex = Math.min(state.raceIndex, races.length - 1);
+    state.raceIndex = selectedIndex;
+    els.raceSelect.value = selectedIndex.toString();
   }
 }
 
@@ -403,8 +528,8 @@ function renderRaceResults(race) {
     const note = noteParts.length ? `<span class="driver-note">${noteParts.join(' • ')}</span>` : '';
     return `
       <tr>
-        <td>${result.position ?? '—'}</td>
-        <td>
+        <td data-label="Pos">${result.position ?? '—'}</td>
+        <td data-label="Driver">
           <div class="driver-cell">
             <span class="driver-color" style="background:${color};"></span>
             <div>
@@ -413,9 +538,9 @@ function renderRaceResults(race) {
             </div>
           </div>
         </td>
-        <td>${result.points ?? '—'}</td>
-        <td class="column--hide-sm">${result.car ?? '—'}</td>
-        <td class="column--hide-sm">${result.fastestLap ?? '—'}</td>
+        <td data-label="Points">${result.points ?? '—'}</td>
+        <td class="column--hide-sm" data-label="Car">${result.car ?? '—'}</td>
+        <td class="column--hide-sm" data-label="Fastest Lap">${result.fastestLap ?? '—'}</td>
       </tr>
     `;
   }).join('');

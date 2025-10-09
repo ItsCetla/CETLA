@@ -79,11 +79,11 @@ v2/
 
 ### Key Screens
 
-1. **Home Hero** – quick season picker, schedule CTA, responsive headline.
+1. **Hero Overview** – surfaces the latest season snapshot plus the most recent race podium (with track/date callouts) alongside quick navigation.
 2. **Season Overview** – tabs for Drivers / Teams / Race Results / Stats, driven by the same data payload.
 3. **Race Drawer** – select a race to view results, settings, and track artwork.
 
-Navigation collapses into a hamburger menu for devices `< 768px`, while cards/tables stack vertically using CSS Grid to keep standings legible.
+Navigation collapses into a hamburger menu for devices `< 768px`, while cards/tables stack vertically using CSS Grid—no horizontal swiping needed on phones.
 
 ## Next Steps
 

@@ -215,49 +215,155 @@ button:focus-visible {
 }
 
 .hero__panel {
-  display: flex;
-  align-items: stretch;
+  display: grid;
+  gap: 1.5rem;
 }
 
-.hero__card {
+.hero-card {
   background: var(--color-panel);
   border-radius: var(--radius-lg);
   padding: 2rem;
   border: 1px solid var(--color-border);
   box-shadow: var(--shadow-lg);
-  min-width: 260px;
   display: grid;
   gap: 1.5rem;
+  min-width: 260px;
 }
 
-.hero__card-title {
+.hero-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.hero-card__title {
   margin: 0;
   font-size: 1.2rem;
   font-weight: 600;
 }
 
-.hero__metrics {
+.hero-metrics {
   display: grid;
   gap: 1rem;
   margin: 0;
 }
 
-.hero__metrics div {
+.hero-metrics div {
   display: grid;
   gap: 0.2rem;
 }
 
-.hero__metrics dt {
+.hero-metrics dt {
   color: var(--color-muted);
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
 }
 
-.hero__metrics dd {
+.hero-metrics dd {
   margin: 0;
   font-size: 1rem;
   font-weight: 600;
+}
+
+.hero-card--race {
+  padding-bottom: 2.5rem;
+}
+
+.hero-race-meta {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+.hero-podium {
+  display: grid;
+  gap: 1rem;
+}
+
+.hero-podium__empty {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+.podium {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem 1.1rem;
+  border-radius: var(--radius-md);
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid var(--color-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.podium::after {
+  content: '';
+  position: absolute;
+  inset: auto auto -4px -4px;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.25), transparent 70%);
+  transform: rotate(25deg);
+  pointer-events: none;
+}
+
+.podium__rank {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: rgba(248, 250, 252, 0.85);
+}
+
+.podium__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.podium__name {
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.podium__dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid rgba(15, 23, 42, 0.45);
+}
+
+.podium__points {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+.podium__entrant {
+  display: block;
+  font-size: 0.76rem;
+  color: rgba(148, 163, 184, 0.75);
+}
+
+.podium--first {
+  border-color: rgba(250, 204, 21, 0.5);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.22), rgba(251, 191, 36, 0.18));
+  transform: translateY(-6px);
+}
+
+.podium--second {
+  border-color: rgba(148, 163, 184, 0.4);
+  transform: translateY(2px);
+}
+
+.podium--third {
+  border-color: rgba(249, 115, 22, 0.35);
+  transform: translateY(6px);
 }
 
 /* Buttons */
@@ -697,6 +803,67 @@ button:focus-visible {
 }
 
 /* Responsive */
+@media (max-width: 640px) {
+  .data-table {
+    min-width: 0;
+  }
+
+  .data-table thead {
+    display: none;
+  }
+
+  .data-table tbody tr {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem 1rem;
+    padding: 1.1rem 1.25rem;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  }
+
+  .data-table tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  .data-table td {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+    padding: 0;
+    border-bottom: none;
+  }
+
+  .data-table td::before {
+    content: attr(data-label);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-muted);
+    margin-bottom: 0.2rem;
+  }
+
+  .column--points {
+    align-items: flex-end;
+  }
+
+  .driver-cell {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+
+  .team-driver-list {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .column--hide-sm {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
 @media (max-width: 900px) {
   .nav-toggle {
     display: inline-flex;
@@ -727,6 +894,14 @@ button:focus-visible {
 @media (min-width: 768px) {
   .hero__content {
     grid-template-columns: 1.2fr 1fr;
+  }
+
+  .hero__panel {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hero-podium {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   }
 
   .section__header--row {

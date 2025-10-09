@@ -42,9 +42,13 @@
           </div>
         </div>
         <div class="hero__panel">
-          <div class="hero__card">
-            <h2 class="hero__card-title" id="hero-season-title">Season Snapshot</h2>
-            <dl class="hero__metrics">
+          <article class="hero-card hero-card--season">
+            <header class="hero-card__header">
+              <p class="eyebrow">Latest Season</p>
+              <button id="hero-cycle" class="btn btn--subtle">Cycle season</button>
+            </header>
+            <h2 class="hero-card__title" id="hero-season-title">Season Snapshot</h2>
+            <dl class="hero-metrics">
               <div>
                 <dt>Season</dt>
                 <dd id="hero-season-label">—</dd>
@@ -62,8 +66,15 @@
                 <dd id="hero-team-leader">—</dd>
               </div>
             </dl>
-            <button id="hero-cycle" class="btn btn--subtle">Cycle season</button>
-          </div>
+          </article>
+          <article class="hero-card hero-card--race">
+            <p class="eyebrow">Latest Race</p>
+            <h2 class="hero-card__title" id="hero-race-title">Race Overview</h2>
+            <p class="hero-race-meta" id="hero-race-meta">—</p>
+            <div class="hero-podium" id="hero-podium">
+              <p>Results will appear once a race is recorded.</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
