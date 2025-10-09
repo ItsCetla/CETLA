@@ -72,11 +72,11 @@ button:focus-visible {
 }
 
 .section {
-  padding-block: 4.5rem;
+  padding-block: 3.75rem;
 }
 
 .section--pad {
-  padding-block: 5rem;
+  padding-block: 4.25rem;
 }
 
 .section--alt {
@@ -86,7 +86,7 @@ button:focus-visible {
 }
 
 .section__header {
-  margin-bottom: 2rem;
+  margin-bottom: 1.75rem;
 }
 
 .section__header--row {
@@ -181,18 +181,18 @@ button:focus-visible {
 
 /* Hero */
 .hero {
-  padding-block: 8rem 6rem;
+  padding-block: 6.5rem 4.5rem;
 }
 
 .hero__content {
   display: grid;
-  gap: 3rem;
+  gap: 2.5rem;
 }
 
 .hero__copy {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.1rem;
 }
 
 .hero__title {
@@ -216,18 +216,18 @@ button:focus-visible {
 
 .hero__panel {
   display: grid;
-  gap: 1.5rem;
+  gap: 1.2rem;
 }
 
 .hero-card {
   background: var(--color-panel);
   border-radius: var(--radius-lg);
-  padding: 2rem;
+  padding: 1.75rem;
   border: 1px solid var(--color-border);
   box-shadow: var(--shadow-lg);
   display: grid;
   gap: 1.5rem;
-  min-width: 260px;
+  min-width: 220px;
 }
 
 .hero-card__header {
@@ -414,8 +414,8 @@ button:focus-visible {
 /* Season Picker */
 .season-controls {
   display: grid;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
+  gap: 1.2rem;
+  margin-bottom: 1.75rem;
 }
 
 .season-select {
@@ -477,18 +477,18 @@ button:focus-visible {
 .season-card {
   background: rgba(15, 23, 42, 0.55);
   border-radius: var(--radius-lg);
-  padding: 2rem;
+  padding: 1.75rem;
   border: 1px solid var(--color-border);
   box-shadow: var(--shadow-md);
   display: grid;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 .season-card__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 .season-card__header h3 {
@@ -513,11 +513,11 @@ button:focus-visible {
 /* Tabs */
 .tabs {
   display: inline-flex;
-  padding: 0.35rem;
+  padding: 0.3rem;
   border-radius: 999px;
   background: rgba(15, 23, 42, 0.55);
   border: 1px solid var(--color-border);
-  margin-bottom: 2rem;
+  margin-bottom: 1.75rem;
 }
 
 .tabs__button {
@@ -653,9 +653,9 @@ button:focus-visible {
   background: rgba(11, 18, 32, 0.85);
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-border);
-  padding: 1.75rem;
+  padding: 1.5rem;
   display: grid;
-  gap: 1.25rem;
+  gap: 1.05rem;
 }
 
 .race-details__header {
@@ -731,7 +731,7 @@ button:focus-visible {
   border: 1px solid var(--color-border);
   background: rgba(11, 18, 32, 0.85);
   display: grid;
-  gap: 1.35rem;
+  gap: 1.1rem;
 }
 
 .stat-card h3 {
