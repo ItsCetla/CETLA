@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CETLA Racing League</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Grotesk:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-container">
+      <a class="brand" href="#top" data-scroll>CETLA</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="nav-toggle__line"></span>
+        <span class="nav-toggle__line"></span>
+        <span class="nav-toggle__line"></span>
+      </button>
+      <nav id="primary-nav" class="site-nav">
+        <a href="#season-picker" data-scroll>Seasons</a>
+        <a href="#standings" data-scroll>Standings</a>
+        <a href="#races" data-scroll>Race Hub</a>
+        <a href="#stats" data-scroll>Stats</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero__content">
+        <div class="hero__copy">
+          <p class="eyebrow">CETLA Racing League</p>
+          <h1 class="hero__title">All of our seasons. One living record.</h1>
+          <p class="hero__subtitle">
+            Browse every race we’ve run, follow the team battles, and keep the points table current in minutes.
+          </p>
+          <div class="hero__actions">
+            <button id="cta-season" class="btn btn--primary">Jump to current season</button>
+            <a class="btn btn--ghost" href="#races" data-scroll>Latest race results</a>
+          </div>
+        </div>
+        <div class="hero__panel">
+          <div class="hero__card">
+            <h2 class="hero__card-title" id="hero-season-title">Season Snapshot</h2>
+            <dl class="hero__metrics">
+              <div>
+                <dt>Season</dt>
+                <dd id="hero-season-label">—</dd>
+              </div>
+              <div>
+                <dt>Rounds</dt>
+                <dd id="hero-season-rounds">—</dd>
+              </div>
+              <div>
+                <dt>Top Driver</dt>
+                <dd id="hero-season-leader">—</dd>
+              </div>
+              <div>
+                <dt>Leading Team</dt>
+                <dd id="hero-team-leader">—</dd>
+              </div>
+            </dl>
+            <button id="hero-cycle" class="btn btn--subtle">Cycle season</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="season-picker" class="section section--pad">
+      <div class="container">
+        <header class="section__header">
+          <h2>Pick a Season</h2>
+          <p class="section__subtitle">Select a season to update points, add races, or view the standings.</p>
+        </header>
+
+        <div class="season-controls">
+          <label class="season-select">
+            <span class="season-select__label">Season</span>
+            <select id="season-select" aria-label="Select season"></select>
+          </label>
+          <div class="season-pills" id="season-pills" role="listbox" aria-label="Season quick select"></div>
+        </div>
+
+        <article class="season-card" id="season-card">
+          <header class="season-card__header">
+            <div>
+              <p class="eyebrow" id="season-card-year">—</p>
+              <h3 id="season-card-title">Choose a season</h3>
+            </div>
+            <span class="season-card__badge" id="season-card-rounds">—</span>
+          </header>
+          <p class="season-card__description" id="season-card-description">
+            The full description for the season will show up here once you select it.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="standings" class="section section--alt">
+      <div class="container">
+        <header class="section__header">
+          <h2>Standings</h2>
+          <p class="section__subtitle">Driver and team tables auto-sync from the shared season data file.</p>
+        </header>
+
+        <div class="tabs" role="tablist">
+          <button class="tabs__button is-active" role="tab" aria-selected="true" data-tab="drivers">Drivers</button>
+          <button class="tabs__button" role="tab" aria-selected="false" data-tab="teams">Teams</button>
+        </div>
+
+        <div class="tab-panels">
+          <div class="tab-panel is-active" role="tabpanel" id="tab-drivers">
+            <div class="table-wrapper">
+              <table class="data-table" aria-label="Driver standings">
+                <thead>
+                  <tr>
+                    <th scope="col">Driver</th>
+                    <th scope="col">Team</th>
+                    <th scope="col" class="column--points">Points</th>
+                  </tr>
+                </thead>
+                <tbody id="driver-table-body"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="tab-panel" role="tabpanel" id="tab-teams">
+            <div class="table-wrapper">
+              <table class="data-table" aria-label="Team standings">
+                <thead>
+                  <tr>
+                    <th scope="col">Team</th>
+                    <th scope="col">Drivers</th>
+                    <th scope="col" class="column--points">Points</th>
+                  </tr>
+                </thead>
+                <tbody id="team-table-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="races" class="section section--pad">
+      <div class="container">
+        <header class="section__header section__header--row">
+          <div>
+            <h2>Race Center</h2>
+            <p class="section__subtitle">Switch races to review settings, podiums, and individual lap awards.</p>
+          </div>
+          <label class="race-select">
+            <span class="race-select__label">Race</span>
+            <select id="race-select" aria-label="Select race"></select>
+          </label>
+        </header>
+
+        <div class="race-layout">
+          <article class="race-details" id="race-details-card">
+            <header class="race-details__header">
+              <div>
+                <p class="eyebrow" id="race-round-label">Round —</p>
+                <h3 id="race-title">Select a race</h3>
+              </div>
+              <time id="race-date" class="race-date">—</time>
+            </header>
+            <p class="race-venue" id="race-venue">Venue —</p>
+            <dl class="race-settings" id="race-settings">
+              <div>
+                <dt>Car Class</dt>
+                <dd id="race-car">—</dd>
+              </div>
+              <div>
+                <dt>Weather</dt>
+                <dd id="race-weather">—</dd>
+              </div>
+              <div>
+                <dt>Laps</dt>
+                <dd id="race-laps">—</dd>
+              </div>
+              <div>
+                <dt>Notes</dt>
+                <dd id="race-notes">—</dd>
+              </div>
+            </dl>
+          </article>
+
+          <figure class="race-track" id="race-track">
+            <img id="race-track-image" src="" alt="Track preview" loading="lazy">
+          </figure>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="data-table data-table--dense" aria-label="Race results">
+            <thead>
+              <tr>
+                <th scope="col">Pos</th>
+                <th scope="col">Driver</th>
+                <th scope="col">Points</th>
+                <th scope="col" class="column--hide-sm">Car</th>
+                <th scope="col" class="column--hide-sm">Fastest Lap</th>
+              </tr>
+            </thead>
+            <tbody id="race-results-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="stats" class="section section--alt">
+      <div class="container">
+        <header class="section__header">
+          <h2>Season Insights</h2>
+          <p class="section__subtitle">Quick-look stats update as soon as you update the shared data file.</p>
+        </header>
+        <div class="stats-grid">
+          <article class="stat-card">
+            <h3>Most Wins</h3>
+            <div class="stat-list" id="stats-wins"></div>
+          </article>
+          <article class="stat-card">
+            <h3>Most Podiums</h3>
+            <div class="stat-list" id="stats-podiums"></div>
+          </article>
+          <article class="stat-card">
+            <h3>Average Points</h3>
+            <div class="stat-list" id="stats-average-points"></div>
+          </article>
+          <article class="stat-card">
+            <h3>Average Finish</h3>
+            <div class="stat-list stat-list--multi" id="stats-average-placement"></div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer__content">
+      <p>Data-driven by <code>v2/data/seasons.json</code>. Update the file, redeploy, done.</p>
+      <small>&copy; <span id="footer-year"></span> CETLA Racing League</small>
+    </div>
+  </footer>
+
+  <script src="assets/app.js" type="module"></script>
+</body>
+</html>

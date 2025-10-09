@@ -1,0 +1,5569 @@
+{
+  "seasons": [
+    {
+      "id": "session3",
+      "label": "Multi-Car",
+      "year": 2024,
+      "description": "Friendly multi-class season featuring 11 rounds.",
+      "primaryColor": "#4C1D95",
+      "drivers": [
+        {
+          "id": "rambo",
+          "name": "Rambo",
+          "teamId": "team-romero",
+          "color": "purple",
+          "points": 248,
+          "aliases": []
+        },
+        {
+          "id": "emilio",
+          "name": "Emilio",
+          "teamId": "team-emilio",
+          "color": "skyblue",
+          "points": 212,
+          "aliases": []
+        },
+        {
+          "id": "rom3",
+          "name": "Rom3",
+          "teamId": "team-romero",
+          "color": "purple",
+          "points": 210,
+          "aliases": []
+        },
+        {
+          "id": "hpepe",
+          "name": "HPepe",
+          "teamId": "dry-martini-gr",
+          "color": "orange",
+          "points": 181,
+          "aliases": []
+        },
+        {
+          "id": "theslayter",
+          "name": "TheSlayter",
+          "teamId": "team-slate",
+          "color": "red",
+          "points": 197,
+          "aliases": [
+            "TheSlayterr-TV"
+          ]
+        },
+        {
+          "id": "kickstart",
+          "name": "KickStart",
+          "teamId": "team-tits-out",
+          "color": "black",
+          "points": 195,
+          "aliases": [
+            "KickstartMyKart"
+          ]
+        },
+        {
+          "id": "lilreeree",
+          "name": "Lilreeree",
+          "teamId": "team-emilio",
+          "color": "skyblue",
+          "points": 174,
+          "aliases": []
+        },
+        {
+          "id": "fleshtorpedo",
+          "name": "FleshTorpedo",
+          "teamId": "team-tits-out",
+          "color": "black",
+          "points": 160,
+          "aliases": []
+        },
+        {
+          "id": "joan-d",
+          "name": "Joan.D",
+          "teamId": "dry-martini-gr",
+          "color": "orange",
+          "points": 149,
+          "aliases": []
+        },
+        {
+          "id": "cetla",
+          "name": "Cetla",
+          "teamId": "team-stake",
+          "color": "lightgreen",
+          "points": 161,
+          "aliases": []
+        },
+        {
+          "id": "jack",
+          "name": "Jack",
+          "teamId": "team-santigold",
+          "color": "cyan",
+          "points": 154,
+          "aliases": []
+        },
+        {
+          "id": "oogabooga",
+          "name": "OogaBooga",
+          "teamId": "team-stake",
+          "color": "lightgreen",
+          "points": 159,
+          "aliases": []
+        },
+        {
+          "id": "santi",
+          "name": "Santi",
+          "teamId": "team-santigold",
+          "color": "cyan",
+          "points": 131,
+          "aliases": [
+            "HdzSanti"
+          ]
+        },
+        {
+          "id": "pablo",
+          "name": "Pablo",
+          "teamId": "k-hole-racing",
+          "color": "pink",
+          "points": 107,
+          "aliases": []
+        },
+        {
+          "id": "slatenator",
+          "name": "Slatenator",
+          "teamId": "team-slate",
+          "color": "red",
+          "points": 140,
+          "aliases": []
+        },
+        {
+          "id": "trapvis",
+          "name": "TrapVis",
+          "teamId": "k-hole-racing",
+          "color": "pink",
+          "points": 84,
+          "aliases": [
+            "Trapvis"
+          ]
+        }
+      ],
+      "teams": [
+        {
+          "id": "dry-martini-gr",
+          "name": "Dry Martini GR",
+          "color": "orange",
+          "points": null
+        },
+        {
+          "id": "team-santigold",
+          "name": "Team SantiGold",
+          "color": "cyan",
+          "points": null
+        },
+        {
+          "id": "team-slate",
+          "name": "Team Slate",
+          "color": "red",
+          "points": null
+        },
+        {
+          "id": "k-hole-racing",
+          "name": "K-Hole Racing",
+          "color": "pink",
+          "points": null
+        },
+        {
+          "id": "team-stake",
+          "name": "Team Stake",
+          "color": "lightgreen",
+          "points": null
+        },
+        {
+          "id": "team-tits-out",
+          "name": "Team Tits Out",
+          "color": "black",
+          "points": null
+        },
+        {
+          "id": "team-emilio",
+          "name": "Team Emilio",
+          "color": "skyblue",
+          "points": null
+        },
+        {
+          "id": "team-romero",
+          "name": "Team Romero",
+          "color": "purple",
+          "points": null
+        }
+      ],
+      "races": [
+        {
+          "id": "race1",
+          "round": 1,
+          "name": "Race 1: Blue Moon Bay Infield B",
+          "trackImage": "https://gt-engine.com/gt7/tracks/images/md/blue-moon-infield-b.png",
+          "schedule": {
+            "date": "2024-02-05T01:00:00.000Z",
+            "venue": "Blue Moon Bay Infield B"
+          },
+          "settings": {
+            "carClass": "Grade 3 (Gr.3)",
+            "weather": "Night & Clear",
+            "laps": 30,
+            "notes": "February 4th, 8:00 PM EST"
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "HPepe",
+              "driverId": "hpepe",
+              "entrant": null,
+              "car": "GR Supra Racing Concept '18",
+              "totalTime": "24:32.226",
+              "gap": null,
+              "fastestLap": "0:47.387",
+              "points": 30,
+              "isGuest": false
+            },
+            {
+              "position": 2,
+              "driver": "Rom3",
+              "driverId": "rom3",
+              "entrant": null,
+              "car": "Corvette C7 Gr.3",
+              "totalTime": null,
+              "gap": "+02.699",
+              "fastestLap": "0:47.407",
+              "points": 28,
+              "isGuest": false
+            },
+            {
+              "position": 3,
+              "driver": "Emilio",
+              "driverId": "emilio",
+              "entrant": null,
+              "car": "Genesis X GR3",
+              "totalTime": null,
+              "gap": "+02.775",
+              "fastestLap": "0:44.256",
+              "points": 27,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "TheSlayter",
+              "driverId": "theslayter",
+              "entrant": "TheSlayterr-TV",
+              "car": "GT-R NISMO GT3 '18",
+              "totalTime": null,
+              "gap": "+03.788",
+              "fastestLap": "0:44.724",
+              "points": 25,
+              "isGuest": false
+            },
+            {
+              "position": 5,
+              "driver": "TrapVis",
+              "driverId": "trapvis",
+              "entrant": null,
+              "car": "Genesis X GR3",
+              "totalTime": null,
+              "gap": "+09.729",
+              "fastestLap": "0:47.958",
+              "points": 24,
+              "isGuest": false
+            },
+            {
+              "position": 6,
+              "driver": "Hondo",
+              "driverId": null,
+              "entrant": null,
+              "car": "V12 Vantage GT3 '12",
+              "totalTime": null,
+              "gap": "+12.597",
+              "fastestLap": "0:44.505",
+              "points": 21,
+              "isGuest": true
+            },
+            {
+              "position": 7,
+              "driver": "Lilreeree",
+              "driverId": "lilreeree",
+              "entrant": null,
+              "car": "GR Supra Racing Concept '18",
+              "totalTime": null,
+              "gap": "+15.078",
+              "fastestLap": "0:44.637",
+              "points": 19,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "FleshTorpedo",
+              "driverId": "fleshtorpedo",
+              "entrant": null,
+              "car": "Z4 GT3 '11",
+              "totalTime": null,
+              "gap": "+15.503",
+              "fastestLap": "0:44.914",
+              "points": 17,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "OogaBooga",
+              "driverId": "oogabooga",
+              "entrant": null,
+              "car": "911 RSR (991) '17",
+              "totalTime": null,
+              "gap": "+15.590",
+              "fastestLap": "0:45.308",
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "Cetla",
+              "driverId": "cetla",
+              "entrant": null,
+              "car": "GR Supra Racing Concept '18",
+              "totalTime": null,
+              "gap": "+15.654",
+              "fastestLap": "0:45.321",
+              "points": 14,
+              "isGuest": false
+            },
+            {
+              "position": 11,
+              "driver": "KickStart",
+              "driverId": "kickstart",
+              "entrant": "KickstartMyKart",
+              "car": "911 RSR (991) '17",
+              "totalTime": null,
+              "gap": "+17.902",
+              "fastestLap": "0:45.210",
+              "points": 12,
+              "isGuest": false
+            },
+            {
+              "position": 12,
+              "driver": "Slatenator",
+              "driverId": "slatenator",
+              "entrant": null,
+              "car": "458 Italia GT3 '13",
+              "totalTime": null,
+              "gap": "+18.813",
+              "fastestLap": "0:45.210",
+              "points": 11,
+              "isGuest": false
+            },
+            {
+              "position": 13,
+              "driver": "Pablo",
+              "driverId": "pablo",
+              "entrant": null,
+              "car": "Genesis X GR3",
+              "totalTime": null,
+              "gap": "+18.923",
+              "fastestLap": "0:45.081",
+              "points": 10,
+              "isGuest": false
+            },
+            {
+              "position": 14,
+              "driver": "Rambo",
+              "driverId": "rambo",
+              "entrant": null,
+              "car": "Genesis X GR3",
+              "totalTime": null,
+              "gap": "+18.995",
+              "fastestLap": "0:44.429",
+              "points": 9,
+              "isGuest": false
+            },
+            {
+              "position": 15,
+              "driver": "Santi",
+              "driverId": "santi",
+              "entrant": null,
+              "car": "911 RSR (991) '17",
+              "totalTime": null,
+              "gap": "+23.816",
+              "fastestLap": "0:44.907",
+              "points": 8,
+              "isGuest": false
+            }
+          ]
+        },
+        {
+          "id": "race2",
+          "round": 2,
+          "name": "Race 2: Watkins Glen Short",
+          "trackImage": "https://gt-engine.com/gt7/tracks/images/md/watkins-glen-short.png",
+          "schedule": {
+            "date": "2024-02-12T01:00:00.000Z",
+            "venue": "Watkins Glen Short"
+          },
+          "settings": {
+            "carClass": "Grade 2 (Gr.2)",
+            "weather": "Night & Clear",
+            "laps": 25,
+            "notes": "February 11th, 8:00 PM EST"
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "Rambo",
+              "driverId": "rambo",
+              "entrant": null,
+              "car": "NSX CONCEPT-GT '16",
+              "totalTime": "25:04.820",
+              "gap": null,
+              "fastestLap": "0:58.005",
+              "points": 30,
+              "isGuest": false
+            },
+            {
+              "position": 2,
+              "driver": "Hondo",
+              "driverId": null,
+              "entrant": null,
+              "car": "RC F GT500 '16",
+              "totalTime": null,
+              "gap": "+12.023",
+              "fastestLap": "0:57.693",
+              "points": 28,
+              "isGuest": true
+            },
+            {
+              "position": 3,
+              "driver": "Cetla",
+              "driverId": "cetla",
+              "entrant": null,
+              "car": "NSX CONCEPT-GT '16",
+              "totalTime": null,
+              "gap": "+13.349",
+              "fastestLap": "0:55.028",
+              "points": 27,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "TheSlayter",
+              "driverId": "theslayter",
+              "entrant": "TheSlayterr-TV",
+              "car": "NSX CONCEPT-GT '16",
+              "totalTime": null,
+              "gap": "+18.050",
+              "fastestLap": "0:56.729",
+              "points": 25,
+              "isGuest": false
+            },
+            {
+              "position": 5,
+              "driver": "HPepe",
+              "driverId": "hpepe",
+              "entrant": null,
+              "car": "RC F GT500 '16",
+              "totalTime": null,
+              "gap": "+20.713",
+              "fastestLap": "0:57.964",
+              "points": 24,
+              "isGuest": false
+            },
+            {
+              "position": 6,
+              "driver": "KickStart",
+              "driverId": "kickstart",
+              "entrant": "KickstartMyKart",
+              "car": "NSX CONCEPT-GT '16",
+              "totalTime": null,
+              "gap": "+26.793",
+              "fastestLap": "0:56.293",
+              "points": 21,
+              "isGuest": false
+            },
+            {
+              "position": 7,
+              "driver": "OogaBooga",
+              "driverId": "oogabooga",
+              "entrant": null,
+              "car": "NSX CONCEPT-GT '16",
+              "totalTime": null,
+              "gap": "+26.900",
+              "fastestLap": "0:55.303",
+              "points": 19,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "Pablo",
+              "driverId": "pablo",
+              "entrant": null,
+              "car": "NSX CONCEPT-GT '16",
+              "totalTime": null,
+              "gap": "+28.946",
+              "fastestLap": "0:55.676",
+              "points": 17,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "Santi",
+              "driverId": "santi",
+              "entrant": null,
+              "car": "RC F GT500 '16",
+              "totalTime": null,
+              "gap": "+28.967",
+              "fastestLap": "0:55.345",
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "Emilio",
+              "driverId": "emilio",
+              "entrant": null,
+              "car": "NSX CONCEPT-GT '16",
+              "totalTime": null,
+              "gap": "+29.336",
+              "fastestLap": "0:53.709",
+              "points": 14,
+              "isGuest": false
+            },
+            {
+              "position": 11,
+              "driver": "FleshTorpedo",
+              "driverId": "fleshtorpedo",
+              "entrant": null,
+              "car": "GT-R NISMO GT500 '16",
+              "totalTime": null,
+              "gap": "+29.384",
+              "fastestLap": "0:55.479",
+              "points": 12,
+              "isGuest": false
+            },
+            {
+              "position": 12,
+              "driver": "Slatenator",
+              "driverId": "slatenator",
+              "entrant": null,
+              "car": "NSX CONCEPT-GT '16",
+              "totalTime": null,
+              "gap": "+29.463",
+              "fastestLap": "0:56.399",
+              "points": 11,
+              "isGuest": false
+            },
+            {
+              "position": 13,
+              "driver": "Rom3",
+              "driverId": "rom3",
+              "entrant": null,
+              "car": "NSX CONCEPT-GT '16",
+              "totalTime": null,
+              "gap": "+29.701",
+              "fastestLap": "0:55.708",
+              "points": 10,
+              "isGuest": false
+            },
+            {
+              "position": 14,
+              "driver": "TrapVis",
+              "driverId": "trapvis",
+              "entrant": null,
+              "car": "NSX CONCEPT-GT '16",
+              "totalTime": null,
+              "gap": "+30.735",
+              "fastestLap": "0:57.319",
+              "points": 9,
+              "isGuest": false
+            },
+            {
+              "position": 15,
+              "driver": "Lilreeree",
+              "driverId": "lilreeree",
+              "entrant": null,
+              "car": "RC F GT500 '16",
+              "totalTime": null,
+              "gap": "+31.557",
+              "fastestLap": "0:55.121",
+              "points": 8,
+              "isGuest": false
+            },
+            {
+              "position": 16,
+              "driver": "Lew",
+              "driverId": null,
+              "entrant": null,
+              "car": "RS 5 Turbo DTM '19",
+              "totalTime": null,
+              "gap": "+37.304",
+              "fastestLap": "0:55.391",
+              "points": 7,
+              "isGuest": true
+            }
+          ]
+        },
+        {
+          "id": "race3",
+          "round": 3,
+          "name": "Race 3: Circuit de Sainte-Croix - B",
+          "trackImage": "https://gt-engine.com/gt7/tracks/images/md/circuit-de-sainte-croix-b.png",
+          "schedule": {
+            "date": "2024-02-19T01:00:00.000Z",
+            "venue": "Circuit de Sainte-Croix - B"
+          },
+          "settings": {
+            "carClass": "Grade 1 (Gr.1)",
+            "weather": "Day & Clear",
+            "laps": 20,
+            "notes": "February 18th, 8:00 PM EST"
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "Rom3",
+              "driverId": "rom3",
+              "entrant": null,
+              "car": "919 Hybrid '16",
+              "totalTime": "42:07.666",
+              "gap": null,
+              "fastestLap": "1:47.354",
+              "points": 30,
+              "isGuest": false
+            },
+            {
+              "position": 2,
+              "driver": "Lilreeree",
+              "driverId": "lilreeree",
+              "entrant": null,
+              "car": "R18 '16",
+              "totalTime": null,
+              "gap": "+00.709",
+              "fastestLap": "1:52.258",
+              "points": 28,
+              "isGuest": false
+            },
+            {
+              "position": 3,
+              "driver": "HPepe",
+              "driverId": "hpepe",
+              "entrant": null,
+              "car": "TS050 - Hybrid '16",
+              "totalTime": null,
+              "gap": "+08.457",
+              "fastestLap": "1:51.703",
+              "points": 27,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "TheSlayter",
+              "driverId": "theslayter",
+              "entrant": "TheSlayterr-TV",
+              "car": "919 Hybrid '16",
+              "totalTime": null,
+              "gap": "+34.081",
+              "fastestLap": "1:48.999",
+              "points": 25,
+              "isGuest": false
+            },
+            {
+              "position": 5,
+              "driver": "Rambo",
+              "driverId": "rambo",
+              "entrant": null,
+              "car": "TS050 - Hybrid '16",
+              "totalTime": null,
+              "gap": "+39.133",
+              "fastestLap": "1:54.188",
+              "points": 24,
+              "isGuest": false
+            },
+            {
+              "position": 6,
+              "driver": "TrapVis",
+              "driverId": "trapvis",
+              "entrant": null,
+              "car": "919 Hybrid '16",
+              "totalTime": null,
+              "gap": "+39.342",
+              "fastestLap": "1:47.137",
+              "points": 21,
+              "isGuest": false
+            },
+            {
+              "position": 7,
+              "driver": "Emilio",
+              "driverId": "emilio",
+              "entrant": null,
+              "car": "TS050 - Hybrid '16",
+              "totalTime": null,
+              "gap": "+39.751",
+              "fastestLap": "1:53.064",
+              "points": 19,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "Santi",
+              "driverId": "santi",
+              "entrant": "HdzSanti",
+              "car": "919 Hybrid '16",
+              "totalTime": null,
+              "gap": "+40.199",
+              "fastestLap": "1:48.065",
+              "points": 17,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "FleshTorpedo",
+              "driverId": "fleshtorpedo",
+              "entrant": null,
+              "car": "919 Hybrid '16",
+              "totalTime": null,
+              "gap": "+40.211",
+              "fastestLap": "1:47.634",
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "KickStart",
+              "driverId": "kickstart",
+              "entrant": "KickstartMyKart",
+              "car": "919 Hybrid '16",
+              "totalTime": null,
+              "gap": "+40.294",
+              "fastestLap": "1:47.067",
+              "points": 14,
+              "isGuest": false
+            },
+            {
+              "position": 11,
+              "driver": "Cetla",
+              "driverId": "cetla",
+              "entrant": null,
+              "car": "919 Hybrid '16",
+              "totalTime": null,
+              "gap": "+41.094",
+              "fastestLap": "1:47.564",
+              "points": 12,
+              "isGuest": false
+            },
+            {
+              "position": 12,
+              "driver": "OogaBooga",
+              "driverId": "oogabooga",
+              "entrant": null,
+              "car": "R18 '16",
+              "totalTime": null,
+              "gap": "+48.302",
+              "fastestLap": "1:47.521",
+              "points": 11,
+              "isGuest": false
+            },
+            {
+              "position": 13,
+              "driver": "Jack",
+              "driverId": "jack",
+              "entrant": null,
+              "car": "TS050 - Hybrid '16",
+              "totalTime": "DNF",
+              "gap": null,
+              "fastestLap": "1:50.530",
+              "points": 10,
+              "isGuest": false
+            },
+            {
+              "position": 14,
+              "driver": "Pablo",
+              "driverId": "pablo",
+              "entrant": null,
+              "car": "919 Hybrid '16",
+              "totalTime": "DNF",
+              "gap": null,
+              "fastestLap": "--:--.--",
+              "points": 9,
+              "isGuest": false
+            }
+          ]
+        },
+        {
+          "id": "race4",
+          "round": 4,
+          "name": "Race 4: Trial Mountain Circuit",
+          "trackImage": "https://gt-engine.com/gt7/tracks/images/md/trial-mountain.png",
+          "schedule": {
+            "date": "2024-02-26T01:00:00.000Z",
+            "venue": "Trial Mountain Circuit"
+          },
+          "settings": {
+            "carClass": "Grade 3 (Gr.3)",
+            "weather": "Day & Clear",
+            "laps": 20,
+            "notes": "February 25th, 8:00 PM EST"
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "K.Chirinos",
+              "driverId": null,
+              "entrant": null,
+              "car": "GR Supra Racing Concept '18",
+              "totalTime": "39:49.283",
+              "gap": null,
+              "fastestLap": "1:50.645",
+              "points": 30,
+              "isGuest": true
+            },
+            {
+              "position": 2,
+              "driver": "Rom3",
+              "driverId": "rom3",
+              "entrant": null,
+              "car": "GR 63 Endurance Model '16",
+              "totalTime": null,
+              "gap": "+10.036",
+              "fastestLap": "1:50.747",
+              "points": 28,
+              "isGuest": false
+            },
+            {
+              "position": 3,
+              "driver": "HPepe",
+              "driverId": "hpepe",
+              "entrant": null,
+              "car": "GR Supra Racing Concept '18",
+              "totalTime": null,
+              "gap": "+13.027",
+              "fastestLap": "1:50.462",
+              "points": 27,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "Emilio",
+              "driverId": "emilio",
+              "entrant": null,
+              "car": "Genesis X GR3",
+              "totalTime": null,
+              "gap": "+23.882",
+              "fastestLap": "1:51.517",
+              "points": 25,
+              "isGuest": false
+            },
+            {
+              "position": 5,
+              "driver": "Rambo",
+              "driverId": "rambo",
+              "entrant": null,
+              "car": "458 Italia GT3 '13",
+              "totalTime": null,
+              "gap": "+27.395",
+              "fastestLap": "1:51.449",
+              "points": 24,
+              "isGuest": false
+            },
+            {
+              "position": 6,
+              "driver": "Pablo",
+              "driverId": "pablo",
+              "entrant": null,
+              "car": "Genesis X GR3",
+              "totalTime": null,
+              "gap": "+28.137",
+              "fastestLap": "1:50.566",
+              "points": 21,
+              "isGuest": false
+            },
+            {
+              "position": 7,
+              "driver": "FleshTorpedo",
+              "driverId": "fleshtorpedo",
+              "entrant": null,
+              "car": "Z4 GT3 '11",
+              "totalTime": null,
+              "gap": "+30.999",
+              "fastestLap": "1:51.230",
+              "points": 19,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "OogaBooga",
+              "driverId": "oogabooga",
+              "entrant": null,
+              "car": "458 Italia GT3 '13",
+              "totalTime": null,
+              "gap": "+41.414",
+              "fastestLap": "1:45.075",
+              "points": 17,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "Slatenator",
+              "driverId": "slatenator",
+              "entrant": null,
+              "car": "458 Italia GT3 '13",
+              "totalTime": null,
+              "gap": "+41.603",
+              "fastestLap": "1:53.011",
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "KickStart",
+              "driverId": "kickstart",
+              "entrant": "KickstartMyKart",
+              "car": "WRX Gr.3",
+              "totalTime": null,
+              "gap": "+42.433",
+              "fastestLap": "1:46.994",
+              "points": 14,
+              "isGuest": false
+            },
+            {
+              "position": 11,
+              "driver": "Cetla",
+              "driverId": "cetla",
+              "entrant": null,
+              "car": "GR Supra Racing Concept '18",
+              "totalTime": null,
+              "gap": "+42.517",
+              "fastestLap": "1:46.347",
+              "points": 12,
+              "isGuest": false
+            },
+            {
+              "position": 12,
+              "driver": "Jack",
+              "driverId": "jack",
+              "entrant": null,
+              "car": "RX-VISION GT3 CONCEPT",
+              "totalTime": null,
+              "gap": "+46.891",
+              "fastestLap": "1:48.318",
+              "points": 11,
+              "isGuest": false
+            }
+          ]
+        },
+        {
+          "id": "race5",
+          "round": 5,
+          "name": "Race 5: Dragon Trail - Seaside",
+          "trackImage": "https://gt-engine.com/gt7/tracks/images/md/dragon-trail-seaside.png",
+          "schedule": {
+            "date": "2024-03-05T01:00:00.000Z",
+            "venue": "Dragon Trail - Seaside"
+          },
+          "settings": {
+            "carClass": "Grade 2 (Gr.2)",
+            "weather": "Day & Clear",
+            "laps": 18,
+            "notes": "March 4th, 8:00 PM EST"
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "Rom3",
+              "driverId": "rom3",
+              "entrant": null,
+              "car": "NSX CONCEPT-GT '16",
+              "totalTime": "26:40.048",
+              "gap": null,
+              "fastestLap": "1:25.577",
+              "points": 30,
+              "isGuest": false
+            },
+            {
+              "position": 2,
+              "driver": "Emilio",
+              "driverId": "emilio",
+              "entrant": null,
+              "car": "NSX CONCEPT-GT '16",
+              "totalTime": null,
+              "gap": "+04.337",
+              "fastestLap": "1:22.936",
+              "points": 28,
+              "isGuest": false
+            },
+            {
+              "position": 3,
+              "driver": "Lilreeree",
+              "driverId": "lilreeree",
+              "entrant": null,
+              "car": "RC F GT500 '16",
+              "totalTime": null,
+              "gap": "+05.496",
+              "fastestLap": "1:26.841",
+              "points": 27,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "TheSlayter",
+              "driverId": "theslayter",
+              "entrant": "TheSlayterr-TV",
+              "car": "NSX CONCEPT-GT '16",
+              "totalTime": null,
+              "gap": "+16.056",
+              "fastestLap": "1:22.731",
+              "points": 25,
+              "isGuest": false
+            },
+            {
+              "position": 5,
+              "driver": "Rambo",
+              "driverId": "rambo",
+              "entrant": null,
+              "car": "NSX CONCEPT-GT '16",
+              "totalTime": null,
+              "gap": "+18.337",
+              "fastestLap": "1:23.622",
+              "points": 24,
+              "isGuest": false
+            },
+            {
+              "position": 6,
+              "driver": "FleshTorpedo",
+              "driverId": "fleshtorpedo",
+              "entrant": null,
+              "car": "GT-R NISMO GT500 '16",
+              "totalTime": null,
+              "gap": "+25.903",
+              "fastestLap": "1:23.100",
+              "points": 21,
+              "isGuest": false
+            },
+            {
+              "position": 7,
+              "driver": "TrapVis",
+              "driverId": "trapvis",
+              "entrant": null,
+              "car": "NSX CONCEPT-GT '16",
+              "totalTime": null,
+              "gap": "+26.082",
+              "fastestLap": "1:23.713",
+              "points": 19,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "Joan.D",
+              "driverId": "joan-d",
+              "entrant": null,
+              "car": "NSX CONCEPT-GT '16",
+              "totalTime": null,
+              "gap": "+26.457",
+              "fastestLap": "1:26.778",
+              "points": 17,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "Santi",
+              "driverId": "santi",
+              "entrant": "HdzSanti",
+              "car": "RC F GT500 '16",
+              "totalTime": null,
+              "gap": "+26.570",
+              "fastestLap": "1:22.864",
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "OogaBooga",
+              "driverId": "oogabooga",
+              "entrant": null,
+              "car": "RC F GT500 '16",
+              "totalTime": null,
+              "gap": "+26.570",
+              "fastestLap": "1:23.120",
+              "points": 14,
+              "isGuest": false
+            },
+            {
+              "position": 11,
+              "driver": "KickStart",
+              "driverId": "kickstart",
+              "entrant": "KickstartMyKart",
+              "car": "GT-R NISMO GT500 '16",
+              "totalTime": null,
+              "gap": "+26.732",
+              "fastestLap": "1:23.806",
+              "points": 12,
+              "isGuest": false
+            },
+            {
+              "position": 12,
+              "driver": "Slatenator",
+              "driverId": "slatenator",
+              "entrant": null,
+              "car": "NSX GT500 '08",
+              "totalTime": null,
+              "gap": "+32.712",
+              "fastestLap": "1:26.185",
+              "points": 11,
+              "isGuest": false
+            },
+            {
+              "position": 13,
+              "driver": "Pablo",
+              "driverId": "pablo",
+              "entrant": null,
+              "car": "NSX CONCEPT-GT '16",
+              "totalTime": null,
+              "gap": "+33.264",
+              "fastestLap": "1:22.040",
+              "points": 10,
+              "isGuest": false
+            },
+            {
+              "position": 14,
+              "driver": "Cetla",
+              "driverId": "cetla",
+              "entrant": null,
+              "car": "RC F GT500 '16",
+              "totalTime": null,
+              "gap": "+33.297",
+              "fastestLap": "1:22.049",
+              "points": 9,
+              "isGuest": false
+            },
+            {
+              "position": 15,
+              "driver": "Jack",
+              "driverId": "jack",
+              "entrant": null,
+              "car": "NSX CONCEPT-GT '16",
+              "totalTime": null,
+              "gap": "+33.568",
+              "fastestLap": "1:24.778",
+              "points": 8,
+              "isGuest": false
+            }
+          ]
+        },
+        {
+          "id": "race6",
+          "round": 6,
+          "name": "Race 6: Kyoto Driving Park - Yamagiwa",
+          "trackImage": "https://gt-engine.com/gt7/tracks/images/md/kyoto-yamagiwa.png",
+          "schedule": {
+            "date": null,
+            "venue": "Kyoto Driving Park - Yamagiwa"
+          },
+          "settings": {
+            "carClass": "Grade 1 (Gr.1)",
+            "weather": "Random Weather",
+            "laps": 20,
+            "notes": ""
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "HPepe",
+              "driverId": "hpepe",
+              "entrant": null,
+              "car": "R18 '16",
+              "totalTime": "36:15.821",
+              "gap": null,
+              "fastestLap": "1:20.626",
+              "points": 30,
+              "isGuest": false
+            },
+            {
+              "position": 2,
+              "driver": "Emilio",
+              "driverId": "emilio",
+              "entrant": null,
+              "car": "R18 '16",
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": "1:19.040",
+              "points": 28,
+              "isGuest": false
+            },
+            {
+              "position": 3,
+              "driver": "KickStart",
+              "driverId": "kickstart",
+              "entrant": "KickstartMyKart",
+              "car": "919 Hybrid '16",
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": "1:22.070",
+              "points": 27,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "Rambo",
+              "driverId": "rambo",
+              "entrant": null,
+              "car": "919 Hybrid '16",
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": "1:21.686",
+              "points": 25,
+              "isGuest": false
+            },
+            {
+              "position": 5,
+              "driver": "TheSlayter",
+              "driverId": "theslayter",
+              "entrant": "TheSlayterr-TV",
+              "car": "919 Hybrid '16",
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": "1:19.230",
+              "points": 24,
+              "isGuest": false
+            },
+            {
+              "position": 6,
+              "driver": "Rom3",
+              "driverId": "rom3",
+              "entrant": null,
+              "car": "919 Hybrid '16",
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": "1:21.383",
+              "points": 21,
+              "isGuest": false
+            },
+            {
+              "position": 7,
+              "driver": "FleshTorpedo",
+              "driverId": "fleshtorpedo",
+              "entrant": null,
+              "car": "919 Hybrid '16",
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": "1:16.764",
+              "points": 19,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "Jack",
+              "driverId": "jack",
+              "entrant": null,
+              "car": "919 Hybrid '16",
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": "1:18.697",
+              "points": 17,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "Santi",
+              "driverId": "santi",
+              "entrant": "HdzSanti",
+              "car": "919 Hybrid '16",
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": "1:18.114",
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "OogaBooga",
+              "driverId": "oogabooga",
+              "entrant": null,
+              "car": "R18 '16",
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": "1:17.465",
+              "points": 14,
+              "isGuest": false
+            },
+            {
+              "position": 11,
+              "driver": "Slatenator",
+              "driverId": "slatenator",
+              "entrant": null,
+              "car": "919 Hybrid '16",
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": "1:18.396",
+              "points": 12,
+              "isGuest": false
+            },
+            {
+              "position": 12,
+              "driver": "Pablo",
+              "driverId": "pablo",
+              "entrant": null,
+              "car": "919 Hybrid '16",
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": "1:16.033",
+              "points": 11,
+              "isGuest": false
+            },
+            {
+              "position": 13,
+              "driver": "Cetla",
+              "driverId": "cetla",
+              "entrant": null,
+              "car": "919 Hybrid '16",
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": "1:18.433",
+              "points": 10,
+              "isGuest": false
+            },
+            {
+              "position": 14,
+              "driver": "Spiral_Rider_462",
+              "driverId": null,
+              "entrant": null,
+              "car": "919 Hybrid '16",
+              "totalTime": "DNF",
+              "gap": null,
+              "fastestLap": "1:25.779",
+              "points": 9,
+              "isGuest": true
+            },
+            {
+              "position": 15,
+              "driver": "FRT_ Ruizerone",
+              "driverId": null,
+              "entrant": null,
+              "car": "919 Hybrid '16",
+              "totalTime": "DNF",
+              "gap": null,
+              "fastestLap": "1:18.995",
+              "points": 8,
+              "isGuest": true
+            }
+          ]
+        },
+        {
+          "id": "race7",
+          "round": 7,
+          "name": "Race 7: Autopolis International Racing Course",
+          "trackImage": "https://gt-engine.com/gt7/tracks/images/md/autopolis.png",
+          "schedule": {
+            "date": "2024-03-12T01:00:00.000Z",
+            "venue": "Autopolis International Racing Course"
+          },
+          "settings": {
+            "carClass": "Grade 3 (Gr.3)",
+            "weather": "Night & Clear",
+            "laps": null,
+            "notes": "March 11th, 8:00 PM EST"
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "K.Chirinos",
+              "driverId": null,
+              "entrant": null,
+              "car": "M6 GT3 Sprint Model '16",
+              "totalTime": "34:43.447",
+              "gap": null,
+              "fastestLap": "1:46.509",
+              "points": 30,
+              "isGuest": true
+            },
+            {
+              "position": 2,
+              "driver": "Rom3",
+              "driverId": "rom3",
+              "entrant": null,
+              "car": "M6 GT3 Sprint Model '16",
+              "totalTime": null,
+              "gap": "+04.506",
+              "fastestLap": "1:45.756",
+              "points": 28,
+              "isGuest": false
+            },
+            {
+              "position": 3,
+              "driver": "Rambo",
+              "driverId": "rambo",
+              "entrant": null,
+              "car": "458 Italia GT3 '13",
+              "totalTime": null,
+              "gap": "+10.488",
+              "fastestLap": "1:42.410",
+              "points": 27,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "Lilreeree",
+              "driverId": "lilreeree",
+              "entrant": null,
+              "car": "4C Gr.3",
+              "totalTime": null,
+              "gap": "+15.381",
+              "fastestLap": "1:47.837",
+              "points": 25,
+              "isGuest": false
+            },
+            {
+              "position": 5,
+              "driver": "HPepe",
+              "driverId": "hpepe",
+              "entrant": null,
+              "car": "GR Supra Racing Concept '18",
+              "totalTime": null,
+              "gap": "+18.563",
+              "fastestLap": "1:47.410",
+              "points": 24,
+              "isGuest": false
+            },
+            {
+              "position": 6,
+              "driver": "KickStart",
+              "driverId": "kickstart",
+              "entrant": "KickstartMyKart",
+              "car": "WRX Gr.3",
+              "totalTime": null,
+              "gap": "+20.693",
+              "fastestLap": "1:47.335",
+              "points": 21,
+              "isGuest": false
+            },
+            {
+              "position": 7,
+              "driver": "Emilio",
+              "driverId": "emilio",
+              "entrant": null,
+              "car": "Genesis X GR3",
+              "totalTime": null,
+              "gap": "+21.078",
+              "fastestLap": "1:44.188",
+              "points": 19,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "Slatenator",
+              "driverId": "slatenator",
+              "entrant": null,
+              "car": "458 Italia GT3 '13",
+              "totalTime": null,
+              "gap": "+21.087",
+              "fastestLap": "1:41.706",
+              "points": 17,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "OogaBooga",
+              "driverId": "oogabooga",
+              "entrant": null,
+              "car": "650S GT3 '15",
+              "totalTime": null,
+              "gap": "+21.654",
+              "fastestLap": "1:42.729",
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "Santi",
+              "driverId": "santi",
+              "entrant": "HdzSanti",
+              "car": "911 RSR (991) '17",
+              "totalTime": null,
+              "gap": "+21.882",
+              "fastestLap": "1:43.689",
+              "points": 14,
+              "isGuest": false
+            },
+            {
+              "position": 11,
+              "driver": "Pablo",
+              "driverId": "pablo",
+              "entrant": null,
+              "car": "Genesis X GR3",
+              "totalTime": null,
+              "gap": "+22.113",
+              "fastestLap": "1:46.140",
+              "points": 12,
+              "isGuest": false
+            },
+            {
+              "position": 12,
+              "driver": "FleshTorpedo",
+              "driverId": "fleshtorpedo",
+              "entrant": null,
+              "car": "Z4 GT3 '11",
+              "totalTime": null,
+              "gap": "+22.373",
+              "fastestLap": "1:42.244",
+              "points": 11,
+              "isGuest": false
+            },
+            {
+              "position": 13,
+              "driver": "TheSlayter",
+              "driverId": "theslayter",
+              "entrant": "TheSlayterr-TV",
+              "car": "650S GT3 '15",
+              "totalTime": null,
+              "gap": "+31.225",
+              "fastestLap": "1:41.657",
+              "points": 10,
+              "isGuest": false
+            },
+            {
+              "position": 14,
+              "driver": "Jack",
+              "driverId": "jack",
+              "entrant": null,
+              "car": "RX-VISION GT3 CONCEPT",
+              "totalTime": null,
+              "gap": "+32.283",
+              "fastestLap": "1:42.518",
+              "points": 9,
+              "isGuest": false
+            },
+            {
+              "position": 15,
+              "driver": "Cetla",
+              "driverId": "cetla",
+              "entrant": null,
+              "car": "GR Supra Racing Concept '18",
+              "totalTime": null,
+              "gap": "+32.789",
+              "fastestLap": "1:42.971",
+              "points": 8,
+              "isGuest": false
+            }
+          ]
+        },
+        {
+          "id": "race8",
+          "round": 8,
+          "name": "Race 8: Red Bull Ring",
+          "trackImage": "https://www.gran-turismo.com/images/c/i1Sa_1Kq-2JZMykB7DkSlKAl6ovUQzqZ.png",
+          "schedule": {
+            "date": null,
+            "venue": "Red Bull Ring"
+          },
+          "settings": {
+            "carClass": "SF23 Super Formula (Honda & Toyota) '23",
+            "weather": "Day & Clear",
+            "laps": null,
+            "notes": "Date Unknown"
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "Joan.D",
+              "driverId": "joan-d",
+              "entrant": null,
+              "car": "SF23 Super Formula/Honda '23",
+              "totalTime": "30:25.785",
+              "gap": null,
+              "fastestLap": "1:13.687",
+              "points": 30,
+              "isGuest": false
+            },
+            {
+              "position": 2,
+              "driver": "Rom3",
+              "driverId": "rom3",
+              "entrant": null,
+              "car": "SF23 Super Formula/Toyota '23",
+              "totalTime": null,
+              "gap": "+00.997",
+              "fastestLap": "1:12.210",
+              "points": 28,
+              "isGuest": false
+            },
+            {
+              "position": 3,
+              "driver": "Rambo",
+              "driverId": "rambo",
+              "entrant": null,
+              "car": "SF23 Super Formula/Toyota '23",
+              "totalTime": null,
+              "gap": "+09.820",
+              "fastestLap": "1:13.810",
+              "points": 27,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "Emilio",
+              "driverId": "emilio",
+              "entrant": null,
+              "car": "SF23 Super Formula/Toyota '23",
+              "totalTime": null,
+              "gap": "+10.787",
+              "fastestLap": "1:13.236",
+              "points": 25,
+              "isGuest": false
+            },
+            {
+              "position": 5,
+              "driver": "Cetla",
+              "driverId": "cetla",
+              "entrant": null,
+              "car": "SF23 Super Formula/Honda '23",
+              "totalTime": null,
+              "gap": "+15.956",
+              "fastestLap": "1:14.111",
+              "points": 24,
+              "isGuest": false
+            },
+            {
+              "position": 6,
+              "driver": "TheSlayter",
+              "driverId": "theslayter",
+              "entrant": "TheSlayterr-TV",
+              "car": "SF23 Super Formula/Honda '23",
+              "totalTime": null,
+              "gap": "+16.749",
+              "fastestLap": "1:13.460",
+              "points": 21,
+              "isGuest": false
+            },
+            {
+              "position": 7,
+              "driver": "HPepe",
+              "driverId": "hpepe",
+              "entrant": null,
+              "car": "SF23 Super Formula/Toyota '23",
+              "totalTime": null,
+              "gap": "+18.444",
+              "fastestLap": "1:12.822",
+              "points": 19,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "KickStart",
+              "driverId": "kickstart",
+              "entrant": "KickstartMyKart",
+              "car": "SF23 Super Formula/Toyota '23",
+              "totalTime": null,
+              "gap": "+19.502",
+              "fastestLap": "1:14.340",
+              "points": 17,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "Santi",
+              "driverId": "santi",
+              "entrant": "HdzSanti",
+              "car": "SF23 Super Formula/Honda '23",
+              "totalTime": null,
+              "gap": "+23.581",
+              "fastestLap": "1:14.745",
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "Lilreeree",
+              "driverId": "lilreeree",
+              "entrant": null,
+              "car": "SF23 Super Formula/Toyota '23",
+              "totalTime": null,
+              "gap": "+28.400",
+              "fastestLap": "1:12.880",
+              "points": 14,
+              "isGuest": false
+            },
+            {
+              "position": 11,
+              "driver": "Pablo",
+              "driverId": "pablo",
+              "entrant": null,
+              "car": "SF23 Super Formula/Toyota '23",
+              "totalTime": null,
+              "gap": "+31.419",
+              "fastestLap": "1:14.140",
+              "points": 12,
+              "isGuest": false
+            },
+            {
+              "position": 12,
+              "driver": "Jack",
+              "driverId": "jack",
+              "entrant": null,
+              "car": "SF23 Super Formula/Honda '23",
+              "totalTime": null,
+              "gap": "+40.873",
+              "fastestLap": "1:15.454",
+              "points": 11,
+              "isGuest": false
+            },
+            {
+              "position": 13,
+              "driver": "OogaBooga",
+              "driverId": "oogabooga",
+              "entrant": null,
+              "car": "SF23 Super Formula/Honda '23",
+              "totalTime": null,
+              "gap": "+57.012",
+              "fastestLap": "1:15.598",
+              "points": 10,
+              "isGuest": false
+            },
+            {
+              "position": 14,
+              "driver": "Slatenator",
+              "driverId": "slatenator",
+              "entrant": null,
+              "car": "SF23 Super Formula/Honda '23",
+              "totalTime": "+1:00.280",
+              "gap": "+1:00.280",
+              "fastestLap": "1:15.928",
+              "points": 9,
+              "isGuest": false
+            },
+            {
+              "position": 15,
+              "driver": "FleshTorpedo",
+              "driverId": "fleshtorpedo",
+              "entrant": null,
+              "car": "SF23 Super Formula/Toyota '23",
+              "totalTime": "+1:06.719",
+              "gap": "+1:06.719",
+              "fastestLap": "1:15.279",
+              "points": 8,
+              "isGuest": false
+            }
+          ]
+        },
+        {
+          "id": "race9",
+          "round": 9,
+          "name": "Race 9: Circuit de Barcelona-Catalunya GP",
+          "trackImage": "https://gt-engine.com/gt7/tracks/images/md/catalunya.png",
+          "schedule": {
+            "date": null,
+            "venue": "Circuit de Barcelona-Catalunya GP"
+          },
+          "settings": {
+            "carClass": "Grade 2 (Gr.2)",
+            "weather": "Day & Clear",
+            "laps": null,
+            "notes": "Date Unknown"
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "Rambo",
+              "driverId": "rambo",
+              "entrant": null,
+              "car": "NSX CONCEPT-GT '16",
+              "totalTime": "Unknown",
+              "gap": null,
+              "fastestLap": "1:26.677",
+              "points": 30,
+              "isGuest": false
+            },
+            {
+              "position": 2,
+              "driver": "Rom3",
+              "driverId": "rom3",
+              "entrant": null,
+              "car": "NSX CONCEPT-GT '16",
+              "totalTime": null,
+              "gap": "+04.965",
+              "fastestLap": "1:26.766",
+              "points": 28,
+              "isGuest": false
+            },
+            {
+              "position": 3,
+              "driver": "Joan.D",
+              "driverId": "joan-d",
+              "entrant": null,
+              "car": "NSX CONCEPT-GT '16",
+              "totalTime": null,
+              "gap": "+17.109",
+              "fastestLap": "1:24.075",
+              "points": 27,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "KickStart",
+              "driverId": "kickstart",
+              "entrant": "KickstartMyKart",
+              "car": "NSX CONCEPT-GT '16",
+              "totalTime": null,
+              "gap": "+24.797",
+              "fastestLap": "1:25.249",
+              "points": 25,
+              "isGuest": false
+            },
+            {
+              "position": 5,
+              "driver": "Slatenator",
+              "driverId": "slatenator",
+              "entrant": null,
+              "car": "NSX CONCEPT-GT '16",
+              "totalTime": null,
+              "gap": "+29.169",
+              "fastestLap": "1:24.999",
+              "points": 24,
+              "isGuest": false
+            },
+            {
+              "position": 6,
+              "driver": "Cetla",
+              "driverId": "cetla",
+              "entrant": null,
+              "car": "NSX CONCEPT-GT '16",
+              "totalTime": null,
+              "gap": "+29.294",
+              "fastestLap": "1:24.019",
+              "points": 21,
+              "isGuest": false
+            },
+            {
+              "position": 7,
+              "driver": "FleshTorpedo",
+              "driverId": "fleshtorpedo",
+              "entrant": null,
+              "car": "NSX CONCEPT-GT '16",
+              "totalTime": null,
+              "gap": "+29.993",
+              "fastestLap": "1:24.801",
+              "points": 19,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "Jack",
+              "driverId": "jack",
+              "entrant": null,
+              "car": "NSX CONCEPT-GT '16",
+              "totalTime": null,
+              "gap": "+31.218",
+              "fastestLap": "1:25.153",
+              "points": 17,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "OogaBooga",
+              "driverId": "oogabooga",
+              "entrant": null,
+              "car": "RC F GT500 '16",
+              "totalTime": null,
+              "gap": "+32.730",
+              "fastestLap": "1:24.677",
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "Lilreeree",
+              "driverId": "lilreeree",
+              "entrant": null,
+              "car": "RC F GT500 '16",
+              "totalTime": null,
+              "gap": "+33.340",
+              "fastestLap": "1:25.696",
+              "points": 14,
+              "isGuest": false
+            },
+            {
+              "position": 11,
+              "driver": "Santi",
+              "driverId": "santi",
+              "entrant": "HdzSanti",
+              "car": "RC F GT500 '16",
+              "totalTime": null,
+              "gap": "+33.926",
+              "fastestLap": "1:27.649",
+              "points": 12,
+              "isGuest": false
+            },
+            {
+              "position": 12,
+              "driver": "TrapVis",
+              "driverId": "trapvis",
+              "entrant": null,
+              "car": "NSX CONCEPT-GT '16",
+              "totalTime": null,
+              "gap": "+40.685",
+              "fastestLap": "1:26.366",
+              "points": 11,
+              "isGuest": false
+            }
+          ]
+        },
+        {
+          "id": "race10",
+          "round": 10,
+          "name": "Race 10: Spa 24h layout",
+          "trackImage": "https://gt-engine.com/gt7/tracks/images/md/spa.png",
+          "schedule": {
+            "date": null,
+            "venue": "Spa 24h layout"
+          },
+          "settings": {
+            "carClass": "Grade 1 (Gr.1)",
+            "weather": "Day & Random",
+            "laps": null,
+            "notes": "Date Unknown"
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "Lilreeree",
+              "driverId": "lilreeree",
+              "entrant": null,
+              "car": "R18 '16",
+              "totalTime": "43:35.953",
+              "gap": null,
+              "fastestLap": "2:01.050",
+              "points": 30,
+              "isGuest": false
+            },
+            {
+              "position": 2,
+              "driver": "Rambo",
+              "driverId": "rambo",
+              "entrant": null,
+              "car": "919 Hybrid '16",
+              "totalTime": null,
+              "gap": "+03.679",
+              "fastestLap": "2:02.201",
+              "points": 28,
+              "isGuest": false
+            },
+            {
+              "position": 3,
+              "driver": "Emilio",
+              "driverId": "emilio",
+              "entrant": null,
+              "car": "R18 '16",
+              "totalTime": null,
+              "gap": "+14.408",
+              "fastestLap": "2:01.136",
+              "points": 27,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "Slatenator",
+              "driverId": "slatenator",
+              "entrant": null,
+              "car": "919 Hybrid '16",
+              "totalTime": null,
+              "gap": "+38.959",
+              "fastestLap": "1:57.259",
+              "points": 25,
+              "isGuest": false
+            },
+            {
+              "position": 5,
+              "driver": "OogaBooga",
+              "driverId": "oogabooga",
+              "entrant": null,
+              "car": "R18 '16",
+              "totalTime": null,
+              "gap": "+39.577",
+              "fastestLap": "1:56.802",
+              "points": 24,
+              "isGuest": false
+            },
+            {
+              "position": 6,
+              "driver": "TheSlayter",
+              "driverId": "theslayter",
+              "entrant": "TheSlayterr-TV",
+              "car": "919 Hybrid '16",
+              "totalTime": null,
+              "gap": "+39.896",
+              "fastestLap": "1:58.985",
+              "points": 21,
+              "isGuest": false
+            },
+            {
+              "position": 7,
+              "driver": "Cetla",
+              "driverId": "cetla",
+              "entrant": null,
+              "car": "919 Hybrid '16",
+              "totalTime": null,
+              "gap": "+46.013",
+              "fastestLap": "1:57.510",
+              "points": 19,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "Jack",
+              "driverId": "jack",
+              "entrant": null,
+              "car": "919 Hybrid '16",
+              "totalTime": null,
+              "gap": "+51.710",
+              "fastestLap": "1:57.960",
+              "points": 17,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "KickStart",
+              "driverId": "kickstart",
+              "entrant": "KickstartMyKart",
+              "car": "919 Hybrid '16",
+              "totalTime": null,
+              "gap": "+2:14.335",
+              "fastestLap": "1:58.005",
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "FleshTorpedo",
+              "driverId": "fleshtorpedo",
+              "entrant": null,
+              "car": "919 Hybrid '16",
+              "totalTime": "DNF",
+              "gap": null,
+              "fastestLap": "1:59.650",
+              "points": 14,
+              "isGuest": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "session4",
+      "label": "Road Cars",
+      "year": 2024,
+      "description": "Road car sprint season with mixed manufacturer grids.",
+      "primaryColor": "#0F766E",
+      "drivers": [
+        {
+          "id": "hondo",
+          "name": "Hondo",
+          "teamId": "team-santigold",
+          "color": "orange",
+          "points": 177,
+          "aliases": []
+        },
+        {
+          "id": "bedsti-mario",
+          "name": "Bedsti_Mario",
+          "teamId": "team-tegridy",
+          "color": "green",
+          "points": 93,
+          "aliases": []
+        },
+        {
+          "id": "hpepe",
+          "name": "HPepe",
+          "teamId": "gap-that-exists",
+          "color": "yellow",
+          "points": 211,
+          "aliases": []
+        },
+        {
+          "id": "emilio",
+          "name": "Emilio",
+          "teamId": "team-tegridy",
+          "color": "green",
+          "points": 285,
+          "aliases": []
+        },
+        {
+          "id": "theslayter",
+          "name": "TheSlayter",
+          "teamId": "team-slate",
+          "color": "red",
+          "points": 121,
+          "aliases": []
+        },
+        {
+          "id": "pablo",
+          "name": "Pablo",
+          "teamId": "k-hole-racing",
+          "color": "pink",
+          "points": 256,
+          "aliases": []
+        },
+        {
+          "id": "santi",
+          "name": "Santi",
+          "teamId": "team-santigold",
+          "color": "orange",
+          "points": 143,
+          "aliases": []
+        },
+        {
+          "id": "slatenator",
+          "name": "Slatenator",
+          "teamId": "team-slate",
+          "color": "red",
+          "points": 147,
+          "aliases": []
+        },
+        {
+          "id": "cetla",
+          "name": "Cetla",
+          "teamId": "team-stake",
+          "color": "lightgreen",
+          "points": 135,
+          "aliases": []
+        },
+        {
+          "id": "lilreeree",
+          "name": "Lilreeree",
+          "teamId": "team-ginganinja",
+          "color": "skyblue",
+          "points": 106,
+          "aliases": []
+        },
+        {
+          "id": "oogabooga",
+          "name": "OogaBooga",
+          "teamId": "team-stake",
+          "color": "lightgreen",
+          "points": 93,
+          "aliases": []
+        },
+        {
+          "id": "kickstart",
+          "name": "KickStart",
+          "teamId": "team-tits-out",
+          "color": "black",
+          "points": 152,
+          "aliases": []
+        },
+        {
+          "id": "ginga",
+          "name": "Ginga",
+          "teamId": "team-ginganinja",
+          "color": "skyblue",
+          "points": 35,
+          "aliases": []
+        },
+        {
+          "id": "fleshtorpedo",
+          "name": "FleshTorpedo",
+          "teamId": "team-tits-out",
+          "color": "black",
+          "points": 142,
+          "aliases": []
+        },
+        {
+          "id": "mustang",
+          "name": "Mustang",
+          "teamId": "gap-that-exists",
+          "color": "yellow",
+          "points": 160,
+          "aliases": []
+        },
+        {
+          "id": "trapvis",
+          "name": "TrapVis",
+          "teamId": "k-hole-racing",
+          "color": "pink",
+          "points": 241,
+          "aliases": []
+        }
+      ],
+      "teams": [
+        {
+          "id": "gap-that-exists",
+          "name": "Gap that exists",
+          "color": "yellow",
+          "points": 371
+        },
+        {
+          "id": "team-santigold",
+          "name": "Team SantiGold",
+          "color": "orange",
+          "points": 320
+        },
+        {
+          "id": "team-slate",
+          "name": "Team Slate",
+          "color": "red",
+          "points": 268
+        },
+        {
+          "id": "k-hole-racing",
+          "name": "K-Hole Racing",
+          "color": "pink",
+          "points": 440
+        },
+        {
+          "id": "team-tegridy",
+          "name": "Team Tegridy",
+          "color": "green",
+          "points": 378
+        },
+        {
+          "id": "team-stake",
+          "name": "Team Stake",
+          "color": "lightgreen",
+          "points": 228
+        },
+        {
+          "id": "team-tits-out",
+          "name": "Team Tits Out",
+          "color": "black",
+          "points": 294
+        },
+        {
+          "id": "team-ginganinja",
+          "name": "Team GingaNinja",
+          "color": "skyblue",
+          "points": 141
+        }
+      ],
+      "races": [
+        {
+          "id": "race1",
+          "round": 1,
+          "name": "Race 1: Indy",
+          "trackImage": "https://gt-engine.com/gt7/tracks/images/md/brands-hatch-indy.png",
+          "schedule": {
+            "date": null,
+            "venue": "Indy"
+          },
+          "settings": {
+            "carClass": "MaxPP 580",
+            "weather": "Night",
+            "laps": 18,
+            "notes": "Sport Tires only! No Gas Use, tire 1x wear!"
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "TrapVis",
+              "driverId": "trapvis",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 30,
+              "isGuest": false
+            },
+            {
+              "position": 2,
+              "driver": "Emilio",
+              "driverId": "emilio",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 31,
+              "isGuest": false
+            },
+            {
+              "position": 3,
+              "driver": "HPepe",
+              "driverId": "hpepe",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 27,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "Pablo",
+              "driverId": "pablo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 25,
+              "isGuest": false
+            },
+            {
+              "position": 5,
+              "driver": "Bedsti_Mario",
+              "driverId": "bedsti-mario",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 21,
+              "isGuest": false
+            },
+            {
+              "position": 6,
+              "driver": "TheSlayter",
+              "driverId": "theslayter",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 19,
+              "isGuest": false
+            },
+            {
+              "position": 7,
+              "driver": "Santi",
+              "driverId": "santi",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 17,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "Slatenator",
+              "driverId": "slatenator",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "FleshTorpedo",
+              "driverId": "fleshtorpedo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 12,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "Hondo",
+              "driverId": "hondo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 10,
+              "isGuest": false
+            },
+            {
+              "position": 11,
+              "driver": "Cetla",
+              "driverId": "cetla",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 9,
+              "isGuest": false
+            },
+            {
+              "position": 12,
+              "driver": "OogaBooga",
+              "driverId": "oogabooga",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 8,
+              "isGuest": false
+            }
+          ]
+        },
+        {
+          "id": "race2",
+          "round": 2,
+          "name": "Race 2: Tokyo",
+          "trackImage": "https://gt-engine.com/gt7/tracks/images/md/tokyo-express-central-cw.png",
+          "schedule": {
+            "date": null,
+            "venue": "Tokyo"
+          },
+          "settings": {
+            "carClass": "MaxPP 595",
+            "weather": "Night",
+            "laps": 12,
+            "notes": "Sport Tires only! No Gas Use, tire 1x wear!"
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "Hondo",
+              "driverId": "hondo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 30,
+              "isGuest": false
+            },
+            {
+              "position": 2,
+              "driver": "Pablo",
+              "driverId": "pablo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 28,
+              "isGuest": false
+            },
+            {
+              "position": 3,
+              "driver": "HPepe",
+              "driverId": "hpepe",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 30,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "TrapVis",
+              "driverId": "trapvis",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 25,
+              "isGuest": false
+            },
+            {
+              "position": 5,
+              "driver": "Emilio",
+              "driverId": "emilio",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 24,
+              "isGuest": false
+            },
+            {
+              "position": 6,
+              "driver": "TheSlayter",
+              "driverId": "theslayter",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 21,
+              "isGuest": false
+            },
+            {
+              "position": 7,
+              "driver": "Bedsti_Mario",
+              "driverId": "bedsti-mario",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 19,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "FleshTorpedo",
+              "driverId": "fleshtorpedo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 17,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "KickStart",
+              "driverId": "kickstart",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "Slatenator",
+              "driverId": "slatenator",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 14,
+              "isGuest": false
+            },
+            {
+              "position": 11,
+              "driver": "Cetla",
+              "driverId": "cetla",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 12,
+              "isGuest": false
+            },
+            {
+              "position": 12,
+              "driver": "Santi",
+              "driverId": "santi",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 11,
+              "isGuest": false
+            },
+            {
+              "position": 13,
+              "driver": "Ginga",
+              "driverId": "ginga",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 10,
+              "isGuest": false
+            }
+          ]
+        },
+        {
+          "id": "race3",
+          "round": 3,
+          "name": "Race 3: Road Atlanta",
+          "trackImage": "https://gt-engine.com/gt7/tracks/images/md/road-atlanta.png",
+          "schedule": {
+            "date": null,
+            "venue": "Road Atlanta"
+          },
+          "settings": {
+            "carClass": "MaxPP 660",
+            "weather": "Night",
+            "laps": 14,
+            "notes": "No Gas Use, tire 1x wear!"
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "Emilio",
+              "driverId": "emilio",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 30,
+              "isGuest": false
+            },
+            {
+              "position": 2,
+              "driver": "Pablo",
+              "driverId": "pablo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 28,
+              "isGuest": false
+            },
+            {
+              "position": 3,
+              "driver": "TheSlayter",
+              "driverId": "theslayter",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 27,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "Mustang",
+              "driverId": "mustang",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 25,
+              "isGuest": false
+            },
+            {
+              "position": 5,
+              "driver": "Cetla",
+              "driverId": "cetla",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 24,
+              "isGuest": false
+            },
+            {
+              "position": 6,
+              "driver": "Hondo",
+              "driverId": "hondo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 24,
+              "isGuest": false
+            },
+            {
+              "position": 7,
+              "driver": "Santi",
+              "driverId": "santi",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 19,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "HPepe",
+              "driverId": "hpepe",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 17,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "KickStart",
+              "driverId": "kickstart",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "Slatenator",
+              "driverId": "slatenator",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 14,
+              "isGuest": false
+            },
+            {
+              "position": 11,
+              "driver": "TrapVis",
+              "driverId": "trapvis",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 12,
+              "isGuest": false
+            },
+            {
+              "position": 12,
+              "driver": "Ginga",
+              "driverId": "ginga",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 11,
+              "isGuest": false
+            },
+            {
+              "position": 13,
+              "driver": "FleshTorpedo",
+              "driverId": "fleshtorpedo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 10,
+              "isGuest": false
+            },
+            {
+              "position": 14,
+              "driver": "OogaBooga",
+              "driverId": "oogabooga",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 9,
+              "isGuest": false
+            }
+          ]
+        },
+        {
+          "id": "race4",
+          "round": 4,
+          "name": "Race 4: Sardenga",
+          "trackImage": "https://gt-engine.com/gt7/tracks/images/md/sardegna-road-a.png",
+          "schedule": {
+            "date": null,
+            "venue": "Sardenga"
+          },
+          "settings": {
+            "carClass": "MaxPP 680",
+            "weather": "Evening",
+            "laps": 10,
+            "notes": "No Gas Use, tire 1x wear!"
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "Mustang",
+              "driverId": "mustang",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 30,
+              "isGuest": false
+            },
+            {
+              "position": 2,
+              "driver": "Pablo",
+              "driverId": "pablo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 31,
+              "isGuest": false
+            },
+            {
+              "position": 3,
+              "driver": "Emilio",
+              "driverId": "emilio",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 27,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "HPepe",
+              "driverId": "hpepe",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 25,
+              "isGuest": false
+            },
+            {
+              "position": 5,
+              "driver": "Lilreeree",
+              "driverId": "lilreeree",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 24,
+              "isGuest": false
+            },
+            {
+              "position": 6,
+              "driver": "Bedsti_Mario",
+              "driverId": "bedsti-mario",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 21,
+              "isGuest": false
+            },
+            {
+              "position": 7,
+              "driver": "KickStart",
+              "driverId": "kickstart",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 19,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "TrapVis",
+              "driverId": "trapvis",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 17,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "Hondo",
+              "driverId": "hondo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "OogaBooga",
+              "driverId": "oogabooga",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 14,
+              "isGuest": false
+            },
+            {
+              "position": 11,
+              "driver": "Santi",
+              "driverId": "santi",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 12,
+              "isGuest": false
+            },
+            {
+              "position": 12,
+              "driver": "Cetla",
+              "driverId": "cetla",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 11,
+              "isGuest": false
+            },
+            {
+              "position": 13,
+              "driver": "Slatenator",
+              "driverId": "slatenator",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 10,
+              "isGuest": false
+            },
+            {
+              "position": 14,
+              "driver": "FleshTorpedo",
+              "driverId": "fleshtorpedo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 9,
+              "isGuest": false
+            },
+            {
+              "position": 15,
+              "driver": "TheSlayter",
+              "driverId": "theslayter",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 8,
+              "isGuest": false
+            }
+          ]
+        },
+        {
+          "id": "race5",
+          "round": 5,
+          "name": "Race 5: Highway A",
+          "trackImage": "https://gt-engine.com/gt7/tracks/images/md/tokyo-expressway-east-outer.png",
+          "schedule": {
+            "date": null,
+            "venue": "Highway A"
+          },
+          "settings": {
+            "carClass": "MaxPP 680",
+            "weather": "Night",
+            "laps": 12,
+            "notes": "No Gas Use, tire 1x wear!"
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "Pablo",
+              "driverId": "pablo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 30,
+              "isGuest": false
+            },
+            {
+              "position": 2,
+              "driver": "HPepe",
+              "driverId": "hpepe",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 31,
+              "isGuest": false
+            },
+            {
+              "position": 3,
+              "driver": "TrapVis",
+              "driverId": "trapvis",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 27,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "Mustang",
+              "driverId": "mustang",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 25,
+              "isGuest": false
+            },
+            {
+              "position": 5,
+              "driver": "Hondo",
+              "driverId": "hondo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 24,
+              "isGuest": false
+            },
+            {
+              "position": 6,
+              "driver": "Emilio",
+              "driverId": "emilio",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 21,
+              "isGuest": false
+            },
+            {
+              "position": 7,
+              "driver": "TheSlayter",
+              "driverId": "theslayter",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 19,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "Lilreeree",
+              "driverId": "lilreeree",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 17,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "Cetla",
+              "driverId": "cetla",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "Bedsti_Mario",
+              "driverId": "bedsti-mario",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 14,
+              "isGuest": false
+            },
+            {
+              "position": 11,
+              "driver": "FleshTorpedo",
+              "driverId": "fleshtorpedo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 12,
+              "isGuest": false
+            },
+            {
+              "position": 12,
+              "driver": "Slatenator",
+              "driverId": "slatenator",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 11,
+              "isGuest": false
+            },
+            {
+              "position": 13,
+              "driver": "OogaBooga",
+              "driverId": "oogabooga",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 10,
+              "isGuest": false
+            }
+          ]
+        },
+        {
+          "id": "race6",
+          "round": 6,
+          "name": "Race 6: Deep Forest",
+          "trackImage": "https://gt-engine.com/gt7/tracks/images/md/deep-forest-raceway.png",
+          "schedule": {
+            "date": null,
+            "venue": "Deep Forest"
+          },
+          "settings": {
+            "carClass": "MaxPP 710",
+            "weather": "Night",
+            "laps": 12,
+            "notes": "No Gas Use, tire 1x wear!"
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "Emilio",
+              "driverId": "emilio",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 33,
+              "isGuest": false
+            },
+            {
+              "position": 2,
+              "driver": "Mustang",
+              "driverId": "mustang",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 28,
+              "isGuest": false
+            },
+            {
+              "position": 3,
+              "driver": "TrapVis",
+              "driverId": "trapvis",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 27,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "Pablo",
+              "driverId": "pablo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 25,
+              "isGuest": false
+            },
+            {
+              "position": 5,
+              "driver": "HPepe",
+              "driverId": "hpepe",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 24,
+              "isGuest": false
+            },
+            {
+              "position": 6,
+              "driver": "KickStart",
+              "driverId": "kickstart",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 21,
+              "isGuest": false
+            },
+            {
+              "position": 7,
+              "driver": "FleshTorpedo",
+              "driverId": "fleshtorpedo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 19,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "Slatenator",
+              "driverId": "slatenator",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 17,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "Lilreeree",
+              "driverId": "lilreeree",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "Hondo",
+              "driverId": "hondo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 14,
+              "isGuest": false
+            }
+          ]
+        },
+        {
+          "id": "race7",
+          "round": 7,
+          "name": "Race 7: Dragon Trail",
+          "trackImage": "https://gt-engine.com/gt7/tracks/images/md/dragon-trail.png",
+          "schedule": {
+            "date": null,
+            "venue": "Dragon Trail"
+          },
+          "settings": {
+            "carClass": "MaxPP 710",
+            "weather": "Night",
+            "laps": 11,
+            "notes": "No Gas Use, tire 1x wear!"
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "Emilio",
+              "driverId": "emilio",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 33,
+              "isGuest": false
+            },
+            {
+              "position": 2,
+              "driver": "Pablo",
+              "driverId": "pablo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 28,
+              "isGuest": false
+            },
+            {
+              "position": 3,
+              "driver": "TrapVis",
+              "driverId": "trapvis",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 27,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "Lilreeree",
+              "driverId": "lilreeree",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 25,
+              "isGuest": false
+            },
+            {
+              "position": 5,
+              "driver": "KickStart",
+              "driverId": "kickstart",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 24,
+              "isGuest": false
+            },
+            {
+              "position": 6,
+              "driver": "Santi",
+              "driverId": "santi",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 21,
+              "isGuest": false
+            },
+            {
+              "position": 7,
+              "driver": "FleshTorpedo",
+              "driverId": "fleshtorpedo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 19,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "Hondo",
+              "driverId": "hondo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 17,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "Bedsti_Mario",
+              "driverId": "bedsti-mario",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "OogaBooga",
+              "driverId": "oogabooga",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 14,
+              "isGuest": false
+            },
+            {
+              "position": 11,
+              "driver": "Cetla",
+              "driverId": "cetla",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 12,
+              "isGuest": false
+            },
+            {
+              "position": 12,
+              "driver": "Slatenator",
+              "driverId": "slatenator",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 11,
+              "isGuest": false
+            },
+            {
+              "position": 13,
+              "driver": "TheSlayter",
+              "driverId": "theslayter",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 10,
+              "isGuest": false
+            }
+          ]
+        },
+        {
+          "id": "race8",
+          "round": 8,
+          "name": "Race 8: Laguna Seca",
+          "trackImage": "https://gt-engine.com/gt7/tracks/images/md/laguna-seca.png",
+          "schedule": {
+            "date": null,
+            "venue": "Laguna Seca"
+          },
+          "settings": {
+            "carClass": "MaxPP 710",
+            "weather": "Evening",
+            "laps": 12,
+            "notes": "No Gas Use, tire 1x wear!"
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "Emilio",
+              "driverId": "emilio",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 33,
+              "isGuest": false
+            },
+            {
+              "position": 2,
+              "driver": "Pablo",
+              "driverId": "pablo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 28,
+              "isGuest": false
+            },
+            {
+              "position": 3,
+              "driver": "Hondo",
+              "driverId": "hondo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 27,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "TrapVis",
+              "driverId": "trapvis",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 25,
+              "isGuest": false
+            },
+            {
+              "position": 5,
+              "driver": "KickStart",
+              "driverId": "kickstart",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 24,
+              "isGuest": false
+            },
+            {
+              "position": 6,
+              "driver": "Santi",
+              "driverId": "santi",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 21,
+              "isGuest": false
+            },
+            {
+              "position": 7,
+              "driver": "Slatenator",
+              "driverId": "slatenator",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 19,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "Cetla",
+              "driverId": "cetla",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 17,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "FleshTorpedo",
+              "driverId": "fleshtorpedo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "OogaBooga",
+              "driverId": "oogabooga",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 14,
+              "isGuest": false
+            }
+          ]
+        },
+        {
+          "id": "race9",
+          "round": 9,
+          "name": "Race 9: Nürburgring",
+          "trackImage": "https://gt-engine.com/gt7/tracks/images/md/nurburgring-gp.png",
+          "schedule": {
+            "date": null,
+            "venue": "Nürburgring"
+          },
+          "settings": {
+            "carClass": "MaxPP 710",
+            "weather": "Night",
+            "laps": 3,
+            "notes": "No Gas Use, tire 1x wear!"
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "HPepe",
+              "driverId": "hpepe",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 33,
+              "isGuest": false
+            },
+            {
+              "position": 2,
+              "driver": "Emilio",
+              "driverId": "emilio",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 28,
+              "isGuest": false
+            },
+            {
+              "position": 3,
+              "driver": "TrapVis",
+              "driverId": "trapvis",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 27,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "Lilreeree",
+              "driverId": "lilreeree",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 25,
+              "isGuest": false
+            },
+            {
+              "position": 5,
+              "driver": "Mustang",
+              "driverId": "mustang",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 24,
+              "isGuest": false
+            },
+            {
+              "position": 6,
+              "driver": "Santi",
+              "driverId": "santi",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 21,
+              "isGuest": false
+            },
+            {
+              "position": 7,
+              "driver": "KickStart",
+              "driverId": "kickstart",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 19,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "Slatenator",
+              "driverId": "slatenator",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 17,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "TheSlayter",
+              "driverId": "theslayter",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "FleshTorpedo",
+              "driverId": "fleshtorpedo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 14,
+              "isGuest": false
+            },
+            {
+              "position": 11,
+              "driver": "Hondo",
+              "driverId": "hondo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 12,
+              "isGuest": false
+            },
+            {
+              "position": 12,
+              "driver": "Cetla",
+              "driverId": "cetla",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 11,
+              "isGuest": false
+            },
+            {
+              "position": 13,
+              "driver": "OogaBooga",
+              "driverId": "oogabooga",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 10,
+              "isGuest": false
+            }
+          ]
+        },
+        {
+          "id": "race10",
+          "round": 10,
+          "name": "Race 10: Trial Mountain",
+          "trackImage": "https://gt-engine.com/gt7/tracks/images/md/trial-mountain.png",
+          "schedule": {
+            "date": null,
+            "venue": "Trial Mountain"
+          },
+          "settings": {
+            "carClass": "MaxPP 710",
+            "weather": "Night",
+            "laps": 10,
+            "notes": "No Gas Use, tire 1x wear!"
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "Pablo",
+              "driverId": "pablo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 33,
+              "isGuest": false
+            },
+            {
+              "position": 2,
+              "driver": "Mustang",
+              "driverId": "mustang",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 28,
+              "isGuest": false
+            },
+            {
+              "position": 3,
+              "driver": "HPepe",
+              "driverId": "hpepe",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 27,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "Emilio",
+              "driverId": "emilio",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 25,
+              "isGuest": false
+            },
+            {
+              "position": 5,
+              "driver": "TrapVis",
+              "driverId": "trapvis",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 24,
+              "isGuest": false
+            },
+            {
+              "position": 6,
+              "driver": "Cetla",
+              "driverId": "cetla",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 21,
+              "isGuest": false
+            },
+            {
+              "position": 7,
+              "driver": "Santi",
+              "driverId": "santi",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 19,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "Slatenator",
+              "driverId": "slatenator",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 17,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "KickStart",
+              "driverId": "kickstart",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "Ginga",
+              "driverId": "ginga",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 14,
+              "isGuest": false
+            },
+            {
+              "position": 11,
+              "driver": "FleshTorpedo",
+              "driverId": "fleshtorpedo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 12,
+              "isGuest": false
+            },
+            {
+              "position": 12,
+              "driver": "OogaBooga",
+              "driverId": "oogabooga",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 11,
+              "isGuest": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "session4html",
+      "label": "People Pick",
+      "year": 2024,
+      "description": "Community-voted car selection season.",
+      "primaryColor": "#BE185D",
+      "drivers": [
+        {
+          "id": "hondo",
+          "name": "Hondo",
+          "teamId": "teamfox",
+          "color": "orange",
+          "points": 267,
+          "aliases": []
+        },
+        {
+          "id": "bedsti-mario",
+          "name": "Bedsti_Mario",
+          "teamId": "team-vortex",
+          "color": "yellow",
+          "points": 235,
+          "aliases": []
+        },
+        {
+          "id": "hpepe",
+          "name": "HPepe",
+          "teamId": "teamfox",
+          "color": "orange",
+          "points": 207,
+          "aliases": []
+        },
+        {
+          "id": "emilio",
+          "name": "Emilio",
+          "teamId": "team-tegridy",
+          "color": "green",
+          "points": 247,
+          "aliases": []
+        },
+        {
+          "id": "theslayter",
+          "name": "TheSlayter",
+          "teamId": "team-slate",
+          "color": "red",
+          "points": 190,
+          "aliases": []
+        },
+        {
+          "id": "pablo",
+          "name": "Pablo",
+          "teamId": "henry-ruggs",
+          "color": "black",
+          "points": 199,
+          "aliases": []
+        },
+        {
+          "id": "santi",
+          "name": "Santi",
+          "teamId": "team-vortex",
+          "color": "yellow",
+          "points": 106,
+          "aliases": []
+        },
+        {
+          "id": "slatenator",
+          "name": "Slatenator",
+          "teamId": "team-slate",
+          "color": "red",
+          "points": 111,
+          "aliases": []
+        },
+        {
+          "id": "cetla",
+          "name": "Cetla",
+          "teamId": "team-stake",
+          "color": "lightgreen",
+          "points": 100,
+          "aliases": []
+        },
+        {
+          "id": "tanjiro",
+          "name": "Tanjiro",
+          "teamId": "henry-ruggs",
+          "color": "black",
+          "points": 62,
+          "aliases": []
+        },
+        {
+          "id": "oogabooga",
+          "name": "OogaBooga",
+          "teamId": "team-stake",
+          "color": "lightgreen",
+          "points": 79,
+          "aliases": []
+        },
+        {
+          "id": "kickstart",
+          "name": "KickStart",
+          "teamId": "team-fuck-yeah",
+          "color": "skyblue",
+          "points": 95,
+          "aliases": [
+            "KickStart - Sub = FleshTorpedo"
+          ]
+        },
+        {
+          "id": "ginga",
+          "name": "Ginga",
+          "teamId": null,
+          "color": "skyblue",
+          "points": 67,
+          "aliases": []
+        },
+        {
+          "id": "fleshtorpedo",
+          "name": "FleshTorpedo",
+          "teamId": "team-tegridy",
+          "color": "green",
+          "points": 69,
+          "aliases": []
+        }
+      ],
+      "teams": [
+        {
+          "id": "teamfox",
+          "name": "TeamFOX",
+          "color": "orange",
+          "points": 474
+        },
+        {
+          "id": "team-vortex",
+          "name": "Team Vortex",
+          "color": "yellow",
+          "points": 341
+        },
+        {
+          "id": "team-slate",
+          "name": "Team Slate",
+          "color": "red",
+          "points": 301
+        },
+        {
+          "id": "henry-ruggs",
+          "name": "Henry Ruggs",
+          "color": "black",
+          "points": 261
+        },
+        {
+          "id": "team-tegridy",
+          "name": "Team Tegridy",
+          "color": "green",
+          "points": 316
+        },
+        {
+          "id": "team-stake",
+          "name": "Team Stake",
+          "color": "lightgreen",
+          "points": 179
+        },
+        {
+          "id": "team-fuck-yeah",
+          "name": "Team Fuck Yeah",
+          "color": "lightskyblue",
+          "points": 162
+        }
+      ],
+      "races": [
+        {
+          "id": "race1",
+          "round": 1,
+          "name": "Race 1: Sept 2nd - Hondo",
+          "trackImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Circuit_N%C3%BCrburgring-2002-24h.svg/1024px-Circuit_N%C3%BCrburgring-2002-24h.svg.png",
+          "schedule": {
+            "date": null,
+            "venue": "Sept 2nd - Hondo"
+          },
+          "settings": {
+            "carClass": "60's 70's 80's 90's Max 580PP",
+            "weather": "Sunny",
+            "laps": null,
+            "notes": "Sport Tires only! No Gas Use, tire 1x wear!"
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "Hondo",
+              "driverId": "hondo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 40,
+              "isGuest": false
+            },
+            {
+              "position": 2,
+              "driver": "HPepe",
+              "driverId": "hpepe",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 33,
+              "isGuest": false
+            },
+            {
+              "position": 3,
+              "driver": "Bedsti_Mario",
+              "driverId": "bedsti-mario",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 30,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "TheSlayter",
+              "driverId": "theslayter",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 26,
+              "isGuest": false
+            },
+            {
+              "position": 5,
+              "driver": "Pablo",
+              "driverId": "pablo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 21,
+              "isGuest": false
+            },
+            {
+              "position": 6,
+              "driver": "Santi",
+              "driverId": "santi",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 18,
+              "isGuest": false
+            },
+            {
+              "position": 7,
+              "driver": "Emilio",
+              "driverId": "emilio",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "Slatenator",
+              "driverId": "slatenator",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 12,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "Tanjiro",
+              "driverId": "tanjiro",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 11,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "Ginga",
+              "driverId": "ginga",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 9,
+              "isGuest": false
+            },
+            {
+              "position": 11,
+              "driver": "Cetla",
+              "driverId": "cetla",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 6,
+              "isGuest": false
+            },
+            {
+              "position": 12,
+              "driver": "OogaBooga",
+              "driverId": "oogabooga",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 5,
+              "isGuest": false
+            },
+            {
+              "position": 13,
+              "driver": "r2gui2",
+              "driverId": null,
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 4,
+              "isGuest": true
+            }
+          ]
+        },
+        {
+          "id": "race2",
+          "round": 2,
+          "name": "Race 2: Sept 8th - Emilio",
+          "trackImage": "https://gt-engine.com/gt7/tracks/images/md/eiger-nordwand-2.png",
+          "schedule": {
+            "date": null,
+            "venue": "Sept 8th - Emilio"
+          },
+          "settings": {
+            "carClass": "GoKarts",
+            "weather": "Sunny",
+            "laps": 17,
+            "notes": "Default Settings, Downforce Changable."
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "Emilio",
+              "driverId": "emilio",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 40,
+              "isGuest": false
+            },
+            {
+              "position": 2,
+              "driver": "Bedsti_Mario",
+              "driverId": "bedsti-mario",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 33,
+              "isGuest": false
+            },
+            {
+              "position": 3,
+              "driver": "Hondo",
+              "driverId": "hondo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 30,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "HPepe",
+              "driverId": "hpepe",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 26,
+              "isGuest": false
+            },
+            {
+              "position": 5,
+              "driver": "Pablo",
+              "driverId": "pablo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 21,
+              "isGuest": false
+            },
+            {
+              "position": 6,
+              "driver": "TheSlayter",
+              "driverId": "theslayter",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 18,
+              "isGuest": false
+            },
+            {
+              "position": 7,
+              "driver": "Santi",
+              "driverId": "santi",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "Cetla",
+              "driverId": "cetla",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 12,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "KickStart",
+              "driverId": "kickstart",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 11,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "OogaBooga",
+              "driverId": "oogabooga",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 9,
+              "isGuest": false
+            },
+            {
+              "position": 11,
+              "driver": "Slatenator",
+              "driverId": "slatenator",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 6,
+              "isGuest": false
+            },
+            {
+              "position": 12,
+              "driver": "Tanjiro",
+              "driverId": "tanjiro",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 5,
+              "isGuest": false
+            }
+          ]
+        },
+        {
+          "id": "race3",
+          "round": 3,
+          "name": "Race 3: Sept 15th - Cetla",
+          "trackImage": "https://gt-engine.com/gt7/tracks/images/md/red-bull-ring.png",
+          "schedule": {
+            "date": null,
+            "venue": "Sept 15th - Cetla"
+          },
+          "settings": {
+            "carClass": "Formula 1 Cars",
+            "weather": "Sunny",
+            "laps": 17,
+            "notes": "Default Settings Locked, Downforce Changable."
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "HPepe",
+              "driverId": "hpepe",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 37,
+              "isGuest": false
+            },
+            {
+              "position": 2,
+              "driver": "Bedsti_Mario",
+              "driverId": "bedsti-mario",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 36,
+              "isGuest": false
+            },
+            {
+              "position": 3,
+              "driver": "Emilio",
+              "driverId": "emilio",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 30,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "Hondo",
+              "driverId": "hondo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 26,
+              "isGuest": false
+            },
+            {
+              "position": 5,
+              "driver": "TheSlayter",
+              "driverId": "theslayter",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 21,
+              "isGuest": false
+            },
+            {
+              "position": 6,
+              "driver": "Cetla",
+              "driverId": "cetla",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 18,
+              "isGuest": false
+            },
+            {
+              "position": 7,
+              "driver": "Pablo",
+              "driverId": "pablo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "Santi",
+              "driverId": "santi",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 12,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "OogaBooga",
+              "driverId": "oogabooga",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 11,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "Slatenator",
+              "driverId": "slatenator",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 9,
+              "isGuest": false
+            },
+            {
+              "position": 11,
+              "driver": "KickStart",
+              "driverId": "kickstart",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 6,
+              "isGuest": false
+            },
+            {
+              "position": 12,
+              "driver": "Ginga",
+              "driverId": "ginga",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 5,
+              "isGuest": false
+            },
+            {
+              "position": 13,
+              "driver": "Tanjiro",
+              "driverId": "tanjiro",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 4,
+              "isGuest": false
+            }
+          ]
+        },
+        {
+          "id": "race4",
+          "round": 4,
+          "name": "Race 4: Sept 22nd - OogaBooga",
+          "trackImage": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Daytona_International_Speedway.png",
+          "schedule": {
+            "date": null,
+            "venue": "Sept 22nd - OogaBooga"
+          },
+          "settings": {
+            "carClass": "Charger SRT '15 Nascar",
+            "weather": "Night",
+            "laps": 25,
+            "notes": "Whole lot of hoopla"
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "HPepe",
+              "driverId": "hpepe",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 37,
+              "isGuest": false
+            },
+            {
+              "position": 2,
+              "driver": "Pablo",
+              "driverId": "pablo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 33,
+              "isGuest": false
+            },
+            {
+              "position": 3,
+              "driver": "Hondo",
+              "driverId": "hondo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 33,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "OogaBooga",
+              "driverId": "oogabooga",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 26,
+              "isGuest": false
+            },
+            {
+              "position": 5,
+              "driver": "Slatenator",
+              "driverId": "slatenator",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 21,
+              "isGuest": false
+            },
+            {
+              "position": 6,
+              "driver": "TheSlayter",
+              "driverId": "theslayter",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 18,
+              "isGuest": false
+            },
+            {
+              "position": 7,
+              "driver": "KickStart",
+              "driverId": "kickstart",
+              "entrant": "KickStart - Sub = FleshTorpedo",
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "Emilio",
+              "driverId": "emilio",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 12,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "Tanjiro",
+              "driverId": "tanjiro",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 11,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "r2gui2",
+              "driverId": null,
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 9,
+              "isGuest": true
+            },
+            {
+              "position": 11,
+              "driver": "Cetla",
+              "driverId": "cetla",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 6,
+              "isGuest": false
+            },
+            {
+              "position": 12,
+              "driver": "Bedsti_Mario",
+              "driverId": "bedsti-mario",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 5,
+              "isGuest": false
+            },
+            {
+              "position": 13,
+              "driver": "Ginga",
+              "driverId": "ginga",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 4,
+              "isGuest": false
+            },
+            {
+              "position": 14,
+              "driver": "Santi",
+              "driverId": "santi",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 3,
+              "isGuest": false
+            }
+          ]
+        },
+        {
+          "id": "race5",
+          "round": 5,
+          "name": "Race 5: Sept 29th - Mario",
+          "trackImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSu61lGZmDrazTyQH_teWF67AIIImhqcXaHg&s",
+          "schedule": {
+            "date": null,
+            "venue": "Sept 29th - Mario"
+          },
+          "settings": {
+            "carClass": "Redbull Junior",
+            "weather": "Evening",
+            "laps": 22,
+            "notes": "Must Pit, No Gas, 2x tire wear, default settings"
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "Hondo",
+              "driverId": "hondo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 40,
+              "isGuest": false
+            },
+            {
+              "position": 2,
+              "driver": "Bedsti_Mario",
+              "driverId": "bedsti-mario",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 33,
+              "isGuest": false
+            },
+            {
+              "position": 3,
+              "driver": "Pablo",
+              "driverId": "pablo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 30,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "Santi",
+              "driverId": "santi",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 26,
+              "isGuest": false
+            },
+            {
+              "position": 5,
+              "driver": "Emilio",
+              "driverId": "emilio",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 21,
+              "isGuest": false
+            },
+            {
+              "position": 6,
+              "driver": "TheSlayter",
+              "driverId": "theslayter",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 18,
+              "isGuest": false
+            },
+            {
+              "position": 7,
+              "driver": "Cetla",
+              "driverId": "cetla",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "FleshTorpedo",
+              "driverId": "fleshtorpedo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 12,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "OogaBooga",
+              "driverId": "oogabooga",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 11,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "Slatenator",
+              "driverId": "slatenator",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 9,
+              "isGuest": false
+            },
+            {
+              "position": 11,
+              "driver": "Tanjiro",
+              "driverId": "tanjiro",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 6,
+              "isGuest": false
+            }
+          ]
+        },
+        {
+          "id": "race6",
+          "round": 6,
+          "name": "Race 6: Oct 6th - Kickstartmykart",
+          "trackImage": "https://gran-turismo.fandom.com/wiki/Autodromo_Nazionale_Monza",
+          "schedule": {
+            "date": null,
+            "venue": "Oct 6th - Kickstartmykart"
+          },
+          "settings": {
+            "carClass": "Ferrari 458 Italia GT3 '13",
+            "weather": "Evening",
+            "laps": 22,
+            "notes": "Must Pit, No Gas, 2x tire wear, default settings"
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "Emilio",
+              "driverId": "emilio",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 37,
+              "isGuest": false
+            },
+            {
+              "position": 2,
+              "driver": "Hondo",
+              "driverId": "hondo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 33,
+              "isGuest": false
+            },
+            {
+              "position": 3,
+              "driver": "TheSlayter",
+              "driverId": "theslayter",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 30,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "HPepe",
+              "driverId": "hpepe",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 29,
+              "isGuest": false
+            },
+            {
+              "position": 5,
+              "driver": "Santi",
+              "driverId": "santi",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 21,
+              "isGuest": false
+            },
+            {
+              "position": 6,
+              "driver": "Bedsti_Mario",
+              "driverId": "bedsti-mario",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 18,
+              "isGuest": false
+            },
+            {
+              "position": 7,
+              "driver": "Slatenator",
+              "driverId": "slatenator",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "Ginga",
+              "driverId": "ginga",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 12,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "Pablo",
+              "driverId": "pablo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 11,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "KickStart",
+              "driverId": "kickstart",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 9,
+              "isGuest": false
+            },
+            {
+              "position": 11,
+              "driver": "FleshTorpedo",
+              "driverId": "fleshtorpedo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 6,
+              "isGuest": false
+            },
+            {
+              "position": 12,
+              "driver": "Cetla",
+              "driverId": "cetla",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 5,
+              "isGuest": false
+            }
+          ]
+        },
+        {
+          "id": "race7",
+          "round": 7,
+          "name": "Race 7: Oct 13th - Pepe",
+          "trackImage": "",
+          "schedule": {
+            "date": null,
+            "venue": "Oct 13th - Pepe"
+          },
+          "settings": {
+            "carClass": "",
+            "weather": "Evening",
+            "laps": 22,
+            "notes": "Must Pit, No Gas, 2x tire wear, default settings"
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "Emilio",
+              "driverId": "emilio",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 37,
+              "isGuest": false
+            },
+            {
+              "position": 2,
+              "driver": "HPepe",
+              "driverId": "hpepe",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 36,
+              "isGuest": false
+            },
+            {
+              "position": 3,
+              "driver": "Hondo",
+              "driverId": "hondo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 30,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "Pablo",
+              "driverId": "pablo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 26,
+              "isGuest": false
+            },
+            {
+              "position": 5,
+              "driver": "Bedsti_Mario",
+              "driverId": "bedsti-mario",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 21,
+              "isGuest": false
+            },
+            {
+              "position": 6,
+              "driver": "KickStart",
+              "driverId": "kickstart",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 18,
+              "isGuest": false
+            },
+            {
+              "position": 7,
+              "driver": "TheSlayter",
+              "driverId": "theslayter",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "Cetla",
+              "driverId": "cetla",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 12,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "OogaBooga",
+              "driverId": "oogabooga",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 11,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "Slatenator",
+              "driverId": "slatenator",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 9,
+              "isGuest": false
+            }
+          ]
+        },
+        {
+          "id": "race8",
+          "round": 8,
+          "name": "Race 8: Oct 20th - Slatenator",
+          "trackImage": "",
+          "schedule": {
+            "date": null,
+            "venue": "Oct 20th - Slatenator"
+          },
+          "settings": {
+            "carClass": "60's 70's 80's 90's Max 670PP",
+            "weather": "Evening",
+            "laps": 11,
+            "notes": "Must Pit, No Gas, 1x tire wear, default settings"
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "TrapVis",
+              "driverId": null,
+              "entrant": "Trapvis",
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 37,
+              "isGuest": true
+            },
+            {
+              "position": 2,
+              "driver": "Pablo",
+              "driverId": "pablo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 33,
+              "isGuest": false
+            },
+            {
+              "position": 3,
+              "driver": "Bedsti_Mario",
+              "driverId": "bedsti-mario",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 33,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "FleshTorpedo",
+              "driverId": "fleshtorpedo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 26,
+              "isGuest": false
+            },
+            {
+              "position": 5,
+              "driver": "KickStart",
+              "driverId": "kickstart",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 21,
+              "isGuest": false
+            },
+            {
+              "position": 6,
+              "driver": "Emilio",
+              "driverId": "emilio",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 18,
+              "isGuest": false
+            },
+            {
+              "position": 7,
+              "driver": "Cetla",
+              "driverId": "cetla",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "Slatenator",
+              "driverId": "slatenator",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 12,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "TheSlayter",
+              "driverId": "theslayter",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 11,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "HPepe",
+              "driverId": "hpepe",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 9,
+              "isGuest": false
+            },
+            {
+              "position": 11,
+              "driver": "Santi",
+              "driverId": "santi",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 6,
+              "isGuest": false
+            },
+            {
+              "position": 12,
+              "driver": "Hondo",
+              "driverId": "hondo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 5,
+              "isGuest": false
+            },
+            {
+              "position": 13,
+              "driver": "Tanjiro",
+              "driverId": "tanjiro",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 4,
+              "isGuest": false
+            }
+          ]
+        },
+        {
+          "id": "race9",
+          "round": 9,
+          "name": "Race 9: Oct 27th - Santi",
+          "trackImage": "https://static.wikia.nocookie.net/gran-turismo/images/f/ff/Spa-Francorchamps.jpg/revision/latest?cb=20230721142115",
+          "schedule": {
+            "date": null,
+            "venue": "Oct 27th - Santi"
+          },
+          "settings": {
+            "carClass": "Audi R18 16’ - 919 Hybrid ‘16 -TS050 Hybrid ‘16",
+            "weather": "Evening",
+            "laps": 12,
+            "notes": "Must Pit, No Gas, 1x tire wear, default settings"
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "Emilio",
+              "driverId": "emilio",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 40,
+              "isGuest": false
+            },
+            {
+              "position": 2,
+              "driver": "TheSlayter",
+              "driverId": "theslayter",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 33,
+              "isGuest": false
+            },
+            {
+              "position": 3,
+              "driver": "Hondo",
+              "driverId": "hondo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 30,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "Bedsti_Mario",
+              "driverId": "bedsti-mario",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 26,
+              "isGuest": false
+            },
+            {
+              "position": 5,
+              "driver": "TrapVis",
+              "driverId": null,
+              "entrant": "Trapvis",
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 21,
+              "isGuest": true
+            },
+            {
+              "position": 6,
+              "driver": "Slatenator",
+              "driverId": "slatenator",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 18,
+              "isGuest": false
+            },
+            {
+              "position": 7,
+              "driver": "KickStart",
+              "driverId": "kickstart",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "FleshTorpedo",
+              "driverId": "fleshtorpedo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 12,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "Cetla",
+              "driverId": "cetla",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 11,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "Pablo",
+              "driverId": "pablo",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 9,
+              "isGuest": false
+            },
+            {
+              "position": 11,
+              "driver": "OogaBooga",
+              "driverId": "oogabooga",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 6,
+              "isGuest": false
+            },
+            {
+              "position": 12,
+              "driver": "Santi",
+              "driverId": "santi",
+              "entrant": null,
+              "car": null,
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": null,
+              "points": 5,
+              "isGuest": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
