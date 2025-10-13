@@ -41,6 +41,22 @@ Chart.defaults.color = '#94a3b8';
 Chart.defaults.borderColor = 'rgba(148, 163, 184, 0.2)';
 Chart.defaults.font.family = "'Inter', system-ui, sans-serif";
 
+// Distinct color palette for charts
+const chartColors = [
+  '#3b82f6', // Blue
+  '#ef4444', // Red
+  '#10b981', // Green
+  '#f59e0b', // Amber
+  '#8b5cf6', // Purple
+  '#ec4899', // Pink
+  '#14b8a6', // Teal
+  '#f97316', // Orange
+  '#6366f1', // Indigo
+  '#06b6d4', // Cyan
+  '#84cc16', // Lime
+  '#a855f7'  // Violet
+];
+
 async function init() {
   attachUIHandlers();
   await loadData();
@@ -285,7 +301,7 @@ function updatePointsChart() {
       .sort((a, b) => (b.points ?? 0) - (a.points ?? 0))
       .slice(0, 8);
 
-    topDrivers.forEach(driver => {
+    topDrivers.forEach((driver, index) => {
       const cumulativePoints = [];
       let sum = 0;
 
@@ -295,11 +311,14 @@ function updatePointsChart() {
         cumulativePoints.push(sum);
       });
 
+      // Use distinct chart colors, fallback to driver color
+      const color = chartColors[index % chartColors.length];
+
       datasets.push({
         label: driver.name,
         data: cumulativePoints,
-        borderColor: driver.color || '#38bdf8',
-        backgroundColor: `${driver.color || '#38bdf8'}33`,
+        borderColor: color,
+        backgroundColor: `${color}33`,
         borderWidth: 2.5,
         tension: 0.3,
         pointRadius: 4,
@@ -348,7 +367,11 @@ function updatePointsChart() {
   if (state.charts.points) {
     state.charts.points.data.labels = labels;
     state.charts.points.data.datasets = datasets;
-    state.charts.points.update('active');
+    state.charts.points.update({
+      duration: 400,
+      easing: 'easeOutQuart',
+      mode: 'default'
+    });
   } else {
     const ctx = canvas.getContext('2d');
     state.charts.points = new Chart(ctx, {
@@ -358,8 +381,41 @@ function updatePointsChart() {
         responsive: true,
         maintainAspectRatio: false,
         animation: {
-          duration: 750,
-          easing: 'easeInOutQuart'
+          duration: 600,
+          easing: 'easeOutQuart',
+          x: {
+            type: 'number',
+            easing: 'linear',
+            duration: 400,
+            from: NaN,
+            delay(ctx) {
+              if (ctx.type !== 'data' || ctx.xStarted) {
+                return 0;
+              }
+              ctx.xStarted = true;
+              return ctx.index * 40;
+            }
+          },
+          y: {
+            type: 'number',
+            easing: 'easeOutQuart',
+            duration: 400,
+            from: (ctx) => {
+              if (ctx.type === 'data') {
+                if (ctx.mode === 'default' && !ctx.dropped) {
+                  ctx.dropped = true;
+                  return 0;
+                }
+              }
+            },
+            delay(ctx) {
+              if (ctx.type !== 'data' || ctx.yStarted) {
+                return 0;
+              }
+              ctx.yStarted = true;
+              return ctx.index * 40;
+            }
+          }
         },
         interaction: {
           intersect: false,
@@ -532,7 +588,10 @@ function renderPodiumChart() {
   if (state.charts.podium) {
     state.charts.podium.data.labels = labels;
     state.charts.podium.data.datasets = datasets;
-    state.charts.podium.update('active');
+    state.charts.podium.update({
+      duration: 400,
+      easing: 'easeOutQuart'
+    });
   } else {
     const ctx = canvas.getContext('2d');
     state.charts.podium = new Chart(ctx, {
@@ -542,8 +601,8 @@ function renderPodiumChart() {
         responsive: true,
         maintainAspectRatio: false,
         animation: {
-          duration: 750,
-          easing: 'easeInOutQuart'
+          duration: 600,
+          easing: 'easeOutQuart'
         },
         plugins: {
           legend: {
@@ -622,7 +681,7 @@ function renderTrendChart() {
   const labels = races.slice(2).map((_, i) => `After R${i + 3}`);
   const datasets = [];
 
-  topDrivers.forEach(driver => {
+  topDrivers.forEach((driver, index) => {
     const rollingAvg = [];
 
     for (let i = 2; i < races.length; i++) {
@@ -641,11 +700,14 @@ function renderTrendChart() {
       rollingAvg.push(count > 0 ? sum / count : null);
     }
 
+    // Use distinct chart colors
+    const color = chartColors[index % chartColors.length];
+
     datasets.push({
       label: driver.name,
       data: rollingAvg,
-      borderColor: driver.color || '#38bdf8',
-      backgroundColor: `${driver.color || '#38bdf8'}33`,
+      borderColor: color,
+      backgroundColor: `${color}33`,
       borderWidth: 2.5,
       tension: 0.4,
       pointRadius: 4,
@@ -661,7 +723,10 @@ function renderTrendChart() {
     if (state.charts.trend.options.plugins.title) {
       state.charts.trend.options.plugins.title.display = false;
     }
-    state.charts.trend.update('active');
+    state.charts.trend.update({
+      duration: 400,
+      easing: 'easeOutQuart'
+    });
   } else {
     const ctx = canvas.getContext('2d');
     state.charts.trend = new Chart(ctx, {
@@ -671,8 +736,8 @@ function renderTrendChart() {
         responsive: true,
         maintainAspectRatio: false,
         animation: {
-          duration: 750,
-          easing: 'easeInOutQuart'
+          duration: 600,
+          easing: 'easeOutQuart'
         },
         interaction: {
           intersect: false,
@@ -779,10 +844,22 @@ function renderH2HChart() {
     driver1Positions.push(result1?.position ?? null);
     driver2Positions.push(result2?.position ?? null);
 
-    if (result1?.position && result2?.position) {
-      if (result1.position < result2.position) driver1Wins++;
-      else if (result2.position < result1.position) driver2Wins++;
+    // Count wins/losses - DNF counts as a loss
+    const pos1 = result1?.position;
+    const pos2 = result2?.position;
+
+    if (pos1 && pos2) {
+      // Both finished - compare positions
+      if (pos1 < pos2) driver1Wins++;
+      else if (pos2 < pos1) driver2Wins++;
+    } else if (pos1 && !pos2) {
+      // Driver 1 finished, Driver 2 DNF - Driver 1 wins
+      driver1Wins++;
+    } else if (!pos1 && pos2) {
+      // Driver 2 finished, Driver 1 DNF - Driver 2 wins
+      driver2Wins++;
     }
+    // If both DNF, neither gets a win
 
     driver1Points += result1?.points ?? 0;
     driver2Points += result2?.points ?? 0;
@@ -817,7 +894,10 @@ function renderH2HChart() {
   if (state.charts.h2h) {
     state.charts.h2h.data.labels = labels;
     state.charts.h2h.data.datasets = datasets;
-    state.charts.h2h.update('active');
+    state.charts.h2h.update({
+      duration: 400,
+      easing: 'easeOutQuart'
+    });
   } else {
     const ctx = canvas.getContext('2d');
     state.charts.h2h = new Chart(ctx, {
@@ -827,8 +907,8 @@ function renderH2HChart() {
         responsive: true,
         maintainAspectRatio: false,
         animation: {
-          duration: 750,
-          easing: 'easeInOutQuart'
+          duration: 600,
+          easing: 'easeOutQuart'
         },
         interaction: {
           intersect: false,
