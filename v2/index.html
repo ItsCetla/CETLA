@@ -226,19 +226,19 @@
           <p class="section__subtitle">Quick-look stats update as soon as you update the shared data file.</p>
         </header>
         <div class="stats-grid">
-          <article class="stat-card stat-card--clickable" data-scroll-to="standings">
+          <article class="stat-card stat-card--clickable" data-stat="wins">
             <h3>Most Wins</h3>
             <div class="stat-list" id="stats-wins"></div>
           </article>
-          <article class="stat-card stat-card--clickable" data-scroll-to="standings">
+          <article class="stat-card stat-card--clickable" data-stat="podiums">
             <h3>Most Podiums</h3>
             <div class="stat-list" id="stats-podiums"></div>
           </article>
-          <article class="stat-card stat-card--clickable" data-scroll-to="standings">
+          <article class="stat-card stat-card--clickable" data-stat="avgPoints">
             <h3>Average Points</h3>
             <div class="stat-list" id="stats-average-points"></div>
           </article>
-          <article class="stat-card stat-card--clickable" data-scroll-to="standings">
+          <article class="stat-card stat-card--clickable" data-stat="avgPlacement">
             <h3>Average Finish</h3>
             <div class="stat-list stat-list--multi" id="stats-average-placement"></div>
           </article>
@@ -253,6 +253,20 @@
       <small>&copy; <span id="footer-year"></span> CETLA Racing League</small>
     </div>
   </footer>
+
+  <!-- Stats Modal -->
+  <div id="stats-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal__backdrop" data-modal-close></div>
+    <div class="modal__panel" role="document">
+      <header class="modal__header">
+        <h3 class="modal__title" id="modal-title">Stats</h3>
+        <button class="modal__close" aria-label="Close" data-modal-close>&times;</button>
+      </header>
+      <div class="modal__content">
+        <div id="modal-list"></div>
+      </div>
+    </div>
+  </div>
 
   <script src="assets/app.js" type="module"></script>
 </body>

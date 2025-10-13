@@ -46,7 +46,11 @@ const els = {
   statsPodiums: document.getElementById('stats-podiums'),
   statsAveragePoints: document.getElementById('stats-average-points'),
   statsAveragePlacement: document.getElementById('stats-average-placement'),
-  footerYear: document.getElementById('footer-year')
+  footerYear: document.getElementById('footer-year'),
+  // Modal elements
+  modal: document.getElementById('stats-modal'),
+  modalTitle: document.getElementById('modal-title'),
+  modalList: document.getElementById('modal-list')
 };
 
 const tabButtons = document.querySelectorAll('.tabs__button');
@@ -130,21 +134,22 @@ function attachUIHandlers() {
     button.addEventListener('click', () => changeTab(button));
   });
 
+  // Stat cards -> open modal with full list
   document.querySelectorAll('.stat-card--clickable').forEach(card => {
     card.addEventListener('click', () => {
-      const scrollTarget = card.dataset.scrollTo;
-      if (scrollTarget) {
-        const element = document.getElementById(scrollTarget);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-
-          const driversTabButton = document.querySelector('.tabs__button[data-tab="drivers"]');
-          if (driversTabButton) {
-            changeTab(driversTabButton);
-          }
-        }
-      }
+      const key = card.dataset.stat;
+      if (!key) return;
+      openStatModal(key, card.querySelector('h3')?.textContent || 'Stats');
     });
+  });
+
+  // Modal close handlers
+  document.querySelectorAll('[data-modal-close]').forEach(el => {
+    el.addEventListener('click', closeModal);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
   });
 }
 
@@ -573,6 +578,76 @@ function renderStats(season) {
   els.statsAveragePlacement.innerHTML = renderPlacementColumns(stats.avgPlacement);
 }
 
+// Build full, unsliced stats for modal
+function computeStatsRaw(season) {
+  const base = {
+    wins: new Map(),
+    podiums: new Map(),
+    avgPoints: new Map(),
+    avgPlacement: new Map(),
+    raceCount: new Map()
+  };
+
+  (season.races ?? []).forEach(race => {
+    (race.results ?? []).forEach(result => {
+      if (!result.driverId) return;
+      const driverId = result.driverId;
+      base.raceCount.set(driverId, (base.raceCount.get(driverId) ?? 0) + 1);
+    });
+  });
+
+  const eligibleDrivers = new Set(
+    Array.from(base.raceCount.entries())
+      .filter(([, count]) => count >= 3)
+      .map(([driverId]) => driverId)
+  );
+
+  (season.races ?? []).forEach(race => {
+    (race.results ?? []).forEach(result => {
+      const driverId = result.driverId;
+      if (!driverId || !eligibleDrivers.has(driverId)) return;
+
+      if (result.position === 1) {
+        base.wins.set(driverId, (base.wins.get(driverId) ?? 0) + 1);
+      }
+      if ((result.position ?? 0) > 0 && result.position <= 3) {
+        base.podiums.set(driverId, (base.podiums.get(driverId) ?? 0) + 1);
+      }
+
+      if (typeof result.points === 'number') {
+        const current = base.avgPoints.get(driverId) ?? { total: 0, races: 0 };
+        current.total += result.points;
+        current.races += 1;
+        base.avgPoints.set(driverId, current);
+      }
+
+      if (typeof result.position === 'number') {
+        const placement = base.avgPlacement.get(driverId) ?? { total: 0, races: 0 };
+        placement.total += result.position;
+        placement.races += 1;
+        base.avgPlacement.set(driverId, placement);
+      }
+    });
+  });
+
+  const avgPointsFinal = new Map();
+  base.avgPoints.forEach((value, driverId) => {
+    avgPointsFinal.set(driverId, value.races ? value.total / value.races : 0);
+  });
+
+  const avgPlacementFinal = new Map();
+  base.avgPlacement.forEach((value, driverId) => {
+    avgPlacementFinal.set(driverId, value.races ? value.total / value.races : 0);
+  });
+
+  return {
+    wins: sortStatMapFull(base.wins),
+    podiums: sortStatMapFull(base.podiums),
+    avgPoints: sortStatMapFull(avgPointsFinal),
+    avgPlacement: sortStatMapFull(avgPlacementFinal, true)
+  };
+}
+
 function computeStats(season) {
   const stats = {
     wins: new Map(),
@@ -648,6 +723,11 @@ function sortStatMap(statMap, ascending = false) {
     .slice(0, 5);
 }
 
+function sortStatMapFull(statMap, ascending = false) {
+  return Array.from(statMap.entries())
+    .sort(([, a], [, b]) => ascending ? a - b : b - a);
+}
+
 function renderStatList(entries, suffix, formatValue) {
   if (!entries.length) {
     return '<p class="stat-empty">Need at least 3 races to generate stats.</p>';
@@ -702,6 +782,76 @@ function deriveRaceLabel(race) {
 function sanitizeColor(color) {
   if (!color) return 'rgba(148, 163, 184, 0.45)';
   return color;
+}
+
+function openStatModal(statKey, titleText) {
+  const season = state.seasons[state.seasonIndex];
+  if (!season || !els.modal || !els.modalTitle || !els.modalList) return;
+
+  // Title
+  els.modalTitle.textContent = titleText;
+
+  // Build list contents from raw stats
+  const all = computeStatsRaw(season);
+  let entries = [];
+  let formatter = (v) => v;
+  let suffix = '';
+
+  switch (statKey) {
+    case 'wins':
+      entries = all.wins;
+      suffix = 'wins';
+      break;
+    case 'podiums':
+      entries = all.podiums;
+      suffix = 'podiums';
+      break;
+    case 'avgPoints':
+      entries = all.avgPoints;
+      suffix = 'pts';
+      formatter = (v) => `${v.toFixed(1)} pts`;
+      break;
+    case 'avgPlacement':
+      entries = all.avgPlacement;
+      suffix = '';
+      formatter = (v) => v.toFixed(1);
+      break;
+    default:
+      entries = [];
+  }
+
+  if (!entries.length) {
+    els.modalList.innerHTML = '<p class="stat-empty">No eligible drivers yet (need 3 races).</p>';
+  } else {
+    els.modalList.innerHTML = `
+      <div class="modal__list">
+        ${entries.map(([driverId, value]) => {
+          const driver = state.driverById.get(driverId);
+          if (!driver) return '';
+          const valueText = suffix === 'pts' ? formatter(value) : (suffix ? `${value} ${suffix}` : formatter(value));
+          return `
+            <div class="stat-item">
+              <span class="stat-item__label">
+                <span class="stat-dot" style="background:${sanitizeColor(driver.color)};"></span>
+                ${driver.name}
+              </span>
+              <span class="stat-item__value">${valueText}</span>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    `;
+  }
+
+  // Open
+  els.modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  if (!els.modal) return;
+  els.modal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
 }
 
 function changeTab(activeButton) {

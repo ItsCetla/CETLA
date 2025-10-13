@@ -799,6 +799,70 @@ button:focus-visible {
   margin-left: auto;
 }
 
+/* Modal */
+.modal[aria-hidden="true"] {
+  display: none;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+}
+
+.modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.55);
+  backdrop-filter: blur(6px);
+}
+
+.modal__panel {
+  position: relative;
+  width: min(92vw, 800px);
+  max-height: 80vh;
+  overflow: auto;
+  background: rgba(11, 18, 32, 0.96);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+.modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.modal__title {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.modal__close {
+  border: 1px solid var(--color-border);
+  background: rgba(15, 23, 42, 0.6);
+  color: var(--color-text);
+  border-radius: 8px;
+  font-size: 1.25rem;
+  line-height: 1;
+  padding: 0.25rem 0.55rem;
+  cursor: pointer;
+}
+
+.modal__content {
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+.modal__list {
+  display: grid;
+  gap: 0.75rem;
+}
+
 /* Footer */
 .site-footer {
   padding: 3rem 0 2.5rem;
