@@ -274,11 +274,6 @@ function updatePointsChart() {
   const canvas = document.getElementById('points-chart');
   if (!canvas) return;
 
-  // Destroy existing chart
-  if (state.charts.points) {
-    state.charts.points.destroy();
-  }
-
   const races = season.races?.slice(0, state.currentRace) ?? [];
   const labels = races.map((_, i) => `R${i + 1}`);
 
@@ -349,48 +344,59 @@ function updatePointsChart() {
     });
   }
 
-  const ctx = canvas.getContext('2d');
-  state.charts.points = new Chart(ctx, {
-    type: 'line',
-    data: { labels, datasets },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      interaction: {
-        intersect: false,
-        mode: 'index'
-      },
-      plugins: {
-        legend: {
-          position: 'bottom',
-          labels: {
+  // Update existing chart or create new one
+  if (state.charts.points) {
+    state.charts.points.data.labels = labels;
+    state.charts.points.data.datasets = datasets;
+    state.charts.points.update('active');
+  } else {
+    const ctx = canvas.getContext('2d');
+    state.charts.points = new Chart(ctx, {
+      type: 'line',
+      data: { labels, datasets },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: {
+          duration: 750,
+          easing: 'easeInOutQuart'
+        },
+        interaction: {
+          intersect: false,
+          mode: 'index'
+        },
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: {
+              padding: 12,
+              usePointStyle: true,
+              font: { size: 11 }
+            }
+          },
+          tooltip: {
+            backgroundColor: 'rgba(11, 18, 32, 0.95)',
             padding: 12,
-            usePointStyle: true,
-            font: { size: 11 }
+            titleFont: { size: 13, weight: '600' },
+            bodyFont: { size: 12 },
+            borderColor: 'rgba(148, 163, 184, 0.3)',
+            borderWidth: 1
           }
         },
-        tooltip: {
-          backgroundColor: 'rgba(11, 18, 32, 0.95)',
-          padding: 12,
-          titleFont: { size: 13, weight: '600' },
-          bodyFont: { size: 12 },
-          borderColor: 'rgba(148, 163, 184, 0.3)',
-          borderWidth: 1
-        }
-      },
-      scales: {
-        x: {
-          grid: { color: 'rgba(148, 163, 184, 0.1)' },
-          ticks: { font: { size: 11 } }
-        },
-        y: {
-          beginAtZero: true,
-          grid: { color: 'rgba(148, 163, 184, 0.1)' },
-          ticks: { font: { size: 11 } }
+        scales: {
+          x: {
+            grid: { color: 'rgba(148, 163, 184, 0.1)' },
+            ticks: { font: { size: 11 } }
+          },
+          y: {
+            beginAtZero: true,
+            grid: { color: 'rgba(148, 163, 184, 0.1)' },
+            ticks: { font: { size: 11 } }
+          }
         }
       }
-    }
-  });
+    });
+  }
 }
 
 function renderHeatmap() {
@@ -456,10 +462,6 @@ function renderPodiumChart() {
   const canvas = document.getElementById('podium-chart');
   if (!canvas) return;
 
-  if (state.charts.podium) {
-    state.charts.podium.destroy();
-  }
-
   const races = season.races?.slice(0, state.currentRace) ?? [];
   const filterValue = els.podiumFilter?.value ?? '10';
   const limit = filterValue === 'all' ? 999 : parseInt(filterValue);
@@ -495,72 +497,82 @@ function renderPodiumChart() {
     topTen.push(p410);
   });
 
-  const ctx = canvas.getContext('2d');
-  state.charts.podium = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels,
-      datasets: [
-        {
-          label: '1st Place',
-          data: firstPlaces,
-          backgroundColor: 'rgba(250, 204, 21, 0.7)',
-          borderColor: '#fbbf24',
-          borderWidth: 2
-        },
-        {
-          label: '2nd Place',
-          data: secondPlaces,
-          backgroundColor: 'rgba(203, 213, 225, 0.6)',
-          borderColor: '#cbd5e1',
-          borderWidth: 2
-        },
-        {
-          label: '3rd Place',
-          data: thirdPlaces,
-          backgroundColor: 'rgba(249, 115, 22, 0.6)',
-          borderColor: '#fb923c',
-          borderWidth: 2
-        },
-        {
-          label: '4th-10th',
-          data: topTen,
-          backgroundColor: 'rgba(100, 116, 139, 0.4)',
-          borderColor: '#64748b',
-          borderWidth: 2
-        }
-      ]
+  const datasets = [
+    {
+      label: '1st Place',
+      data: firstPlaces,
+      backgroundColor: 'rgba(250, 204, 21, 0.7)',
+      borderColor: '#fbbf24',
+      borderWidth: 2
     },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          position: 'bottom',
-          labels: { padding: 12, usePointStyle: true, font: { size: 11 } }
+    {
+      label: '2nd Place',
+      data: secondPlaces,
+      backgroundColor: 'rgba(203, 213, 225, 0.6)',
+      borderColor: '#cbd5e1',
+      borderWidth: 2
+    },
+    {
+      label: '3rd Place',
+      data: thirdPlaces,
+      backgroundColor: 'rgba(249, 115, 22, 0.6)',
+      borderColor: '#fb923c',
+      borderWidth: 2
+    },
+    {
+      label: '4th-10th',
+      data: topTen,
+      backgroundColor: 'rgba(100, 116, 139, 0.4)',
+      borderColor: '#64748b',
+      borderWidth: 2
+    }
+  ];
+
+  // Update existing chart or create new one
+  if (state.charts.podium) {
+    state.charts.podium.data.labels = labels;
+    state.charts.podium.data.datasets = datasets;
+    state.charts.podium.update('active');
+  } else {
+    const ctx = canvas.getContext('2d');
+    state.charts.podium = new Chart(ctx, {
+      type: 'bar',
+      data: { labels, datasets },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: {
+          duration: 750,
+          easing: 'easeInOutQuart'
         },
-        tooltip: {
-          backgroundColor: 'rgba(11, 18, 32, 0.95)',
-          padding: 12,
-          borderColor: 'rgba(148, 163, 184, 0.3)',
-          borderWidth: 1
-        }
-      },
-      scales: {
-        x: {
-          stacked: true,
-          grid: { display: false },
-          ticks: { font: { size: 10 } }
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: { padding: 12, usePointStyle: true, font: { size: 11 } }
+          },
+          tooltip: {
+            backgroundColor: 'rgba(11, 18, 32, 0.95)',
+            padding: 12,
+            borderColor: 'rgba(148, 163, 184, 0.3)',
+            borderWidth: 1
+          }
         },
-        y: {
-          stacked: true,
-          beginAtZero: true,
-          grid: { color: 'rgba(148, 163, 184, 0.1)' },
-          ticks: { stepSize: 1, font: { size: 11 } }
+        scales: {
+          x: {
+            stacked: true,
+            grid: { display: false },
+            ticks: { font: { size: 10 } }
+          },
+          y: {
+            stacked: true,
+            beginAtZero: true,
+            grid: { color: 'rgba(148, 163, 184, 0.1)' },
+            ticks: { stepSize: 1, font: { size: 11 } }
+          }
         }
       }
-    }
-  });
+    });
+  }
 }
 
 function renderTrendChart() {
@@ -570,28 +582,36 @@ function renderTrendChart() {
   const canvas = document.getElementById('trend-chart');
   if (!canvas) return;
 
-  if (state.charts.trend) {
-    state.charts.trend.destroy();
-  }
-
   const races = season.races?.slice(0, state.currentRace) ?? [];
+
   if (races.length < 3) {
-    const ctx = canvas.getContext('2d');
-    state.charts.trend = new Chart(ctx, {
-      type: 'line',
-      data: { labels: [], datasets: [] },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          title: {
-            display: true,
-            text: 'Need at least 3 races for rolling average',
-            color: '#94a3b8'
+    if (state.charts.trend) {
+      state.charts.trend.data.labels = [];
+      state.charts.trend.data.datasets = [];
+      state.charts.trend.options.plugins.title = {
+        display: true,
+        text: 'Need at least 3 races for rolling average',
+        color: '#94a3b8'
+      };
+      state.charts.trend.update('none');
+    } else {
+      const ctx = canvas.getContext('2d');
+      state.charts.trend = new Chart(ctx, {
+        type: 'line',
+        data: { labels: [], datasets: [] },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            title: {
+              display: true,
+              text: 'Need at least 3 races for rolling average',
+              color: '#94a3b8'
+            }
           }
         }
-      }
-    });
+      });
+    }
     return;
   }
 
@@ -634,54 +654,68 @@ function renderTrendChart() {
     });
   });
 
-  const ctx = canvas.getContext('2d');
-  state.charts.trend = new Chart(ctx, {
-    type: 'line',
-    data: { labels, datasets },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      interaction: {
-        intersect: false,
-        mode: 'index'
-      },
-      plugins: {
-        legend: {
-          position: 'bottom',
-          labels: { padding: 12, usePointStyle: true, font: { size: 11 } }
+  // Update existing chart or create new one
+  if (state.charts.trend) {
+    state.charts.trend.data.labels = labels;
+    state.charts.trend.data.datasets = datasets;
+    if (state.charts.trend.options.plugins.title) {
+      state.charts.trend.options.plugins.title.display = false;
+    }
+    state.charts.trend.update('active');
+  } else {
+    const ctx = canvas.getContext('2d');
+    state.charts.trend = new Chart(ctx, {
+      type: 'line',
+      data: { labels, datasets },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: {
+          duration: 750,
+          easing: 'easeInOutQuart'
         },
-        tooltip: {
-          backgroundColor: 'rgba(11, 18, 32, 0.95)',
-          padding: 12,
-          borderColor: 'rgba(148, 163, 184, 0.3)',
-          borderWidth: 1,
-          callbacks: {
-            label: (context) => {
-              const label = context.dataset.label || '';
-              const value = context.parsed.y;
-              return `${label}: ${value ? value.toFixed(2) : 'N/A'}`;
+        interaction: {
+          intersect: false,
+          mode: 'index'
+        },
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: { padding: 12, usePointStyle: true, font: { size: 11 } }
+          },
+          tooltip: {
+            backgroundColor: 'rgba(11, 18, 32, 0.95)',
+            padding: 12,
+            borderColor: 'rgba(148, 163, 184, 0.3)',
+            borderWidth: 1,
+            callbacks: {
+              label: (context) => {
+                const label = context.dataset.label || '';
+                const value = context.parsed.y;
+                return `${label}: ${value ? value.toFixed(2) : 'N/A'}`;
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            grid: { color: 'rgba(148, 163, 184, 0.1)' },
+            ticks: { font: { size: 10 } }
+          },
+          y: {
+            reverse: true,
+            beginAtZero: false,
+            grid: { color: 'rgba(148, 163, 184, 0.1)' },
+            ticks: {
+              stepSize: 1,
+              font: { size: 11 },
+              callback: (value) => `P${value}`
             }
           }
         }
-      },
-      scales: {
-        x: {
-          grid: { color: 'rgba(148, 163, 184, 0.1)' },
-          ticks: { font: { size: 10 } }
-        },
-        y: {
-          reverse: true,
-          beginAtZero: false,
-          grid: { color: 'rgba(148, 163, 184, 0.1)' },
-          ticks: {
-            stepSize: 1,
-            font: { size: 11 },
-            callback: (value) => `P${value}`
-          }
-        }
       }
-    }
-  });
+    });
+  }
 }
 
 function populateH2HDrivers() {
@@ -728,10 +762,6 @@ function renderH2HChart() {
   const canvas = document.getElementById('h2h-chart');
   if (!canvas) return;
 
-  if (state.charts.h2h) {
-    state.charts.h2h.destroy();
-  }
-
   const races = season.races?.slice(0, state.currentRace) ?? [];
   const labels = races.map((_, i) => `R${i + 1}`);
 
@@ -758,80 +788,90 @@ function renderH2HChart() {
     driver2Points += result2?.points ?? 0;
   });
 
-  const ctx = canvas.getContext('2d');
-  state.charts.h2h = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels,
-      datasets: [
-        {
-          label: driver1.name,
-          data: driver1Positions,
-          borderColor: driver1.color || '#38bdf8',
-          backgroundColor: `${driver1.color || '#38bdf8'}33`,
-          borderWidth: 3,
-          tension: 0.3,
-          pointRadius: 5,
-          pointHoverRadius: 7,
-          spanGaps: true
-        },
-        {
-          label: driver2.name,
-          data: driver2Positions,
-          borderColor: driver2.color || '#f97316',
-          backgroundColor: `${driver2.color || '#f97316'}33`,
-          borderWidth: 3,
-          tension: 0.3,
-          pointRadius: 5,
-          pointHoverRadius: 7,
-          spanGaps: true
-        }
-      ]
+  const datasets = [
+    {
+      label: driver1.name,
+      data: driver1Positions,
+      borderColor: driver1.color || '#38bdf8',
+      backgroundColor: `${driver1.color || '#38bdf8'}33`,
+      borderWidth: 3,
+      tension: 0.3,
+      pointRadius: 5,
+      pointHoverRadius: 7,
+      spanGaps: true
     },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      interaction: {
-        intersect: false,
-        mode: 'index'
-      },
-      plugins: {
-        legend: {
-          position: 'bottom',
-          labels: { padding: 12, usePointStyle: true, font: { size: 12, weight: '600' } }
+    {
+      label: driver2.name,
+      data: driver2Positions,
+      borderColor: driver2.color || '#f97316',
+      backgroundColor: `${driver2.color || '#f97316'}33`,
+      borderWidth: 3,
+      tension: 0.3,
+      pointRadius: 5,
+      pointHoverRadius: 7,
+      spanGaps: true
+    }
+  ];
+
+  // Update existing chart or create new one
+  if (state.charts.h2h) {
+    state.charts.h2h.data.labels = labels;
+    state.charts.h2h.data.datasets = datasets;
+    state.charts.h2h.update('active');
+  } else {
+    const ctx = canvas.getContext('2d');
+    state.charts.h2h = new Chart(ctx, {
+      type: 'line',
+      data: { labels, datasets },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: {
+          duration: 750,
+          easing: 'easeInOutQuart'
         },
-        tooltip: {
-          backgroundColor: 'rgba(11, 18, 32, 0.95)',
-          padding: 12,
-          borderColor: 'rgba(148, 163, 184, 0.3)',
-          borderWidth: 1,
-          callbacks: {
-            label: (context) => {
-              const label = context.dataset.label || '';
-              const value = context.parsed.y;
-              return value ? `${label}: P${value}` : `${label}: DNF`;
+        interaction: {
+          intersect: false,
+          mode: 'index'
+        },
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: { padding: 12, usePointStyle: true, font: { size: 12, weight: '600' } }
+          },
+          tooltip: {
+            backgroundColor: 'rgba(11, 18, 32, 0.95)',
+            padding: 12,
+            borderColor: 'rgba(148, 163, 184, 0.3)',
+            borderWidth: 1,
+            callbacks: {
+              label: (context) => {
+                const label = context.dataset.label || '';
+                const value = context.parsed.y;
+                return value ? `${label}: P${value}` : `${label}: DNF`;
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            grid: { color: 'rgba(148, 163, 184, 0.1)' },
+            ticks: { font: { size: 11 } }
+          },
+          y: {
+            reverse: true,
+            beginAtZero: false,
+            grid: { color: 'rgba(148, 163, 184, 0.1)' },
+            ticks: {
+              stepSize: 1,
+              font: { size: 11 },
+              callback: (value) => `P${value}`
             }
           }
         }
-      },
-      scales: {
-        x: {
-          grid: { color: 'rgba(148, 163, 184, 0.1)' },
-          ticks: { font: { size: 11 } }
-        },
-        y: {
-          reverse: true,
-          beginAtZero: false,
-          grid: { color: 'rgba(148, 163, 184, 0.1)' },
-          ticks: {
-            stepSize: 1,
-            font: { size: 11 },
-            callback: (value) => `P${value}`
-          }
-        }
       }
-    }
-  });
+    });
+  }
 
   // Update summary
   if (els.h2hSummary) {
