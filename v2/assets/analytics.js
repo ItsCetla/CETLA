@@ -1,0 +1,908 @@
+// Analytics page state and charts
+const state = {
+  seasons: [],
+  seasonIndex: 0,
+  currentRace: null, // null = all races, number = through race X
+  maxRaces: 11,
+  playInterval: null,
+  charts: {
+    points: null,
+    podium: null,
+    trend: null,
+    h2h: null
+  },
+  driverById: new Map(),
+  teamById: new Map()
+};
+
+const els = {
+  navToggle: document.querySelector('.nav-toggle'),
+  nav: document.getElementById('primary-nav'),
+  seasonSelect: document.getElementById('season-select'),
+  seasonPills: document.getElementById('season-pills'),
+  timelineSlider: document.getElementById('timeline-slider'),
+  timelineValue: document.getElementById('timeline-value'),
+  timelineTicks: document.getElementById('timeline-ticks'),
+  timelinePlay: document.getElementById('timeline-play'),
+  timelineReset: document.getElementById('timeline-reset'),
+  toggleDrivers: document.getElementById('toggle-drivers'),
+  toggleTeams: document.getElementById('toggle-teams'),
+  heatmapSort: document.getElementById('heatmap-sort'),
+  heatmapContainer: document.getElementById('heatmap-container'),
+  podiumFilter: document.getElementById('podium-filter'),
+  h2hDriver1: document.getElementById('h2h-driver1'),
+  h2hDriver2: document.getElementById('h2h-driver2'),
+  h2hSummary: document.getElementById('h2h-summary'),
+  footerYear: document.getElementById('footer-year')
+};
+
+// Chart.js default config
+Chart.defaults.color = '#94a3b8';
+Chart.defaults.borderColor = 'rgba(148, 163, 184, 0.2)';
+Chart.defaults.font.family = "'Inter', system-ui, sans-serif";
+
+async function init() {
+  attachUIHandlers();
+  await loadData();
+  updateFooter();
+
+  if (!state.seasons.length) {
+    console.warn('No seasons loaded from data file.');
+    return;
+  }
+
+  populateSeasonControls();
+  setSeason(0);
+}
+
+function attachUIHandlers() {
+  // Nav toggle
+  els.navToggle?.addEventListener('click', () => {
+    const expanded = els.navToggle.getAttribute('aria-expanded') === 'true';
+    els.navToggle.setAttribute('aria-expanded', String(!expanded));
+    els.nav?.classList.toggle('is-open', !expanded);
+  });
+
+  // Season selection
+  els.seasonSelect?.addEventListener('change', event => {
+    const id = event.target.value;
+    const index = state.seasons.findIndex(season => season.id === id);
+    if (index >= 0) setSeason(index);
+  });
+
+  // Timeline controls
+  els.timelineSlider?.addEventListener('input', handleTimelineChange);
+  els.timelinePlay?.addEventListener('click', togglePlayback);
+  els.timelineReset?.addEventListener('click', resetTimeline);
+
+  // Chart controls
+  els.toggleDrivers?.addEventListener('change', updatePointsChart);
+  els.toggleTeams?.addEventListener('change', updatePointsChart);
+  els.heatmapSort?.addEventListener('change', renderHeatmap);
+  els.podiumFilter?.addEventListener('change', renderPodiumChart);
+  els.h2hDriver1?.addEventListener('change', renderH2HChart);
+  els.h2hDriver2?.addEventListener('change', renderH2HChart);
+}
+
+async function loadData() {
+  try {
+    const response = await fetch('data/seasons.json', { cache: 'no-store' });
+    if (!response.ok) throw new Error(`Failed to load seasons.json (${response.status})`);
+    const payload = await response.json();
+    state.seasons = Array.isArray(payload.seasons) ? payload.seasons : [];
+  } catch (error) {
+    console.error('Unable to load season data:', error);
+  }
+}
+
+function populateSeasonControls() {
+  if (!els.seasonSelect || !els.seasonPills) return;
+  els.seasonSelect.innerHTML = '';
+  els.seasonPills.innerHTML = '';
+
+  const fragmentOptions = document.createDocumentFragment();
+  const fragmentPills = document.createDocumentFragment();
+
+  state.seasons.forEach((season, index) => {
+    const option = document.createElement('option');
+    option.value = season.id;
+    option.textContent = `${season.year} · ${season.label}`;
+    fragmentOptions.appendChild(option);
+
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'season-pill';
+    button.textContent = season.label;
+    button.dataset.seasonId = season.id;
+    button.addEventListener('click', () => setSeason(index));
+    fragmentPills.appendChild(button);
+  });
+
+  els.seasonSelect.appendChild(fragmentOptions);
+  els.seasonPills.appendChild(fragmentPills);
+}
+
+function setSeason(index) {
+  const season = state.seasons[index];
+  if (!season) return;
+
+  state.seasonIndex = index;
+  state.driverById = new Map();
+  state.teamById = new Map();
+
+  season.drivers?.forEach(driver => {
+    state.driverById.set(driver.id, driver);
+  });
+
+  season.teams?.forEach(team => {
+    state.teamById.set(team.id, team);
+  });
+
+  // Update max races and reset timeline
+  state.maxRaces = (season.races?.length ?? 0);
+  state.currentRace = state.maxRaces;
+
+  if (els.timelineSlider) {
+    els.timelineSlider.max = state.maxRaces;
+    els.timelineSlider.value = state.maxRaces;
+  }
+
+  // Update UI
+  highlightSeasonControls(season.id);
+  renderTimeline(season);
+  updateTimelineDisplay();
+  renderAllCharts(season);
+}
+
+function highlightSeasonControls(seasonId) {
+  if (els.seasonSelect) {
+    els.seasonSelect.value = seasonId;
+  }
+  document.querySelectorAll('.season-pill').forEach(button => {
+    button.classList.toggle('is-active', button.dataset.seasonId === seasonId);
+  });
+}
+
+// Timeline functions
+function renderTimeline(season) {
+  if (!els.timelineTicks) return;
+  els.timelineTicks.innerHTML = '';
+
+  const races = season.races ?? [];
+  const fragment = document.createDocumentFragment();
+
+  races.forEach((race, index) => {
+    const tick = document.createElement('div');
+    tick.className = 'timeline-tick';
+    tick.innerHTML = `
+      <div class="timeline-tick__mark"></div>
+      <div class="timeline-tick__label">R${index + 1}</div>
+    `;
+    fragment.appendChild(tick);
+  });
+
+  els.timelineTicks.appendChild(fragment);
+}
+
+function handleTimelineChange(event) {
+  const value = parseInt(event.target.value);
+  state.currentRace = value;
+  updateTimelineDisplay();
+  updateSliderProgress();
+  renderAllCharts(state.seasons[state.seasonIndex]);
+}
+
+function updateTimelineDisplay() {
+  if (!els.timelineValue) return;
+  if (state.currentRace === state.maxRaces) {
+    els.timelineValue.textContent = 'All Races';
+  } else {
+    els.timelineValue.textContent = `${state.currentRace} / ${state.maxRaces}`;
+  }
+}
+
+function updateSliderProgress() {
+  if (!els.timelineSlider) return;
+  const progress = (state.currentRace / state.maxRaces) * 100;
+  els.timelineSlider.style.setProperty('--slider-progress', `${progress}%`);
+}
+
+function togglePlayback() {
+  if (state.playInterval) {
+    // Stop playback
+    clearInterval(state.playInterval);
+    state.playInterval = null;
+    els.timelinePlay.querySelector('.play-icon').style.display = '';
+    els.timelinePlay.querySelector('.pause-icon').style.display = 'none';
+  } else {
+    // Start playback
+    if (state.currentRace >= state.maxRaces) {
+      state.currentRace = 0;
+    }
+
+    state.playInterval = setInterval(() => {
+      state.currentRace++;
+
+      if (state.currentRace > state.maxRaces) {
+        togglePlayback(); // Stop at end
+        return;
+      }
+
+      if (els.timelineSlider) {
+        els.timelineSlider.value = state.currentRace;
+      }
+      updateTimelineDisplay();
+      updateSliderProgress();
+      renderAllCharts(state.seasons[state.seasonIndex]);
+    }, 1000);
+
+    els.timelinePlay.querySelector('.play-icon').style.display = 'none';
+    els.timelinePlay.querySelector('.pause-icon').style.display = '';
+  }
+}
+
+function resetTimeline() {
+  if (state.playInterval) {
+    togglePlayback();
+  }
+  state.currentRace = state.maxRaces;
+  if (els.timelineSlider) {
+    els.timelineSlider.value = state.maxRaces;
+  }
+  updateTimelineDisplay();
+  updateSliderProgress();
+  renderAllCharts(state.seasons[state.seasonIndex]);
+}
+
+// Chart rendering
+function renderAllCharts(season) {
+  updatePointsChart();
+  renderHeatmap();
+  renderPodiumChart();
+  renderTrendChart();
+  renderH2HChart();
+  populateH2HDrivers();
+}
+
+function updatePointsChart() {
+  const season = state.seasons[state.seasonIndex];
+  if (!season) return;
+
+  const showDrivers = els.toggleDrivers?.checked ?? true;
+  const showTeams = els.toggleTeams?.checked ?? false;
+
+  const canvas = document.getElementById('points-chart');
+  if (!canvas) return;
+
+  // Destroy existing chart
+  if (state.charts.points) {
+    state.charts.points.destroy();
+  }
+
+  const races = season.races?.slice(0, state.currentRace) ?? [];
+  const labels = races.map((_, i) => `R${i + 1}`);
+
+  const datasets = [];
+
+  // Driver datasets
+  if (showDrivers) {
+    const topDrivers = [...(season.drivers ?? [])]
+      .sort((a, b) => (b.points ?? 0) - (a.points ?? 0))
+      .slice(0, 8);
+
+    topDrivers.forEach(driver => {
+      const cumulativePoints = [];
+      let sum = 0;
+
+      races.forEach(race => {
+        const result = race.results?.find(r => r.driverId === driver.id);
+        sum += result?.points ?? 0;
+        cumulativePoints.push(sum);
+      });
+
+      datasets.push({
+        label: driver.name,
+        data: cumulativePoints,
+        borderColor: driver.color || '#38bdf8',
+        backgroundColor: `${driver.color || '#38bdf8'}33`,
+        borderWidth: 2.5,
+        tension: 0.3,
+        pointRadius: 4,
+        pointHoverRadius: 6
+      });
+    });
+  }
+
+  // Team datasets
+  if (showTeams) {
+    const teams = computeTeamStandings(season);
+    const topTeams = teams.slice(0, 5);
+
+    topTeams.forEach(team => {
+      const cumulativePoints = [];
+      let sum = 0;
+
+      races.forEach(race => {
+        let racePoints = 0;
+        race.results?.forEach(result => {
+          const driver = state.driverById.get(result.driverId);
+          if (driver?.teamId === team.id) {
+            racePoints += result.points ?? 0;
+          }
+        });
+        sum += racePoints;
+        cumulativePoints.push(sum);
+      });
+
+      datasets.push({
+        label: `${team.name} (Team)`,
+        data: cumulativePoints,
+        borderColor: team.color || '#94a3b8',
+        backgroundColor: `${team.color || '#94a3b8'}33`,
+        borderWidth: 3,
+        borderDash: [5, 5],
+        tension: 0.3,
+        pointRadius: 5,
+        pointHoverRadius: 7,
+        pointStyle: 'rect'
+      });
+    });
+  }
+
+  const ctx = canvas.getContext('2d');
+  state.charts.points = new Chart(ctx, {
+    type: 'line',
+    data: { labels, datasets },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: {
+        intersect: false,
+        mode: 'index'
+      },
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: {
+            padding: 12,
+            usePointStyle: true,
+            font: { size: 11 }
+          }
+        },
+        tooltip: {
+          backgroundColor: 'rgba(11, 18, 32, 0.95)',
+          padding: 12,
+          titleFont: { size: 13, weight: '600' },
+          bodyFont: { size: 12 },
+          borderColor: 'rgba(148, 163, 184, 0.3)',
+          borderWidth: 1
+        }
+      },
+      scales: {
+        x: {
+          grid: { color: 'rgba(148, 163, 184, 0.1)' },
+          ticks: { font: { size: 11 } }
+        },
+        y: {
+          beginAtZero: true,
+          grid: { color: 'rgba(148, 163, 184, 0.1)' },
+          ticks: { font: { size: 11 } }
+        }
+      }
+    }
+  });
+}
+
+function renderHeatmap() {
+  const season = state.seasons[state.seasonIndex];
+  if (!season || !els.heatmapContainer) return;
+
+  const sortBy = els.heatmapSort?.value ?? 'points';
+  const races = season.races?.slice(0, state.currentRace) ?? [];
+
+  let drivers = [...(season.drivers ?? [])];
+
+  // Sort drivers
+  if (sortBy === 'points') {
+    drivers.sort((a, b) => (b.points ?? 0) - (a.points ?? 0));
+  } else if (sortBy === 'avg') {
+    drivers.sort((a, b) => {
+      const avgA = calculateAvgPosition(a.id, races);
+      const avgB = calculateAvgPosition(b.id, races);
+      return avgA - avgB;
+    });
+  } else {
+    drivers.sort((a, b) => a.name.localeCompare(b.name));
+  }
+
+  // Build heatmap HTML
+  let html = '<div class="heatmap-grid">';
+
+  // Header row
+  html += '<div class="heatmap-row">';
+  html += '<div class="heatmap-cell heatmap-cell--header">Driver</div>';
+  races.forEach((_, i) => {
+    html += `<div class="heatmap-cell heatmap-cell--header">R${i + 1}</div>`;
+  });
+  html += '</div>';
+
+  // Driver rows
+  drivers.forEach(driver => {
+    html += '<div class="heatmap-row">';
+    html += `<div class="heatmap-cell heatmap-cell--driver" style="border-left: 3px solid ${driver.color || '#94a3b8'}">${driver.name}</div>`;
+
+    races.forEach(race => {
+      const result = race.results?.find(r => r.driverId === driver.id);
+      const position = result?.position;
+
+      if (position) {
+        html += `<div class="heatmap-cell heatmap-cell--position" data-position="${position}">${position}</div>`;
+      } else {
+        html += '<div class="heatmap-cell heatmap-cell--dnf">—</div>';
+      }
+    });
+
+    html += '</div>';
+  });
+
+  html += '</div>';
+  els.heatmapContainer.innerHTML = html;
+}
+
+function renderPodiumChart() {
+  const season = state.seasons[state.seasonIndex];
+  if (!season) return;
+
+  const canvas = document.getElementById('podium-chart');
+  if (!canvas) return;
+
+  if (state.charts.podium) {
+    state.charts.podium.destroy();
+  }
+
+  const races = season.races?.slice(0, state.currentRace) ?? [];
+  const filterValue = els.podiumFilter?.value ?? '10';
+  const limit = filterValue === 'all' ? 999 : parseInt(filterValue);
+
+  const drivers = [...(season.drivers ?? [])]
+    .sort((a, b) => (b.points ?? 0) - (a.points ?? 0))
+    .slice(0, limit);
+
+  const labels = drivers.map(d => d.name);
+
+  // Count finishes by position ranges
+  const firstPlaces = [];
+  const secondPlaces = [];
+  const thirdPlaces = [];
+  const topTen = [];
+
+  drivers.forEach(driver => {
+    let p1 = 0, p2 = 0, p3 = 0, p410 = 0;
+
+    races.forEach(race => {
+      const result = race.results?.find(r => r.driverId === driver.id);
+      const pos = result?.position;
+
+      if (pos === 1) p1++;
+      else if (pos === 2) p2++;
+      else if (pos === 3) p3++;
+      else if (pos >= 4 && pos <= 10) p410++;
+    });
+
+    firstPlaces.push(p1);
+    secondPlaces.push(p2);
+    thirdPlaces.push(p3);
+    topTen.push(p410);
+  });
+
+  const ctx = canvas.getContext('2d');
+  state.charts.podium = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        {
+          label: '1st Place',
+          data: firstPlaces,
+          backgroundColor: 'rgba(250, 204, 21, 0.7)',
+          borderColor: '#fbbf24',
+          borderWidth: 2
+        },
+        {
+          label: '2nd Place',
+          data: secondPlaces,
+          backgroundColor: 'rgba(203, 213, 225, 0.6)',
+          borderColor: '#cbd5e1',
+          borderWidth: 2
+        },
+        {
+          label: '3rd Place',
+          data: thirdPlaces,
+          backgroundColor: 'rgba(249, 115, 22, 0.6)',
+          borderColor: '#fb923c',
+          borderWidth: 2
+        },
+        {
+          label: '4th-10th',
+          data: topTen,
+          backgroundColor: 'rgba(100, 116, 139, 0.4)',
+          borderColor: '#64748b',
+          borderWidth: 2
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: { padding: 12, usePointStyle: true, font: { size: 11 } }
+        },
+        tooltip: {
+          backgroundColor: 'rgba(11, 18, 32, 0.95)',
+          padding: 12,
+          borderColor: 'rgba(148, 163, 184, 0.3)',
+          borderWidth: 1
+        }
+      },
+      scales: {
+        x: {
+          stacked: true,
+          grid: { display: false },
+          ticks: { font: { size: 10 } }
+        },
+        y: {
+          stacked: true,
+          beginAtZero: true,
+          grid: { color: 'rgba(148, 163, 184, 0.1)' },
+          ticks: { stepSize: 1, font: { size: 11 } }
+        }
+      }
+    }
+  });
+}
+
+function renderTrendChart() {
+  const season = state.seasons[state.seasonIndex];
+  if (!season) return;
+
+  const canvas = document.getElementById('trend-chart');
+  if (!canvas) return;
+
+  if (state.charts.trend) {
+    state.charts.trend.destroy();
+  }
+
+  const races = season.races?.slice(0, state.currentRace) ?? [];
+  if (races.length < 3) {
+    const ctx = canvas.getContext('2d');
+    state.charts.trend = new Chart(ctx, {
+      type: 'line',
+      data: { labels: [], datasets: [] },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Need at least 3 races for rolling average',
+            color: '#94a3b8'
+          }
+        }
+      }
+    });
+    return;
+  }
+
+  const topDrivers = [...(season.drivers ?? [])]
+    .sort((a, b) => (b.points ?? 0) - (a.points ?? 0))
+    .slice(0, 6);
+
+  const labels = races.slice(2).map((_, i) => `After R${i + 3}`);
+  const datasets = [];
+
+  topDrivers.forEach(driver => {
+    const rollingAvg = [];
+
+    for (let i = 2; i < races.length; i++) {
+      const last3Races = races.slice(i - 2, i + 1);
+      let sum = 0;
+      let count = 0;
+
+      last3Races.forEach(race => {
+        const result = race.results?.find(r => r.driverId === driver.id);
+        if (result?.position) {
+          sum += result.position;
+          count++;
+        }
+      });
+
+      rollingAvg.push(count > 0 ? sum / count : null);
+    }
+
+    datasets.push({
+      label: driver.name,
+      data: rollingAvg,
+      borderColor: driver.color || '#38bdf8',
+      backgroundColor: `${driver.color || '#38bdf8'}33`,
+      borderWidth: 2.5,
+      tension: 0.4,
+      pointRadius: 4,
+      pointHoverRadius: 6,
+      spanGaps: true
+    });
+  });
+
+  const ctx = canvas.getContext('2d');
+  state.charts.trend = new Chart(ctx, {
+    type: 'line',
+    data: { labels, datasets },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: {
+        intersect: false,
+        mode: 'index'
+      },
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: { padding: 12, usePointStyle: true, font: { size: 11 } }
+        },
+        tooltip: {
+          backgroundColor: 'rgba(11, 18, 32, 0.95)',
+          padding: 12,
+          borderColor: 'rgba(148, 163, 184, 0.3)',
+          borderWidth: 1,
+          callbacks: {
+            label: (context) => {
+              const label = context.dataset.label || '';
+              const value = context.parsed.y;
+              return `${label}: ${value ? value.toFixed(2) : 'N/A'}`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { color: 'rgba(148, 163, 184, 0.1)' },
+          ticks: { font: { size: 10 } }
+        },
+        y: {
+          reverse: true,
+          beginAtZero: false,
+          grid: { color: 'rgba(148, 163, 184, 0.1)' },
+          ticks: {
+            stepSize: 1,
+            font: { size: 11 },
+            callback: (value) => `P${value}`
+          }
+        }
+      }
+    }
+  });
+}
+
+function populateH2HDrivers() {
+  const season = state.seasons[state.seasonIndex];
+  if (!season || !els.h2hDriver1 || !els.h2hDriver2) return;
+
+  const drivers = [...(season.drivers ?? [])].sort((a, b) => (b.points ?? 0) - (a.points ?? 0));
+
+  const fragment1 = document.createDocumentFragment();
+  const fragment2 = document.createDocumentFragment();
+
+  drivers.forEach((driver, index) => {
+    const option1 = document.createElement('option');
+    option1.value = driver.id;
+    option1.textContent = driver.name;
+    if (index === 0) option1.selected = true;
+    fragment1.appendChild(option1);
+
+    const option2 = document.createElement('option');
+    option2.value = driver.id;
+    option2.textContent = driver.name;
+    if (index === 1) option2.selected = true;
+    fragment2.appendChild(option2);
+  });
+
+  els.h2hDriver1.innerHTML = '';
+  els.h2hDriver2.innerHTML = '';
+  els.h2hDriver1.appendChild(fragment1);
+  els.h2hDriver2.appendChild(fragment2);
+}
+
+function renderH2HChart() {
+  const season = state.seasons[state.seasonIndex];
+  if (!season || !els.h2hDriver1 || !els.h2hDriver2) return;
+
+  const driver1Id = els.h2hDriver1.value;
+  const driver2Id = els.h2hDriver2.value;
+
+  const driver1 = state.driverById.get(driver1Id);
+  const driver2 = state.driverById.get(driver2Id);
+
+  if (!driver1 || !driver2) return;
+
+  const canvas = document.getElementById('h2h-chart');
+  if (!canvas) return;
+
+  if (state.charts.h2h) {
+    state.charts.h2h.destroy();
+  }
+
+  const races = season.races?.slice(0, state.currentRace) ?? [];
+  const labels = races.map((_, i) => `R${i + 1}`);
+
+  const driver1Positions = [];
+  const driver2Positions = [];
+  let driver1Wins = 0;
+  let driver2Wins = 0;
+  let driver1Points = 0;
+  let driver2Points = 0;
+
+  races.forEach(race => {
+    const result1 = race.results?.find(r => r.driverId === driver1Id);
+    const result2 = race.results?.find(r => r.driverId === driver2Id);
+
+    driver1Positions.push(result1?.position ?? null);
+    driver2Positions.push(result2?.position ?? null);
+
+    if (result1?.position && result2?.position) {
+      if (result1.position < result2.position) driver1Wins++;
+      else if (result2.position < result1.position) driver2Wins++;
+    }
+
+    driver1Points += result1?.points ?? 0;
+    driver2Points += result2?.points ?? 0;
+  });
+
+  const ctx = canvas.getContext('2d');
+  state.charts.h2h = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        {
+          label: driver1.name,
+          data: driver1Positions,
+          borderColor: driver1.color || '#38bdf8',
+          backgroundColor: `${driver1.color || '#38bdf8'}33`,
+          borderWidth: 3,
+          tension: 0.3,
+          pointRadius: 5,
+          pointHoverRadius: 7,
+          spanGaps: true
+        },
+        {
+          label: driver2.name,
+          data: driver2Positions,
+          borderColor: driver2.color || '#f97316',
+          backgroundColor: `${driver2.color || '#f97316'}33`,
+          borderWidth: 3,
+          tension: 0.3,
+          pointRadius: 5,
+          pointHoverRadius: 7,
+          spanGaps: true
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: {
+        intersect: false,
+        mode: 'index'
+      },
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: { padding: 12, usePointStyle: true, font: { size: 12, weight: '600' } }
+        },
+        tooltip: {
+          backgroundColor: 'rgba(11, 18, 32, 0.95)',
+          padding: 12,
+          borderColor: 'rgba(148, 163, 184, 0.3)',
+          borderWidth: 1,
+          callbacks: {
+            label: (context) => {
+              const label = context.dataset.label || '';
+              const value = context.parsed.y;
+              return value ? `${label}: P${value}` : `${label}: DNF`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { color: 'rgba(148, 163, 184, 0.1)' },
+          ticks: { font: { size: 11 } }
+        },
+        y: {
+          reverse: true,
+          beginAtZero: false,
+          grid: { color: 'rgba(148, 163, 184, 0.1)' },
+          ticks: {
+            stepSize: 1,
+            font: { size: 11 },
+            callback: (value) => `P${value}`
+          }
+        }
+      }
+    }
+  });
+
+  // Update summary
+  if (els.h2hSummary) {
+    const winnerName = driver1Wins > driver2Wins ? driver1.name : driver2Wins > driver1Wins ? driver2.name : 'Tied';
+    const winnerClass = driver1Wins !== driver2Wins ? 'h2h-stat__value--winner' : '';
+
+    els.h2hSummary.innerHTML = `
+      <div class="h2h-stats">
+        <div class="h2h-stat">
+          <div class="h2h-stat__label">Races Won</div>
+          <div class="h2h-stat__value">${driver1.name}: ${driver1Wins} | ${driver2.name}: ${driver2Wins}</div>
+        </div>
+        <div class="h2h-stat">
+          <div class="h2h-stat__label">Total Points</div>
+          <div class="h2h-stat__value">${driver1.name}: ${driver1Points} | ${driver2.name}: ${driver2Points}</div>
+        </div>
+        <div class="h2h-stat">
+          <div class="h2h-stat__label">Battle Winner</div>
+          <div class="h2h-stat__value ${winnerClass}">${winnerName}</div>
+        </div>
+      </div>
+    `;
+  }
+}
+
+// Helper functions
+function computeTeamStandings(season) {
+  const teamMap = new Map();
+  (season.teams ?? []).forEach(team => {
+    teamMap.set(team.id, {
+      ...team,
+      drivers: [],
+      calcPoints: 0
+    });
+  });
+
+  (season.drivers ?? []).forEach(driver => {
+    if (!driver.teamId || !teamMap.has(driver.teamId)) return;
+    const team = teamMap.get(driver.teamId);
+    team.drivers.push(driver);
+    team.calcPoints += driver.points ?? 0;
+  });
+
+  return Array.from(teamMap.values())
+    .map(team => ({
+      ...team,
+      points: team.calcPoints !== undefined ? team.calcPoints : (team.points ?? 0)
+    }))
+    .sort((a, b) => b.points - a.points);
+}
+
+function calculateAvgPosition(driverId, races) {
+  let sum = 0;
+  let count = 0;
+
+  races.forEach(race => {
+    const result = race.results?.find(r => r.driverId === driverId);
+    if (result?.position) {
+      sum += result.position;
+      count++;
+    }
+  });
+
+  return count > 0 ? sum / count : 999;
+}
+
+function updateFooter() {
+  if (els.footerYear) {
+    els.footerYear.textContent = new Date().getFullYear();
+  }
+}
+
+// Initialize
+init();
