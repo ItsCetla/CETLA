@@ -585,7 +585,12 @@ function computeStatsRaw(season) {
     podiums: new Map(),
     avgPoints: new Map(),
     avgPlacement: new Map(),
-    raceCount: new Map()
+    raceCount: new Map(),
+    // team aggregates
+    teamWins: new Map(),
+    teamPodiums: new Map(),
+    teamAvgPoints: new Map(), // teamId -> { total, races }
+    teamAvgPlacement: new Map() // teamId -> { total, races }
   };
 
   (season.races ?? []).forEach(race => {
@@ -607,11 +612,16 @@ function computeStatsRaw(season) {
       const driverId = result.driverId;
       if (!driverId || !eligibleDrivers.has(driverId)) return;
 
+      const driver = state.driverById.get(driverId);
+      const teamId = driver?.teamId;
+
       if (result.position === 1) {
         base.wins.set(driverId, (base.wins.get(driverId) ?? 0) + 1);
+        if (teamId) base.teamWins.set(teamId, (base.teamWins.get(teamId) ?? 0) + 1);
       }
       if ((result.position ?? 0) > 0 && result.position <= 3) {
         base.podiums.set(driverId, (base.podiums.get(driverId) ?? 0) + 1);
+        if (teamId) base.teamPodiums.set(teamId, (base.teamPodiums.get(teamId) ?? 0) + 1);
       }
 
       if (typeof result.points === 'number') {
@@ -619,6 +629,13 @@ function computeStatsRaw(season) {
         current.total += result.points;
         current.races += 1;
         base.avgPoints.set(driverId, current);
+
+        if (teamId) {
+          const t = base.teamAvgPoints.get(teamId) ?? { total: 0, races: 0 };
+          t.total += result.points;
+          t.races += 1;
+          base.teamAvgPoints.set(teamId, t);
+        }
       }
 
       if (typeof result.position === 'number') {
@@ -626,6 +643,13 @@ function computeStatsRaw(season) {
         placement.total += result.position;
         placement.races += 1;
         base.avgPlacement.set(driverId, placement);
+
+        if (teamId) {
+          const t = base.teamAvgPlacement.get(teamId) ?? { total: 0, races: 0 };
+          t.total += result.position;
+          t.races += 1;
+          base.teamAvgPlacement.set(teamId, t);
+        }
       }
     });
   });
@@ -640,11 +664,27 @@ function computeStatsRaw(season) {
     avgPlacementFinal.set(driverId, value.races ? value.total / value.races : 0);
   });
 
+  const teamAvgPointsFinal = new Map();
+  base.teamAvgPoints.forEach((value, teamId) => {
+    teamAvgPointsFinal.set(teamId, value.races ? value.total / value.races : 0);
+  });
+
+  const teamAvgPlacementFinal = new Map();
+  base.teamAvgPlacement.forEach((value, teamId) => {
+    teamAvgPlacementFinal.set(teamId, value.races ? value.total / value.races : 0);
+  });
+
   return {
     wins: sortStatMapFull(base.wins),
     podiums: sortStatMapFull(base.podiums),
     avgPoints: sortStatMapFull(avgPointsFinal),
-    avgPlacement: sortStatMapFull(avgPlacementFinal, true)
+    avgPlacement: sortStatMapFull(avgPlacementFinal, true),
+    teams: {
+      wins: sortStatMapFull(base.teamWins),
+      podiums: sortStatMapFull(base.teamPodiums),
+      avgPoints: sortStatMapFull(teamAvgPointsFinal),
+      avgPlacement: sortStatMapFull(teamAvgPlacementFinal, true)
+    }
   };
 }
 
@@ -793,55 +833,54 @@ function openStatModal(statKey, titleText) {
 
   // Build list contents from raw stats
   const all = computeStatsRaw(season);
-  let entries = [];
+  let driverEntries = [];
+  let teamEntries = [];
   let formatter = (v) => v;
   let suffix = '';
 
   switch (statKey) {
     case 'wins':
-      entries = all.wins;
+      driverEntries = all.wins;
+      teamEntries = all.teams.wins;
       suffix = 'wins';
       break;
     case 'podiums':
-      entries = all.podiums;
+      driverEntries = all.podiums;
+      teamEntries = all.teams.podiums;
       suffix = 'podiums';
       break;
     case 'avgPoints':
-      entries = all.avgPoints;
+      driverEntries = all.avgPoints;
+      teamEntries = all.teams.avgPoints;
       suffix = 'pts';
       formatter = (v) => `${v.toFixed(1)} pts`;
       break;
     case 'avgPlacement':
-      entries = all.avgPlacement;
+      driverEntries = all.avgPlacement;
+      teamEntries = all.teams.avgPlacement;
       suffix = '';
       formatter = (v) => v.toFixed(1);
       break;
     default:
-      entries = [];
+      driverEntries = [];
+      teamEntries = [];
   }
 
-  if (!entries.length) {
-    els.modalList.innerHTML = '<p class="stat-empty">No eligible drivers yet (need 3 races).</p>';
-  } else {
-    els.modalList.innerHTML = `
-      <div class="modal__list">
-        ${entries.map(([driverId, value]) => {
-          const driver = state.driverById.get(driverId);
-          if (!driver) return '';
-          const valueText = suffix === 'pts' ? formatter(value) : (suffix ? `${value} ${suffix}` : formatter(value));
-          return `
-            <div class="stat-item">
-              <span class="stat-item__label">
-                <span class="stat-dot" style="background:${sanitizeColor(driver.color)};"></span>
-                ${driver.name}
-              </span>
-              <span class="stat-item__value">${valueText}</span>
-            </div>
-          `;
-        }).join('')}
-      </div>
-    `;
-  }
+  const driverTable = renderStatTable(driverEntries, 'driver', suffix, formatter);
+  const teamTable = renderStatTable(teamEntries, 'team', suffix, formatter);
+
+  els.modalList.innerHTML = `
+    <div class="modal__grid">
+      <section class="modal__section">
+        <h4>Drivers</h4>
+        ${driverTable}
+      </section>
+      <section class="modal__section">
+        <h4>Teams</h4>
+        ${teamTable}
+      </section>
+    </div>
+  `;
 
   // Open
   els.modal.setAttribute('aria-hidden', 'false');
@@ -852,6 +891,70 @@ function closeModal() {
   if (!els.modal) return;
   els.modal.setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
+}
+
+function renderStatTable(entries, kind, suffix, formatValue) {
+  if (!entries.length) {
+    return '<p class="stat-empty">No eligible data yet (need 3 races).</p>';
+  }
+
+  const headerName = kind === 'team' ? 'Team' : 'Driver';
+  const rows = entries.map(([id, value], idx) => {
+    if (kind === 'team') {
+      const team = state.teamById.get(id);
+      if (!team) return '';
+      const valueText = typeof formatValue === 'function'
+        ? formatValue(value)
+        : (suffix ? `${value} ${suffix}` : String(value));
+      return `
+        <tr>
+          <td class="col-rank">${idx + 1}</td>
+          <td>
+            <div class="driver-cell">
+              <span class="team-color" style="background:${sanitizeColor(team.color)};"></span>
+              ${team.name}
+            </div>
+          </td>
+          <td class="column--points">${valueText}</td>
+        </tr>
+      `;
+    } else {
+      const driver = state.driverById.get(id);
+      if (!driver) return '';
+      const valueText = typeof formatValue === 'function'
+        ? formatValue(value)
+        : (suffix ? `${value} ${suffix}` : String(value));
+      return `
+        <tr>
+          <td class="col-rank">${idx + 1}</td>
+          <td>
+            <div class="driver-cell">
+              <span class="driver-color" style="background:${sanitizeColor(driver.color)};"></span>
+              ${driver.name}
+            </div>
+          </td>
+          <td class="column--points">${valueText}</td>
+        </tr>
+      `;
+    }
+  }).join('');
+
+  return `
+    <div class="table-wrapper">
+      <table class="data-table modal-table" aria-label="${headerName} ${suffix || ''} stats">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">${headerName}</th>
+            <th scope="col" class="column--points">${suffix || 'Value'}</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows}
+        </tbody>
+      </table>
+    </div>
+  `;
 }
 
 function changeTab(activeButton) {
