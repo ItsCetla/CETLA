@@ -5573,7 +5573,7 @@
           "name": "Jack",
           "teamId": "team-santigold",
           "color": "cyan",
-          "points": 47,
+          "points": 52,
           "aliases": []
         },
         {
@@ -5581,7 +5581,7 @@
           "name": "Rambo",
           "teamId": "team-romero",
           "color": "purple",
-          "points": 52,
+          "points": 63,
           "aliases": []
         },
         {
@@ -5589,7 +5589,7 @@
           "name": "Slatenator",
           "teamId": "team-slate",
           "color": "red",
-          "points": 40,
+          "points": 42,
           "aliases": []
         },
         {
@@ -5597,7 +5597,7 @@
           "name": "Santi",
           "teamId": "team-santigold",
           "color": "cyan",
-          "points": 42,
+          "points": 44,
           "aliases": [
             "HdzSanti"
           ]
@@ -5618,7 +5618,7 @@
           "name": "Pablo",
           "teamId": "k-hole-racing",
           "color": "pink",
-          "points": 19,
+          "points": 18,
           "aliases": []
         },
         {
@@ -5626,7 +5626,7 @@
           "name": "FleshTorpedo",
           "teamId": "team-tits-out",
           "color": "black",
-          "points": 38,
+          "points": 36,
           "aliases": []
         },
         {
@@ -5644,7 +5644,7 @@
           "name": "Izzy Hunter",
           "teamId": null,
           "color": null,
-          "points": 24,
+          "points": 20,
           "aliases": []
         },
         {
@@ -5652,7 +5652,7 @@
           "name": "Cetla",
           "teamId": "team-stake",
           "color": "lightgreen",
-          "points": 24,
+          "points": 20,
           "aliases": []
         },
         {
@@ -5660,7 +5660,7 @@
           "name": "Rom3",
           "teamId": "team-romero",
           "color": "purple",
-          "points": 27,
+          "points": 33,
           "aliases": [
             "FRT_R0m3r0Q"
           ]
@@ -5730,7 +5730,7 @@
               "totalTime": "15:21.275",
               "gap": null,
               "fastestLap": "0:49.376",
-              "points": 30,
+              "points": 37,
               "isGuest": false
             },
             {
@@ -5742,7 +5742,7 @@
               "totalTime": "+03.461",
               "gap": "+3.461",
               "fastestLap": "0:49.210",
-              "points": 27,
+              "points": 33,
               "isGuest": false
             },
             {
@@ -5754,7 +5754,7 @@
               "totalTime": "+05.747",
               "gap": "+5.747",
               "fastestLap": "0:49.741",
-              "points": 25,
+              "points": 30,
               "isGuest": false
             },
             {
@@ -5766,7 +5766,7 @@
               "totalTime": "+06.124",
               "gap": "+6.124",
               "fastestLap": "0:49.540",
-              "points": 23,
+              "points": 26,
               "isGuest": false
             },
             {
@@ -5790,7 +5790,7 @@
               "totalTime": "+08.996",
               "gap": "+8.996",
               "fastestLap": "0:49.479",
-              "points": 19,
+              "points": 18,
               "isGuest": false
             },
             {
@@ -5802,7 +5802,7 @@
               "totalTime": "+09.788",
               "gap": "+9.788",
               "fastestLap": "0:49.296",
-              "points": 17,
+              "points": 15,
               "isGuest": false
             },
             {
@@ -5814,7 +5814,7 @@
               "totalTime": "+10.017",
               "gap": "+10.017",
               "fastestLap": "0:49.401",
-              "points": 15,
+              "points": 12,
               "isGuest": false
             },
             {
@@ -5826,7 +5826,7 @@
               "totalTime": "+23.772",
               "gap": "+23.772",
               "fastestLap": "0:49.568",
-              "points": 13,
+              "points": 11,
               "isGuest": false
             },
             {
@@ -5838,7 +5838,7 @@
               "totalTime": "+25.127",
               "gap": "+25.127",
               "fastestLap": "0:49.372",
-              "points": 11,
+              "points": 9,
               "isGuest": false
             }
           ]
@@ -5868,7 +5868,7 @@
               "totalTime": "27:57.059",
               "gap": null,
               "fastestLap": "1:47.342",
-              "points": 30,
+              "points": 37,
               "isGuest": false
             },
             {
@@ -5880,7 +5880,7 @@
               "totalTime": "+01.008",
               "gap": "+1.008",
               "fastestLap": "1:47.560",
-              "points": 27,
+              "points": 33,
               "isGuest": false
             },
             {
@@ -5892,7 +5892,7 @@
               "totalTime": "+01.013",
               "gap": "+1.013",
               "fastestLap": "1:48.449",
-              "points": 25,
+              "points": 30,
               "isGuest": false
             },
             {
@@ -5904,7 +5904,7 @@
               "totalTime": "+11.218",
               "gap": "+11.218",
               "fastestLap": "1:37.998",
-              "points": 23,
+              "points": 26,
               "isGuest": false
             },
             {
@@ -5928,7 +5928,7 @@
               "totalTime": "+16.221",
               "gap": "+16.221",
               "fastestLap": "1:49.694",
-              "points": 19,
+              "points": 18,
               "isGuest": false
             },
             {
@@ -5940,7 +5940,7 @@
               "totalTime": "+24.300",
               "gap": "+24.300",
               "fastestLap": "1:49.236",
-              "points": 17,
+              "points": 15,
               "isGuest": false
             },
             {
@@ -5952,7 +5952,7 @@
               "totalTime": "+39.351",
               "gap": "+39.351",
               "fastestLap": "1:49.946",
-              "points": 15,
+              "points": 12,
               "isGuest": false
             },
             {
@@ -5964,7 +5964,7 @@
               "totalTime": "+43.688",
               "gap": "+43.688",
               "fastestLap": "1:49.227",
-              "points": 13,
+              "points": 11,
               "isGuest": false
             },
             {
@@ -5976,7 +5976,7 @@
               "totalTime": "+52.350",
               "gap": "+52.350",
               "fastestLap": "1:50.923",
-              "points": 11,
+              "points": 9,
               "isGuest": false
             }
           ]
