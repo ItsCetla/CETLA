@@ -6,7 +6,8 @@ const state = {
   driverById: new Map(),
   driverByName: new Map(),
   teamById: new Map(),
-  latestSeasonIndex: 0
+  latestSeasonIndex: 0,
+  scheduleRendered: false
 };
 
 const els = {
@@ -49,7 +50,11 @@ const els = {
   // Modal elements
   modal: document.getElementById('stats-modal'),
   modalTitle: document.getElementById('modal-title'),
-  modalList: document.getElementById('modal-list')
+  modalList: document.getElementById('modal-list'),
+  scheduleButton: document.getElementById('open-fall-schedule'),
+  scheduleModal: document.getElementById('schedule-modal'),
+  scheduleList: document.getElementById('schedule-list'),
+  scheduleRules: document.getElementById('schedule-rules')
 };
 
 const tabButtons = document.querySelectorAll('.tabs__button');
@@ -59,6 +64,138 @@ const intlDate = new Intl.DateTimeFormat('en-US', {
   dateStyle: 'medium',
   timeStyle: 'short'
 });
+
+const scheduleDateFormatter = new Intl.DateTimeFormat('en-US', {
+  weekday: 'short',
+  month: 'long',
+  day: 'numeric',
+  hour: 'numeric',
+  minute: '2-digit',
+  timeZone: 'America/New_York',
+  timeZoneName: 'short'
+});
+
+const FALL_2025_RULES = [
+  '2× tire wear · 2× fuel consumption',
+  'Weather: Random',
+  'Mandatory compound change each race (unless it rains)',
+  'Reverse grid based on season standings',
+  'Damage: Light',
+  'Boost: None'
+];
+
+const FALL_2025_SCHEDULE = [
+  {
+    type: 'race',
+    date: '2025-10-09T20:00:00-04:00',
+    track: 'Blue Moon Bay Speedway – Infield B',
+    car: 'Corvette Gr.3',
+    laps: 15
+  },
+  {
+    type: 'race',
+    date: '2025-10-16T20:00:00-04:00',
+    track: 'Daytona International Speedway – 24h Layout',
+    car: 'Mustang Gr.3',
+    laps: 13
+  },
+  {
+    type: 'race',
+    date: '2025-10-23T20:00:00-04:00',
+    track: 'Trial Mountain Circuit',
+    car: "Huracán GT3 '15",
+    laps: 12
+  },
+  {
+    type: 'race',
+    date: '2025-10-30T20:00:00-04:00',
+    track: 'Autodrome Lago Maggiore',
+    car: "Mercedes-AMG GT3 '16",
+    laps: 13
+  },
+  {
+    type: 'race',
+    date: '2025-11-06T20:00:00-05:00',
+    track: 'Watkins Glen Short Course',
+    car: "GT-T GT500 '16",
+    laps: 18
+  },
+  {
+    type: 'race',
+    date: '2025-11-13T20:00:00-05:00',
+    track: 'Tokyo Expressway – East Clockwise',
+    car: "NSX GT500 '08",
+    laps: 10
+  },
+  {
+    type: 'race',
+    date: '2025-11-20T20:00:00-05:00',
+    track: 'WeatherTech Raceway Laguna Seca',
+    car: 'Garage RCR Civic',
+    laps: 14
+  },
+  {
+    type: 'race',
+    date: '2025-11-28T20:00:00-05:00',
+    track: 'Suzuka Circuit – Short Course',
+    car: 'FT-1 VGT',
+    laps: 14
+  },
+  {
+    type: 'race',
+    date: '2025-12-04T20:00:00-05:00',
+    track: 'Michelin Raceway Road Atlanta',
+    car: 'WRX Gr.3',
+    laps: 16
+  },
+  {
+    type: 'race',
+    date: '2025-12-11T20:00:00-05:00',
+    track: 'Kyoto Driving Park – Yamagiwa',
+    car: "R8 LMS '15",
+    laps: 14
+  },
+  {
+    type: 'race',
+    date: '2025-12-18T20:00:00-05:00',
+    track: 'Deep Forest Raceway',
+    car: 'Dragon Trial',
+    laps: 14
+  },
+  {
+    type: 'break',
+    title: 'Christmas Break',
+    description: 'No race scheduled. Enjoy the holidays!'
+  },
+  {
+    type: 'race',
+    date: '2026-01-08T20:00:00-05:00',
+    track: 'Brands Hatch Grand Prix Circuit',
+    car: "SR3 SL '13",
+    laps: 14
+  },
+  {
+    type: 'race',
+    date: '2026-01-15T20:00:00-05:00',
+    track: 'Autodromo Nazionale Monza',
+    car: "458 Italia GT3 '13",
+    laps: 12
+  },
+  {
+    type: 'race',
+    date: '2026-01-22T20:00:00-05:00',
+    track: 'Red Bull Ring',
+    car: "M6 GT3 Sprint Model '16",
+    laps: 12
+  },
+  {
+    type: 'race',
+    date: '2026-01-29T20:00:00-05:00',
+    track: 'Circuit de la Sarthe',
+    car: 'Ford GT LM Race Car Spec II',
+    laps: 10
+  }
+];
 
 function withAlpha(hex, alpha = 0.35) {
   if (!hex || !hex.startsWith('#')) return hex;
@@ -135,13 +272,22 @@ function attachUIHandlers() {
     });
   });
 
+  els.scheduleButton?.addEventListener('click', openScheduleModal);
+
+  document.querySelectorAll('[data-schedule-close]').forEach(el => {
+    el.addEventListener('click', closeScheduleModal);
+  });
+
   // Modal close handlers
   document.querySelectorAll('[data-modal-close]').forEach(el => {
     el.addEventListener('click', closeModal);
   });
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeModal();
+    if (e.key === 'Escape') {
+      if (els.modal?.getAttribute('aria-hidden') === 'false') closeModal();
+      if (els.scheduleModal?.getAttribute('aria-hidden') === 'false') closeScheduleModal();
+    }
   });
 }
 
@@ -876,13 +1022,88 @@ function openStatModal(statKey, titleText) {
 
   // Open
   els.modal.setAttribute('aria-hidden', 'false');
-  document.body.style.overflow = 'hidden';
+  lockBodyScroll();
 }
 
 function closeModal() {
   if (!els.modal) return;
   els.modal.setAttribute('aria-hidden', 'true');
-  document.body.style.overflow = '';
+  unlockBodyScroll();
+}
+
+function openScheduleModal() {
+  if (!els.scheduleModal) return;
+  if (!state.scheduleRendered) {
+    renderFallSchedule();
+    state.scheduleRendered = true;
+  }
+  els.scheduleModal.setAttribute('aria-hidden', 'false');
+  lockBodyScroll();
+}
+
+function closeScheduleModal() {
+  if (!els.scheduleModal) return;
+  els.scheduleModal.setAttribute('aria-hidden', 'true');
+  unlockBodyScroll();
+}
+
+function renderFallSchedule() {
+  if (els.scheduleRules) {
+    els.scheduleRules.innerHTML = FALL_2025_RULES.map(rule => `<li>${rule}</li>`).join('');
+  }
+
+  if (!els.scheduleList) return;
+
+  let roundCounter = 0;
+  const items = FALL_2025_SCHEDULE.map(event => {
+    if (event.type === 'break') {
+      const description = event.description ? `<p class="schedule-event__break-note">${event.description}</p>` : '';
+      return `
+        <li class="schedule-event schedule-event--break">
+          <div class="schedule-event__break-title">${event.title}</div>
+          ${description}
+        </li>
+      `;
+    }
+
+    roundCounter += 1;
+    const date = event.date ? new Date(event.date) : null;
+    const formattedDate = date ? scheduleDateFormatter.format(date) : '';
+    const lapsText = typeof event.laps === 'number' ? `${event.laps} Laps` : event.laps;
+    const datetimeAttr = event.date ?? '';
+
+    return `
+      <li class="schedule-event">
+        <div class="schedule-event__header">
+          <span class="schedule-event__round">Round ${roundCounter}</span>
+          <time datetime="${datetimeAttr}">${formattedDate}</time>
+        </div>
+        <h4 class="schedule-event__track">${event.track}</h4>
+        <ul class="schedule-event__meta">
+          <li><span>Car</span>${event.car}</li>
+          <li><span>Laps</span>${lapsText}</li>
+        </ul>
+      </li>
+    `;
+  }).join('');
+
+  els.scheduleList.innerHTML = items;
+}
+
+function lockBodyScroll() {
+  document.body.classList.add('is-modal-open');
+}
+
+function unlockBodyScroll() {
+  if (!isAnyModalOpen()) {
+    document.body.classList.remove('is-modal-open');
+  }
+}
+
+function isAnyModalOpen() {
+  const statsOpen = els.modal?.getAttribute('aria-hidden') === 'false';
+  const scheduleOpen = els.scheduleModal?.getAttribute('aria-hidden') === 'false';
+  return Boolean(statsOpen || scheduleOpen);
 }
 
 function renderStatTable(entries, kind, suffix, formatValue) {
