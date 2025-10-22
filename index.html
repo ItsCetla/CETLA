@@ -1,210 +1,273 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-5ZD24MQQ');</script>
-    <!-- End Google Tag Manager -->
-    <meta charset="UTF-8">
-    <title>Racing League</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Include Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap" rel="stylesheet">
-    <!-- Include Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Include custom CSS -->
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CETLA Racing League</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Grotesk:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
-    <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5ZD24MQQ"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a class="brand" href="#top" data-scroll>CETLA</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="nav-toggle__line"></span>
+        <span class="nav-toggle__line"></span>
+        <span class="nav-toggle__line"></span>
+      </button>
+      <nav id="primary-nav" class="site-nav">
+        <a href="#season-picker" data-scroll>Seasons</a>
+        <a href="#standings" data-scroll>Standings</a>
+        <a href="#races" data-scroll>Race Hub</a>
+        <a href="#stats" data-scroll>Stats</a>
+        <a href="analytics.html">Analytics</a>
+      </nav>
+    </div>
+  </header>
 
-    <!-- Header with navigation -->
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="race_results.html">Race Results</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Main content -->
-    <main>
-        <!-- Hero section -->
-        <section id="hero">
-            <div class="hero-content">
-                <h1>Welcome to Slayter's Racing League</h1>
-                <p>The place to get all past and future races all in one collected spot.</p>
-                <button id="view-schedule" class="btn-primary">View Schedule</button>
+  <main id="top">
+    <section class="hero">
+      <div class="container hero__content">
+        <div class="hero__copy">
+          <p class="eyebrow">CETLA Racing League</p>
+          <h1 class="hero__title">All of our seasons. One living record.</h1>
+          <p class="hero__subtitle">
+            Browse every race we’ve run, follow the team battles, and keep the points table current in minutes.
+          </p>
+          <div class="hero__actions">
+            <button id="cta-season" class="btn btn--primary">Jump to current season</button>
+            <a class="btn btn--ghost" href="#races" data-scroll>Latest race results</a>
+          </div>
+        </div>
+        <div class="hero__panel">
+          <article class="hero-card hero-card--season">
+            <header class="hero-card__header">
+              <p class="eyebrow">Latest Season</p>
+            </header>
+            <h2 class="hero-card__title" id="hero-season-title">Season Snapshot</h2>
+            <dl class="hero-metrics">
+              <div>
+                <dt>Season</dt>
+                <dd id="hero-season-label">—</dd>
+              </div>
+              <div>
+                <dt>Rounds</dt>
+                <dd id="hero-season-rounds">—</dd>
+              </div>
+              <div>
+                <dt>Top Driver</dt>
+                <dd id="hero-season-leader">—</dd>
+              </div>
+              <div>
+                <dt>Leading Team</dt>
+                <dd id="hero-team-leader">—</dd>
+              </div>
+            </dl>
+          </article>
+          <article class="hero-card hero-card--race">
+            <p class="eyebrow">Latest Race</p>
+            <h2 class="hero-card__title" id="hero-race-title">Race Overview</h2>
+            <p class="hero-race-meta" id="hero-race-meta">—</p>
+            <div class="hero-podium" id="hero-podium">
+              <p>Results will appear once a race is recorded.</p>
             </div>
-        </section>
+          </article>
+        </div>
+      </div>
+    </section>
 
-        <!-- Modal Structure -->
-        <div id="schedule-modal" class="modal">
-            <div class="modal-content">
-                <span id="close-modal" class="close">&times;</span>
-                <h2>2024 Friendly Season Schedule</h2>
-                <div class="schedule-list">
-                    <div class="race-event">
-                        <h3>Race 1 - February 4th, 8:00 PM EST</h3>
-                        <ul>
-                            <li><strong>Car:</strong> Grade 3 (Gr.3)</li>
-                            <li><strong>Track:</strong> Blue Moon Bay Speedway Infield B</li>
-                            <li><strong>Weather:</strong> Night & Clear</li>
-                            <li><strong>Laps:</strong> 30</li>
-                        </ul>
-                    </div>
+    <section id="season-picker" class="section section--pad">
+      <div class="container">
+        <header class="section__header">
+          <h2>Pick a Season</h2>
+          <p class="section__subtitle">Select a season to update points, add races, or view the standings.</p>
+        </header>
 
-                    <div class="race-event">
-                        <h3>Race 2 - February 11th, 8:00 PM EST</h3>
-                        <ul>
-                            <li><strong>Car:</strong> Grade 2 (Gr.2)</li>
-                            <li><strong>Track:</strong> Watkins Glenn Short Course</li>
-                            <li><strong>Weather:</strong> Night & Clear</li>
-                            <li><strong>Laps:</strong> 25</li>
-                        </ul>
-                    </div>
-
-                    <div class="race-event">
-                        <h3>Race 3 - February 18th, 8:00 PM EST</h3>
-                        <ul>
-                            <li><strong>Car:</strong> Grade 1 (Gr.1)</li>
-                            <li><strong>Track:</strong> Circuit De Sainte-Croix Layout B</li>
-                            <li><strong>Weather:</strong> Afternoon & Clear</li>
-                            <li><strong>Laps:</strong> 22</li>
-                        </ul>
-                    </div>
-
-                    <div class="race-event">
-                        <h3>Race 4 - February 25th, 8:00 PM EST</h3>
-                        <ul>
-                            <li><strong>Car:</strong> Grade 3 (Gr.3)</li>
-                            <li><strong>Track:</strong> Trial Mountain</li>
-                            <li><strong>Weather:</strong> Afternoon & Clear</li>
-                            <li><strong>Laps:</strong> 21</li>
-                        </ul>
-                    </div>
-
-                    <div class="race-event">
-                        <h3>Race 5 - March 4th, 8:00 PM EST</h3>
-                        <ul>
-                            <li><strong>Car:</strong> Grade 2 (Gr.2)</li>
-                            <li><strong>Track:</strong> Dragon Trail Seaside</li>
-                            <li><strong>Weather:</strong> Daytime & Random Weather</li>
-                            <li><strong>Laps:</strong> 18</li>
-                        </ul>
-                    </div>
-
-                    <div class="race-event">
-                        <h3>Race 6 - March 11th, 8:00 PM EST</h3>
-                        <ul>
-                            <li><strong>Car:</strong> Grade 1 (Gr.1)</li>
-                            <li><strong>Track:</strong> Kyoto Driving Park - Yamagiwa</li>
-                            <li><strong>Weather:</strong> Afternoon & Clear</li>
-                            <li><strong>Laps:</strong> 26</li>
-                        </ul>
-                    </div>
-
-                    <div class="race-event">
-                        <h3>Race 7 - March 18th, 8:00 PM EST</h3>
-                        <ul>
-                            <li><strong>Car:</strong> Grade 3 (Gr.3)</li>
-                            <li><strong>Track:</strong> Autopolis International Racing Course</li>
-                            <li><strong>Weather:</strong> Night & Random Weather</li>
-                            <li><strong>Laps:</strong> 19</li>
-                        </ul>
-                    </div>
-
-                    <div class="race-event">
-                        <h3>Race 8 - March 25th, 8:00 PM EST</h3>
-                        <ul>
-                            <li><strong>Car:</strong> Super Formula</li>
-                            <li><strong>Track:</strong> RedBull Ring Full Course</li>
-                            <li><strong>Weather:</strong> Evening & Dry Weather</li>
-                            <li><strong>Laps:</strong> 24</li>
-                        </ul>
-                    </div>
-
-                    <div class="race-event">
-                        <h3>Race 9 - April 1st, 8:00 PM EST</h3>
-                        <ul>
-                            <li><strong>Car:</strong> Grade 2 (Gr.2)</li>
-                            <li><strong>Track:</strong> Barcelona Circuit GP Layout No Chicane</li>
-                            <li><strong>Weather:</strong> Afternoon & Clear</li>
-                            <li><strong>Laps:</strong> 22</li>
-                        </ul>
-                    </div>
-
-                    <div class="race-event">
-                        <h3>Race 10 - April 8th, 8:00 PM EST</h3>
-                        <ul>
-                            <li><strong>Car:</strong> Grade 1 (Gr.1)</li>
-                            <li><strong>Track:</strong> Spa 24 Hour Layout</li>
-                            <li><strong>Weather:</strong> Evening & Random Weather</li>
-                            <li><strong>Laps:</strong> 21</li>
-                        </ul>
-                    </div>
-
-                    <div class="race-event">
-                        <h3>Race 11 - April 15th, 8:00 PM EST</h3>
-                        <ul>
-                            <li><strong>Car:</strong> Grade 2 (Gr.2)</li>
-                            <li><strong>Track:</strong> Deep Forest Raceway</li>
-                            <li><strong>Weather:</strong> Night & Clear</li>
-                            <li><strong>Laps:</strong> 24</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+        <div class="season-controls">
+          <label class="season-select">
+            <span class="season-select__label">Season</span>
+            <select id="season-select" aria-label="Select season"></select>
+          </label>
+          <div class="season-pills" id="season-pills" role="listbox" aria-label="Season quick select"></div>
         </div>
 
-        <!-- Season Selection -->
-        <section id="season-selection">
-            <label for="season-select">Select Season:</label>
-            <select id="season-select">
-                <option value="session3">Multi-Car</option>
-                <option value="session4">Road Cars</option>
-                <option value="session4html">People Pick</option>
-                <!-- Add more options as needed -->
-            </select>
-        </section>
-
-        <!-- Standings Section -->
-        <section id="standings">
-            <div class="tabs">
-                <button class="tab-button active" data-tab="team-standings">Team Standings</button>
-                <button class="tab-button" data-tab="driver-standings">Driver Standings</button>
+        <article class="season-card" id="season-card">
+          <header class="season-card__header">
+            <div>
+              <p class="eyebrow" id="season-card-year">—</p>
+              <h3 id="season-card-title">Choose a season</h3>
             </div>
+            <span class="season-card__badge" id="season-card-rounds">—</span>
+          </header>
+          <p class="season-card__description" id="season-card-description">
+            The full description for the season will show up here once you select it.
+          </p>
+        </article>
+      </div>
+    </section>
 
-            <!-- Team Standings Tab Content -->
-            <div class="tab-content active" id="team-standings">
-                <h1>Team Standings</h1>
-                <table class="table-container">
-                    <tbody>
-                        <!-- Team standings will be dynamically inserted here -->
-                    </tbody>
-                </table>
+    <section id="standings" class="section section--alt">
+      <div class="container">
+        <header class="section__header">
+          <h2>Standings</h2>
+          <p class="section__subtitle">Driver and team tables auto-sync from the shared season data file.</p>
+        </header>
+
+        <div class="tabs" role="tablist">
+          <button class="tabs__button is-active" role="tab" aria-selected="true" data-tab="drivers">Drivers</button>
+          <button class="tabs__button" role="tab" aria-selected="false" data-tab="teams">Teams</button>
+        </div>
+
+        <div class="tab-panels">
+          <div class="tab-panel is-active" role="tabpanel" id="tab-drivers">
+            <div class="table-wrapper">
+              <table class="data-table" aria-label="Driver standings">
+                <thead>
+                  <tr>
+                    <th scope="col">Driver</th>
+                    <th scope="col">Team</th>
+                    <th scope="col" class="column--points">Points</th>
+                  </tr>
+                </thead>
+                <tbody id="driver-table-body"></tbody>
+              </table>
             </div>
-
-            <!-- Driver Standings Tab Content -->
-            <div class="tab-content" id="driver-standings">
-                <h1>Driver Standings</h1>
-                <table class="table-container">
-                    <tbody>
-                        <!-- Driver standings will be dynamically inserted here -->
-                    </tbody>
-                </table>
+          </div>
+          <div class="tab-panel" role="tabpanel" id="tab-teams">
+            <div class="table-wrapper">
+              <table class="data-table" aria-label="Team standings">
+                <thead>
+                  <tr>
+                    <th scope="col">Team</th>
+                    <th scope="col">Drivers</th>
+                    <th scope="col" class="column--points">Points</th>
+                  </tr>
+                </thead>
+                <tbody id="team-table-body"></tbody>
+              </table>
             </div>
-        </section>
-    </main>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <!-- Include custom JavaScript -->
-    <script src="script.js"></script>
+    <section id="races" class="section section--pad">
+      <div class="container">
+        <header class="section__header section__header--row">
+          <div>
+            <h2>Race Center</h2>
+            <p class="section__subtitle">Switch races to review settings, podiums, and individual lap awards.</p>
+          </div>
+          <label class="race-select">
+            <span class="race-select__label">Race</span>
+            <select id="race-select" aria-label="Select race"></select>
+          </label>
+        </header>
+
+        <div class="race-layout">
+          <article class="race-details" id="race-details-card">
+            <header class="race-details__header">
+              <div>
+                <p class="eyebrow" id="race-round-label">Round —</p>
+                <h3 id="race-title">Select a race</h3>
+              </div>
+              <time id="race-date" class="race-date">—</time>
+            </header>
+            <p class="race-venue" id="race-venue">Venue —</p>
+            <dl class="race-settings" id="race-settings">
+              <div>
+                <dt>Car Class</dt>
+                <dd id="race-car">—</dd>
+              </div>
+              <div>
+                <dt>Weather</dt>
+                <dd id="race-weather">—</dd>
+              </div>
+              <div>
+                <dt>Laps</dt>
+                <dd id="race-laps">—</dd>
+              </div>
+              <div>
+                <dt>Notes</dt>
+                <dd id="race-notes">—</dd>
+              </div>
+            </dl>
+          </article>
+
+          <figure class="race-track" id="race-track">
+            <img id="race-track-image" src="" alt="Track preview" loading="lazy">
+          </figure>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="data-table data-table--dense" aria-label="Race results">
+            <thead>
+              <tr>
+                <th scope="col">Pos</th>
+                <th scope="col">Driver</th>
+                <th scope="col">Points</th>
+                <th scope="col" class="column--hide-sm">Car</th>
+                <th scope="col" class="column--hide-sm">Fastest Lap</th>
+              </tr>
+            </thead>
+            <tbody id="race-results-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="stats" class="section section--alt">
+      <div class="container">
+        <header class="section__header">
+          <h2>Season Insights</h2>
+          <p class="section__subtitle">Quick-look stats update as soon as you update the shared data file.</p>
+        </header>
+        <div class="stats-grid">
+          <article class="stat-card stat-card--clickable" data-stat="wins">
+            <h3>Most Wins</h3>
+            <div class="stat-list" id="stats-wins"></div>
+          </article>
+          <article class="stat-card stat-card--clickable" data-stat="podiums">
+            <h3>Most Podiums</h3>
+            <div class="stat-list" id="stats-podiums"></div>
+          </article>
+          <article class="stat-card stat-card--clickable" data-stat="avgPoints">
+            <h3>Average Points</h3>
+            <div class="stat-list" id="stats-average-points"></div>
+          </article>
+          <article class="stat-card stat-card--clickable" data-stat="avgPlacement">
+            <h3>Average Finish</h3>
+            <div class="stat-list stat-list--multi" id="stats-average-placement"></div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer__content">
+      <p>Data-driven by <code>v2/data/seasons.json</code>. Update the file, redeploy, done.</p>
+      <small>&copy; <span id="footer-year"></span> CETLA Racing League</small>
+    </div>
+  </footer>
+
+  <!-- Stats Modal -->
+  <div id="stats-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal__backdrop" data-modal-close></div>
+    <div class="modal__panel" role="document">
+      <header class="modal__header">
+        <h3 class="modal__title" id="modal-title">Stats</h3>
+        <button class="modal__close" aria-label="Close" data-modal-close>&times;</button>
+      </header>
+      <div class="modal__content">
+        <div id="modal-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/app.js" type="module"></script>
 </body>
 </html>
