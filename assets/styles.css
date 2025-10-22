@@ -381,6 +381,7 @@ button:focus-visible {
   font-weight: 600;
   font-size: 0.95rem;
   border: 1px solid transparent;
+  background: transparent;
   cursor: pointer;
   transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
