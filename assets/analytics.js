@@ -122,7 +122,7 @@ function populateSeasonControls() {
   state.seasons.forEach((season, index) => {
     const option = document.createElement('option');
     option.value = season.id;
-    option.textContent = `${season.year} · ${season.label}`;
+    option.textContent = season.year ? `${season.year} · ${season.label}` : season.label;
     fragmentOptions.appendChild(option);
 
     const button = document.createElement('button');
