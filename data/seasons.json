@@ -5571,8 +5571,8 @@
         {
           "id": "jack",
           "name": "Jack",
-          "teamId": "team-santigold",
-          "color": "cyan",
+          "teamId": "team-romero",
+          "color": "purple",
           "points": 52,
           "aliases": []
         },
@@ -5601,6 +5601,14 @@
           "aliases": [
             "HdzSanti"
           ]
+        },
+        {
+          "id": "hpepe",
+          "name": "HPePe",
+          "teamId": "team-santigold",
+          "color": "cyan",
+          "points": 37,
+          "aliases": []
         },
         {
           "id": "kickstart",
@@ -5642,8 +5650,8 @@
         {
           "id": "izzyhunter",
           "name": "Izzy Hunter",
-          "teamId": null,
-          "color": null,
+          "teamId": "team-rom3-izzy",
+          "color": "indigo",
           "points": 20,
           "aliases": []
         },
@@ -5658,8 +5666,8 @@
         {
           "id": "rom3",
           "name": "Rom3",
-          "teamId": "team-romero",
-          "color": "purple",
+          "teamId": "team-rom3-izzy",
+          "color": "indigo",
           "points": 33,
           "aliases": [
             "FRT_R0m3r0Q"
@@ -5680,9 +5688,15 @@
           "points": null
         },
         {
+          "id": "team-rom3-izzy",
+          "name": "Team Rom3 & Izzy",
+          "color": "indigo",
+          "points": null
+        },
+        {
           "id": "team-santigold",
           "name": "Team SantiGold",
-          "color": "orange",
+          "color": "cyan",
           "points": null
         },
         {
