@@ -44,7 +44,7 @@ All seasons live in `data/seasons.json`. Edit this file directly to add seasons,
           "weather": "Night & Clear",
           "laps": 30,
           "notes": "Friendly Season Opener",
-          "trackImage": "https://gt-engine.com/gt7/tracks/images/md/blue-moon-infield-b.png",
+          "trackImage": "https://static.wikia.nocookie.net/gran-turismo/images/c/cd/Blue_Moon_Bay_Speedway_-_Infield_B.jpg/revision/latest?cb=20180301025958",
           "results": [
             { "position": 1, "driverId": "rambo", "points": 25, "car": "Toyota GR Supra '18", "fastestLap": "1:21.234" }
           ]
