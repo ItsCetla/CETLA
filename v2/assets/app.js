@@ -27,7 +27,6 @@ const els = {
   heroRaceTitle: document.getElementById('hero-race-title'),
   heroRaceMeta: document.getElementById('hero-race-meta'),
   heroPodium: document.getElementById('hero-podium'),
-  heroCycle: document.getElementById('hero-cycle'),
   heroCta: document.getElementById('cta-season'),
   driverTableBody: document.getElementById('driver-table-body'),
   teamTableBody: document.getElementById('team-table-body'),
@@ -109,13 +108,6 @@ function attachUIHandlers() {
   });
 
   els.heroCta?.addEventListener('click', () => {
-    document.getElementById('season-picker')?.scrollIntoView({ behavior: 'smooth' });
-  });
-
-  els.heroCycle?.addEventListener('click', () => {
-    if (!state.seasons.length) return;
-    const nextIndex = (state.seasonIndex + 1) % state.seasons.length;
-    setSeason(nextIndex);
     document.getElementById('season-picker')?.scrollIntoView({ behavior: 'smooth' });
   });
 
