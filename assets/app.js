@@ -417,7 +417,7 @@ function getLatestRaceIndex(season) {
 function formatRaceMeta(race) {
   const dateText = race.schedule?.date
     ? intlDate.format(new Date(race.schedule.date))
-    : (race.settings?.notes ?? 'Date TBD');
+    : 'Date TBD';
   const venue = race.schedule?.venue ?? 'Venue TBD';
   return `${dateText} • ${venue}`;
 }
@@ -497,7 +497,7 @@ function renderRace() {
   els.raceRoundLabel.textContent = `Round ${race.round ?? state.raceIndex + 1}`;
   els.raceTitle.textContent = race.name ?? 'Race';
   els.raceVenue.textContent = race.schedule?.venue ?? 'Venue —';
-  els.raceDate.textContent = race.schedule?.date ? intlDate.format(new Date(race.schedule.date)) : 'Date —';
+  els.raceDate.textContent = race.schedule?.date ? intlDate.format(new Date(race.schedule.date)) : 'Date TBD';
   els.raceCar.textContent = race.settings?.carClass ?? '—';
   els.raceWeather.textContent = race.settings?.weather ?? '—';
   els.raceLaps.textContent = race.settings?.laps ?? '—';

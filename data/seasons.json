@@ -198,7 +198,7 @@
           "id": "race1",
           "round": 1,
           "name": "Race 1: Blue Moon Bay Infield B",
-          "trackImage": "https://gt-engine.com/gt7/tracks/images/md/blue-moon-infield-b.png",
+          "trackImage": "https://static.wikia.nocookie.net/gran-turismo/images/3/32/Blue_Moon_Bay_Speedway_-_Infield_A.jpg/revision/latest/thumbnail/width/360/height/360?cb=20180301022937",
           "schedule": {
             "date": "2001-02-05T01:00:00.000Z",
             "venue": "Blue Moon Bay Infield B"
@@ -4592,7 +4592,7 @@
           "id": "race4",
           "round": 4,
           "name": "Race 4: Sept 22nd - OogaBooga",
-          "trackImage": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Daytona_International_Speedway.png",
+          "trackImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/NASCAR_DIS_Road_Course_Layout.png/500px-NASCAR_DIS_Road_Course_Layout.png",
           "schedule": {
             "date": null,
             "venue": "Sept 22nd - OogaBooga"
@@ -5709,7 +5709,7 @@
           "id": "fall25-r1",
           "round": 1,
           "name": "Blue Moon Bay Speedway - Infield B",
-          "trackImage": "blue_moon_b_infield_b.jpg",
+          "trackImage": "https://static.wikia.nocookie.net/gran-turismo/images/3/32/Blue_Moon_Bay_Speedway_-_Infield_A.jpg/revision/latest/thumbnail/width/360/height/360?cb=20180301022937",
           "schedule": {
             "date": null,
             "venue": "Blue Moon Bay Speedway - Infield B"
@@ -5847,7 +5847,7 @@
           "id": "fall25-r2",
           "round": 2,
           "name": "Daytona Road Course",
-          "trackImage": "daytona_road_course.jpg",
+          "trackImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/NASCAR_DIS_Road_Course_Layout.png/500px-NASCAR_DIS_Road_Course_Layout.png",
           "schedule": {
             "date": null,
             "venue": "Daytona Road Course"
@@ -5869,7 +5869,7 @@
               "gap": null,
               "fastestLap": "1:47.342",
               "points": 30,
-              "isGuest": true
+              "isGuest": false
             },
             {
               "position": 2,
