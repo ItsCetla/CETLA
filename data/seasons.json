@@ -5725,13 +5725,13 @@
           "name": "Blue Moon Bay Speedway - Infield B",
           "trackImage": "https://static.wikia.nocookie.net/gran-turismo/images/3/32/Blue_Moon_Bay_Speedway_-_Infield_A.jpg/revision/latest/thumbnail/width/360/height/360?cb=20180301022937",
           "schedule": {
-            "date": null,
-            "venue": "Blue Moon Bay Speedway - Infield B"
+            "date": "2025-10-09T20:00:00-04:00",
+            "venue": "Blue Moon Bay Speedway \u2013 Infield B"
           },
           "settings": {
             "carClass": "Gr.3",
             "weather": "Day & Clear",
-            "laps": null,
+            "laps": 15,
             "notes": "All drivers used Corvette C7 Gr.3"
           },
           "results": [
@@ -5863,13 +5863,13 @@
           "name": "Daytona Road Course",
           "trackImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/NASCAR_DIS_Road_Course_Layout.png/500px-NASCAR_DIS_Road_Course_Layout.png",
           "schedule": {
-            "date": null,
-            "venue": "Daytona Road Course"
+            "date": "2025-10-16T20:00:00-04:00",
+            "venue": "Daytona International Speedway \u2013 24h Layout"
           },
           "settings": {
             "carClass": "Gr.3",
             "weather": "Night & Clear",
-            "laps": null,
+            "laps": 13,
             "notes": "All drivers used Mustang Gr.3"
           },
           "results": [
