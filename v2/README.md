@@ -9,7 +9,7 @@ Goals for this iteration:
 
 ## Data Model
 
-All seasons live in `data/seasons.json`.
+All seasons live in `data/seasons.json`. Edit this file directly to add seasons, races, or update points.
 
 ```jsonc
 {
@@ -61,18 +61,20 @@ All seasons live in `data/seasons.json`.
 - Storing dates in ISO-8601 makes it easy to format locally (e.g. `Intl.DateTimeFormat`) and helps future automation.
 - Individual `notes` fields cover special race context without forcing a rigid structure.
 
-> Tip: when adding a new race, duplicate an existing block inside the right season, update the `id`, `date`, and driver placements.
+> Tip: when adding a new race, duplicate an existing race object inside the appropriate season, update the `id`, `round`, `name`, and `results` array.
 
 ## App Structure
 
 ```
 v2/
 ├── data/
-│   └── seasons.json          # compiled data for every season
+│   └── seasons.json          # unified data for every season
 ├── assets/
 │   ├── styles.css            # mobile-first design system
+│   ├── analytics.css         # analytics page styles
 │   └── app.js                # data fetching + view controllers
-└── index.html                # single entry point
+├── index.html                # main site entry point
+└── analytics.html            # analytics dashboard
 ```
 
 ### Key Screens
@@ -83,11 +85,9 @@ v2/
 
 Navigation collapses into a hamburger menu for devices `< 768px`, while cards/tables stack vertically using CSS Grid—no horizontal swiping needed on phones.
 
-## Next Steps
+## Adding Data
 
-1. Generate `data/seasons.json` by merging the existing session folders:
-   ```bash
-   node v2/scripts/build-seasons.mjs
-   ```
-2. Build the new responsive UI in `index.html`, `assets/styles.css`, and `assets/app.js`.
-3. Hook the UI into the consolidated data model and verify totals match legacy pages.
+1. **New Season**: Add a season object to the `seasons` array in `data/seasons.json`
+2. **New Race**: Add a race object to the appropriate season's `races` array
+3. **Update Points**: Modify driver `points` values in the season's `drivers` array
+4. **Changes are immediate**: Refresh the browser to see updates

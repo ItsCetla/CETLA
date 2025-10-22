@@ -4,43 +4,24 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-CETLA Racing League is a Gran Turismo 7 racing league website with two active versions:
-
-1. **Legacy version** (root directory) - Multi-season racing league site with separate JSON data files per season
-2. **v2** (v2/ directory) - Modern single-page application with unified data model
-
-The v2 architecture consolidates all seasons into a single `seasons.json` file for easier maintenance and updates.
+CETLA Racing League is a Gran Turismo 7 racing league website. The site is a modern single-page application with a unified data model that consolidates all seasons into a single `seasons.json` file for easier maintenance and updates.
 
 ## Project Structure
 
 ```
 CETLA/
-├── v2/                          # New unified single-page app
-│   ├── index.html               # Single entry point
-│   ├── assets/
-│   │   ├── app.js              # Core data loading & rendering logic
-│   │   └── styles.css          # Mobile-first responsive design
-│   ├── data/
-│   │   └── seasons.json        # Unified data for all seasons
-│   └── scripts/
-│       └── build-seasons.mjs   # Node.js script to generate seasons.json
-├── session3/                    # Legacy: Multi-Car season data
-├── session4/                    # Legacy: Road Cars season data
-├── session4html/               # Legacy: People Pick season data
-├── index.html                  # Legacy home page
-├── script.js                   # Legacy JavaScript
-└── style.css                   # Legacy styles
+└── v2/                          # Single-page application
+    ├── index.html               # Single entry point
+    ├── analytics.html           # Analytics dashboard
+    ├── assets/
+    │   ├── app.js              # Core data loading & rendering logic
+    │   ├── styles.css          # Mobile-first responsive design
+    │   └── analytics.css       # Analytics page styles
+    └── data/
+        └── seasons.json        # Unified data for all seasons
 ```
 
 ## Development Commands
-
-### Building v2 Data
-```bash
-# From project root - regenerate seasons.json from legacy session folders
-node v2/scripts/build-seasons.mjs
-```
-
-This script consolidates drivers.json, teams.json, and race_results.json from each legacy session folder into the unified v2/data/seasons.json.
 
 ### Running Locally
 This is a static site - open `v2/index.html` directly in a browser, or use a local server:
@@ -59,9 +40,9 @@ Push changes to the main branch to deploy automatically.
 
 ## Data Architecture
 
-### v2 Unified Model (seasons.json)
+### Data Model (seasons.json)
 
-The v2 data model uses **relational linking** via IDs:
+The data model uses **relational linking** via IDs:
 
 - **Seasons** contain arrays of drivers, teams, and races
 - **Drivers** link to teams via `teamId`
@@ -74,32 +55,7 @@ Key design decisions:
 - `isGuest` flag marks drivers not in the season roster
 - Points are stored at both driver level (season totals) and result level (per-race)
 
-### Legacy Model
-
-Each season has three separate files:
-- `drivers.json` - Driver roster with colors and total points
-- `teams.json` - Team roster with colors
-- `race_results.json` - Array of race objects with settings and results
-
-**Color-based team matching**: Legacy system matches drivers to teams by matching the `color` field.
-
 ## Critical Implementation Details
-
-### Data Build Script (build-seasons.mjs)
-
-**Driver Name Resolution:**
-- Handles aliases via `driverAliasConfig` (e.g., "KickstartMyKart" → "KickStart")
-- Resolves guest/substitute drivers as entrants
-- Marks unmatched drivers as guests with `isGuest: true`
-
-**Team Assignment:**
-- Primary method: Match driver.color to team.color
-- Override: `teamOverrides` object for manual team assignment (e.g., session4html KickStart)
-
-**Race Date Parsing:**
-- Parses dates from `settings.other_settings` field
-- Format: "February 4th, 8:00 PM EST"
-- Strips ordinal suffixes (st/nd/rd/th) before Date.parse()
 
 ### Frontend State Management (v2/assets/app.js)
 
@@ -139,42 +95,64 @@ Only drivers with 3+ races appear in stats sections. This prevents skewing avera
 
 ### Adding a New Race to a Season
 
-1. Edit the appropriate legacy JSON file (e.g., `session3/race_results.json`)
-2. Add race object with all required fields:
+1. Edit `v2/data/seasons.json` directly
+2. Find the appropriate season in the `seasons` array
+3. Add a new race object to the season's `races` array:
    ```json
    {
-     "race_id": "race12",
-     "race_name": "Race 12: Spa-Francorchamps",
-     "track_image": "https://example.com/track.png",
+     "id": "race12",
+     "round": 12,
+     "name": "Race 12: Spa-Francorchamps",
+     "trackImage": "https://example.com/track.png",
+     "schedule": {
+       "date": "2024-04-22T20:00:00-05:00",
+       "venue": "Spa-Francorchamps"
+     },
      "settings": {
-       "car": "Gr.3",
+       "carClass": "Gr.3",
        "weather": "Clear",
        "laps": 20,
-       "other_settings": "April 22nd, 8:00 PM EST"
+       "notes": "Special notes about the race"
      },
      "results": [
-       { "position": 1, "driver": "TheSlayter", "car": "...", "points": 25 }
+       {
+         "position": 1,
+         "driver": "TheSlayter",
+         "driverId": "theslayter",
+         "car": "Car Model",
+         "points": 25,
+         "fastestLap": "1:23.456"
+       }
      ]
    }
    ```
-3. Update driver totals in `session3/drivers.json`
-4. Rebuild: `node v2/scripts/build-seasons.mjs`
+4. Update driver points in the same season's `drivers` array
 5. Refresh browser to see changes
 
 ### Adding a New Season
 
-1. Create new folder with three JSON files: `drivers.json`, `teams.json`, `race_results.json`
-2. Edit `v2/scripts/build-seasons.mjs`:
-   - Add season config to `seasonsConfig` array
-   - Add driver aliases to `driverAliasConfig` if needed
-   - Add team overrides to `teamOverrides` if needed
-3. Rebuild: `node v2/scripts/build-seasons.mjs`
+1. Edit `v2/data/seasons.json` directly
+2. Add a new season object to the `seasons` array:
+   ```json
+   {
+     "id": "session5",
+     "label": "New Season Name",
+     "description": "Description of the new season",
+     "primaryColor": "#your-hex-color",
+     "drivers": [],
+     "teams": [],
+     "races": []
+   }
+   ```
+3. Populate the `drivers`, `teams`, and `races` arrays with your season data
+4. Refresh browser to see the new season
 
 ### Updating Driver Points
 
-1. Edit `session[X]/drivers.json` directly
-2. Rebuild: `node v2/scripts/build-seasons.mjs`
-3. Changes reflect immediately in all standings tables
+1. Edit `v2/data/seasons.json` directly
+2. Find the driver in the appropriate season's `drivers` array
+3. Update the `points` field
+4. Refresh browser to see changes immediately
 
 ## Styling Conventions
 
@@ -186,8 +164,9 @@ Only drivers with 3+ races appear in stats sections. This prevents skewing avera
 
 ## Important Notes
 
-- The v2 site does **not** require a build step for deployment - it's pure HTML/CSS/JS
-- `build-seasons.mjs` is only needed when updating data files
-- Legacy pages (index.html, race_results.html) still use old architecture
+- The site does **not** require a build step for deployment - it's pure HTML/CSS/JS
+- All data is stored in `v2/data/seasons.json` - edit this file directly to make changes
 - All dates stored in ISO-8601 format but displayed via `Intl.DateTimeFormat`
 - Track images are external URLs, not stored in repository
+- The site automatically displays the latest season in hero cards
+- Statistics require drivers to have participated in at least 3 races
