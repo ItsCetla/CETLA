@@ -17,7 +17,6 @@ All seasons live in `data/seasons.json`.
     {
       "id": "session3",
       "label": "Multi-Car",
-      "year": 2024,
       "description": "11 race friendly season",
       "brandColor": "#5B21B6",
       "drivers": [
@@ -40,7 +39,6 @@ All seasons live in `data/seasons.json`.
         {
           "id": "race1",
           "name": "Race 1: Blue Moon Bay Infield B",
-          "date": "2024-02-04T20:00:00-05:00",
           "track": "Blue Moon Bay Speedway Infield B",
           "carClass": "Grade 3 (Gr.3)",
           "weather": "Night & Clear",

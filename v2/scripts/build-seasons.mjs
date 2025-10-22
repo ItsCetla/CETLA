@@ -11,7 +11,6 @@ const seasonsConfig = [
   {
     id: 'session3',
     label: 'Multi-Car',
-    year: 2024,
     description: 'Friendly multi-class season featuring 11 rounds.',
     primaryColor: '#4C1D95',
     dataPath: 'session3'
@@ -19,7 +18,6 @@ const seasonsConfig = [
   {
     id: 'session4',
     label: 'Road Cars',
-    year: 2024,
     description: 'Road car sprint season with mixed manufacturer grids.',
     primaryColor: '#0F766E',
     dataPath: 'session4'
@@ -27,7 +25,6 @@ const seasonsConfig = [
   {
     id: 'session4html',
     label: 'People Pick',
-    year: 2024,
     description: 'Community-voted car selection season.',
     primaryColor: '#BE185D',
     dataPath: 'session4html/session4'
@@ -60,14 +57,14 @@ function slugify(str) {
     .replace(/^-|-$/g, '');
 }
 
-function parseRaceDate(raw, year) {
+function parseRaceDate(raw) {
   if (!raw) return null;
   const cleaned = raw.replace(/(\d+)(st|nd|rd|th)/gi, '$1');
   const parts = cleaned.split(',');
   if (parts.length < 2) return null;
   const datePart = parts[0].trim();
   const timePart = parts.slice(1).join(',').trim();
-  const candidate = `${datePart} ${year} ${timePart}`;
+  const candidate = `${datePart} ${timePart}`;
   const parsed = Date.parse(candidate);
   if (Number.isNaN(parsed)) return null;
   return new Date(parsed).toISOString();
@@ -150,7 +147,7 @@ async function buildSeason(config) {
       name: race.race_name ?? `Race ${index + 1}`,
       trackImage: race.track_image ?? null,
       schedule: {
-        date: parseRaceDate(race.settings?.other_settings, config.year),
+        date: parseRaceDate(race.settings?.other_settings),
         venue: extractTrackName(race.race_name) ?? null
       },
       settings: {
@@ -191,7 +188,6 @@ async function buildSeason(config) {
   return {
     id: config.id,
     label: config.label,
-    year: config.year,
     description: config.description,
     primaryColor: config.primaryColor,
     drivers,

@@ -3,7 +3,6 @@
     {
       "id": "session3",
       "label": "Multi-Car",
-      "year": 2024,
       "description": "Friendly multi-class season featuring 11 rounds.",
       "primaryColor": "#4C1D95",
       "drivers": [
@@ -201,7 +200,7 @@
           "name": "Race 1: Blue Moon Bay Infield B",
           "trackImage": "https://gt-engine.com/gt7/tracks/images/md/blue-moon-infield-b.png",
           "schedule": {
-            "date": "2024-02-05T01:00:00.000Z",
+            "date": "2001-02-05T01:00:00.000Z",
             "venue": "Blue Moon Bay Infield B"
           },
           "settings": {
@@ -399,7 +398,7 @@
           "name": "Race 2: Watkins Glen Short",
           "trackImage": "https://gt-engine.com/gt7/tracks/images/md/watkins-glen-short.png",
           "schedule": {
-            "date": "2024-02-12T01:00:00.000Z",
+            "date": "2001-02-12T01:00:00.000Z",
             "venue": "Watkins Glen Short"
           },
           "settings": {
@@ -609,7 +608,7 @@
           "name": "Race 3: Circuit de Sainte-Croix - B",
           "trackImage": "https://gt-engine.com/gt7/tracks/images/md/circuit-de-sainte-croix-b.png",
           "schedule": {
-            "date": "2024-02-19T01:00:00.000Z",
+            "date": "2001-02-19T01:00:00.000Z",
             "venue": "Circuit de Sainte-Croix - B"
           },
           "settings": {
@@ -795,7 +794,7 @@
           "name": "Race 4: Trial Mountain Circuit",
           "trackImage": "https://gt-engine.com/gt7/tracks/images/md/trial-mountain.png",
           "schedule": {
-            "date": "2024-02-26T01:00:00.000Z",
+            "date": "2001-02-26T01:00:00.000Z",
             "venue": "Trial Mountain Circuit"
           },
           "settings": {
@@ -957,7 +956,7 @@
           "name": "Race 5: Dragon Trail - Seaside",
           "trackImage": "https://gt-engine.com/gt7/tracks/images/md/dragon-trail-seaside.png",
           "schedule": {
-            "date": "2024-03-05T01:00:00.000Z",
+            "date": "2001-03-05T01:00:00.000Z",
             "venue": "Dragon Trail - Seaside"
           },
           "settings": {
@@ -1353,7 +1352,7 @@
           "name": "Race 7: Autopolis International Racing Course",
           "trackImage": "https://gt-engine.com/gt7/tracks/images/md/autopolis.png",
           "schedule": {
-            "date": "2024-03-12T01:00:00.000Z",
+            "date": "2001-03-12T01:00:00.000Z",
             "venue": "Autopolis International Racing Course"
           },
           "settings": {
@@ -2048,7 +2047,6 @@
     {
       "id": "session4",
       "label": "Road Cars",
-      "year": 2024,
       "description": "Road car sprint season with mixed manufacturer grids.",
       "primaryColor": "#0F766E",
       "drivers": [
@@ -3917,7 +3915,6 @@
     {
       "id": "session4html",
       "label": "People Pick",
-      "year": 2024,
       "description": "Community-voted car selection season.",
       "primaryColor": "#BE185D",
       "drivers": [
