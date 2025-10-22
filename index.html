@@ -39,6 +39,7 @@
           </p>
           <div class="hero__actions">
             <button id="cta-season" class="btn btn--primary">Jump to current season</button>
+            <button id="open-fall-schedule" class="btn btn--ghost">Fall 2025 Schedule</button>
             <a class="btn btn--ghost" href="#races" data-scroll>Latest race results</a>
           </div>
         </div>
@@ -253,6 +254,24 @@
       <small>&copy; <span id="footer-year"></span> CETLA Racing League</small>
     </div>
   </footer>
+
+  <!-- Schedule Modal -->
+  <div id="schedule-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal__backdrop" data-schedule-close></div>
+    <div class="modal__panel" role="document">
+      <header class="modal__header">
+        <h3 class="modal__title">OG Series · Fall 2025 Schedule</h3>
+        <button class="modal__close" aria-label="Close schedule" data-schedule-close>&times;</button>
+      </header>
+      <div class="modal__content">
+        <section class="schedule-rules">
+          <h4 class="schedule-rules__title">Race Rules</h4>
+          <ul id="schedule-rules" class="schedule-rules__list"></ul>
+        </section>
+        <ul id="schedule-list" class="schedule-list"></ul>
+      </div>
+    </div>
+  </div>
 
   <!-- Stats Modal -->
   <div id="stats-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">

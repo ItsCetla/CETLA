@@ -39,6 +39,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+body.is-modal-open {
+  overflow: hidden;
+}
+
 img {
   max-width: 100%;
   display: block;
@@ -377,6 +381,7 @@ button:focus-visible {
   font-weight: 600;
   font-size: 0.95rem;
   border: 1px solid transparent;
+  background: transparent;
   cursor: pointer;
   transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
@@ -857,6 +862,102 @@ button:focus-visible {
 
 .modal__content {
   padding: 1rem 1.25rem 1.25rem;
+}
+
+.schedule-rules {
+  margin-bottom: 1.5rem;
+}
+
+.schedule-rules__title {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+
+.schedule-rules__list {
+  margin: 0;
+  padding-left: 1.25rem;
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.95rem;
+  color: var(--color-muted);
+}
+
+.schedule-rules__list li {
+  list-style: disc;
+}
+
+.schedule-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.schedule-event {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.15rem;
+  background: rgba(15, 23, 42, 0.6);
+  box-shadow: var(--shadow-md);
+}
+
+.schedule-event__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-muted);
+}
+
+.schedule-event__round {
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.schedule-event__track {
+  margin: 0 0 0.75rem;
+  font-size: 1.1rem;
+}
+
+.schedule-event__meta {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.95rem;
+}
+
+.schedule-event__meta li {
+  display: flex;
+  gap: 0.5rem;
+  color: var(--color-muted);
+}
+
+.schedule-event__meta span:first-child {
+  min-width: 3.2rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.schedule-event--break {
+  text-align: center;
+  padding-block: 1.25rem;
+  background: rgba(15, 23, 42, 0.45);
+}
+
+.schedule-event__break-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.schedule-event__break-note {
+  margin: 0.35rem 0 0;
+  color: var(--color-muted);
+  font-size: 0.95rem;
 }
 
 .modal__list {
