@@ -7,6 +7,8 @@ const state = {
   playInterval: null,
   charts: {
     points: null,
+    pointsGap: null,
+    positionChange: null,
     podium: null,
     trend: null,
     h2h: null
@@ -273,11 +275,37 @@ function resetTimeline() {
 // Chart rendering
 function renderAllCharts(season) {
   updatePointsChart();
+  renderPointsGapChart();
+  renderPositionChangeChart();
   renderHeatmap();
   renderPodiumChart();
   renderTrendChart();
   renderH2HChart();
   populateH2HDrivers();
+}
+
+function getDriversByPoints(season) {
+  return [...(season?.drivers ?? [])]
+    .sort((a, b) => (b.points ?? 0) - (a.points ?? 0));
+}
+
+function computeCumulativePoints(season, races) {
+  const cumulative = new Map();
+
+  (season?.drivers ?? []).forEach(driver => {
+    let sum = 0;
+    const totals = [];
+
+    races.forEach(race => {
+      const result = race.results?.find(r => r.driverId === driver.id);
+      sum += result?.points ?? 0;
+      totals.push(sum);
+    });
+
+    cumulative.set(driver.id, totals);
+  });
+
+  return cumulative;
 }
 
 function updatePointsChart() {
@@ -297,9 +325,7 @@ function updatePointsChart() {
 
   // Driver datasets
   if (showDrivers) {
-    const topDrivers = [...(season.drivers ?? [])]
-      .sort((a, b) => (b.points ?? 0) - (a.points ?? 0))
-      .slice(0, 8);
+    const topDrivers = getDriversByPoints(season).slice(0, 8);
 
     topDrivers.forEach((driver, index) => {
       const cumulativePoints = [];
@@ -448,6 +474,232 @@ function updatePointsChart() {
             beginAtZero: true,
             grid: { color: 'rgba(148, 163, 184, 0.1)' },
             ticks: { font: { size: 11 } }
+          }
+        }
+      }
+    });
+  }
+}
+
+function renderPointsGapChart() {
+  const season = state.seasons[state.seasonIndex];
+  if (!season) return;
+
+  const canvas = document.getElementById('points-gap-chart');
+  if (!canvas) return;
+
+  const races = season.races?.slice(0, state.currentRace) ?? [];
+  const labels = races.map((_, i) => `R${i + 1}`);
+
+  const cumulativePoints = computeCumulativePoints(season, races);
+
+  const leaderPointsByRace = races.map((_, raceIndex) => {
+    let leaderPoints = 0;
+    cumulativePoints.forEach(points => {
+      const value = points[raceIndex] ?? 0;
+      if (value > leaderPoints) leaderPoints = value;
+    });
+    return leaderPoints;
+  });
+
+  const drivers = getDriversByPoints(season);
+  const datasets = drivers.map((driver, index) => {
+    const driverPoints = cumulativePoints.get(driver.id) ?? [];
+    const gaps = labels.map((_, raceIndex) => {
+      const leader = leaderPointsByRace[raceIndex] ?? 0;
+      const driverValue = driverPoints[raceIndex] ?? 0;
+      return Math.max(leader - driverValue, 0);
+    });
+
+    const color = chartColors[index % chartColors.length];
+
+    return {
+      label: driver.name,
+      data: gaps,
+      borderColor: color,
+      backgroundColor: `${color}33`,
+      borderWidth: 2.5,
+      tension: 0.3,
+      pointRadius: 4,
+      pointHoverRadius: 6,
+      spanGaps: false
+    };
+  });
+
+  if (state.charts.pointsGap) {
+    state.charts.pointsGap.data.labels = labels;
+    state.charts.pointsGap.data.datasets = datasets;
+    state.charts.pointsGap.update({
+      duration: 400,
+      easing: 'easeOutQuart'
+    });
+  } else {
+    const ctx = canvas.getContext('2d');
+    state.charts.pointsGap = new Chart(ctx, {
+      type: 'line',
+      data: { labels, datasets },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: {
+          duration: 600,
+          easing: 'easeOutQuart'
+        },
+        interaction: {
+          intersect: false,
+          mode: 'index'
+        },
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: { padding: 12, usePointStyle: true, font: { size: 11 } }
+          },
+          tooltip: {
+            backgroundColor: 'rgba(11, 18, 32, 0.95)',
+            padding: 12,
+            borderColor: 'rgba(148, 163, 184, 0.3)',
+            borderWidth: 1,
+            callbacks: {
+              label: context => {
+                const label = context.dataset.label || '';
+                const value = context.parsed.y ?? 0;
+                return `${label}: ${value.toFixed(0)} pts`;
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            grid: { color: 'rgba(148, 163, 184, 0.1)' },
+            ticks: { font: { size: 11 } }
+          },
+          y: {
+            beginAtZero: true,
+            grid: { color: 'rgba(148, 163, 184, 0.1)' },
+            ticks: {
+              font: { size: 11 },
+              callback: value => `${value} pts`
+            }
+          }
+        }
+      }
+    });
+  }
+}
+
+function renderPositionChangeChart() {
+  const season = state.seasons[state.seasonIndex];
+  if (!season) return;
+
+  const canvas = document.getElementById('position-change-chart');
+  if (!canvas) return;
+
+  const races = season.races?.slice(0, state.currentRace) ?? [];
+  const labels = races.map((_, i) => `R${i + 1}`);
+
+  const cumulativePoints = computeCumulativePoints(season, races);
+  const drivers = getDriversByPoints(season);
+
+  const standingsByRace = races.map((_, raceIndex) => {
+    const standings = drivers.map(driver => {
+      const pointsArray = cumulativePoints.get(driver.id) ?? [];
+      return {
+        driverId: driver.id,
+        points: pointsArray[raceIndex] ?? 0,
+        seasonPoints: driver.points ?? 0,
+        name: driver.name ?? driver.id
+      };
+    });
+
+    standings.sort((a, b) => {
+      if (b.points !== a.points) return b.points - a.points;
+      if (b.seasonPoints !== a.seasonPoints) return b.seasonPoints - a.seasonPoints;
+      return a.name.localeCompare(b.name);
+    });
+
+    const rankMap = new Map();
+    standings.forEach((entry, index) => {
+      rankMap.set(entry.driverId, index + 1);
+    });
+    return rankMap;
+  });
+
+  const datasets = drivers.map((driver, index) => {
+    const positions = labels.map((_, raceIndex) => {
+      const ranks = standingsByRace[raceIndex];
+      return ranks ? ranks.get(driver.id) ?? null : null;
+    });
+
+    const color = chartColors[index % chartColors.length];
+
+    return {
+      label: driver.name,
+      data: positions,
+      borderColor: color,
+      backgroundColor: `${color}33`,
+      borderWidth: 2.5,
+      tension: 0.35,
+      pointRadius: 4,
+      pointHoverRadius: 6,
+      spanGaps: true
+    };
+  });
+
+  if (state.charts.positionChange) {
+    state.charts.positionChange.data.labels = labels;
+    state.charts.positionChange.data.datasets = datasets;
+    state.charts.positionChange.update({
+      duration: 400,
+      easing: 'easeOutQuart'
+    });
+  } else {
+    const ctx = canvas.getContext('2d');
+    state.charts.positionChange = new Chart(ctx, {
+      type: 'line',
+      data: { labels, datasets },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: {
+          duration: 600,
+          easing: 'easeOutQuart'
+        },
+        interaction: {
+          intersect: false,
+          mode: 'index'
+        },
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: { padding: 12, usePointStyle: true, font: { size: 11 } }
+          },
+          tooltip: {
+            backgroundColor: 'rgba(11, 18, 32, 0.95)',
+            padding: 12,
+            borderColor: 'rgba(148, 163, 184, 0.3)',
+            borderWidth: 1,
+            callbacks: {
+              label: context => {
+                const label = context.dataset.label || '';
+                const value = context.parsed.y;
+                return value ? `${label}: P${value}` : `${label}: N/A`;
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            grid: { color: 'rgba(148, 163, 184, 0.1)' },
+            ticks: { font: { size: 11 } }
+          },
+          y: {
+            reverse: true,
+            grid: { color: 'rgba(148, 163, 184, 0.1)' },
+            ticks: {
+              stepSize: 1,
+              font: { size: 11 },
+              callback: value => `P${value}`
+            }
           }
         }
       }
