@@ -5573,7 +5573,7 @@
           "name": "Jack",
           "teamId": "team-romero",
           "color": "purple",
-          "points": 52,
+          "points": 58,
           "aliases": []
         },
         {
@@ -5581,7 +5581,7 @@
           "name": "Rambo",
           "teamId": "team-romero",
           "color": "purple",
-          "points": 63,
+          "points": 96,
           "aliases": []
         },
         {
@@ -5589,7 +5589,7 @@
           "name": "Slatenator",
           "teamId": "team-slate",
           "color": "red",
-          "points": 42,
+          "points": 54,
           "aliases": []
         },
         {
@@ -5597,7 +5597,7 @@
           "name": "Santi",
           "teamId": "team-santigold",
           "color": "cyan",
-          "points": 44,
+          "points": 65,
           "aliases": [
             "HdzSanti"
           ]
@@ -5607,7 +5607,7 @@
           "name": "HPePe",
           "teamId": "team-santigold",
           "color": "cyan",
-          "points": 37,
+          "points": 74,
           "aliases": []
         },
         {
@@ -5615,7 +5615,7 @@
           "name": "KickStart",
           "teamId": "team-tits-out",
           "color": "black",
-          "points": 21,
+          "points": 36,
           "aliases": [
             "KickStart - Sub = FleshTorpedo",
             "KickstartMyKart"
@@ -5634,7 +5634,7 @@
           "name": "FleshTorpedo",
           "teamId": "team-tits-out",
           "color": "black",
-          "points": 36,
+          "points": 47,
           "aliases": []
         },
         {
@@ -5642,7 +5642,7 @@
           "name": "TheSlayter",
           "teamId": "team-slate",
           "color": "red",
-          "points": 38,
+          "points": 64,
           "aliases": [
             "TheSlayterr-TV"
           ]
@@ -5652,7 +5652,7 @@
           "name": "Izzy Hunter",
           "teamId": "team-rom3-izzy",
           "color": "indigo",
-          "points": 20,
+          "points": 29,
           "aliases": []
         },
         {
@@ -5660,7 +5660,7 @@
           "name": "Cetla",
           "teamId": "team-stake",
           "color": "lightgreen",
-          "points": 20,
+          "points": 38,
           "aliases": []
         },
         {
@@ -5668,7 +5668,7 @@
           "name": "Rom3",
           "teamId": "team-rom3-izzy",
           "color": "indigo",
-          "points": 33,
+          "points": 63,
           "aliases": [
             "FRT_R0m3r0Q"
           ]
@@ -5991,6 +5991,156 @@
               "gap": "+52.350",
               "fastestLap": "1:50.923",
               "points": 9,
+              "isGuest": false
+            }
+          ]
+        },
+        {
+          "id": "fall25-r3",
+          "round": 3,
+          "name": "Trial Mountain Circuit",
+          "trackImage": "",
+          "schedule": {
+            "date": "2025-10-23T20:00:00-04:00",
+            "venue": "Trial Mountain Circuit"
+          },
+          "settings": {
+            "carClass": "Gr.3",
+            "weather": "",
+            "laps": 15,
+            "notes": "One-make: Hurac\u00e1n GT3 '15 (Lamborghini). Series: The OG Series / Gran Turismo 7."
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "HPePe",
+              "driverId": "hpepe",
+              "entrant": null,
+              "car": "Hurac\u00e1n GT3 '15",
+              "totalTime": "28:58.816",
+              "gap": null,
+              "fastestLap": "1:51.941",
+              "points": 37,
+              "isGuest": false
+            },
+            {
+              "position": 2,
+              "driver": "Rambo",
+              "driverId": "rambo",
+              "entrant": null,
+              "car": "Hurac\u00e1n GT3 '15",
+              "totalTime": "+10.090",
+              "gap": "+10.090",
+              "fastestLap": "1:52.087",
+              "points": 33,
+              "isGuest": false
+            },
+            {
+              "position": 3,
+              "driver": "FRT_R0m3r0Q",
+              "driverId": "rom3",
+              "entrant": "FRT_R0m3r0Q",
+              "car": "Hurac\u00e1n GT3 '15",
+              "totalTime": "+13.105",
+              "gap": "+13.105",
+              "fastestLap": "1:51.284",
+              "points": 30,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "TheSlayterr-TV",
+              "driverId": "theslayter",
+              "entrant": "TheSlayterr-TV",
+              "car": "Hurac\u00e1n GT3 '15",
+              "totalTime": "+21.662",
+              "gap": "+21.662",
+              "fastestLap": "1:53.123",
+              "points": 26,
+              "isGuest": false
+            },
+            {
+              "position": 5,
+              "driver": "HdzSanti",
+              "driverId": "santi",
+              "entrant": "HdzSanti",
+              "car": "Hurac\u00e1n GT3 '15",
+              "totalTime": "+33.863",
+              "gap": "+33.863",
+              "fastestLap": "1:52.429",
+              "points": 21,
+              "isGuest": false
+            },
+            {
+              "position": 6,
+              "driver": "cetla",
+              "driverId": "cetla",
+              "entrant": null,
+              "car": "Hurac\u00e1n GT3 '15",
+              "totalTime": "+35.406",
+              "gap": "+35.406",
+              "fastestLap": "1:54.855",
+              "points": 18,
+              "isGuest": false
+            },
+            {
+              "position": 7,
+              "driver": "KickstartMyKart",
+              "driverId": "kickstart",
+              "entrant": "KickstartMyKart",
+              "car": "Hurac\u00e1n GT3 '15",
+              "totalTime": "+37.367",
+              "gap": "+37.367",
+              "fastestLap": "1:54.719",
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "Slatenator",
+              "driverId": "slatenator",
+              "entrant": null,
+              "car": "Hurac\u00e1n GT3 '15",
+              "totalTime": "+44.564",
+              "gap": "+44.564",
+              "fastestLap": "1:53.890",
+              "points": 12,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "FleshTorpedo",
+              "driverId": "fleshtorpedo",
+              "entrant": null,
+              "car": "Hurac\u00e1n GT3 '15",
+              "totalTime": "+54.862",
+              "gap": "+54.862",
+              "fastestLap": "1:54.321",
+              "points": 11,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "Izzy Hunter",
+              "driverId": "izzyhunter",
+              "entrant": null,
+              "car": "Hurac\u00e1n GT3 '15",
+              "totalTime": "+1:45.165",
+              "gap": "+1:45.165",
+              "fastestLap": "1:56.206",
+              "points": 9,
+              "isGuest": false
+            },
+            {
+              "position": 11,
+              "driver": "Jack",
+              "driverId": "jack",
+              "entrant": null,
+              "car": "Hurac\u00e1n GT3 '15",
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": "1:54.644",
+              "points": 6,
               "isGuest": false
             }
           ]
