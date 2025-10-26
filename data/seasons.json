@@ -792,7 +792,7 @@
           "id": "race4",
           "round": 4,
           "name": "Race 4: Trial Mountain Circuit",
-          "trackImage": "https://gt-engine.com/gt7/tracks/images/md/trial-mountain.png",
+          "trackImage": "https://static.wikia.nocookie.net/gran-turismo/images/5/59/Trial_Mountain_GT7_Map.png/revision/latest?cb=20211021005415",
           "schedule": {
             "date": "2001-02-26T01:00:00.000Z",
             "venue": "Trial Mountain Circuit"
@@ -3752,7 +3752,7 @@
           "id": "race10",
           "round": 10,
           "name": "Race 10: Trial Mountain",
-          "trackImage": "https://gt-engine.com/gt7/tracks/images/md/trial-mountain.png",
+          "trackImage": "https://static.wikia.nocookie.net/gran-turismo/images/5/59/Trial_Mountain_GT7_Map.png/revision/latest?cb=20211021005415",
           "schedule": {
             "date": null,
             "venue": "Trial Mountain"
@@ -5723,7 +5723,7 @@
           "id": "fall25-r1",
           "round": 1,
           "name": "Blue Moon Bay Speedway - Infield B",
-          "trackImage": "https://static.wikia.nocookie.net/gran-turismo/images/3/32/Blue_Moon_Bay_Speedway_-_Infield_A.jpg/revision/latest/thumbnail/width/360/height/360?cb=20180301022937",
+          "trackImage": "https://static.wikia.nocookie.net/gran-turismo/images/c/cd/Blue_Moon_Bay_Speedway_-_Infield_B.jpg/revision/latest?cb=20180301025958",
           "schedule": {
             "date": "2025-10-09T20:00:00-04:00",
             "venue": "Blue Moon Bay Speedway \u2013 Infield B"
@@ -5999,7 +5999,7 @@
           "id": "fall25-r3",
           "round": 3,
           "name": "Trial Mountain Circuit",
-          "trackImage": "",
+          "trackImage": "https://static.wikia.nocookie.net/gran-turismo/images/5/59/Trial_Mountain_GT7_Map.png/revision/latest?cb=20211021005415",
           "schedule": {
             "date": "2025-10-23T20:00:00-04:00",
             "venue": "Trial Mountain Circuit"
