@@ -458,55 +458,190 @@ function renderSeasonCard(season) {
   }
 }
 
+function getLatestRaceResultsContext(season) {
+  const races = season.races ?? [];
+  const entries = races
+    .map((race, index) => ({ race, index }))
+    .filter(({ race }) => Array.isArray(race?.results) && race.results.length);
+
+  if (!entries.length) {
+    return { latest: null, hasPrevious: false };
+  }
+
+  const entriesWithDates = entries.filter(entry => entry.race.schedule?.date);
+  const sorted = (entriesWithDates.length ? entriesWithDates : entries)
+    .slice()
+    .sort((a, b) => {
+      if (entriesWithDates.length) {
+        return new Date(a.race.schedule.date) - new Date(b.race.schedule.date);
+      }
+      return a.index - b.index;
+    });
+
+  return {
+    latest: sorted.at(-1) ?? null,
+    hasPrevious: entries.length >= 2
+  };
+}
+
+function getPointsByDriverFromRace(race) {
+  const map = new Map();
+  if (!race?.results) return map;
+  race.results.forEach(result => {
+    if (!result || !result.driverId) return;
+    const earned = typeof result.points === 'number' ? result.points : 0;
+    map.set(result.driverId, (map.get(result.driverId) ?? 0) + earned);
+  });
+  return map;
+}
+
+function compareStandingEntries(a, b, pointsKey) {
+  const diff = (b[pointsKey] ?? 0) - (a[pointsKey] ?? 0);
+  if (diff !== 0) return diff;
+  return (a.name ?? '').localeCompare(b.name ?? '', undefined, { sensitivity: 'base' });
+}
+
+function renderPositionDelta(change, hasPrevious) {
+  if (!hasPrevious || change === null || Number.isNaN(change)) {
+    return '<span class="standing-delta standing-delta--none">—</span>';
+  }
+  if (change === 0) {
+    return '<span class="standing-delta standing-delta--steady">0</span>';
+  }
+  const direction = change > 0 ? 'up' : 'down';
+  const sign = change > 0 ? '+' : '';
+  return `<span class="standing-delta standing-delta--${direction}">${sign}${change}</span>`;
+}
+
 function renderDriverStandings(season) {
   if (!els.driverTableBody) return;
-  const driverRows = [...(season.drivers ?? [])]
-    .sort((a, b) => (b.points ?? 0) - (a.points ?? 0))
-    .map(driver => {
-      const team = driver.teamId ? state.teamById.get(driver.teamId) : null;
-      const teamName = team?.name ?? '—';
-      const color = sanitizeColor(driver.color);
+
+  const drivers = season.drivers ?? [];
+  const { latest, hasPrevious } = getLatestRaceResultsContext(season);
+  const lastRacePoints = latest ? getPointsByDriverFromRace(latest.race) : new Map();
+  const showDelta = Boolean(hasPrevious && latest);
+
+  const driverEntries = drivers.map(driver => {
+    const currentPoints = driver.points ?? 0;
+    const racePoints = lastRacePoints.get(driver.id) ?? 0;
+    const previousPoints = Math.max(currentPoints - racePoints, 0);
+    const team = driver.teamId ? state.teamById.get(driver.teamId) : null;
+    return {
+      driver,
+      name: driver.name ?? '',
+      team,
+      currentPoints,
+      previousPoints
+    };
+  });
+
+  const previousRankMap = new Map();
+  if (showDelta) {
+    driverEntries
+      .slice()
+      .sort((a, b) => compareStandingEntries(a, b, 'previousPoints'))
+      .forEach((entry, index) => {
+        previousRankMap.set(entry.driver.id, index + 1);
+      });
+  }
+
+  const rows = driverEntries
+    .slice()
+    .sort((a, b) => compareStandingEntries(a, b, 'currentPoints'))
+    .map((entry, index) => {
+      const currentRank = index + 1;
+      const previousRank = previousRankMap.get(entry.driver.id);
+      const change = typeof previousRank === 'number' ? previousRank - currentRank : null;
+      const deltaMarkup = renderPositionDelta(change, showDelta);
+      const teamName = entry.team?.name ?? '—';
       return `
         <tr>
+          <td class="column--delta" data-label="Change">${deltaMarkup}</td>
           <td data-label="Driver">
             <div class="driver-cell">
-              <span class="driver-color" style="background:${color};"></span>
-              <span>${driver.name}</span>
+              <span class="driver-color" style="background:${sanitizeColor(entry.driver.color)};"></span>
+              <span>${entry.driver.name}</span>
             </div>
           </td>
           <td data-label="Team">${teamName}</td>
-          <td class="column--points" data-label="Points">${driver.points ?? 0}</td>
+          <td class="column--points" data-label="Points">${entry.currentPoints}</td>
         </tr>
       `;
     })
     .join('');
 
-  els.driverTableBody.innerHTML = driverRows || `
-    <tr><td colspan="3">No driver data yet. Add drivers to <code>data/seasons.json</code>.</td></tr>
+  els.driverTableBody.innerHTML = rows || `
+    <tr><td colspan="4">No driver data yet. Add drivers to <code>data/seasons.json</code>.</td></tr>
   `;
 }
 
 function renderTeamStandings(season) {
   if (!els.teamTableBody) return;
+
   const teams = computeTeamStandings(season);
-  const rows = teams
-    .map(team => {
-      const driverList = team.drivers.map(driver => `<span class="team-chip">${driver.name}</span>`).join('');
+  const { latest, hasPrevious } = getLatestRaceResultsContext(season);
+  const lastRacePoints = latest ? getPointsByDriverFromRace(latest.race) : new Map();
+  const showDelta = Boolean(hasPrevious && latest);
+
+  const driverPreviousPoints = new Map();
+  (season.drivers ?? []).forEach(driver => {
+    const currentPoints = driver.points ?? 0;
+    const racePoints = lastRacePoints.get(driver.id) ?? 0;
+    const previousPoints = Math.max(currentPoints - racePoints, 0);
+    driverPreviousPoints.set(driver.id, previousPoints);
+  });
+
+  const teamEntries = teams.map(team => {
+    const previousPoints = showDelta
+      ? team.drivers.reduce((total, driver) => {
+          const previous = driverPreviousPoints.get(driver.id);
+          return total + (previous ?? Math.max(driver.points ?? 0, 0));
+        }, 0)
+      : team.points ?? 0;
+
+    return {
+      team,
+      name: team.name ?? '',
+      currentPoints: team.points ?? 0,
+      previousPoints
+    };
+  });
+
+  const previousRankMap = new Map();
+  if (showDelta) {
+    teamEntries
+      .slice()
+      .sort((a, b) => compareStandingEntries(a, b, 'previousPoints'))
+      .forEach((entry, index) => {
+        previousRankMap.set(entry.team.id, index + 1);
+      });
+  }
+
+  const rows = teamEntries
+    .slice()
+    .sort((a, b) => compareStandingEntries(a, b, 'currentPoints'))
+    .map((entry, index) => {
+      const currentRank = index + 1;
+      const previousRank = previousRankMap.get(entry.team.id);
+      const change = typeof previousRank === 'number' ? previousRank - currentRank : null;
+      const deltaMarkup = renderPositionDelta(change, showDelta);
+      const driverList = entry.team.drivers.map(driver => `<span class="team-chip">${driver.name}</span>`).join('');
       return `
         <tr>
+          <td class="column--delta" data-label="Change">${deltaMarkup}</td>
           <td data-label="Team">
-            <span class="team-color" style="background:${sanitizeColor(team.color)};"></span>
-            ${team.name}
+            <span class="team-color" style="background:${sanitizeColor(entry.team.color)};"></span>
+            ${entry.team.name}
           </td>
           <td data-label="Drivers"><div class="team-driver-list">${driverList}</div></td>
-          <td class="column--points" data-label="Points">${team.points}</td>
+          <td class="column--points" data-label="Points">${entry.currentPoints}</td>
         </tr>
       `;
     })
     .join('');
 
   els.teamTableBody.innerHTML = rows || `
-    <tr><td colspan="3">No team data yet. Update the season entry in <code>data/seasons.json</code>.</td></tr>
+    <tr><td colspan="4">No team data yet. Update the season entry in <code>data/seasons.json</code>.</td></tr>
   `;
 }
 
