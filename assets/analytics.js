@@ -11,7 +11,8 @@ const state = {
     positionChange: null,
     podium: null,
     trend: null,
-    h2h: null
+    h2h: null,
+    fastestLap: null
   },
   driverById: new Map(),
   teamById: new Map()
@@ -35,6 +36,7 @@ const els = {
   h2hDriver1: document.getElementById('h2h-driver1'),
   h2hDriver2: document.getElementById('h2h-driver2'),
   h2hSummary: document.getElementById('h2h-summary'),
+  fastestLapStats: document.getElementById('fastest-lap-stats'),
   footerYear: document.getElementById('footer-year')
 };
 
@@ -165,6 +167,14 @@ function setSeason(index) {
     els.timelineSlider.value = state.maxRaces;
   }
 
+  // Destroy all existing charts to prevent data carryover
+  Object.keys(state.charts).forEach(key => {
+    if (state.charts[key]) {
+      state.charts[key].destroy();
+      state.charts[key] = null;
+    }
+  });
+
   // Update UI
   highlightSeasonControls(season.id);
   renderTimeline(season);
@@ -280,6 +290,7 @@ function renderAllCharts(season) {
   renderHeatmap();
   renderPodiumChart();
   renderTrendChart();
+  renderFastestLapChart();
   renderH2HChart();
   populateH2HDrivers();
 }
@@ -1032,6 +1043,225 @@ function renderTrendChart() {
         }
       }
     });
+  }
+}
+
+function renderFastestLapChart() {
+  const season = state.seasons[state.seasonIndex];
+  if (!season) return;
+
+  const canvas = document.getElementById('fastest-lap-chart');
+  if (!canvas) return;
+
+  // Get races for THIS season only, respecting timeline slider
+  const allRacesInSeason = season.races ?? [];
+  const maxRaceIndex = Math.min(state.currentRace, allRacesInSeason.length);
+  const races = allRacesInSeason.slice(0, maxRaceIndex);
+  
+  console.log('Fastest Lap Chart - Season:', season.label, 'Total races:', allRacesInSeason.length, 'Showing:', races.length);
+
+  // Helper function to parse lap time string to seconds
+  function lapTimeToSeconds(lapTime) {
+    if (!lapTime || lapTime === '-') return Infinity;
+    const parts = lapTime.split(':');
+    if (parts.length === 2) {
+      const minutes = parseInt(parts[0]) || 0;
+      const seconds = parseFloat(parts[1]) || 0;
+      return minutes * 60 + seconds;
+    }
+    return Infinity;
+  }
+
+  // For each race, rank all drivers by their fastest lap time
+  const driverLapPositions = new Map(); // driverId -> { totalPosition, count, positions[] }
+
+  races.forEach(race => {
+    // Get all lap times and remove duplicates (use Map to ensure one entry per driver)
+    const driverLapTimes = new Map();
+    race.results?.forEach(result => {
+      const lapTime = lapTimeToSeconds(result.fastestLap);
+      if (lapTime < Infinity && result.driverId) {
+        // Only keep the fastest lap if driver appears multiple times (shouldn't happen, but safeguard)
+        if (!driverLapTimes.has(result.driverId) || lapTime < driverLapTimes.get(result.driverId)) {
+          driverLapTimes.set(result.driverId, lapTime);
+        }
+      }
+    });
+
+    // Convert to array and sort by lap time (ascending - fastest first)
+    const lapTimes = Array.from(driverLapTimes.entries())
+      .map(([driverId, time]) => ({ driverId, time }))
+      .sort((a, b) => a.time - b.time);
+
+    // Assign positions based on lap time ranking
+    lapTimes.forEach((entry, index) => {
+      const position = index + 1; // Position 1 = fastest lap, 2 = second fastest, etc.
+      
+      if (!driverLapPositions.has(entry.driverId)) {
+        driverLapPositions.set(entry.driverId, {
+          totalPosition: 0,
+          count: 0,
+          positions: [],
+          bestPosition: Infinity,
+          worstPosition: 0
+        });
+      }
+      
+      const data = driverLapPositions.get(entry.driverId);
+      data.totalPosition += position;
+      data.count++;
+      data.positions.push(position);
+      data.bestPosition = Math.min(data.bestPosition, position);
+      data.worstPosition = Math.max(data.worstPosition, position);
+    });
+  });
+
+  // Calculate average lap position for all drivers
+  const driverStats = Array.from(driverLapPositions.entries())
+    .map(([driverId, data]) => ({
+      driverId,
+      driver: state.driverById.get(driverId),
+      avgLapPosition: data.totalPosition / data.count,
+      raceCount: data.count,
+      bestPosition: data.bestPosition,
+      worstPosition: data.worstPosition,
+      positions: data.positions
+    }))
+    .filter(stat => stat.driver) // Only include drivers we know about
+    .sort((a, b) => a.avgLapPosition - b.avgLapPosition); // Sort by best average lap position
+
+  // Debug logging
+  if (driverStats.length > 0) {
+    console.log('Driver Stats Sample:', driverStats.slice(0, 3).map(d => ({
+      name: d.driver.name,
+      raceCount: d.raceCount,
+      avgPos: d.avgLapPosition.toFixed(2)
+    })));
+  }
+
+  const labels = driverStats.map(stat => stat.driver.name);
+  const avgPositions = driverStats.map(stat => stat.avgLapPosition);
+  const raceCounts = driverStats.map(stat => stat.raceCount);
+
+  const colors = driverStats.map((stat, index) => 
+    chartColors[index % chartColors.length]
+  );
+
+  const datasets = [
+    {
+      label: 'Avg. Fastest Lap Position',
+      data: avgPositions,
+      backgroundColor: colors.map(c => `${c}99`),
+      borderColor: colors,
+      borderWidth: 2,
+      yAxisID: 'y'
+    }
+  ];
+
+  // Update existing chart or create new one
+  if (state.charts.fastestLap) {
+    state.charts.fastestLap.data.labels = labels;
+    state.charts.fastestLap.data.datasets = datasets;
+    state.charts.fastestLap.update({
+      duration: 400,
+      easing: 'easeOutQuart'
+    });
+  } else {
+    const ctx = canvas.getContext('2d');
+    state.charts.fastestLap = new Chart(ctx, {
+      type: 'bar',
+      data: { labels, datasets },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: {
+          duration: 600,
+          easing: 'easeOutQuart'
+        },
+        interaction: {
+          mode: 'index',
+          intersect: false
+        },
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: { padding: 12, usePointStyle: true, font: { size: 11 } }
+          },
+          tooltip: {
+            backgroundColor: 'rgba(11, 18, 32, 0.95)',
+            padding: 12,
+            borderColor: 'rgba(148, 163, 184, 0.3)',
+            borderWidth: 1,
+            callbacks: {
+              label: (context) => {
+                const stat = driverStats[context.dataIndex];
+                return [
+                  `Avg Position: P${stat.avgLapPosition.toFixed(2)}`,
+                  `Best: P${stat.bestPosition}`,
+                  `Worst: P${stat.worstPosition}`,
+                  `Races: ${stat.raceCount}`
+                ];
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            grid: { display: false },
+            ticks: { font: { size: 10 } }
+          },
+          y: {
+            type: 'linear',
+            display: true,
+            position: 'left',
+            beginAtZero: false,
+            reverse: true,
+            grid: { color: 'rgba(148, 163, 184, 0.1)' },
+            ticks: {
+              font: { size: 11 },
+              callback: (value) => `P${value}`
+            },
+            title: {
+              display: true,
+              text: 'Fastest Lap Position (Lower = Better)',
+              font: { size: 11 }
+            }
+          }
+        }
+      }
+    });
+  }
+
+  // Update statistics panel
+  if (els.fastestLapStats && driverStats.length > 0) {
+    const bestDriver = driverStats[0];
+    const mostP1s = driverStats.reduce((best, current) => {
+      const currentP1s = current.positions.filter(p => p === 1).length;
+      const bestP1s = best.positions.filter(p => p === 1).length;
+      return currentP1s > bestP1s ? current : best;
+    }, driverStats[0]);
+    const p1Count = mostP1s.positions.filter(p => p === 1).length;
+    
+    // Count drivers with complete data
+    const completeDataDrivers = driverStats.filter(d => d.raceCount === races.length).length;
+    const incompleteDataDrivers = driverStats.length - completeDataDrivers;
+    
+    els.fastestLapStats.innerHTML = `
+      <div class="h2h-stats">
+        <div class="h2h-stat">
+          <div class="h2h-stat__label">Best Avg Lap Time Position</div>
+          <div class="h2h-stat__value h2h-stat__value--winner">${bestDriver.driver.name} (P${bestDriver.avgLapPosition.toFixed(2)})</div>
+        </div>
+        <div class="h2h-stat">
+          <div class="h2h-stat__label">Most Fastest Laps</div>
+          <div class="h2h-stat__value">${mostP1s.driver.name} (${p1Count})</div>
+        </div>
+        <div class="h2h-stat">
+          <div class="h2h-stat__label">Data Coverage</div>
+          <div class="h2h-stat__value">${completeDataDrivers} complete / ${incompleteDataDrivers} partial</div>
+        </div>
+      </div>
+    `;
   }
 }
 

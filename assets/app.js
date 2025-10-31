@@ -987,11 +987,16 @@ function computeStats(season) {
   (season.races ?? []).forEach(race => {
     (race.results ?? []).forEach(result => {
       const driverId = result.driverId;
-      if (!driverId || !eligibleDrivers.has(driverId)) return;
+      if (!driverId) return;
 
+      // Count wins for ALL drivers (no eligibility filter)
       if (result.position === 1) {
         stats.wins.set(driverId, (stats.wins.get(driverId) ?? 0) + 1);
       }
+
+      // For other stats, only include eligible drivers (3+ races)
+      if (!eligibleDrivers.has(driverId)) return;
+
       if ((result.position ?? 0) > 0 && result.position <= 3) {
         stats.podiums.set(driverId, (stats.podiums.get(driverId) ?? 0) + 1);
       }
@@ -1023,17 +1028,17 @@ function computeStats(season) {
   });
 
   return {
-    wins: sortStatMap(stats.wins),
-    podiums: sortStatMap(stats.podiums),
-    avgPoints: sortStatMap(avgPointsFinal),
-    avgPlacement: sortStatMap(avgPlacementFinal, true)
+    wins: sortStatMap(stats.wins, false, 999), // Show all winners
+    podiums: sortStatMap(stats.podiums, false, 5), // Top 5
+    avgPoints: sortStatMap(avgPointsFinal, false, 5), // Top 5
+    avgPlacement: sortStatMap(avgPlacementFinal, true, 5) // Top 5
   };
 }
 
-function sortStatMap(statMap, ascending = false) {
+function sortStatMap(statMap, ascending = false, limit = 5) {
   return Array.from(statMap.entries())
     .sort(([, a], [, b]) => ascending ? a - b : b - a)
-    .slice(0, 5);
+    .slice(0, limit);
 }
 
 function sortStatMapFull(statMap, ascending = false) {

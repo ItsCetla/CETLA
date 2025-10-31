@@ -380,8 +380,9 @@
   color: #64748b;
 }
 
-/* Head-to-Head Summary */
-.h2h-summary {
+/* Head-to-Head Summary & Fastest Lap Stats */
+.h2h-summary,
+.fastest-lap-stats {
   margin-top: 1.5rem;
   padding: 1.25rem;
   background: rgba(15, 23, 42, 0.6);
