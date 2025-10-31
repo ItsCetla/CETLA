@@ -6144,6 +6144,168 @@
               "isGuest": false
             }
           ]
+        },
+        {
+          "id": "fall25-r4",
+          "round": 4,
+          "name": "Autodrome Lago Maggiore",
+          "trackImage": "",
+          "schedule": {
+            "date": "2025-10-30T20:00:00-04:00",
+            "venue": "Autodrome Lago Maggiore"
+          },
+          "settings": {
+            "carClass": "GT3",
+            "weather": "",
+            "laps": null,
+            "notes": "One-make: Mercedes-AMG GT3 '16. Series: The OG Series / Gran Turismo 7."
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "Emilio",
+              "driverId": "emilio",
+              "entrant": null,
+              "car": "Mercedes-AMG GT3 '16",
+              "totalTime": "32:08.585",
+              "gap": null,
+              "fastestLap": "1:56.998",
+              "points": 37,
+              "isGuest": false
+            },
+            {
+              "position": 2,
+              "driver": "Rambo",
+              "driverId": "rambo",
+              "entrant": null,
+              "car": "Mercedes-AMG GT3 '16",
+              "totalTime": "+04.682",
+              "gap": "+04.682",
+              "fastestLap": "1:57.043",
+              "points": 33,
+              "isGuest": false
+            },
+            {
+              "position": 3,
+              "driver": "Arya",
+              "driverId": "arya",
+              "entrant": null,
+              "car": "Mercedes-AMG GT3 '16",
+              "totalTime": "+12.976",
+              "gap": "+12.976",
+              "fastestLap": "1:57.534",
+              "points": 30,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "HPePe",
+              "driverId": "hpepe",
+              "entrant": null,
+              "car": "Mercedes-AMG GT3 '16",
+              "totalTime": "+28.747",
+              "gap": "+28.747",
+              "fastestLap": "1:58.555",
+              "points": 26,
+              "isGuest": false
+            },
+            {
+              "position": 5,
+              "driver": "cetla",
+              "driverId": "cetla",
+              "entrant": null,
+              "car": "Mercedes-AMG GT3 '16",
+              "totalTime": "+33.631",
+              "gap": "+33.631",
+              "fastestLap": "1:59.912",
+              "points": 21,
+              "isGuest": false
+            },
+            {
+              "position": 6,
+              "driver": "Jack",
+              "driverId": "jack",
+              "entrant": null,
+              "car": "Mercedes-AMG GT3 '16",
+              "totalTime": "+42.625",
+              "gap": "+42.625",
+              "fastestLap": "1:58.955",
+              "points": 18,
+              "isGuest": false
+            },
+            {
+              "position": 7,
+              "driver": "Izzy Hunter",
+              "driverId": "izzyhunter",
+              "entrant": null,
+              "car": "Mercedes-AMG GT3 '16",
+              "totalTime": "+48.566",
+              "gap": "+49.566",
+              "fastestLap": "1:59.529",
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "HdzSanti",
+              "driverId": "santi",
+              "entrant": "HdzSanti",
+              "car": "Mercedes-AMG GT3 '16",
+              "totalTime": "+54.661",
+              "gap": "+54.661",
+              "fastestLap": "2:00.124",
+              "points": 12,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "FleshTorpedo",
+              "driverId": "fleshtorpedo",
+              "entrant": null,
+              "car": "Mercedes-AMG GT3 '16",
+              "totalTime": "+1:03.078",
+              "gap": "+1:03.078",
+              "fastestLap": "2:00.185",
+              "points": 11,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "Slatenator",
+              "driverId": "slatenator",
+              "entrant": null,
+              "car": "Mercedes-AMG GT3 '16",
+              "totalTime": "+1:03.294",
+              "gap": "+1:03.294",
+              "fastestLap": "2:01.163",
+              "points": 9,
+              "isGuest": false
+            },
+            {
+              "position": 11,
+              "driver": "KickstartMyKart",
+              "driverId": "kickstart",
+              "entrant": "KickstartMyKart",
+              "car": "Mercedes-AMG GT3 '16",
+              "totalTime": "+1:10.404",
+              "gap": "+1:10.404",
+              "fastestLap": "2:01.724",
+              "points": 6,
+              "isGuest": false
+            },
+            {
+              "position": 12,
+              "driver": "Pablo",
+              "driverId": "pablo",
+              "entrant": null,
+              "car": "Mercedes-AMG GT3 '16",
+              "totalTime": "+1:50.591",
+              "gap": "+1:50.591",
+              "fastestLap": "2:01.378",
+              "points": 5,
+              "isGuest": false
+            }
+          ]
         }
       ]
     }
