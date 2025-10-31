@@ -5573,7 +5573,7 @@
           "name": "Jack",
           "teamId": "team-romero",
           "color": "purple",
-          "points": 58,
+          "points": 76,
           "aliases": []
         },
         {
@@ -5581,7 +5581,7 @@
           "name": "Rambo",
           "teamId": "team-romero",
           "color": "purple",
-          "points": 96,
+          "points": 129,
           "aliases": []
         },
         {
@@ -5589,7 +5589,7 @@
           "name": "Slatenator",
           "teamId": "team-slate",
           "color": "red",
-          "points": 54,
+          "points": 63,
           "aliases": []
         },
         {
@@ -5597,7 +5597,7 @@
           "name": "Santi",
           "teamId": "team-santigold",
           "color": "cyan",
-          "points": 65,
+          "points": 77,
           "aliases": [
             "HdzSanti"
           ]
@@ -5607,7 +5607,7 @@
           "name": "HPePe",
           "teamId": "team-santigold",
           "color": "cyan",
-          "points": 74,
+          "points": 100,
           "aliases": []
         },
         {
@@ -5615,7 +5615,7 @@
           "name": "KickStart",
           "teamId": "team-tits-out",
           "color": "black",
-          "points": 36,
+          "points": 42,
           "aliases": [
             "KickStart - Sub = FleshTorpedo",
             "KickstartMyKart"
@@ -5626,7 +5626,7 @@
           "name": "Pablo",
           "teamId": "k-hole-racing",
           "color": "pink",
-          "points": 18,
+          "points": 23,
           "aliases": []
         },
         {
@@ -5634,7 +5634,7 @@
           "name": "FleshTorpedo",
           "teamId": "team-tits-out",
           "color": "black",
-          "points": 47,
+          "points": 58,
           "aliases": []
         },
         {
@@ -5652,7 +5652,7 @@
           "name": "Izzy Hunter",
           "teamId": "team-rom3-izzy",
           "color": "indigo",
-          "points": 29,
+          "points": 44,
           "aliases": []
         },
         {
@@ -5660,7 +5660,7 @@
           "name": "Cetla",
           "teamId": "team-stake",
           "color": "lightgreen",
-          "points": 38,
+          "points": 59,
           "aliases": []
         },
         {
@@ -5672,6 +5672,22 @@
           "aliases": [
             "FRT_R0m3r0Q"
           ]
+        },
+        {
+          "id": "emilio",
+          "name": "Emilio",
+          "teamId": "k-hole-racing",
+          "color": "pink",
+          "points": 37,
+          "aliases": []
+        },
+        {
+          "id": "arya",
+          "name": "Arya",
+          "teamId": "team-stake",
+          "color": "lightgreen",
+          "points": 30,
+          "aliases": []
         }
       ],
       "teams": [
@@ -5683,7 +5699,7 @@
         },
         {
           "id": "team-romero",
-          "name": "Team Romero",
+          "name": "Team Rambo",
           "color": "purple",
           "points": null
         },
