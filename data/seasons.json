@@ -6322,6 +6322,156 @@
               "isGuest": false
             }
           ]
+        },
+        {
+          "id": "fall25-r5",
+          "round": 5,
+          "name": "The OG Series",
+          "trackImage": "",
+          "schedule": {
+            "date": "2025-11-06T20:00:00-04:00",
+            "venue": "TBD"
+          },
+          "settings": {
+            "carClass": "GT500",
+            "weather": "",
+            "laps": null,
+            "notes": "One-make: GT-R NISMO GT500 '16. Series: The OG Series / Gran Turismo 7."
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "cetla",
+              "driverId": "cetla",
+              "entrant": null,
+              "car": "GT-R NISMO GT500 '16",
+              "totalTime": "20:30.417",
+              "gap": null,
+              "fastestLap": "0:59.266",
+              "points": 37,
+              "isGuest": false
+            },
+            {
+              "position": 2,
+              "driver": "KickstartMyKart",
+              "driverId": "kickstart",
+              "entrant": "KickstartMyKart",
+              "car": "GT-R NISMO GT500 '16",
+              "totalTime": "+00.722",
+              "gap": "+00.722",
+              "fastestLap": "0:59.814",
+              "points": 33,
+              "isGuest": false
+            },
+            {
+              "position": 3,
+              "driver": "Arya",
+              "driverId": "arya",
+              "entrant": null,
+              "car": "GT-R NISMO GT500 '16",
+              "totalTime": "+15.780",
+              "gap": "+15.780",
+              "fastestLap": "1:00.726",
+              "points": 30,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "Emilio",
+              "driverId": "emilio",
+              "entrant": null,
+              "car": "GT-R NISMO GT500 '16",
+              "totalTime": "+15.901",
+              "gap": "+15.901",
+              "fastestLap": "0:59.802",
+              "points": 26,
+              "isGuest": false
+            },
+            {
+              "position": 5,
+              "driver": "Rambo",
+              "driverId": "rambo",
+              "entrant": null,
+              "car": "GT-R NISMO GT500 '16",
+              "totalTime": "+18.622",
+              "gap": "+18.622",
+              "fastestLap": "1:00.190",
+              "points": 21,
+              "isGuest": false
+            },
+            {
+              "position": 6,
+              "driver": "FleshTorpedo",
+              "driverId": "fleshtorpedo",
+              "entrant": null,
+              "car": "GT-R NISMO GT500 '16",
+              "totalTime": "+42.605",
+              "gap": "+42.605",
+              "fastestLap": "1:01.033",
+              "points": 18,
+              "isGuest": false
+            },
+            {
+              "position": 7,
+              "driver": "HdzSanti",
+              "driverId": "santi",
+              "entrant": "HdzSanti",
+              "car": "GT-R NISMO GT500 '16",
+              "totalTime": "+43.608",
+              "gap": "+43.608",
+              "fastestLap": "1:00.909",
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "TheSlayter",
+              "driverId": "theslayter",
+              "entrant": null,
+              "car": "GT-R NISMO GT500 '16",
+              "totalTime": "+1:02.606",
+              "gap": "+1:02.606",
+              "fastestLap": "1:00.860",
+              "points": 12,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "TheSlayterr-TV",
+              "driverId": "theslayter",
+              "entrant": "TheSlayterr-TV",
+              "car": "GT-R NISMO GT500 '16",
+              "totalTime": "+1:00.860",
+              "gap": "+1:00.860",
+              "fastestLap": "1:00.860",
+              "points": 11,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "HPePe",
+              "driverId": "hpepe",
+              "entrant": null,
+              "car": "GT-R NISMO GT500 '16",
+              "totalTime": "+1:21.092",
+              "gap": "+1:21.092",
+              "fastestLap": "1:01.203",
+              "points": 9,
+              "isGuest": false
+            },
+            {
+              "position": 11,
+              "driver": "Izzy Hunter",
+              "driverId": "izzyhunter",
+              "entrant": null,
+              "car": "GT-R NISMO GT500 '16",
+              "totalTime": "+1:32.688",
+              "gap": "+1:32.688",
+              "fastestLap": "1:02.562",
+              "points": 6,
+              "isGuest": false
+            }
+          ]
         }
       ]
     }
