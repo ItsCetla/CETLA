@@ -117,7 +117,7 @@ const FALL_2025_SCHEDULE = [
     type: 'race',
     date: '2025-11-06T20:00:00-05:00',
     track: 'Watkins Glen Short Course',
-    car: "GT-T GT500 '16",
+    car: "GT-R GT500 '16",
     laps: 18
   },
   {
