@@ -5573,7 +5573,7 @@
           "name": "Jack",
           "teamId": "team-romero",
           "color": "purple",
-          "points": 76,
+          "points": 97,
           "aliases": []
         },
         {
@@ -5581,7 +5581,7 @@
           "name": "Rambo",
           "teamId": "team-romero",
           "color": "purple",
-          "points": 150,
+          "points": 183,
           "aliases": []
         },
         {
@@ -5589,7 +5589,7 @@
           "name": "Slatenator",
           "teamId": "team-slate",
           "color": "red",
-          "points": 72,
+          "points": 90,
           "aliases": []
         },
         {
@@ -5597,7 +5597,7 @@
           "name": "Santi",
           "teamId": "team-santigold",
           "color": "cyan",
-          "points": 89,
+          "points": 98,
           "aliases": [
             "HdzSanti"
           ]
@@ -5615,7 +5615,7 @@
           "name": "KickStart",
           "teamId": "team-tits-out",
           "color": "black",
-          "points": 75,
+          "points": 86,
           "aliases": [
             "KickStart - Sub = FleshTorpedo",
             "KickstartMyKart"
@@ -5634,7 +5634,7 @@
           "name": "FleshTorpedo",
           "teamId": "team-tits-out",
           "color": "black",
-          "points": 76,
+          "points": 91,
           "aliases": []
         },
         {
@@ -5652,7 +5652,7 @@
           "name": "Izzy Hunter",
           "teamId": "team-rom3-izzy",
           "color": "indigo",
-          "points": 50,
+          "points": 80,
           "aliases": []
         },
         {
@@ -5660,7 +5660,7 @@
           "name": "Cetla",
           "teamId": "team-stake",
           "color": "lightgreen",
-          "points": 96,
+          "points": 122,
           "aliases": []
         },
         {
@@ -5678,7 +5678,7 @@
           "name": "Emilio",
           "teamId": "k-hole-racing",
           "color": "pink",
-          "points": 63,
+          "points": 75,
           "aliases": []
         },
         {
@@ -5686,7 +5686,7 @@
           "name": "Arya",
           "teamId": "team-stake",
           "color": "lightgreen",
-          "points": 60,
+          "points": 97,
           "aliases": []
         }
       ],
@@ -6469,6 +6469,144 @@
               "gap": "+1:32.688",
               "fastestLap": "1:02.562",
               "points": 6,
+              "isGuest": false
+            }
+          ]
+        },
+        {
+          "id": "fall25-r6",
+          "round": 6,
+          "name": "Tokyo Expressway \u2013 East Clockwise",
+          "trackImage": "",
+          "schedule": {
+            "date": "2025-11-13T20:00:00-05:00",
+            "venue": "Tokyo Expressway \u2013 East Clockwise"
+          },
+          "settings": {
+            "carClass": "GT500",
+            "laps": null,
+            "weather": "",
+            "notes": "One-make: NSX GT500 '08. Series: The OG Series / Gran Turismo 7."
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "Arya",
+              "driverId": "arya",
+              "entrant": null,
+              "car": "NSX GT500 '08",
+              "totalTime": "24:39.283",
+              "gap": null,
+              "fastestLap": "1:51.236",
+              "points": 37,
+              "isGuest": false
+            },
+            {
+              "position": 2,
+              "driver": "Rambo",
+              "driverId": "rambo",
+              "entrant": null,
+              "car": "NSX GT500 '08",
+              "totalTime": "+01.685",
+              "gap": "+01.685",
+              "fastestLap": "1:50.362",
+              "points": 33,
+              "isGuest": false
+            },
+            {
+              "position": 3,
+              "driver": "Izzy Hunter",
+              "driverId": "izzyhunter",
+              "entrant": null,
+              "car": "NSX GT500 '08",
+              "totalTime": "+16.101",
+              "gap": "+16.101",
+              "fastestLap": "1:51.755",
+              "points": 30,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "cetla",
+              "driverId": "cetla",
+              "entrant": null,
+              "car": "NSX GT500 '08",
+              "totalTime": "+25.120",
+              "gap": "+25.120",
+              "fastestLap": "1:51.380",
+              "points": 26,
+              "isGuest": false
+            },
+            {
+              "position": 5,
+              "driver": "Jack",
+              "driverId": "jack",
+              "entrant": null,
+              "car": "NSX GT500 '08",
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": "1:51.891",
+              "points": 21,
+              "isGuest": false
+            },
+            {
+              "position": 6,
+              "driver": "Slatenator",
+              "driverId": "slatenator",
+              "entrant": null,
+              "car": "NSX GT500 '08",
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": "1:53.264",
+              "points": 18,
+              "isGuest": false
+            },
+            {
+              "position": 7,
+              "driver": "FleshTorpedo",
+              "driverId": "fleshtorpedo",
+              "entrant": null,
+              "car": "NSX GT500 '08",
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": "1:52.247",
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "Emilio",
+              "driverId": "emilio",
+              "entrant": null,
+              "car": "NSX GT500 '08",
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": "1:51.531",
+              "points": 12,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "KickstartMyKart",
+              "driverId": "kickstart",
+              "entrant": "KickstartMyKart",
+              "car": "NSX GT500 '08",
+              "totalTime": null,
+              "gap": null,
+              "fastestLap": "1:52.890",
+              "points": 11,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "HdzSanti",
+              "driverId": "santi",
+              "entrant": "HdzSanti",
+              "car": "NSX GT500 '08",
+              "totalTime": "DNF",
+              "gap": null,
+              "fastestLap": "1:55.887",
+              "points": 9,
               "isGuest": false
             }
           ]
