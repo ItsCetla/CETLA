@@ -1,0 +1,6 @@
+{
+    "editor.minimap.enabled": true,
+    "window.autoDetectColorScheme": true,
+    "workbench.preferredDarkColorTheme": "Default Dark+",
+    "workbench.preferredLightColorTheme": "Default High Contrast Light"
+}
