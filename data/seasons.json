@@ -5573,7 +5573,7 @@
           "name": "Jack",
           "teamId": "team-romero",
           "color": "purple",
-          "points": 115,
+          "points": 121,
           "aliases": []
         },
         {
@@ -5581,7 +5581,7 @@
           "name": "Rambo",
           "teamId": "team-romero",
           "color": "purple",
-          "points": 209,
+          "points": 235,
           "aliases": []
         },
         {
@@ -5589,7 +5589,7 @@
           "name": "Slatenator",
           "teamId": "team-slate",
           "color": "red",
-          "points": 101,
+          "points": 110,
           "aliases": []
         },
         {
@@ -5607,7 +5607,7 @@
           "name": "HPePe",
           "teamId": "team-santigold",
           "color": "cyan",
-          "points": 115,
+          "points": 133,
           "aliases": []
         },
         {
@@ -5615,7 +5615,7 @@
           "name": "KickStart",
           "teamId": "team-tits-out",
           "color": "black",
-          "points": 107,
+          "points": 118,
           "aliases": [
             "KickStart - Sub = FleshTorpedo",
             "KickstartMyKart"
@@ -5634,7 +5634,7 @@
           "name": "FleshTorpedo",
           "teamId": "team-tits-out",
           "color": "black",
-          "points": 103,
+          "points": 115,
           "aliases": []
         },
         {
@@ -5642,7 +5642,7 @@
           "name": "TheSlayter",
           "teamId": "team-slate",
           "color": "red",
-          "points": 105,
+          "points": 135,
           "aliases": [
             "TheSlayterr-TV"
           ]
@@ -5652,7 +5652,7 @@
           "name": "Izzy Hunter",
           "teamId": "team-rom3-izzy",
           "color": "indigo",
-          "points": 89,
+          "points": 122,
           "aliases": []
         },
         {
@@ -5660,7 +5660,7 @@
           "name": "Cetla",
           "teamId": "team-stake",
           "color": "lightgreen",
-          "points": 137,
+          "points": 152,
           "aliases": []
         },
         {
@@ -5678,7 +5678,7 @@
           "name": "Emilio",
           "teamId": "k-hole-racing",
           "color": "pink",
-          "points": 108,
+          "points": 129,
           "aliases": []
         },
         {
@@ -5686,7 +5686,7 @@
           "name": "Arya",
           "teamId": "team-stake",
           "color": "lightgreen",
-          "points": 134,
+          "points": 171,
           "aliases": []
         }
       ],
@@ -6756,6 +6756,156 @@
               "totalTime": "DNF",
               "gap": null,
               "fastestLap": "1:29.137",
+              "points": 6,
+              "isGuest": false
+            }
+          ]
+        },
+        {
+          "id": "fall25-r8",
+          "round": 8,
+          "name": "The OG Series",
+          "trackImage": "",
+          "schedule": {
+            "date": "2025-11-27T20:00:00-05:00",
+            "venue": "Michelin Raceway Road Atlanta"
+          },
+          "settings": {
+            "carClass": "Subaru WRX Gr.3",
+            "weather": "",
+            "laps": null,
+            "notes": "All drivers used Subaru WRX Gr.3"
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "Arya",
+              "driverId": "arya",
+              "entrant": null,
+              "car": "Subaru WRX Gr.3",
+              "totalTime": "35:32.503",
+              "gap": null,
+              "fastestLap": "1:19.124",
+              "points": 37,
+              "isGuest": false
+            },
+            {
+              "position": 2,
+              "driver": "Izzy Hunter",
+              "driverId": "izzyhunter",
+              "entrant": null,
+              "car": "Subaru WRX Gr.3",
+              "totalTime": "+11.230",
+              "gap": "+11.230",
+              "fastestLap": "1:20.605",
+              "points": 33,
+              "isGuest": false
+            },
+            {
+              "position": 3,
+              "driver": "TheSlayterr-TV",
+              "driverId": "theslayter",
+              "entrant": "TheSlayterr-TV",
+              "car": "Subaru WRX Gr.3",
+              "totalTime": "+11.616",
+              "gap": "+11.616",
+              "fastestLap": "1:19.495",
+              "points": 30,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "Rambo",
+              "driverId": "rambo",
+              "entrant": null,
+              "car": "Subaru WRX Gr.3",
+              "totalTime": "+12.654",
+              "gap": "+12.654",
+              "fastestLap": "1:19.174",
+              "points": 26,
+              "isGuest": false
+            },
+            {
+              "position": 5,
+              "driver": "Emilio",
+              "driverId": "emilio",
+              "entrant": null,
+              "car": "Subaru WRX Gr.3",
+              "totalTime": "+19.857",
+              "gap": "+19.857",
+              "fastestLap": "1:19.150",
+              "points": 21,
+              "isGuest": false
+            },
+            {
+              "position": 6,
+              "driver": "HPePe",
+              "driverId": "hpepe",
+              "entrant": null,
+              "car": "Subaru WRX Gr.3",
+              "totalTime": "+21.933",
+              "gap": "+21.933",
+              "fastestLap": "1:19.508",
+              "points": 18,
+              "isGuest": false
+            },
+            {
+              "position": 7,
+              "driver": "cetla",
+              "driverId": "cetla",
+              "entrant": null,
+              "car": "Subaru WRX Gr.3",
+              "totalTime": "+33.941",
+              "gap": "+33.941",
+              "fastestLap": "1:20.035",
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "FleshTorpedo",
+              "driverId": "fleshtorpedo",
+              "entrant": null,
+              "car": "Subaru WRX Gr.3",
+              "totalTime": "+34.165",
+              "gap": "+34.165",
+              "fastestLap": "1:20.311",
+              "points": 12,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "KickstartMyKart",
+              "driverId": "kickstart",
+              "entrant": "KickstartMyKart",
+              "car": "Subaru WRX Gr.3",
+              "totalTime": "+41.923",
+              "gap": "+41.923",
+              "fastestLap": "1:20.488",
+              "points": 11,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "Slatenator",
+              "driverId": "slatenator",
+              "entrant": null,
+              "car": "Subaru WRX Gr.3",
+              "totalTime": "+43.102",
+              "gap": "+43.102",
+              "fastestLap": "1:19.865",
+              "points": 9,
+              "isGuest": false
+            },
+            {
+              "position": 11,
+              "driver": "Jack",
+              "driverId": "jack",
+              "entrant": null,
+              "car": "Subaru WRX Gr.3",
+              "totalTime": "+44.660",
+              "gap": "+44.660",
+              "fastestLap": "1:20.167",
               "points": 6,
               "isGuest": false
             }
