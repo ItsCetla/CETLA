@@ -5573,7 +5573,7 @@
           "name": "Jack",
           "teamId": "team-romero",
           "color": "purple",
-          "points": 121,
+          "points": 136,
           "aliases": []
         },
         {
@@ -5581,7 +5581,7 @@
           "name": "Rambo",
           "teamId": "team-romero",
           "color": "purple",
-          "points": 235,
+          "points": 268,
           "aliases": []
         },
         {
@@ -5589,7 +5589,7 @@
           "name": "Slatenator",
           "teamId": "team-slate",
           "color": "red",
-          "points": 110,
+          "points": 121,
           "aliases": []
         },
         {
@@ -5597,7 +5597,7 @@
           "name": "Santi",
           "teamId": "team-santigold",
           "color": "cyan",
-          "points": 98,
+          "points": 110,
           "aliases": [
             "HdzSanti"
           ]
@@ -5615,7 +5615,7 @@
           "name": "KickStart",
           "teamId": "team-tits-out",
           "color": "black",
-          "points": 118,
+          "points": 127,
           "aliases": [
             "KickStart - Sub = FleshTorpedo",
             "KickstartMyKart"
@@ -5634,7 +5634,7 @@
           "name": "FleshTorpedo",
           "teamId": "team-tits-out",
           "color": "black",
-          "points": 115,
+          "points": 133,
           "aliases": []
         },
         {
@@ -5642,7 +5642,7 @@
           "name": "TheSlayter",
           "teamId": "team-slate",
           "color": "red",
-          "points": 135,
+          "points": 165,
           "aliases": [
             "TheSlayterr-TV"
           ]
@@ -5686,7 +5686,7 @@
           "name": "Arya",
           "teamId": "team-stake",
           "color": "lightgreen",
-          "points": 171,
+          "points": 208,
           "aliases": []
         }
       ],
@@ -6907,6 +6907,144 @@
               "gap": "+44.660",
               "fastestLap": "1:20.167",
               "points": 6,
+              "isGuest": false
+            }
+          ]
+        },
+        {
+          "id": "fall25-r9",
+          "round": 9,
+          "name": "Kyoto Driving Park \u2014 Yamagiwa",
+          "trackImage": "",
+          "schedule": {
+            "date": "2025-12-04T20:00:00-05:00",
+            "venue": "Kyoto Driving Park \u2014 Yamagiwa"
+          },
+          "settings": {
+            "carClass": "Gr.3",
+            "weather": "",
+            "laps": null,
+            "notes": "One-make: Audi R8 LMS '15. Series: The OG Series / Gran Turismo 7."
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "Arya",
+              "driverId": "arya",
+              "entrant": null,
+              "car": "R8 LMS '15",
+              "totalTime": "36:08.418",
+              "gap": null,
+              "fastestLap": null,
+              "points": 37,
+              "isGuest": false
+            },
+            {
+              "position": 2,
+              "driver": "Rambo",
+              "driverId": "rambo",
+              "entrant": null,
+              "car": "R8 LMS '15",
+              "totalTime": "+01.132",
+              "gap": "+01.132",
+              "fastestLap": null,
+              "points": 33,
+              "isGuest": false
+            },
+            {
+              "position": 3,
+              "driver": "TheSlayterr-TV",
+              "driverId": "theslayter",
+              "entrant": "TheSlayterr-TV",
+              "car": "R8 LMS '15",
+              "totalTime": "+12.245",
+              "gap": "+12.245",
+              "fastestLap": null,
+              "points": 30,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "SoulShock-VR",
+              "driverId": null,
+              "entrant": null,
+              "car": "R8 LMS '15",
+              "totalTime": "+12.279",
+              "gap": "+12.279",
+              "fastestLap": null,
+              "points": 26,
+              "isGuest": true
+            },
+            {
+              "position": 5,
+              "driver": "GingaNinja",
+              "driverId": null,
+              "entrant": null,
+              "car": "R8 LMS '15",
+              "totalTime": "+22.252",
+              "gap": "+22.252",
+              "fastestLap": null,
+              "points": 21,
+              "isGuest": true
+            },
+            {
+              "position": 6,
+              "driver": "FleshTorpedo",
+              "driverId": "fleshtorpedo",
+              "entrant": null,
+              "car": "R8 LMS '15",
+              "totalTime": "+25.145",
+              "gap": "+25.145",
+              "fastestLap": null,
+              "points": 18,
+              "isGuest": false
+            },
+            {
+              "position": 7,
+              "driver": "Jack",
+              "driverId": "jack",
+              "entrant": null,
+              "car": "R8 LMS '15",
+              "totalTime": "+41.168",
+              "gap": "+41.168",
+              "fastestLap": null,
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "HdzSanti",
+              "driverId": "santi",
+              "entrant": "HdzSanti",
+              "car": "R8 LMS '15",
+              "totalTime": "+41.482",
+              "gap": "+41.482",
+              "fastestLap": null,
+              "points": 12,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "Slatenator",
+              "driverId": "slatenator",
+              "entrant": null,
+              "car": "R8 LMS '15",
+              "totalTime": "+41.553",
+              "gap": "+41.553",
+              "fastestLap": null,
+              "points": 11,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "KickstartMyKart",
+              "driverId": "kickstart",
+              "entrant": "KickstartMyKart",
+              "car": "R8 LMS '15",
+              "totalTime": "+42.053",
+              "gap": "+42.053",
+              "fastestLap": null,
+              "points": 9,
               "isGuest": false
             }
           ]
