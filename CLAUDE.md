@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 CETLA Racing League is a Gran Turismo 7 racing league website. The site is a modern single-page application with a unified data model that consolidates all seasons into a single `seasons.json` file for easier maintenance and updates.
 
-## Project Structure
+## Project Structures
 
 ```
 CETLA/
