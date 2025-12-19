@@ -5688,6 +5688,18 @@
           "color": "lightgreen",
           "points": 245,
           "aliases": []
+        },
+        {
+          "id": "soulshock",
+          "name": "Soul Shock",
+          "teamId": null,
+          "color": "gold",
+          "points": 59,
+          "aliases": [
+            "SoulShock-VR",
+            "SoulShock",
+            "Soul shock"
+          ]
         }
       ],
       "teams": [
@@ -6966,14 +6978,14 @@
             {
               "position": 4,
               "driver": "SoulShock-VR",
-              "driverId": null,
+              "driverId": "soulshock",
               "entrant": null,
               "car": "R8 LMS '15",
               "totalTime": "+12.279",
               "gap": "+12.279",
               "fastestLap": null,
               "points": 26,
-              "isGuest": true
+              "isGuest": false
             },
             {
               "position": 5,
@@ -7080,14 +7092,14 @@
             {
               "position": 2,
               "driver": "SoulShock-VR",
-              "driverId": null,
+              "driverId": "soulshock",
               "entrant": null,
               "car": "296 GT3 '23",
               "totalTime": null,
               "gap": "+00.474",
               "fastestLap": "1:27.706",
               "points": 33,
-              "isGuest": true
+              "isGuest": false
             },
             {
               "position": 3,
