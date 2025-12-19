@@ -5573,7 +5573,7 @@
           "name": "Jack",
           "teamId": "team-romero",
           "color": "purple",
-          "points": 136,
+          "points": 166,
           "aliases": []
         },
         {
@@ -5581,7 +5581,7 @@
           "name": "Rambo",
           "teamId": "team-romero",
           "color": "purple",
-          "points": 268,
+          "points": 294,
           "aliases": []
         },
         {
@@ -5589,7 +5589,7 @@
           "name": "Slatenator",
           "teamId": "team-slate",
           "color": "red",
-          "points": 121,
+          "points": 136,
           "aliases": []
         },
         {
@@ -5615,7 +5615,7 @@
           "name": "KickStart",
           "teamId": "team-tits-out",
           "color": "black",
-          "points": 127,
+          "points": 136,
           "aliases": [
             "KickStart - Sub = FleshTorpedo",
             "KickstartMyKart"
@@ -5634,7 +5634,7 @@
           "name": "FleshTorpedo",
           "teamId": "team-tits-out",
           "color": "black",
-          "points": 133,
+          "points": 145,
           "aliases": []
         },
         {
@@ -5642,7 +5642,7 @@
           "name": "TheSlayter",
           "teamId": "team-slate",
           "color": "red",
-          "points": 165,
+          "points": 186,
           "aliases": [
             "TheSlayterr-TV"
           ]
@@ -5660,7 +5660,7 @@
           "name": "Cetla",
           "teamId": "team-stake",
           "color": "lightgreen",
-          "points": 152,
+          "points": 170,
           "aliases": []
         },
         {
@@ -5678,7 +5678,7 @@
           "name": "Emilio",
           "teamId": "k-hole-racing",
           "color": "pink",
-          "points": 129,
+          "points": 140,
           "aliases": []
         },
         {
@@ -5686,7 +5686,7 @@
           "name": "Arya",
           "teamId": "team-stake",
           "color": "lightgreen",
-          "points": 208,
+          "points": 245,
           "aliases": []
         }
       ],
@@ -7044,6 +7044,144 @@
               "totalTime": "+42.053",
               "gap": "+42.053",
               "fastestLap": null,
+              "points": 9,
+              "isGuest": false
+            }
+          ]
+        },
+        {
+          "id": "fall25-r10",
+          "round": 10,
+          "name": "Deep Forest Raceway",
+          "trackImage": "",
+          "schedule": {
+            "date": "2025-12-11T20:00:00-05:00",
+            "venue": "Deep Forest Raceway"
+          },
+          "settings": {
+            "carClass": "Gr.3",
+            "weather": "",
+            "laps": null,
+            "notes": "One-make: 296 GT3 '23 (Ferrari). Series: The OG Series / Gran Turismo 7."
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "Arya",
+              "driverId": "arya",
+              "entrant": null,
+              "car": "296 GT3 '23",
+              "totalTime": "30:03.478",
+              "gap": null,
+              "fastestLap": "1:27.370",
+              "points": 37,
+              "isGuest": false
+            },
+            {
+              "position": 2,
+              "driver": "SoulShock-VR",
+              "driverId": null,
+              "entrant": null,
+              "car": "296 GT3 '23",
+              "totalTime": null,
+              "gap": "+00.474",
+              "fastestLap": "1:27.706",
+              "points": 33,
+              "isGuest": true
+            },
+            {
+              "position": 3,
+              "driver": "Jack",
+              "driverId": "jack",
+              "entrant": null,
+              "car": "296 GT3 '23",
+              "totalTime": null,
+              "gap": "+09.958",
+              "fastestLap": "1:28.617",
+              "points": 30,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "Rambo",
+              "driverId": "rambo",
+              "entrant": null,
+              "car": "296 GT3 '23",
+              "totalTime": null,
+              "gap": "+10.399",
+              "fastestLap": "1:28.076",
+              "points": 26,
+              "isGuest": false
+            },
+            {
+              "position": 5,
+              "driver": "TheSlayter",
+              "driverId": "theslayter",
+              "entrant": "TheSlayterr-TV",
+              "car": "296 GT3 '23",
+              "totalTime": null,
+              "gap": "+19.983",
+              "fastestLap": "1:28.422",
+              "points": 21,
+              "isGuest": false
+            },
+            {
+              "position": 6,
+              "driver": "cetla",
+              "driverId": "cetla",
+              "entrant": null,
+              "car": "296 GT3 '23",
+              "totalTime": null,
+              "gap": "+21.933",
+              "fastestLap": "1:28.230",
+              "points": 18,
+              "isGuest": false
+            },
+            {
+              "position": 7,
+              "driver": "Slatenator",
+              "driverId": "slatenator",
+              "entrant": null,
+              "car": "296 GT3 '23",
+              "totalTime": null,
+              "gap": "+22.523",
+              "fastestLap": "1:29.156",
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "FleshTorpedo",
+              "driverId": "fleshtorpedo",
+              "entrant": null,
+              "car": "296 GT3 '23",
+              "totalTime": null,
+              "gap": "+23.869",
+              "fastestLap": "1:28.487",
+              "points": 12,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "Emilio",
+              "driverId": "emilio",
+              "entrant": null,
+              "car": "296 GT3 '23",
+              "totalTime": null,
+              "gap": "+23.885",
+              "fastestLap": "1:27.617",
+              "points": 11,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "KickstartMyKart",
+              "driverId": "kickstart",
+              "entrant": "KickstartMyKart",
+              "car": "296 GT3 '23",
+              "totalTime": null,
+              "gap": "+39.912",
+              "fastestLap": "1:28.876",
               "points": 9,
               "isGuest": false
             }
