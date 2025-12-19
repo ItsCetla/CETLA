@@ -6,9 +6,183 @@
   <title>CETLA Racing League</title>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Grotesk:wght@600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/styles.css?v=2025-12-18-18">
+  <link rel="stylesheet" href="assets/analytics.css?v=2025-12-18-3">
 </head>
 <body>
+  <!-- Mobile App Shell (shown on small screens) -->
+  <div id="m-app" class="m-app" aria-label="CETLA mobile app">
+    <header class="m-topbar">
+      <button class="m-topbar__brand" type="button" data-m-view="home" aria-label="Go to home">CETLA</button>
+      <label class="m-topbar__season">
+        <span class="sr-only">Season</span>
+        <select id="m-season-select" aria-label="Select season"></select>
+      </label>
+    </header>
+
+    <main class="m-views" aria-live="polite">
+      <section id="m-view-home" class="m-view is-active" data-view="home">
+        <div class="m-hero" id="m-hero">
+          <p class="m-muted">Loading…</p>
+        </div>
+        <div class="m-quick-actions">
+          <button class="m-action" type="button" data-m-view="standings">Standings</button>
+          <button class="m-action" type="button" data-m-view="race">Race</button>
+          <button class="m-action" type="button" data-m-view="stats">Stats</button>
+          <button class="m-action" type="button" id="m-open-schedule">Schedule</button>
+        </div>
+      </section>
+
+      <section id="m-view-standings" class="m-view" data-view="standings">
+        <header class="m-subheader">
+          <h2>Standings</h2>
+          <div class="m-seg" role="tablist" aria-label="Standings type">
+            <button type="button" class="m-seg__btn is-active" role="tab" aria-selected="true" data-m-standings="drivers">Drivers</button>
+            <button type="button" class="m-seg__btn" role="tab" aria-selected="false" data-m-standings="teams">Teams</button>
+          </div>
+        </header>
+        <div id="m-standings-list" class="m-list"></div>
+      </section>
+
+      <section id="m-view-race" class="m-view" data-view="race">
+        <header class="m-subheader">
+          <h2>Race</h2>
+          <label class="m-inline-select">
+            <span class="sr-only">Race</span>
+            <select id="m-race-select" aria-label="Select race"></select>
+          </label>
+        </header>
+        <article id="m-race-card" class="m-card"></article>
+        <div id="m-race-results" class="m-list"></div>
+      </section>
+
+      <section id="m-view-stats" class="m-view" data-view="stats">
+        <header class="m-subheader">
+          <h2>Stats</h2>
+        </header>
+        <div id="m-stats-grid" class="m-stats"></div>
+
+        <!-- Mobile Analytics Section -->
+        <div id="m-analytics" class="m-analytics">
+          <header class="m-subheader">
+            <h2>Analytics</h2>
+          </header>
+
+          <!-- Timeline Control -->
+          <div class="m-analytics__card">
+            <div class="m-analytics__header">
+              <h3>Race Timeline</h3>
+              <span class="m-analytics__value" id="m-timeline-value">All Races</span>
+            </div>
+            <div class="m-analytics__timeline">
+              <input type="range" id="m-timeline-slider" class="m-timeline-slider" min="0" max="9" value="9" step="1" aria-label="Race timeline slider">
+            </div>
+          </div>
+
+          <!-- Points Progression -->
+          <div class="m-analytics__card" data-chart="points">
+            <div class="m-analytics__header">
+              <h3>Points Progression</h3>
+            </div>
+            <div class="m-analytics__chart">
+              <canvas id="m-points-chart"></canvas>
+            </div>
+          </div>
+
+          <!-- Points Gap -->
+          <div class="m-analytics__card" data-chart="points-gap">
+            <div class="m-analytics__header">
+              <h3>Points Gap</h3>
+            </div>
+            <div class="m-analytics__chart">
+              <canvas id="m-points-gap-chart"></canvas>
+            </div>
+          </div>
+
+          <!-- Position Tracker -->
+          <div class="m-analytics__card" data-chart="position">
+            <div class="m-analytics__header">
+              <h3>Position Tracker</h3>
+            </div>
+            <div class="m-analytics__chart">
+              <canvas id="m-position-chart"></canvas>
+            </div>
+          </div>
+
+          <!-- Heatmap -->
+          <div class="m-analytics__card" data-chart="heatmap">
+            <div class="m-analytics__header">
+              <h3>Position Heatmap</h3>
+            </div>
+            <div class="m-analytics__heatmap" id="m-heatmap-container"></div>
+          </div>
+
+          <!-- Podium Distribution -->
+          <div class="m-analytics__card" data-chart="podium">
+            <div class="m-analytics__header">
+              <h3>Podium Distribution</h3>
+            </div>
+            <div class="m-analytics__chart">
+              <canvas id="m-podium-chart"></canvas>
+            </div>
+          </div>
+
+          <!-- Form Guide -->
+          <div class="m-analytics__card" data-chart="trend">
+            <div class="m-analytics__header">
+              <h3>Form Guide</h3>
+            </div>
+            <div class="m-analytics__chart">
+              <canvas id="m-trend-chart"></canvas>
+            </div>
+          </div>
+
+          <!-- Fastest Lap -->
+          <div class="m-analytics__card" data-chart="fastest-lap">
+            <div class="m-analytics__header">
+              <h3>Fastest Lap</h3>
+            </div>
+            <div class="m-analytics__chart">
+              <canvas id="m-fastest-lap-chart"></canvas>
+            </div>
+            <div class="m-analytics__stats" id="m-fastest-lap-stats"></div>
+          </div>
+
+          <!-- Head to Head -->
+          <div class="m-analytics__card" data-chart="h2h">
+            <div class="m-analytics__header">
+              <h3>Head-to-Head</h3>
+            </div>
+            <div class="m-analytics__controls">
+              <select id="m-h2h-driver1" class="m-select" aria-label="Driver 1"></select>
+              <span class="m-analytics__vs">vs</span>
+              <select id="m-h2h-driver2" class="m-select" aria-label="Driver 2"></select>
+            </div>
+            <div class="m-analytics__chart">
+              <canvas id="m-h2h-chart"></canvas>
+            </div>
+            <div class="m-analytics__stats" id="m-h2h-summary"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="m-view-seasons" class="m-view" data-view="seasons">
+        <header class="m-subheader">
+          <h2>Seasons</h2>
+        </header>
+        <div id="m-season-list" class="m-season-list"></div>
+      </section>
+    </main>
+
+    <nav class="m-bottom-nav" aria-label="Primary">
+      <button class="m-nav-btn is-active" type="button" data-m-view="home" aria-label="Home">Home</button>
+      <button class="m-nav-btn" type="button" data-m-view="standings" aria-label="Standings">Standings</button>
+      <button class="m-nav-btn" type="button" data-m-view="race" aria-label="Race">Race</button>
+      <button class="m-nav-btn" type="button" data-m-view="stats" aria-label="Stats">Stats</button>
+      <button class="m-nav-btn" type="button" data-m-view="seasons" aria-label="Seasons">Seasons</button>
+    </nav>
+  </div>
+
   <header class="site-header">
     <div class="container nav-container">
       <a class="brand" href="#top" data-scroll>CETLA</a>
@@ -246,13 +420,204 @@
             <div class="stat-list stat-list--multi" id="stats-average-placement"></div>
           </article>
         </div>
+
+        <div class="section__spacer" style="height: 1.75rem;"></div>
+
+        <header class="section__header">
+          <h2>Season Analytics</h2>
+          <p class="section__subtitle">The full Analytics dashboard, embedded right here.</p>
+        </header>
+
+        <div id="embed-analytics" class="analytics-embed">
+          <!-- Timeline Slider -->
+          <div class="chart-card timeline-section">
+            <header class="chart-card__header">
+              <div>
+                <h3>Race Timeline</h3>
+                <p class="chart-subtitle">Drag the slider to see how the championship evolved race-by-race.</p>
+              </div>
+              <div class="timeline-display">
+                <span class="timeline-label">Through Race:</span>
+                <span class="timeline-value" id="embed-timeline-value">All Races</span>
+              </div>
+            </header>
+
+            <div class="timeline-control">
+              <button id="embed-timeline-play" class="timeline-btn" aria-label="Play timeline">
+                <span class="play-icon">▶</span>
+                <span class="pause-icon" style="display:none;">⏸</span>
+              </button>
+              <div class="timeline-slider-wrapper">
+                <input
+                  type="range"
+                  id="embed-timeline-slider"
+                  class="timeline-slider"
+                  min="0"
+                  max="1"
+                  value="1"
+                  step="1"
+                  aria-label="Race timeline slider"
+                >
+                <div class="timeline-ticks" id="embed-timeline-ticks"></div>
+              </div>
+              <button id="embed-timeline-reset" class="timeline-btn timeline-btn--secondary" aria-label="Reset timeline">
+                Reset
+              </button>
+            </div>
+          </div>
+
+          <!-- Points Progression Chart -->
+          <div class="chart-card" style="margin-top: 1.25rem;">
+            <header class="chart-card__header">
+              <div>
+                <h3>Points Progression</h3>
+                <p class="chart-subtitle">Championship points accumulated over the season</p>
+              </div>
+              <div class="chart-controls">
+                <label class="chart-toggle">
+                  <input type="checkbox" id="embed-toggle-drivers" checked>
+                  <span>Drivers</span>
+                </label>
+                <label class="chart-toggle">
+                  <input type="checkbox" id="embed-toggle-teams">
+                  <span>Teams</span>
+                </label>
+              </div>
+            </header>
+            <div class="chart-container">
+              <canvas id="embed-points-chart"></canvas>
+            </div>
+          </div>
+
+          <!-- Points Gap to Leader -->
+          <div class="chart-card" style="margin-top: 1.25rem;">
+            <header class="chart-card__header">
+              <div>
+                <h3>Points Gap to Leader</h3>
+                <p class="chart-subtitle">How far each contender trails the championship leader after every race</p>
+              </div>
+            </header>
+            <div class="chart-container">
+              <canvas id="embed-points-gap-chart"></canvas>
+            </div>
+          </div>
+
+          <!-- Position Change Tracker -->
+          <div class="chart-card" style="margin-top: 1.25rem;">
+            <header class="chart-card__header">
+              <div>
+                <h3>Championship Position Tracker</h3>
+                <p class="chart-subtitle">Driver ranking after each race (lower lines mean higher positions)</p>
+              </div>
+            </header>
+            <div class="chart-container">
+              <canvas id="embed-position-change-chart"></canvas>
+            </div>
+          </div>
+
+          <!-- Position Heatmap -->
+          <div class="chart-card" style="margin-top: 1.25rem;">
+            <header class="chart-card__header">
+              <div>
+                <h3>Position Heatmap</h3>
+                <p class="chart-subtitle">Finishing positions across all races (darker = better finish)</p>
+              </div>
+              <div class="chart-controls">
+                <label class="chart-select">
+                  <span>Sort by:</span>
+                  <select id="embed-heatmap-sort">
+                    <option value="points">Total Points</option>
+                    <option value="avg">Avg Position</option>
+                    <option value="name">Driver Name</option>
+                  </select>
+                </label>
+              </div>
+            </header>
+            <div class="heatmap-container" id="embed-heatmap-container"></div>
+          </div>
+
+          <!-- Podium Distribution -->
+          <div class="chart-card" style="margin-top: 1.25rem;">
+            <header class="chart-card__header">
+              <div>
+                <h3>Podium Distribution</h3>
+                <p class="chart-subtitle">Breakdown of finishing positions for top drivers</p>
+              </div>
+              <div class="chart-controls">
+                <label class="chart-select">
+                  <span>Show:</span>
+                  <select id="embed-podium-filter">
+                    <option value="10">Top 10 Drivers</option>
+                    <option value="5">Top 5 Drivers</option>
+                    <option value="all">All Drivers</option>
+                  </select>
+                </label>
+              </div>
+            </header>
+            <div class="chart-container">
+              <canvas id="embed-podium-chart"></canvas>
+            </div>
+          </div>
+
+          <!-- Average Position Trend -->
+          <div class="chart-card" style="margin-top: 1.25rem;">
+            <header class="chart-card__header">
+              <div>
+                <h3>Form Guide (3-Race Rolling Average)</h3>
+                <p class="chart-subtitle">Track who's heating up or cooling down</p>
+              </div>
+            </header>
+            <div class="chart-container">
+              <canvas id="embed-trend-chart"></canvas>
+            </div>
+          </div>
+
+          <!-- Fastest Lap Analysis -->
+          <div class="chart-card" style="margin-top: 1.25rem;">
+            <header class="chart-card__header">
+              <div>
+                <h3>Fastest Lap Analysis</h3>
+                <p class="chart-subtitle">Average ranking position based on fastest lap times across all races</p>
+              </div>
+            </header>
+            <div class="chart-container">
+              <canvas id="embed-fastest-lap-chart"></canvas>
+            </div>
+            <div class="fastest-lap-stats" id="embed-fastest-lap-stats"></div>
+          </div>
+
+          <!-- Head to Head -->
+          <div class="chart-card" style="margin-top: 1.25rem;">
+            <header class="chart-card__header">
+              <div>
+                <h3>Head-to-Head Battle</h3>
+                <p class="chart-subtitle">Compare two drivers race-by-race</p>
+              </div>
+              <div class="chart-controls chart-controls--h2h">
+                <label class="chart-select">
+                  <span>Driver 1:</span>
+                  <select id="embed-h2h-driver1"></select>
+                </label>
+                <span class="h2h-vs">vs</span>
+                <label class="chart-select">
+                  <span>Driver 2:</span>
+                  <select id="embed-h2h-driver2"></select>
+                </label>
+              </div>
+            </header>
+            <div class="chart-container">
+              <canvas id="embed-h2h-chart"></canvas>
+            </div>
+            <div class="h2h-summary" id="embed-h2h-summary"></div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container footer__content">
-      <p>Data-driven by <code>v2/data/seasons.json</code>. Update the file, redeploy, done.</p>
+      <p>Data-driven by <code>data/seasons.json</code>. Update the file, redeploy, done.</p>
       <small>&copy; <span id="footer-year"></span> CETLA Racing League</small>
     </div>
   </footer>
@@ -289,6 +654,7 @@
     </div>
   </div>
 
-  <script src="assets/app.js" type="module"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
+  <script src="assets/app.js?v=2025-12-18-17" type="module"></script>
 </body>
 </html>
