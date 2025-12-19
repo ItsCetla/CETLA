@@ -693,16 +693,43 @@ function populateSeasonControls() {
   if (elsMobile.seasonList) {
     elsMobile.seasonList.innerHTML = '';
     const frag = document.createDocumentFragment();
+    const latestIdx = getLatestSeasonIndex();
     state.seasons.forEach((season, index) => {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'season-pill';
-      btn.textContent = season.year ? `${season.year} · ${season.label}` : season.label;
-      btn.addEventListener('click', () => {
+      const card = document.createElement('button');
+      card.type = 'button';
+      card.className = 'm-season-card';
+      
+      const raceCount = season.races?.length ?? 0;
+      const driverCount = season.drivers?.length ?? 0;
+      const isCurrent = index === latestIdx;
+      
+      // Get top driver
+      let topDriver = null;
+      if (season.drivers?.length) {
+        topDriver = [...season.drivers].sort((a, b) => (b.points ?? 0) - (a.points ?? 0))[0];
+      }
+      
+      card.innerHTML = `
+        <div class="m-season-card__header">
+          <h3 class="m-season-card__title">${season.year ? `${season.year} · ` : ''}${season.label}</h3>
+          ${isCurrent ? '<span class="m-season-card__badge m-season-card__badge--current">Current</span>' : ''}
+        </div>
+        <div class="m-season-card__meta">
+          <span class="m-season-card__stat">
+            <span class="m-season-card__stat-value">${raceCount}</span> races
+          </span>
+          <span class="m-season-card__stat">
+            <span class="m-season-card__stat-value">${driverCount}</span> drivers
+          </span>
+          ${topDriver ? `<span class="m-season-card__stat">🏆 <span class="m-season-card__stat-value">${topDriver.name}</span></span>` : ''}
+        </div>
+      `;
+      
+      card.addEventListener('click', () => {
         setSeason(index);
         setMobileView('home');
       });
-      frag.appendChild(btn);
+      frag.appendChild(card);
     });
     elsMobile.seasonList.appendChild(frag);
   }
