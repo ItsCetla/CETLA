@@ -5573,7 +5573,7 @@
           "name": "Jack",
           "teamId": "team-romero",
           "color": "purple",
-          "points": 166,
+          "points": 192,
           "aliases": []
         },
         {
@@ -5581,7 +5581,7 @@
           "name": "Rambo",
           "teamId": "team-romero",
           "color": "purple",
-          "points": 294,
+          "points": 312,
           "aliases": []
         },
         {
@@ -5589,7 +5589,7 @@
           "name": "Slatenator",
           "teamId": "team-slate",
           "color": "red",
-          "points": 136,
+          "points": 145,
           "aliases": []
         },
         {
@@ -5634,7 +5634,7 @@
           "name": "FleshTorpedo",
           "teamId": "team-tits-out",
           "color": "black",
-          "points": 145,
+          "points": 156,
           "aliases": []
         },
         {
@@ -5642,7 +5642,7 @@
           "name": "TheSlayter",
           "teamId": "team-slate",
           "color": "red",
-          "points": 186,
+          "points": 201,
           "aliases": [
             "TheSlayterr-TV"
           ]
@@ -5660,7 +5660,7 @@
           "name": "Cetla",
           "teamId": "team-stake",
           "color": "lightgreen",
-          "points": 170,
+          "points": 182,
           "aliases": []
         },
         {
@@ -5668,7 +5668,7 @@
           "name": "Rom3",
           "teamId": "team-rom3-izzy",
           "color": "indigo",
-          "points": 69,
+          "points": 106,
           "aliases": [
             "FRT_R0m3r0Q"
           ]
@@ -5678,7 +5678,7 @@
           "name": "Emilio",
           "teamId": "k-hole-racing",
           "color": "pink",
-          "points": 140,
+          "points": 161,
           "aliases": []
         },
         {
@@ -5686,7 +5686,7 @@
           "name": "Arya",
           "teamId": "team-stake",
           "color": "lightgreen",
-          "points": 245,
+          "points": 278,
           "aliases": []
         },
         {
@@ -5694,7 +5694,7 @@
           "name": "Soul Shock",
           "teamId": null,
           "color": "gold",
-          "points": 59,
+          "points": 89,
           "aliases": [
             "SoulShock-VR",
             "SoulShock",
@@ -7194,6 +7194,144 @@
               "totalTime": null,
               "gap": "+39.912",
               "fastestLap": "1:28.876",
+              "points": 9,
+              "isGuest": false
+            }
+          ]
+        },
+        {
+          "id": "fall25-r11",
+          "round": 11,
+          "name": "The OG Series \u2014 Brands Hatch GP",
+          "trackImage": "",
+          "schedule": {
+            "date": "2025-12-18T20:00:00-05:00",
+            "venue": "Brands Hatch GP"
+          },
+          "settings": {
+            "carClass": "SR3 SL '13",
+            "weather": "",
+            "laps": null,
+            "notes": "One-make: SR3 SL '13. Series: The OG Series / Gran Turismo 7."
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "FRT_R0m3r0Q",
+              "driverId": "rom3",
+              "entrant": "FRT_R0m3r0Q",
+              "car": "SR3 SL '13",
+              "totalTime": "30:50.782",
+              "gap": null,
+              "fastestLap": "1:29.817",
+              "points": 37,
+              "isGuest": false
+            },
+            {
+              "position": 2,
+              "driver": "Arya",
+              "driverId": "arya",
+              "entrant": null,
+              "car": "SR3 SL '13",
+              "totalTime": null,
+              "gap": "+03.290",
+              "fastestLap": "1:30.824",
+              "points": 33,
+              "isGuest": false
+            },
+            {
+              "position": 3,
+              "driver": "SoulShock-VR",
+              "driverId": "soulshock",
+              "entrant": null,
+              "car": "SR3 SL '13",
+              "totalTime": null,
+              "gap": "+08.917",
+              "fastestLap": "1:30.927",
+              "points": 30,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "Jack",
+              "driverId": "jack",
+              "entrant": null,
+              "car": "SR3 SL '13",
+              "totalTime": null,
+              "gap": "+26.170",
+              "fastestLap": "1:31.671",
+              "points": 26,
+              "isGuest": false
+            },
+            {
+              "position": 5,
+              "driver": "Emilio",
+              "driverId": "emilio",
+              "entrant": null,
+              "car": "SR3 SL '13",
+              "totalTime": null,
+              "gap": "+28.118",
+              "fastestLap": "1:31.079",
+              "points": 21,
+              "isGuest": false
+            },
+            {
+              "position": 6,
+              "driver": "Rambo",
+              "driverId": "rambo",
+              "entrant": null,
+              "car": "SR3 SL '13",
+              "totalTime": null,
+              "gap": "+38.837",
+              "fastestLap": "1:31.534",
+              "points": 18,
+              "isGuest": false
+            },
+            {
+              "position": 7,
+              "driver": "TheSlayterr-TV",
+              "driverId": "theslayter",
+              "entrant": "TheSlayterr-TV",
+              "car": "SR3 SL '13",
+              "totalTime": null,
+              "gap": "+46.768",
+              "fastestLap": "1:31.726",
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "cetla",
+              "driverId": "cetla",
+              "entrant": null,
+              "car": "SR3 SL '13",
+              "totalTime": null,
+              "gap": "+1:17.927",
+              "fastestLap": "1:32.106",
+              "points": 12,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "FleshTorpedo",
+              "driverId": "fleshtorpedo",
+              "entrant": null,
+              "car": "SR3 SL '13",
+              "totalTime": null,
+              "gap": "+1:23.396",
+              "fastestLap": "1:33.542",
+              "points": 11,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "Slatenator",
+              "driverId": "slatenator",
+              "entrant": null,
+              "car": "SR3 SL '13",
+              "totalTime": null,
+              "gap": "1 Lap",
+              "fastestLap": "1:33.837",
               "points": 9,
               "isGuest": false
             }
