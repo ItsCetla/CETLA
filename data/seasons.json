@@ -5573,7 +5573,7 @@
           "name": "Jack",
           "teamId": "team-romero",
           "color": "purple",
-          "points": 192,
+          "points": 210,
           "aliases": []
         },
         {
@@ -5581,7 +5581,7 @@
           "name": "Rambo",
           "teamId": "team-romero",
           "color": "purple",
-          "points": 312,
+          "points": 342,
           "aliases": []
         },
         {
@@ -5589,7 +5589,7 @@
           "name": "Slatenator",
           "teamId": "team-slate",
           "color": "red",
-          "points": 145,
+          "points": 151,
           "aliases": []
         },
         {
@@ -5615,7 +5615,7 @@
           "name": "KickStart",
           "teamId": "team-tits-out",
           "color": "black",
-          "points": 136,
+          "points": 147,
           "aliases": [
             "KickStart - Sub = FleshTorpedo",
             "KickstartMyKart"
@@ -5634,7 +5634,7 @@
           "name": "FleshTorpedo",
           "teamId": "team-tits-out",
           "color": "black",
-          "points": 156,
+          "points": 165,
           "aliases": []
         },
         {
@@ -5642,7 +5642,7 @@
           "name": "TheSlayter",
           "teamId": "team-slate",
           "color": "red",
-          "points": 201,
+          "points": 216,
           "aliases": [
             "TheSlayterr-TV"
           ]
@@ -5660,7 +5660,7 @@
           "name": "Cetla",
           "teamId": "team-stake",
           "color": "lightgreen",
-          "points": 182,
+          "points": 194,
           "aliases": []
         },
         {
@@ -5668,7 +5668,7 @@
           "name": "Rom3",
           "teamId": "team-rom3-izzy",
           "color": "indigo",
-          "points": 106,
+          "points": 143,
           "aliases": [
             "FRT_R0m3r0Q"
           ]
@@ -5678,7 +5678,7 @@
           "name": "Emilio",
           "teamId": "k-hole-racing",
           "color": "pink",
-          "points": 161,
+          "points": 194,
           "aliases": []
         },
         {
@@ -5686,7 +5686,7 @@
           "name": "Arya",
           "teamId": "team-stake",
           "color": "lightgreen",
-          "points": 278,
+          "points": 304,
           "aliases": []
         },
         {
@@ -5694,7 +5694,7 @@
           "name": "Soul Shock",
           "teamId": null,
           "color": "gold",
-          "points": 89,
+          "points": 110,
           "aliases": [
             "SoulShock-VR",
             "SoulShock",
@@ -7333,6 +7333,156 @@
               "gap": "1 Lap",
               "fastestLap": "1:33.837",
               "points": 9,
+              "isGuest": false
+            }
+          ]
+        },
+        {
+          "id": "fall25-r12",
+          "round": 12,
+          "name": "The OG Series \u2014 Autodromo Nazionale Monza (No Chicane)",
+          "trackImage": "",
+          "schedule": {
+            "date": null,
+            "venue": "Autodromo Nazionale Monza (No Chicane)"
+          },
+          "settings": {
+            "carClass": "458 Italia GT3 '13",
+            "weather": "",
+            "laps": null,
+            "notes": "One-make: 458 Italia GT3 '13. Series: The OG Series / Gran Turismo 7."
+          },
+          "results": [
+            {
+              "position": 1,
+              "driver": "FRT_R0m3r0Q",
+              "driverId": "rom3",
+              "entrant": "FRT_R0m3r0Q",
+              "car": "458 Italia GT3 '13",
+              "totalTime": "30:52.096",
+              "gap": null,
+              "fastestLap": "1:39.989",
+              "points": 37,
+              "isGuest": false
+            },
+            {
+              "position": 2,
+              "driver": "Emilio",
+              "driverId": "emilio",
+              "entrant": null,
+              "car": "458 Italia GT3 '13",
+              "totalTime": "+01.449",
+              "gap": "+01.449",
+              "fastestLap": "1:40.342",
+              "points": 33,
+              "isGuest": false
+            },
+            {
+              "position": 3,
+              "driver": "Rambo",
+              "driverId": "rambo",
+              "entrant": null,
+              "car": "458 Italia GT3 '13",
+              "totalTime": "+05.807",
+              "gap": "+05.807",
+              "fastestLap": "1:40.712",
+              "points": 30,
+              "isGuest": false
+            },
+            {
+              "position": 4,
+              "driver": "Arya",
+              "driverId": "arya",
+              "entrant": null,
+              "car": "458 Italia GT3 '13",
+              "totalTime": "+07.892",
+              "gap": "+07.892",
+              "fastestLap": "1:40.494",
+              "points": 26,
+              "isGuest": false
+            },
+            {
+              "position": 5,
+              "driver": "SoulShock-VR",
+              "driverId": "soulshock",
+              "entrant": null,
+              "car": "458 Italia GT3 '13",
+              "totalTime": "+20.507",
+              "gap": "+20.507",
+              "fastestLap": "1:40.788",
+              "points": 21,
+              "isGuest": false
+            },
+            {
+              "position": 6,
+              "driver": "Jack",
+              "driverId": "jack",
+              "entrant": null,
+              "car": "458 Italia GT3 '13",
+              "totalTime": "+26.086",
+              "gap": "+26.086",
+              "fastestLap": "1:41.759",
+              "points": 18,
+              "isGuest": false
+            },
+            {
+              "position": 7,
+              "driver": "TheSlayterr-TV",
+              "driverId": "theslayter",
+              "entrant": "TheSlayterr-TV",
+              "car": "458 Italia GT3 '13",
+              "totalTime": "+42.415",
+              "gap": "+42.415",
+              "fastestLap": "1:41.440",
+              "points": 15,
+              "isGuest": false
+            },
+            {
+              "position": 8,
+              "driver": "cetla",
+              "driverId": "cetla",
+              "entrant": null,
+              "car": "458 Italia GT3 '13",
+              "totalTime": "+43.570",
+              "gap": "+43.570",
+              "fastestLap": "1:42.110",
+              "points": 12,
+              "isGuest": false
+            },
+            {
+              "position": 9,
+              "driver": "KickstartMyKart",
+              "driverId": "kickstart",
+              "entrant": "KickstartMyKart",
+              "car": "458 Italia GT3 '13",
+              "totalTime": "+49.646",
+              "gap": "+49.646",
+              "fastestLap": "1:41.719",
+              "points": 11,
+              "isGuest": false
+            },
+            {
+              "position": 10,
+              "driver": "FleshTorpedo",
+              "driverId": "fleshtorpedo",
+              "entrant": null,
+              "car": "458 Italia GT3 '13",
+              "totalTime": "+51.225",
+              "gap": "+51.225",
+              "fastestLap": "1:42.648",
+              "points": 9,
+              "isGuest": false
+            },
+            {
+              "position": 11,
+              "driver": "Slatenator",
+              "driverId": "slatenator",
+              "entrant": null,
+              "car": "458 Italia GT3 '13",
+              "totalTime": "+58.276",
+              "gap": "+58.276",
+              "fastestLap": "1:42.401",
+              "points": 6,
               "isGuest": false
             }
           ]
