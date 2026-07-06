@@ -56,7 +56,7 @@ nav{
   font-family:'Anton',sans-serif;font-size:15px;
 }
 .logo-name{font-family:'Anton',sans-serif;font-size:17px;letter-spacing:.03em;text-transform:uppercase;}
-.logo-img{height:112px;width:auto;display:block;border-radius:4px;}
+.logo-img{height:140px;width:auto;display:block;border-radius:4px;}
 .foot-logo-img{height:130px;}
 .nav-links{display:flex;gap:22px;margin-left:auto;align-items:center;}
 .nav-links a{color:var(--ink-soft);text-decoration:none;font-weight:600;font-size:14.5px;}
@@ -98,12 +98,9 @@ h1 .hl::after{
 .hero-ctas{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap;}
 .hero-visual{
   border-radius:24px;background:var(--sage);border:1px solid var(--line);
-  aspect-ratio:4/4.6;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:12px;color:var(--ink-soft);text-align:center;padding:30px;
+  aspect-ratio:4/4.6;overflow:hidden;
 }
-.hero-visual svg{opacity:.5}
-.hero-visual b{font-size:14px;color:var(--forest);}
-.hero-visual span{font-size:13px;max-width:26ch;}
+.hero-visual img{width:100%;height:100%;object-fit:cover;display:block;}
 
 /* ---------- brand banner — full-bleed strip, bg matches the image's black ---------- */
 .brand-band{background:#0E0E0E;padding:0;font-size:0;}
@@ -111,7 +108,7 @@ h1 .hl::after{
 
 /* ---------- marquee ticker ---------- */
 .marquee{background:var(--forest);color:#fff;overflow:hidden;padding:13px 0;}
-.marquee-track{display:flex;width:max-content;animation:marquee 26s linear infinite;}
+.marquee-track{display:flex;width:max-content;animation:marquee 57s linear infinite;}
 .marquee-track span{
   font-family:'Anton',sans-serif;font-size:16px;letter-spacing:.14em;text-transform:uppercase;
   white-space:nowrap;padding-right:56px;
@@ -143,7 +140,7 @@ h1 .hl::after{
 
 /* ---------- nav shrink on scroll ---------- */
 .logo-img{transition:height .25s ease;}
-nav.scrolled .logo-img{height:64px;}
+nav.scrolled .logo-img{height:72px;}
 
 /* ---------- FAQ ---------- */
 .faq-list{max-width:780px;}
@@ -292,6 +289,19 @@ h2{
 .merch .btn{margin-left:auto;}
 @media(max-width:700px){.merch .btn{margin-left:0}}
 
+/* ---------- foundation ---------- */
+.found-wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:start;}
+@media(max-width:820px){.found-wrap{grid-template-columns:1fr}}
+.found-cards{display:flex;flex-direction:column;gap:16px;}
+.donate-amounts{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;}
+.donate-amt{
+  border:1.5px solid rgba(255,255,255,.35);background:transparent;color:#fff;
+  border-radius:99px;padding:9px 18px;font-family:'Anton',sans-serif;font-size:15px;
+  letter-spacing:.04em;cursor:pointer;transition:all .15s;
+}
+.donate-amt:hover{border-color:var(--amber);color:var(--amber);}
+.donate-amt.on{background:var(--amber);border-color:var(--amber);color:#3A2A08;}
+
 /* ---------- apply banner ---------- */
 .apply{
   border:2px dashed var(--forest);border-radius:22px;background:var(--sage);
@@ -335,6 +345,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--amber);outline-offs
       <a href="#stories">Athlete Stories</a>
       <a href="#course">Coach Course</a>
       <a href="#merch">Shop</a>
+      <a href="#foundation">ETC Foundation</a>
       <a class="btn" href="#professionals">Book a Session</a>
     </div>
   </div>
@@ -361,9 +372,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--amber);outline-offs
       </div>
     </div>
     <div class="hero-visual">
-      <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.5-3.5L6 23"/></svg>
-      <b>[ HERO IMAGE ]</b>
-      <span>Real photography — athlete in a quiet, human moment. Warm tones.</span>
+      <img src="hero-coach.jpeg" alt="A coach speaking to his soccer team gathered around him on the field">
     </div>
   </div>
 </header>
@@ -379,18 +388,21 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--amber);outline-offs
     <div class="stats-grid">
       <div class="stat">
         <div class="num">1 in 3</div>
-        <p>current elite athletes report symptoms of anxiety or depression.<sup><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6579497/" target="_blank" rel="noopener">1</a></sup></p>
+        <p>current elite athletes report symptoms of anxiety or depression.</p>
       </div>
       <div class="stat">
         <div class="num"><span class="count" data-target="10">10</span>%</div>
-        <p>of college athletes with mental health concerns seek professional help.<sup><a href="https://www.athletesforhope.org/2019/05/mental-health-and-athletes/" target="_blank" rel="noopener">2</a></sup></p>
+        <p>of college athletes with mental health concerns seek professional help.</p>
       </div>
       <div class="stat">
         <div class="num"><span class="count" data-target="100">100</span>%</div>
         <p>deserve a team behind them. That's why we exist.</p>
       </div>
     </div>
-    <p class="stats-note">Sources: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6579497/" target="_blank" rel="noopener">1. Gouttebarge et al., "Occurrence of mental health symptoms and disorders in current and former elite athletes," Br J Sports Med (2019) — ~34% of current elite athletes report anxiety/depression symptoms</a> · <a href="https://www.athletesforhope.org/2019/05/mental-health-and-athletes/" target="_blank" rel="noopener">2. Athletes for Hope — ~10% of college athletes with known mental health conditions seek help, vs. ~30% of college students overall</a></p>
+    <!-- Sources (removed from display):
+         1. Gouttebarge et al., "Occurrence of mental health symptoms and disorders in current and former elite athletes," Br J Sports Med (2019) — https://pmc.ncbi.nlm.nih.gov/articles/PMC6579497/
+         2. Athletes for Hope — https://www.athletesforhope.org/2019/05/mental-health-and-athletes/ -->
+
   </div>
 </section>
 
@@ -405,11 +417,12 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--amber);outline-offs
 
     <div class="filter-row" role="group" aria-label="Filter professionals by specialty">
       <button class="chip on">All</button>
-      <button class="chip">Sports Psychology</button>
-      <button class="chip">Performance Anxiety</button>
-      <button class="chip">Injury Recovery</button>
-      <button class="chip">Team & Culture</button>
-      <button class="chip">Youth Athletes</button>
+      <button class="chip">Performance &amp; Competition</button>
+      <button class="chip">Injury &amp; Recovery</button>
+      <button class="chip">Mental Health</button>
+      <button class="chip">Student Athlete Support</button>
+      <button class="chip">Health &amp; Wellness</button>
+      <button class="chip">After Sports Life</button>
     </div>
 
     <div class="pro-grid">
@@ -580,6 +593,59 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--amber);outline-offs
   </div>
 </section>
 
+<!-- ================= AMBASSADOR APPLY ================= -->
+<section style="padding-top:0;">
+  <div class="wrap">
+    <div class="apply">
+      <div>
+        <h2>Become an ambassador</h2>
+        <p>Athletes, coaches, and advocates — help us carry the message that asking for help is a competitive advantage. Apply to represent the movement in your community.</p>
+      </div>
+      <a class="btn" href="#">Apply to Be an Ambassador</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ETC FOUNDATION ================= -->
+<section id="foundation" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Give back</span>
+      <h2>The ETC Foundation</h2>
+      <p>Every dollar donated or raised goes to work for athlete mental health — funding research and building a scholarship for the next generation.</p>
+    </div>
+    <div class="found-wrap">
+      <div class="found-cards">
+        <div class="step">
+          <h3>Mental health research</h3>
+          <p>Donations fund research into athlete mental health — understanding what athletes face, what works, and how to get help to them sooner.</p>
+        </div>
+        <div class="step">
+          <h3>The ETC Scholarship</h3>
+          <p>A portion of everything we collect is set aside for a scholarship, awarded to a student athlete who champions mental health in their community.</p>
+        </div>
+        <div class="step">
+          <h3>Fundraising</h3>
+          <p>From community events to team fundraisers, there are ways to raise money beyond giving directly. Want to run a fundraiser with us? Reach out — we'll help you set it up.</p>
+        </div>
+      </div>
+      <div class="course-panel">
+        <div class="display">Make a donation</div>
+        <p>Your gift funds mental health research and the ETC Scholarship. Every amount moves the mission forward.</p>
+        <div class="donate-amounts">
+          <button class="donate-amt">$10</button>
+          <button class="donate-amt on">$25</button>
+          <button class="donate-amt">$50</button>
+          <button class="donate-amt">$100</button>
+          <button class="donate-amt">Other</button>
+        </div>
+        <a class="btn amber" href="#">Donate</a>
+        <p style="font-size:12.5px;color:#D9E0C6;margin-top:14px;">[Wire to Stripe / Givebutter / GoFundMe at build time · confirm nonprofit status &amp; tax-deductibility language]</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= FAQ ================= -->
 <section id="faq" class="alt">
   <div class="wrap">
@@ -657,10 +723,13 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--amber);outline-offs
         <a href="#stories">Athlete Stories</a>
         <a href="#course">Coach Course</a>
         <a href="#merch">Shop</a>
+        <a href="#foundation">ETC Foundation</a>
       </div>
       <div class="foot-col">
         <b>Get Involved</b>
+        <a href="#foundation">Donate</a>
         <a href="#">Apply as a Professional</a>
+        <a href="#">Apply as an Ambassador</a>
         <a href="#">Share Your Story</a>
         <a href="#">Contact — [email placeholder]</a>
       </div>
@@ -687,10 +756,18 @@ document.querySelectorAll('.chip').forEach(chip=>{
   });
 });
 
+/* Donation amount chips — visual toggle only; wire to payment processor at build time */
+document.querySelectorAll('.donate-amt').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.donate-amt').forEach(b=>b.classList.remove('on'));
+    btn.classList.add('on');
+  });
+});
+
 /* Scroll-reveal — stagger cards as they enter the viewport */
 (()=>{
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const targets = document.querySelectorAll('.sec-head, .pro-card, .step, .vid-card, .stat, .course-wrap > *, .merch, .apply, .pull .display, .pull p, details.faq, .signup, .cta-final .display, .cta-final p, .cta-final .hero-ctas');
+  const targets = document.querySelectorAll('.sec-head, .pro-card, .step, .vid-card, .stat, .course-wrap > *, .found-wrap .course-panel, .merch, .apply, .pull .display, .pull p, details.faq, .signup, .cta-final .display, .cta-final p, .cta-final .hero-ctas');
   if (reduced || !('IntersectionObserver' in window)) return;
   targets.forEach(el=>el.classList.add('reveal'));
   const io = new IntersectionObserver(entries=>{
@@ -732,4 +809,3 @@ document.querySelectorAll('.chip').forEach(chip=>{
 </script>
 </body>
 </html>
->
