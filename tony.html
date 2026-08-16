@@ -367,6 +367,13 @@ h2{
 
 /* ---------- shop modal ---------- */
 .shop-overlay{
+  --shop-pad:32px;
+  --shop-gap:20px;
+  --shop-radius:20px;
+  --shop-card-radius:14px;
+  --shop-stage:#F1F3EA;
+  --shop-stage-inset:8px;
+  --shop-action:var(--forest-deep);
   position:fixed;inset:0;z-index:200;
   display:flex;align-items:center;justify-content:center;padding:24px;
   background:rgba(30,34,26,.55);backdrop-filter:blur(6px);
@@ -374,18 +381,24 @@ h2{
 }
 .shop-overlay.open{opacity:1;visibility:visible;}
 .shop-modal{
-  background:var(--oat);border-radius:24px;
+  background:var(--oat);border-radius:var(--shop-radius);
   width:min(960px,100%);max-height:88vh;display:flex;flex-direction:column;
+  overflow-y:auto;
   box-shadow:0 30px 80px rgba(30,34,26,.35);
   transform:translateY(16px) scale(.98);transition:transform .28s cubic-bezier(.2,.8,.2,1);
 }
 .shop-overlay.open .shop-modal{transform:none;}
 .shop-head{
-  display:flex;align-items:flex-start;gap:16px;
-  padding:28px 32px 20px;border-bottom:1px solid var(--line);
+  position:sticky;top:0;z-index:2;display:flex;align-items:flex-start;gap:var(--shop-gap);
+  padding:28px var(--shop-pad) 20px;background:var(--oat);border-bottom:1px solid var(--line);
+}
+.shop-head::after{
+  content:'';position:absolute;left:var(--shop-pad);right:var(--shop-pad);bottom:-1px;height:2px;background:var(--amber);
 }
 .shop-head .display{font-size:clamp(24px,3.2vw,32px);}
 .shop-head p{color:var(--ink-soft);font-size:14.5px;margin-top:4px;}
+.shop-head .shop-guidance{color:var(--shop-action);font-size:12.5px;font-weight:600;letter-spacing:.01em;}
+.shop-guidance .touch-guide{display:none;}
 .shop-close{
   margin-left:auto;flex:none;width:40px;height:40px;border-radius:50%;
   border:1px solid var(--line);background:var(--card);color:var(--ink);
@@ -393,35 +406,70 @@ h2{
 }
 .shop-close:hover{background:var(--sage);transform:rotate(90deg);}
 .shop-grid{
-  overflow-y:auto;padding:24px 32px 32px;
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:22px;
+  padding:24px var(--shop-pad) var(--shop-pad);
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--shop-gap);
   align-items:start;
 }
 .shop-card{
-  background:var(--card);border:1px solid var(--line);border-radius:16px;
+  appearance:none;width:100%;padding:0;text-align:left;font:inherit;color:inherit;cursor:pointer;
+  background:var(--card);border:1px solid var(--line);border-radius:var(--shop-card-radius);
   overflow:hidden;display:flex;flex-direction:column;
-  transition:transform .2s,box-shadow .2s;
+  transition:transform .2s,box-shadow .2s,border-color .2s;
 }
-.shop-card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(30,34,26,.12);}
-.shop-card .thumb{
-  aspect-ratio:1/1;flex:none;background:var(--sage);
-  display:flex;align-items:center;justify-content:center;
-  color:var(--forest);font-family:'Anton',sans-serif;font-size:13px;
-  letter-spacing:.05em;text-transform:uppercase;position:relative;
+.shop-card:hover,.shop-card:focus-visible{transform:translateY(-3px);box-shadow:0 12px 28px rgba(30,34,26,.12);border-color:var(--forest);}
+.shop-card:focus-visible,.shop-close:focus-visible,.product-detail-close:focus-visible{outline:3px solid var(--amber);outline-offset:3px;}
+.shop-card .thumb{aspect-ratio:4/5;flex:none;background:var(--shop-stage);position:relative;perspective:900px;overflow:hidden;}
+.shop-card .side{
+  position:absolute;inset:var(--shop-stage-inset);background-color:#fff;background-image:var(--art);background-repeat:no-repeat;
+  background-size:var(--art-size,200%) auto;backface-visibility:hidden;transform:rotateY(0deg);
+  transition:opacity .3s ease,transform .3s ease;
 }
-.shop-card .thumb::after{content:'Coming soon';opacity:.55;}
-.shop-card .tag{
-  position:absolute;top:10px;left:10px;background:var(--amber);color:#3A2A08;
-  font-size:11px;font-weight:700;padding:3px 8px;border-radius:20px;letter-spacing:.02em;
+.shop-card .side.front{background-position:left var(--art-position,center);}
+.shop-card .side.back{background-position:right var(--art-position,center);opacity:0;transform:rotateY(-180deg);}
+.shop-card:hover .side.front,.shop-card:focus-visible .side.front{opacity:0;transform:rotateY(180deg);}
+.shop-card:hover .side.back,.shop-card:focus-visible .side.back{opacity:1;transform:rotateY(0deg);}
+.shop-card .side-label{
+  position:absolute;left:8px;bottom:8px;background:rgba(30,34,26,.76);color:#fff;
+  border-radius:99px;padding:3px 8px;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
 }
 .shop-card .body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:4px;flex:1;}
 .shop-card h4{font-size:15px;font-weight:600;line-height:1.3;min-height:2.6em;}
-.shop-card .price{color:var(--ink-soft);font-size:14px;}
-.shop-card .btn{margin-top:12px;width:100%;justify-content:center;padding:9px;font-size:14px;}
-@media(max-width:520px){
-  .shop-head{padding:22px 20px 16px;}
-  .shop-grid{padding:18px 20px 24px;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:14px;}
+.shop-card .preview{color:var(--shop-action);font-size:14px;font-weight:700;}
+.shop-card:hover .preview,.shop-card:focus-visible .preview{color:var(--forest);}
+.shop-card .metadata{color:var(--ink-soft);font-size:12px;}
+.shop-card .touch-hint{display:none;color:var(--ink-soft);font-size:12px;margin-top:3px;}
+
+.product-detail{
+  position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:center;padding:24px;
+  background:rgba(30,34,26,.68);opacity:0;visibility:hidden;transition:opacity .24s ease,visibility .24s ease;
 }
+.product-detail.open{opacity:1;visibility:visible;}
+.product-detail-modal{
+  width:min(900px,100%);max-height:calc(88vh - 48px);overflow:auto;position:relative;
+  background:var(--oat);border-radius:var(--shop-radius);padding:26px;box-shadow:0 30px 80px rgba(30,34,26,.42);
+  transform:translateY(12px) scale(.98);transition:transform .24s ease;
+}
+.product-detail.open .product-detail-modal{transform:none;}
+.product-detail-close{position:absolute;right:18px;top:18px;z-index:1;}
+.product-detail-head{padding-right:48px;margin-bottom:16px;}
+.product-detail-head .display{font-size:clamp(24px,3.2vw,32px);}
+.product-detail-head p{color:var(--ink-soft);font-size:14px;margin-top:4px;}
+.product-detail-art{display:block;width:100%;max-height:65vh;object-fit:contain;border:1px solid var(--line);background:#fff;}
+@media(hover:none){.shop-guidance .pointer-guide{display:none;}.shop-guidance .touch-guide{display:inline;}.shop-card .touch-hint{display:block;}.shop-card:active .side.front{opacity:0;transform:rotateY(180deg);}.shop-card:active .side.back{opacity:1;transform:rotateY(0deg);}}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;}
+}
+@media(max-width:720px){
+  .shop-overlay{--shop-pad:16px;--shop-gap:14px;--shop-radius:18px;padding:12px;}
+  .shop-modal{width:100%;max-height:calc(100vh - 24px);}
+  .shop-head{padding:20px var(--shop-pad) 16px;}
+  .shop-head::after{left:var(--shop-pad);right:var(--shop-pad);}
+  .shop-grid{padding:18px var(--shop-pad) var(--shop-pad);grid-template-columns:repeat(2,minmax(0,1fr));}
+  .product-detail{padding:14px;}
+  .product-detail-modal{padding:20px 16px;border-radius:16px;max-height:calc(92vh - 28px);}
+  .product-detail-close{right:12px;top:12px;}
+}
+@media(max-width:360px){.shop-grid{grid-template-columns:1fr;}}
 
 /* ---------- foundation ---------- */
 .found-wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:start;}
@@ -995,51 +1043,103 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--amber);outline-offs
 
 <!-- ================= SHOP MODAL ================= -->
 <div class="shop-overlay" id="shopOverlay" role="dialog" aria-modal="true" aria-labelledby="shopTitle" hidden>
-  <div class="shop-modal">
+  <div class="shop-modal" id="shopModal">
     <div class="shop-head">
       <div>
         <div class="display" id="shopTitle">The Shop</div>
         <p>Merch that starts conversations about mental health in sport. Full collection drops soon.</p>
+        <p class="shop-guidance"><span class="pointer-guide">Hover or focus to flip. Select to enlarge.</span><span class="touch-guide">Tap to open front + back.</span></p>
       </div>
       <button class="shop-close" id="shopClose" aria-label="Close shop">&times;</button>
     </div>
     <div class="shop-grid" id="shopGrid"><!-- products injected by JS --></div>
   </div>
+  <div class="product-detail" id="productDetail" role="dialog" aria-modal="true" aria-labelledby="productDetailTitle" hidden>
+    <div class="product-detail-modal" id="productDetailModal">
+      <button class="shop-close product-detail-close" id="productDetailClose" aria-label="Close design preview">&times;</button>
+      <div class="product-detail-head">
+        <div class="display" id="productDetailTitle">Design preview</div>
+        <p>Front and back view</p>
+      </div>
+      <img class="product-detail-art" id="productDetailArt" src="" alt="">
+    </div>
+  </div>
 </div>
 
 <script>document.documentElement.classList.add('js')</script>
 <script>
-/* ---------- Shop modal ----------
-   PRODUCTS is a placeholder. To go live, replace this array with a fetch()
-   of your Shopify Storefront API or Printify products and keep the same
-   shape ({title, price, tag?, image?}); renderShop() stays unchanged. */
+/* ---------- Shop modal ---------- */
 (()=>{
   const PRODUCTS = [
-    {title:'ETC Classic Tee',        price:'$28', tag:'New'},
-    {title:'Every Teammate Counts Hoodie', price:'$52'},
-    {title:'Mental Reps Cap',        price:'$26'},
-    {title:'Check-In Crewneck',      price:'$48', tag:'New'},
-    {title:'Sideline Water Bottle',  price:'$22'},
-    {title:'Locker Room Sticker Pack', price:'$8'},
+    {title:'Red ETC Statement Tee', image:'assets/shop/design-01.jpg', stageSize:'200%', stagePosition:'center', meta:''},
+    {title:'Red ETC Statement Tee', image:'assets/shop/design-07.jpg', stageSize:'200%', stagePosition:'center', meta:'Preview 2 of 2'},
+    {title:'Blue Strong Enough Tee', image:'assets/shop/design-02.jpg', stageSize:'200%', stagePosition:'48%', meta:''},
+    {title:'Blue Strong Enough Tee', image:'assets/shop/design-03.jpg', stageSize:'200%', stagePosition:'48%', meta:'Preview 2 of 2'},
+    {title:'Sand ETC Script Tee', image:'assets/shop/design-04.jpg', stageSize:'198%', stagePosition:'center', meta:''},
+    {title:'Charcoal Team Logo Tee', image:'assets/shop/design-05.jpg', stageSize:'198%', stagePosition:'center', meta:''},
+    {title:'Cream Team Message Tee', image:'assets/shop/design-06.jpg', stageSize:'210%', stagePosition:'center', meta:''},
   ];
 
   const overlay = document.getElementById('shopOverlay');
+  const shopModal = document.getElementById('shopModal');
   const grid    = document.getElementById('shopGrid');
   const closeBtn= document.getElementById('shopClose');
+  const detail = document.getElementById('productDetail');
+  const detailModal = document.getElementById('productDetailModal');
+  const detailClose = document.getElementById('productDetailClose');
+  const detailTitle = document.getElementById('productDetailTitle');
+  const detailArt = document.getElementById('productDetailArt');
   let lastFocus = null;
+  let cardFocus = null;
+  let inertedPageElements = [];
+
+  const motionDelay = () => matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 280;
+
+  function setPageInert(active){
+    if(active){
+      inertedPageElements = [...document.body.children].filter(element=>element !== overlay && element.tagName !== 'SCRIPT' && !element.inert);
+      inertedPageElements.forEach(element=>{ element.inert = true; });
+      return;
+    }
+    inertedPageElements.forEach(element=>{ element.inert = false; });
+    inertedPageElements = [];
+  }
+
+  function trapFocus(event, container){
+    const focusable = [...container.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])')]
+      .filter(element=>!element.hidden && element.getClientRects().length);
+    if(!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if(event.shiftKey && document.activeElement === first){
+      event.preventDefault();
+      last.focus();
+    }else if(!event.shiftKey && document.activeElement === last){
+      event.preventDefault();
+      first.focus();
+    }else if(!container.contains(document.activeElement)){
+      event.preventDefault();
+      first.focus();
+    }
+  }
 
   function renderShop(){
     if(grid.dataset.rendered) return;
     grid.innerHTML = PRODUCTS.map(p=>`
-      <div class="shop-card">
-        <div class="thumb">${p.tag?`<span class="tag">${p.tag}</span>`:''}</div>
+      <button class="shop-card" type="button" data-title="${p.title}" data-image="${p.image}" aria-label="View ${p.title}: front and back design preview">
+        <div class="thumb" style="--art:url('${p.image}');--art-size:${p.stageSize};--art-position:${p.stagePosition}" aria-hidden="true">
+          <span class="side front"><span class="side-label">Front</span></span>
+          <span class="side back"><span class="side-label">Back</span></span>
+        </div>
         <div class="body">
           <h4>${p.title}</h4>
-          <span class="price">${p.price}</span>
-          <a class="btn amber" href="#" aria-disabled="true">Notify me</a>
+          <span class="preview">View front + back</span>
+          ${p.meta ? `<span class="metadata">${p.meta}</span>` : ''}
+          <span class="touch-hint">Tap to open front + back.</span>
         </div>
-      </div>`).join('');
+      </button>`).join('');
     grid.dataset.rendered = '1';
+    grid.querySelectorAll('.shop-card').forEach(card=>card.addEventListener('click', ()=>openProductDetail(card)));
   }
 
   function openShop(e){
@@ -1047,22 +1147,69 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--amber);outline-offs
     lastFocus = document.activeElement;
     renderShop();
     overlay.hidden = false;
-    requestAnimationFrame(()=>overlay.classList.add('open'));
+    overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
-    closeBtn.focus();
+    setPageInert(true);
+    closeBtn.focus({preventScroll:true});
+    requestAnimationFrame(()=>{
+      if(document.activeElement !== closeBtn) closeBtn.focus({preventScroll:true});
+    });
+    setTimeout(()=>closeBtn.focus({preventScroll:true}), 50);
   }
   function closeShop(){
+    closeProductDetail({restoreFocus:false, immediate:true});
     overlay.classList.remove('open');
     document.body.style.overflow = '';
-    setTimeout(()=>{ overlay.hidden = true; }, 280);
-    if(lastFocus) lastFocus.focus();
+    setTimeout(()=>{
+      overlay.hidden = true;
+      setPageInert(false);
+      if(lastFocus) lastFocus.focus();
+    }, motionDelay());
+  }
+
+  function openProductDetail(card){
+    cardFocus = card;
+    detailTitle.textContent = card.dataset.title;
+    detailArt.src = card.dataset.image;
+    detailArt.alt = `${card.dataset.title}, complete front and back design preview`;
+    shopModal.inert = true;
+    shopModal.setAttribute('aria-hidden', 'true');
+    detail.hidden = false;
+    detail.classList.add('open');
+    detailClose.focus({preventScroll:true});
+    requestAnimationFrame(()=>{
+      if(document.activeElement !== detailClose) detailClose.focus({preventScroll:true});
+    });
+    setTimeout(()=>detailClose.focus({preventScroll:true}), 50);
+  }
+
+  function closeProductDetail({restoreFocus=true, immediate=false}={}){
+    if(detail.hidden) return;
+    detail.classList.remove('open');
+    const finish = ()=>{
+      detail.hidden = true;
+      detailArt.removeAttribute('src');
+      shopModal.inert = false;
+      shopModal.removeAttribute('aria-hidden');
+      if(restoreFocus && cardFocus) cardFocus.focus();
+    };
+    if(immediate) finish(); else setTimeout(finish, motionDelay());
   }
 
   // Wire up both "Shop" links (nav + footer) — they used to jump to #merch
   document.querySelectorAll('a[href="#merch"]').forEach(a=>a.addEventListener('click', openShop));
   closeBtn.addEventListener('click', closeShop);
   overlay.addEventListener('click', e=>{ if(e.target===overlay) closeShop(); });
-  addEventListener('keydown', e=>{ if(e.key==='Escape' && !overlay.hidden) closeShop(); });
+  detailClose.addEventListener('click', ()=>closeProductDetail());
+  detail.addEventListener('click', e=>{ if(e.target===detail) closeProductDetail(); });
+  addEventListener('keydown', e=>{
+    if(e.key === 'Tab' && !overlay.hidden){
+      trapFocus(e, detail.hidden ? shopModal : detailModal);
+      return;
+    }
+    if(e.key !== 'Escape' || overlay.hidden) return;
+    if(!detail.hidden) closeProductDetail(); else closeShop();
+  });
 })();
 </script>
 
